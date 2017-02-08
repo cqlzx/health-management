@@ -1,1 +1,1 @@
-# This is a project which implements Personal Health Management System(PHMS)
+# Project for Personal Health Management System(PHMS)
