@@ -26,16 +26,15 @@ public class EditProfileActivity extends AppCompatActivity {
 
         // button
         Button btn_saveprofile;
-//        btn_saveprofile = (Button) findViewById(R.id.btn_editprofile);
-//
-//        btn_saveprofile.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent();
-//                intent.setClass(EditProfileActivity.this, ProfileActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        btn_saveprofile = (Button) findViewById(R.id.btn_editprofile);
+
+        btn_saveprofile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // save information and turn back
+                EditProfileActivity.this.finish();
+            }
+        });
 
     }
     @Override
