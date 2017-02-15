@@ -32,10 +32,10 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // save information and turn back
+                // sql
                 EditProfileActivity.this.finish();
             }
         });
-
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item){

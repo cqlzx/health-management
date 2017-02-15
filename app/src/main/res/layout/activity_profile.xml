@@ -47,23 +47,42 @@
         <!--android:layout_height="wrap_content"/>-->
 
     <LinearLayout
-        android:paddingLeft="16dp"
-        android:paddingTop="16dp"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
 
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <TextView
-        android:text="Age:"
+        android:text="Realname:"
         android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
-        android:text="20"
+        android:text="xiaolei"
         android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView"/>
+        android:id="@+id/textView0"/>
+
+</LinearLayout>
+    <LinearLayout
+        android:paddingLeft="16dp"
+
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Age:"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="20"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"/>
 
     </LinearLayout>
 
