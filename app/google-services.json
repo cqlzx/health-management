@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "762050191200",
+    "project_id": "firebase-healthmanagement"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762050191200:android:7f1eaddf5a78a1ed",
+        "android_client_info": {
+          "package_name": "com.along.android.healthmanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "762050191200-l86v7adq7lnr97buignt77i3nv4jt3k6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.along.android.healthmanagement",
+            "certificate_hash": "0B257B9CC721076360F9C7651B1061FAA12B755D"
+          }
+        },
+        {
+          "client_id": "762050191200-l3qgq5klrhn57pi3cgb2jkmisjgsqepr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfihuYs0iYyhDBIFPAy0T-0v_20NBCeAY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

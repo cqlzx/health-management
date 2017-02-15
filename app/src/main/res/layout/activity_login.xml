@@ -67,7 +67,7 @@
     <Button
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_google_login"
+        android:id="@+id/btn_google_sign_in"
         android:layout_below="@id/or"
         android:layout_centerHorizontal="true"
         android:background="@drawable/rectangle"
@@ -83,7 +83,7 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dip"
-        android:layout_below="@id/btn_google_login"
+        android:layout_below="@id/btn_google_sign_in"
         android:background="#AAAAAA"
         android:id="@+id/horizontal_line"
         android:layout_marginTop="@dimen/large_margin"/>
