@@ -7,7 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
 import Bean.UserBean;
+import Bean.Validation;
 import DBManager.DatabaseHelper;
 
 /**
@@ -18,9 +21,9 @@ public class RegisterActivity extends AppCompatActivity{
     DatabaseHelper helper = new DatabaseHelper(this);
 
 
-    EditText etUsername,etPassword,etEmail, etRealname, etGender, etAge, etPhonenumber, etWeight, etHeight;
+    EditText etUsername,etPassword,etConfirmpassword,etEmail, etRealname, etGender, etAge, etPhonenumber, etWeight, etHeight;
     Button btn_register,btn_cancel;
-    UserBean userBean;
+    //EditText[] etUserinfo = {etUsername, etPassword, etEmail, etRealname, etGender, etAge, etPhonenumber, etWeight, etHeight};
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -28,26 +31,49 @@ public class RegisterActivity extends AppCompatActivity{
 
         etUsername = (EditText)findViewById(R.id.etUsername);
         etPassword = (EditText)findViewById(R.id.etPassword);
+        etConfirmpassword = (EditText)findViewById(R.id.etConfirmpassword);
+
+        etEmail = (EditText)findViewById(R.id.etEmail);
+        etRealname = (EditText)findViewById(R.id.etRealname);
+        etGender = (EditText)findViewById(R.id.etGender);
+        etAge = (EditText)findViewById(R.id.etAge);
+        etPhonenumber = (EditText)findViewById(R.id.etPhonenumber);
+        etWeight = (EditText)findViewById(R.id.etWeight);
+        etHeight = (EditText)findViewById(R.id.etHeight);
 
         btn_register = (Button)findViewById(R.id.btn_register);
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userBean = new UserBean();
-                userBean.setUsername(etUsername.getText().toString());
-                userBean.setPassword(etPassword.getText().toString());
-                if(userBean.isValid(userBean.getUsername(),userBean.getPassword(),RegisterActivity.this)){
-                    UserBean c = new UserBean();
-                    c.setUsername(etUsername.getText().toString());
-                    c.setPassword(etPassword.getText().toString());
-                    helper.insertContact(c);
-                    Intent intent = new Intent();
-                    intent.setClass(RegisterActivity.this, MainActivity.class);
-                    startActivity(intent);
+            UserBean user = new UserBean();
 
-                }
+            user.setUsername(etUsername.getText().toString());
+            user.setPassword(etPassword.getText().toString());
+            user.setEmail(etEmail.getText().toString());
+            user.setRealname(etRealname.getText().toString());
+            user.setGender(etGender.getText().toString());
+            user.setAge(etAge.getText().toString());
+            user.setPhonenumber(etPhonenumber.getText().toString());
+            user.setWeight(etWeight.getText().toString());
+            user.setHeight(etHeight.getText().toString());
 
+            /*if(userBean.isValid(userBean.getUsername(),userBean.getPassword(),RegisterActivity.this)){
+                UserBean user = new UserBean();
+                user.setUsername(etUsername.getText().toString());
+                user.setPassword(etPassword.getText().toString());
+                helper.insertContact(user);
+                Intent intent = new Intent();
+                intent.setClass(RegisterActivity.this, MainActivity.class);
+                startActivity(intent);
 
+            }*/
+            if(Validation.isEmpty(user, RegisterActivity.this ) &&
+                    Validation.isPasswordMatch(etPassword.getText().toString(),etConfirmpassword.getText().toString(),RegisterActivity.this)){
+                helper.insertContact(user);
+                Intent intent = new Intent();
+                intent.setClass(RegisterActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
 
             }
         });

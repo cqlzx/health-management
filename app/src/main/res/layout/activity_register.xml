@@ -16,6 +16,11 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/etConfirmpassword"
+        android:hint="Confirmp assword"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/etEmail"
         android:hint="email"/>
     <EditText

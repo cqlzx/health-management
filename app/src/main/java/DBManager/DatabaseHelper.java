@@ -88,6 +88,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(cursor.moveToFirst()){
             do{
                 map.put(list.get(i),cursor.getString(i));
+                
             }while(cursor.moveToNext());
         }
         return map;

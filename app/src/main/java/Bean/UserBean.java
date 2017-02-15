@@ -82,18 +82,18 @@ public class UserBean {
         this.height = height;
     }
 
-    public boolean isValid(String username, String password, Context context) {
 
+    /*public boolean isValid(UserBean user, Context context) {
         Boolean bool = true;
-        if (username.isEmpty()) {
+        if (user.getUsername().isEmpty()) {
             Toast.makeText(context, "username cannot be empty", Toast.LENGTH_LONG).show();
             bool = false;
 
-        } else if (password.isEmpty()) {
+        } else if (user.getPassword().isEmpty()) {
             Toast.makeText(context, "password cannot be empty", Toast.LENGTH_LONG).show();
             bool = false;
         }
 
         return bool;
-    }
+    }*/
 }
