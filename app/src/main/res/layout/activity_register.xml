@@ -4,68 +4,87 @@
     android:layout_height="fill_parent">
     <LinearLayout android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="@dimen/large_margin"
+        android:layout_margin="@dimen/large_margin">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etRealname"
+            android:hint="Full Name"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/etUsername"
-            android:hint="username"/>
+            android:hint="Username"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/etPassword"
-            android:hint="password"/>
+            android:hint="Password"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/etConfirmpassword"
-            android:hint="Confirmp assword"/>
+            android:hint="Confirm Password"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/etEmail"
-            android:hint="email"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/etRealname"
-            android:hint="real name"/>
+            android:hint="Email"/>
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/etGender"
-            android:hint="gender"/>
+            android:hint="Gender"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/etAge"
-            android:hint="age"/>
+            android:hint="Age"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/etPhonenumber"
-            android:hint="phone number"/>
+            android:hint="Phone Number"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/etWeight"
-            android:hint="weight"/>
+            android:hint="Weight"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/etHeight"
-            android:hint="height"/>
-        <Button
-            android:layout_width="wrap_content"
+            android:hint="Height"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_register"
-            android:text="register"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn_cancel"
-            android:text="cancel"/>
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/large_margin">
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:id="@+id/btn_cancel"
+                android:layout_marginRight="@dimen/large_margin"
+                android:background="@drawable/rectangle"
+                android:backgroundTint="@color/eeeeee"
+                android:textColor="@color/colorPrimary"
+                android:text="cancel"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:background="@drawable/rectangle"
+                android:textColor="@color/eeeeee"
+                android:id="@+id/btn_register"
+                android:text="register"/>
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>
