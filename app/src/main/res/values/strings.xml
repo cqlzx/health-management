@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">HealthManagement</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawerActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="medication">Medication</string>
+    <string name="diet">Diet</string>
+    <string name="vital_signs">Vital Signs</string>
+    <string name="notification">Notification</string>
+    <string name="profile">Profile</string>
+    <string name="communication">Communication</string>
 </resources>
