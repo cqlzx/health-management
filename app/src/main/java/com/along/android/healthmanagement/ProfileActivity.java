@@ -1,9 +1,11 @@
 package com.along.android.healthmanagement;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -30,6 +32,19 @@ public class ProfileActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle("Profile");
+
+        // button
+        Button btn_editprofile;
+        btn_editprofile = (Button) findViewById(R.id.btn_editprofile);
+
+        btn_editprofile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(ProfileActivity.this, EditProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
 //        DatabaseHelper helper = new DatabaseHelper(this);
 //
