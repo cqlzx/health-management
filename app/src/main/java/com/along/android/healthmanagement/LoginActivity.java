@@ -19,7 +19,7 @@ public class LoginActivity extends AppCompatActivity{
     DatabaseHelper helper = new DatabaseHelper(this);
 
     EditText etUsername, etPassword;
-    Button login, register;
+    Button login, register, home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,7 @@ public class LoginActivity extends AppCompatActivity{
         etPassword = (EditText) findViewById(R.id.etPassword);
         login = (Button) findViewById(R.id.btn_login);
         register = (Button) findViewById(R.id.btn_register);
+        home = (Button) findViewById(R.id.btn_home);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,5 +60,13 @@ public class LoginActivity extends AppCompatActivity{
             }
         });
 
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(LoginActivity.this, NavigationDrawerActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
