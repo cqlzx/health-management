@@ -10,6 +10,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.HashMap;
+import java.util.ArrayList;
+
 import Bean.UserBean;
 
 /**
@@ -73,6 +76,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String query = "DROP TABLE IF EXISTS " + TABLE_NAME;
         db.execSQL(query);
         this.onCreate(db);
+    }
+
+
+    public HashMap<String, String> searchUserInfo(String username) {
+        HashMap<String, String> map =new HashMap<String, String>();
+        ArrayList<String> list = new ArrayList<String>(){{add("username");add("password");}};
+        String query = "select * from " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+        int i = 0;
+        if(cursor.moveToFirst()){
+            do{
+                map.put(list.get(i),cursor.getString(i));
+            }while(cursor.moveToNext());
+        }
+        return map;
     }
 }
 
