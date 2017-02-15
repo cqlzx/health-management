@@ -82,7 +82,6 @@ public class UserBean {
         this.height = height;
     }
 
-
     /*public boolean isValid(UserBean user, Context context) {
         Boolean bool = true;
         if (user.getUsername().isEmpty()) {
