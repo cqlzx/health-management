@@ -1,4 +1,4 @@
-package com.along.android.healthmanagement;
+package com.along.android.healthmanagement.activities;
 
 import android.content.Intent;
 import android.os.Bundle;

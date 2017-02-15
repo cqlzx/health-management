@@ -1,4 +1,4 @@
-package com.along.android.healthmanagement;
+package com.along.android.healthmanagement.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.helpers.Validation;
 import DBManager.DatabaseHelper;

@@ -1,4 +1,4 @@
-package com.along.android.healthmanagement;
+package com.along.android.healthmanagement.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.along.android.healthmanagement.R;
 
 public class NavigationDrawerActivity extends BasicActivity
         implements NavigationView.OnNavigationItemSelectedListener {
