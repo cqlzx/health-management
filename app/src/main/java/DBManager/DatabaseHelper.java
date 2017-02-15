@@ -19,14 +19,14 @@ import Bean.UserBean;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "contacts.db";
-    private static final String TABLE_NAME = "contacts";
-    private static final String COLUMN_NAME = "username";
+    private static final String DATABASE_NAME = "users.db";
+    private static final String TABLE_NAME = "users";
+    private static final String COLUMN_USERNAME = "username";
     private static final String COLUMN_PASSWORD = "password";
 
     SQLiteDatabase db;
 
-    private static final String TABLE_CREATE = "create table contacts (username text not null, password text not null);";
+    private static final String TABLE_CREATE = "create table users (username text not null, password text not null);";
 
     public DatabaseHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -43,7 +43,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void insertContact(UserBean c) {
         db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME, c.getUsername());
+        values.put(COLUMN_USERNAME, c.getUsername());
         values.put(COLUMN_PASSWORD, c.getPassword());
         db.insert(TABLE_NAME, null, values);
         db.close();

@@ -18,7 +18,7 @@ public class RegisterActivity extends AppCompatActivity{
     DatabaseHelper helper = new DatabaseHelper(this);
 
 
-    EditText etUsername,etPassword;
+    EditText etUsername,etPassword,etEmail, etRealname, etGender, etAge, etPhonenumber, etWeight, etHeight;
     Button btn_register,btn_cancel;
     UserBean userBean;
     @Override
@@ -42,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity{
                     c.setPassword(etPassword.getText().toString());
                     helper.insertContact(c);
                     Intent intent = new Intent();
-                    intent.setClass(RegisterActivity.this,LoginActivity.class);
+                    intent.setClass(RegisterActivity.this, MainActivity.class);
                     startActivity(intent);
 
                 }
@@ -51,13 +51,13 @@ public class RegisterActivity extends AppCompatActivity{
 
             }
         });
-        btn_cancel.setOnClickListener(new View.OnClickListener() {
+        /*btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 }

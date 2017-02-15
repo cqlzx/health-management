@@ -6,7 +6,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/etName"
+        android:id="@+id/etUsername"
         android:hint="username"/>
     <EditText
         android:layout_width="match_parent"
