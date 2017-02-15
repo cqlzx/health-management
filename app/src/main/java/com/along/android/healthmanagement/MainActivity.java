@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         btn_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //testtt
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, ProfileActivity.class);
                 startActivity(intent);
