@@ -19,4 +19,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tvUsername" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_profile"
+        android:text="profile"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="60dp"/>
+
 </RelativeLayout>
