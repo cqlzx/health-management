@@ -1,5 +1,6 @@
 package com.along.android.healthmanagement;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -89,7 +90,9 @@ public class NavigationDrawerActivity extends AppCompatActivity
         } else if (id == R.id.nav_notification) {
 
         } else if (id == R.id.nav_profile) {
-
+            Intent intent = new Intent();
+            intent.setClass(NavigationDrawerActivity.this, ProfileActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

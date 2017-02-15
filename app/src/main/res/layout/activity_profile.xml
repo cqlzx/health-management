@@ -41,6 +41,11 @@
             android:layout_height="wrap_content"/>
     </RelativeLayout>
 
+    <EditText
+        android:hint="change name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <LinearLayout
         android:padding="16dp"
         android:orientation="horizontal"
