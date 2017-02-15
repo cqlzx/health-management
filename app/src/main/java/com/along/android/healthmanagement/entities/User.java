@@ -1,15 +1,16 @@
-package Bean;
+package com.along.android.healthmanagement.entities;
 
-import android.content.Context;
-import android.widget.Toast;
+import com.orm.SugarRecord;
+import com.orm.dsl.Table;
 
-/**
- * Created by wilberhu on 2/14/17.
- */
-
-public class UserBean {
+@Table
+public class User extends SugarRecord{
+    private Long id;
     private String username, password, email, realname, gender, age, phonenumber, weight, height;
 
+    public Long getId(){
+        return id;
+    }
     public String getUsername() {
         return username;
     }
@@ -82,7 +83,7 @@ public class UserBean {
         this.height = height;
     }
 
-    /*public boolean isValid(UserBean user, Context context) {
+    /*public boolean isValid(User user, Context context) {
         Boolean bool = true;
         if (user.getUsername().isEmpty()) {
             Toast.makeText(context, "username cannot be empty", Toast.LENGTH_LONG).show();

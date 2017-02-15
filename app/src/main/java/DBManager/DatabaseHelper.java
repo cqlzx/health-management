@@ -13,11 +13,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.HashMap;
 import java.util.ArrayList;
 
-import Bean.UserBean;
-
-/**
- * Created by wilberhu on 2/14/17.
- */
+import com.along.android.healthmanagement.entities.User;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -43,7 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public void insertContact(UserBean c) {
+    public void insertContact(User c) {
         db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_USERNAME, c.getUsername());

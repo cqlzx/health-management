@@ -9,15 +9,10 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.ArrayList;
-
-import Bean.UserBean;
-import Bean.Validation;
+import com.along.android.healthmanagement.entities.User;
+import com.along.android.healthmanagement.helpers.Validation;
 import DBManager.DatabaseHelper;
 
-/**
- * Created by wilberhu on 2/14/17.
- */
 
 public class RegisterActivity extends AppCompatActivity{
     DatabaseHelper helper = new DatabaseHelper(this);
@@ -53,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity{
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            UserBean user = new UserBean();
+            User user = new User();
 
             user.setUsername(etUsername.getText().toString());
             user.setPassword(etPassword.getText().toString());
@@ -66,7 +61,7 @@ public class RegisterActivity extends AppCompatActivity{
             user.setHeight(etHeight.getText().toString());
 
             /*if(userBean.isValid(userBean.getUsername(),userBean.getPassword(),RegisterActivity.this)){
-                UserBean user = new UserBean();
+                User user = new User();
                 user.setUsername(etUsername.getText().toString());
                 user.setPassword(etPassword.getText().toString());
                 helper.insertContact(user);
