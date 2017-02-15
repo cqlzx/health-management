@@ -1,5 +1,6 @@
 package com.along.android.healthmanagement;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,15 +18,15 @@ public class RegisterActivity extends AppCompatActivity{
     DatabaseHelper helper = new DatabaseHelper(this);
 
 
-    EditText etName,etPassword;
-    Button btn_register;
+    EditText etUsername,etPassword;
+    Button btn_register,btn_cancel;
     UserBean userBean;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        etName = (EditText)findViewById(R.id.etName);
+        etUsername = (EditText)findViewById(R.id.etUsername);
         etPassword = (EditText)findViewById(R.id.etPassword);
 
         btn_register = (Button)findViewById(R.id.btn_register);
@@ -33,21 +34,29 @@ public class RegisterActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 userBean = new UserBean();
-                userBean.setUsername(etName.getText().toString());
+                userBean.setUsername(etUsername.getText().toString());
                 userBean.setPassword(etPassword.getText().toString());
                 if(userBean.isValid(userBean.getUsername(),userBean.getPassword(),RegisterActivity.this)){
-                    /*Intent intent = new Intent();
-                    intent.setClass(RegisterActivity.this,MainActivity.class);
-                    startActivity(intent);*/
                     UserBean c = new UserBean();
-                    c.setUsername(etName.getText().toString());
+                    c.setUsername(etUsername.getText().toString());
                     c.setPassword(etPassword.getText().toString());
                     helper.insertContact(c);
+                    Intent intent = new Intent();
+                    intent.setClass(RegisterActivity.this,LoginActivity.class);
+                    startActivity(intent);
 
                 }
 
 
 
+            }
+        });
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
     }
