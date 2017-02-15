@@ -51,13 +51,15 @@ public class RegisterActivity extends AppCompatActivity{
 
             }
         });
-        /*btn_cancel.setOnClickListener(new View.OnClickListener() {
+
+        btn_cancel = (Button)findViewById(R.id.btn_cancel);
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });
     }
 }
