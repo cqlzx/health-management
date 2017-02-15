@@ -75,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity{
                     Validation.isPasswordMatch(etPassword.getText().toString(),etConfirmpassword.getText().toString(),RegisterActivity.this)){
                 helper.insertContact(user);
                 Intent intent = new Intent();
-                intent.setClass(RegisterActivity.this, MainActivity.class);
+                intent.setClass(RegisterActivity.this, NavigationDrawerActivity.class);
                 startActivity(intent);
             }
 
