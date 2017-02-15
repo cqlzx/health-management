@@ -9,4 +9,6 @@
     <color name="colorTile3">#BF5733</color>
     <color name="colorTile4">#8B00A6</color>
     <color name="eeeeee">#EEEEEE</color>
+    <color name="blueButton">#0D9ECE</color>
+    <color name="googleRed">#D34836</color>
 </resources>
