@@ -12,6 +12,22 @@ public class EntityManager {
         return SugarRecord.find(type, whereClause, whereArgs, groupBy, orderBy, limit);
     }
 
+    public static <T> T findOneBy(Class<T> type, String whereClause, String... whereArgs) {
+        List<T> result = SugarRecord.find(type, whereClause, whereArgs, null, null, "1");
+        if(result.size() != 0) {
+            return result.get(0);
+        }
+        return null;
+    }
+
+    public static <T> T findOneBy(Class<T> type, String whereClause, String[] whereArgs, String groupBy, String orderBy) {
+        List<T> result = SugarRecord.find(type, whereClause, whereArgs, groupBy, orderBy, "1");
+        if(result.size() != 0) {
+            return result.get(0);
+        }
+        return null;
+    }
+
     public static <T> List<T> findWithQuery(Class<T> type, String query, String... arguments) {
         return SugarRecord.findWithQuery(type, query, arguments);
     }
