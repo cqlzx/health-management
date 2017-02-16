@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.along.android.healthmanagement.helpers.SessionData;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -18,6 +19,7 @@ import com.google.android.gms.common.api.Status;
 
 public class BasicActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
+    private SessionData sessionData;
     private GoogleApiClient mGoogleApiClient;
     private static final String TAG = "BasicActivity";
     private static final int RC_SIGN_IN = 9001;
@@ -82,9 +84,13 @@ public class BasicActivity extends AppCompatActivity implements GoogleApiClient.
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
+            sessionData = new SessionData(BasicActivity.this);
+            sessionData.setUsername(acct.getDisplayName());
+            sessionData.setEmail(acct.getEmail());
             Intent intent = new Intent(BasicActivity.this, MainActivity.class);
             //intent.setClass(LoginActivity.this,MainActivity.class);
             intent.putExtra("Username", acct.getDisplayName());
+            intent.putExtra("Email", acct.getEmail());
             startActivity(intent);
         } else {
             Toast temp = Toast.makeText(BasicActivity.this, "Invalid username or password", Toast.LENGTH_SHORT);
