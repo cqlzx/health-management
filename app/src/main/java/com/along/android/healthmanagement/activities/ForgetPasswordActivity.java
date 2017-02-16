@@ -2,12 +2,14 @@ package com.along.android.healthmanagement.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.User;
+import com.along.android.healthmanagement.helpers.EntityManager;
 
 import java.util.List;
 
@@ -27,7 +29,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         mForgetPasswordContinueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                List<User> users = User.find(User.class, "email = ?", mEmailEditText.getText().toString());
+                List<User> users = EntityManager.find(User.class, "email = ?", mEmailEditText.getText().toString());
 
                 if(users.size() > 0) {
                     User user = users.get(0);
