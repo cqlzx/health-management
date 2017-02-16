@@ -20,7 +20,7 @@ public class LoginActivity extends BasicActivity {
     DatabaseHelper helper = new DatabaseHelper(this);
 
     EditText etUsername, etPassword;
-    Button login, register, home, googleSignIn;
+    Button login, register, googleSignIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,6 @@ public class LoginActivity extends BasicActivity {
         etPassword = (EditText) findViewById(R.id.etPassword);
         login = (Button) findViewById(R.id.btn_login);
         register = (Button) findViewById(R.id.btn_register);
-        home = (Button) findViewById(R.id.btn_home);
         googleSignIn = (Button) findViewById(R.id.btn_google_sign_in);
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -58,15 +57,6 @@ public class LoginActivity extends BasicActivity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(LoginActivity.this, NavigationDrawerActivity.class);
                 startActivity(intent);
             }
         });
