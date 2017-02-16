@@ -1,29 +1,27 @@
 package com.along.android.healthmanagement.activities;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.helpers.EntityManager;
-import com.along.android.healthmanagement.helpers.SessionData;
 import com.along.android.healthmanagement.helpers.Validation;
 
 public class EditProfileActivity extends AppCompatActivity {
 
     private EditText editName, editEmail, editPassword1, editPassword2, editAge, editHeight, editWeight, editPhone;
     User user;
+    RadioGroup radioGroupGender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +47,7 @@ public class EditProfileActivity extends AppCompatActivity {
         editWeight = (EditText) findViewById(R.id.editT_weight);
         editPhone = (EditText) findViewById(R.id.editT_phoneNumber);
         // edit RadioButton
-        RadioGroup radioGroupGender = (RadioGroup) findViewById(R.id.radioGroupGender);
+        radioGroupGender = (RadioGroup) findViewById(R.id.radioGroupGenderProfile);
 
         // sharePreferences
         SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
@@ -65,7 +63,13 @@ public class EditProfileActivity extends AppCompatActivity {
             editPhone.setText(user.getPhonenumber());
             editPassword1.setText(user.getPassword());
             editPassword2.setText(user.getPassword());
-//            radioGroupGender
+
+            if(user.getGender().equals("Male")) {
+                radioGroupGender.check(R.id.radioMaleProfile);
+            }
+            else if(user.getGender().equals("Female")) {
+                radioGroupGender.check(R.id.radioFemaleProfile);
+            }
 
         }
 
@@ -89,6 +93,9 @@ public class EditProfileActivity extends AppCompatActivity {
                 user.setWeight(editWeight.getText().toString());
                 user.setHeight(editHeight.getText().toString());
 
+                int checkedId = radioGroupGender.getCheckedRadioButtonId();
+                RadioButton genderRadio = (RadioButton) findViewById(checkedId);
+                user.setGender(genderRadio.getText().toString());
 
                 if (Validation.isEmpty(user, EditProfileActivity.this) &&
                         Validation.isPasswordMatch(editPassword1.getText().toString(), editPassword2.getText().toString(), EditProfileActivity.this) &&
