@@ -1,147 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:weightSum="1">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="200dp">
 
         <ImageView
-            android:src="@drawable/background"
-            android:scaleType="centerCrop"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/background" />
 
-    <ImageView
-        android:layout_marginTop="32dp"
-        android:layout_centerHorizontal="true"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:src="@drawable/avatar"
-        android:id="@+id/avatar"/>
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/avatar" />
+
         <TextView
             android:id="@+id/username"
-            android:text="Danil"
-            android:textSize="22sp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/avatar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/avatar"
+            android:layout_centerHorizontal="true"
+            android:text="Danil"
+            android:textSize="22sp" />
+
         <TextView
             android:id="@+id/email"
-            android:text="a@example.com"
-            android:textSize="14sp"
-            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_centerHorizontal="true"
+            android:text="a@example.com"
+            android:textSize="14sp" />
     </RelativeLayout>
-    <LinearLayout
-        android:paddingLeft="16dp"
-        android:paddingTop="16dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="Age:"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:text="20"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"/>
 
-    </LinearLayout>
+    <!--<EditText-->
+    <!--android:hint="change name"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"/>-->
 
     <LinearLayout
-        android:paddingLeft="16dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <TextView
-        android:text="Gender:"
-        android:textSize="18sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:text="Male"
-        android:textSize="18sp"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2"/>
-    </LinearLayout>
 
-    <LinearLayout
-        android:paddingLeft="16dp"
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp">
+
         <TextView
-            android:text="Height:"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:text="5'10'"
-            android:textSize="18sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView3"/>
-    </LinearLayout>
+            android:text="Realname:"
+            android:textSize="18sp" />
 
-    <LinearLayout
-        android:paddingLeft="16dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
         <TextView
-            android:text="Weight:"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:text="70KG"
-            android:textSize="18sp"
+            android:id="@+id/textView0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView4"/>
+            android:text="xiaolei"
+            android:textSize="18sp" />
+
     </LinearLayout>
 
-    <LinearLayout
-        android:paddingLeft="16dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="PhoneNumber:"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:text="6825970000"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
-            android:id="@+id/textView5"/>
-    </LinearLayout>
+            android:orientation="horizontal"
+            android:paddingLeft="16dp">
 
-    <LinearLayout
-        android:padding="26dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <Button
-        android:text="Edit"
-        android:layout_width="116dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_editprofile"/>
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Age:"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gender:"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Height:"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5'10'"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weight:"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="70KG"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PhoneNumber:"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6825970000"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="26dp">
+
+            <Button
+                android:id="@+id/btn_editprofile"
+                android:layout_width="116dp"
+                android:layout_height="wrap_content"
+                android:text="Edit" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
 
