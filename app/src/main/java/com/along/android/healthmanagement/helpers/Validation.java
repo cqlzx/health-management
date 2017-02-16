@@ -5,10 +5,6 @@ import android.widget.Toast;
 
 import com.along.android.healthmanagement.entities.User;
 
-/**
- * Created by wilberhu on 2/15/17.
- */
-
 public class Validation {
     public static boolean isEmpty(User user, Context context) {
         Boolean bool = true;

@@ -11,16 +11,12 @@ import com.along.android.healthmanagement.R;
 
 import DBManager.DatabaseHelper;
 
-/**
- * Created by wilberhu on 2/14/17.
- */
-
 public class LoginActivity extends BasicActivity {
 
     DatabaseHelper helper = new DatabaseHelper(this);
 
     EditText etUsername, etPassword;
-    Button login, register, googleSignIn;
+    Button login, register, googleSignIn, forgetPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +27,7 @@ public class LoginActivity extends BasicActivity {
         login = (Button) findViewById(R.id.btn_login);
         register = (Button) findViewById(R.id.btn_register);
         googleSignIn = (Button) findViewById(R.id.btn_google_sign_in);
+        forgetPassword = (Button) findViewById(R.id.btn_forget_password);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +62,15 @@ public class LoginActivity extends BasicActivity {
             @Override
             public void onClick(View v) {
                 signIn();
+            }
+        });
+
+        forgetPassword.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(LoginActivity.this, ForgetPasswordActivity.class);
+                startActivity(intent);
             }
         });
     }

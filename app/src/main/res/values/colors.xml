@@ -12,4 +12,6 @@
     <color name="black3">#333333</color>
     <color name="blueButton">#0D9ECE</color>
     <color name="googleRed">#D34836</color>
+    <color name="linkBlue">#006CC5</color>
+    <color name="black">#000000</color>
 </resources>

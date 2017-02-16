@@ -9,10 +9,6 @@ import android.widget.Button;
 
 import com.along.android.healthmanagement.R;
 
-/**
- * Created by renxiaolei on 2/15/16.
- */
-
 public class EditProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

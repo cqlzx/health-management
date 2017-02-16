@@ -10,10 +10,6 @@ import android.widget.Button;
 
 import com.along.android.healthmanagement.R;
 
-/**
- * Created by renxiaolei on 2/14/16.
- */
-
 public class ProfileActivity extends AppCompatActivity {
     // display user informations
 
