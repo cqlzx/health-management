@@ -1,6 +1,7 @@
 package com.along.android.healthmanagement.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -104,7 +105,9 @@ public class EditProfileActivity extends AppCompatActivity {
 
                     try {
                         user.save();
-                        EditProfileActivity.this.finish();
+                        Intent intent = new Intent();
+                        intent.setClass(EditProfileActivity.this, ProfileActivity.class);
+                        startActivity(intent);
                     } catch (Exception e) {
                         Toast.makeText(EditProfileActivity.this, "error", Toast.LENGTH_SHORT).show();
                     }
