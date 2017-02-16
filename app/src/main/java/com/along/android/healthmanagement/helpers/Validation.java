@@ -33,6 +33,24 @@ public class Validation {
 
         return bool;
     }
+
+    public static boolean isUserExsist(String username, String email, Context context) {
+        Boolean bool = true;
+        User user = EntityManager.findOneBy(User.class, "username = ?", username);
+        if (user != null) {
+            Toast.makeText(context, "Username exsists", Toast.LENGTH_LONG).show();
+            bool = false;
+        }
+
+        user = EntityManager.findOneBy(User.class, "email = ?", email);
+        if (user != null) {
+            Toast.makeText(context, "Email exsists", Toast.LENGTH_LONG).show();
+            bool = false;
+        }
+
+        return bool;
+    }
+
     public static boolean isValidEmail(String email, Context context) {
         Boolean bool = true;
         String check = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
