@@ -2,88 +2,143 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <LinearLayout android:orientation="vertical"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/large_margin"
-        android:layout_margin="@dimen/large_margin">
+        android:layout_margin="@dimen/large_margin"
+        android:orientation="vertical"
+        android:padding="@dimen/large_margin">
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/etRealname"
-            android:hint="Full Name"/>
-
-        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:inputType="textPersonName"
+            android:hint="Full Name" />
+
+        <EditText
             android:id="@+id/etUsername"
-            android:hint="Username"/>
-        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/etPassword"
-            android:hint="Password"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/etConfirmpassword"
-            android:hint="Confirm Password"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/etEmail"
-            android:hint="Email"/>
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:hint="Username" />
 
         <EditText
+            android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/etGender"
-            android:hint="Gender"/>
+            android:inputType="textPassword"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:hint="Password" />
+
         <EditText
+            android:id="@+id/etConfirmpassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/etAge"
-            android:hint="Age"/>
+            android:inputType="textPassword"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:hint="Confirm Password" />
+
         <EditText
+            android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:hint="Email" />
+
+        <EditText
             android:id="@+id/etPhonenumber"
-            android:hint="Phone Number"/>
-        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/etWeight"
-            android:hint="Weight"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/etHeight"
-            android:hint="Height"/>
+            android:inputType="phone"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:hint="Phone Number" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="@dimen/large_margin">
-            <Button
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:orientation="horizontal">
+            <RadioGroup
+                android:id="@+id/radioGroupGender"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight=".5"
+                android:layout_weight=".6"
+                android:layout_marginBottom="@dimen/medium_margin"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/radioMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black3"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:text="Male"/>
+
+                <RadioButton
+                    android:id="@+id/radioFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black3"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:text="Female" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etWeight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                android:hint="Weight (lb)" />
+
+            <EditText
+                android:id="@+id/etHeight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                android:hint="Height (in)" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/etAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Age (years)   " />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/large_margin"
+            android:orientation="horizontal">
+
+            <Button
                 android:id="@+id/btn_cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/large_margin"
+                android:layout_weight=".5"
                 android:background="@drawable/rectangle"
                 android:backgroundTint="@color/eeeeee"
-                android:textColor="@color/colorPrimary"
-                android:text="cancel"/>
+                android:text="cancel"
+                android:textColor="@color/colorPrimary" />
+
             <Button
+                android:id="@+id/btn_register"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".5"
                 android:background="@drawable/rectangle"
-                android:textColor="@color/eeeeee"
-                android:id="@+id/btn_register"
-                android:text="register"/>
+                android:text="register"
+                android:textColor="@color/eeeeee" />
         </LinearLayout>
 
     </LinearLayout>
