@@ -72,7 +72,8 @@ public class RegisterActivity extends AppCompatActivity {
                 user.setHeight(etHeight.getText().toString());
 
                 if (Validation.isEmpty(user, RegisterActivity.this) &&
-                        Validation.isPasswordMatch(etPassword.getText().toString(), etConfirmpassword.getText().toString(), RegisterActivity.this)) {
+                        Validation.isPasswordMatch(etPassword.getText().toString(), etConfirmpassword.getText().toString(), RegisterActivity.this) &&
+                        Validation.isValidEmail(user.getEmail(), RegisterActivity.this)) {
                     //helper.insertContact(user);
 
                     try{
