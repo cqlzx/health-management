@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -103,13 +104,13 @@ public class EditProfileActivity extends AppCompatActivity {
                 if (Validation.isEmpty(user, EditProfileActivity.this) &&
                         Validation.isPasswordMatch(editPassword1.getText().toString(), editPassword2.getText().toString(), EditProfileActivity.this) &&
                         Validation.isValidEmail(user.getEmail(), EditProfileActivity.this)) {
-                    // helper.insertContact(user);
 
                     try {
                         user.save();
                         Intent intent = new Intent();
                         intent.setClass(EditProfileActivity.this, ProfileActivity.class);
                         startActivity(intent);
+//                        EditProfileActivity.this.finish();
                     } catch (Exception e) {
                         Toast.makeText(EditProfileActivity.this, "error", Toast.LENGTH_SHORT).show();
                     }
@@ -128,15 +129,15 @@ public class EditProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        /*@Override
-        public boolean onOptionsItemSelected (MenuItem item)
-        {
-            switch (item.getItemId()) {
-                case android.R.id.home:
-                    finish();
-                    break;
-            }
-            return super.onOptionsItemSelected(item);
-        }*/
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
