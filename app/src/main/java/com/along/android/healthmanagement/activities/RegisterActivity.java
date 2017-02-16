@@ -73,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
                         Validation.isPasswordMatch(etPassword.getText().toString(), etConfirmpassword.getText().toString(), RegisterActivity.this) &&
                         Validation.isUserExsist(user.getUsername(), user.getEmail(), RegisterActivity.this) &&
                         Validation.isValidEmail(user.getEmail(), RegisterActivity.this)) {
-                    //helper.insertContact(user);
+                    // helper.insertContact(user);
 
                     try{
                         user.save();
