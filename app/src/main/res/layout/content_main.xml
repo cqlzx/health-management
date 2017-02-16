@@ -19,6 +19,7 @@
         android:layout_height="wrap_content">
 
         <Button
+            android:id="@+id/btn_medication_tile"
             android:text="@string/medication"
             android:layout_width="0dp"
             android:layout_height="100dp"
@@ -29,6 +30,7 @@
             android:layout_weight=".5" />
 
         <Button
+            android:id="@+id/btn_diet_tile"
             android:text="@string/diet"
             android:layout_width="0dp"
             android:layout_height="100dp"
@@ -46,6 +48,7 @@
         android:layout_below="@+id/row1">
 
         <Button
+            android:id="@+id/btn_vital_signs_tile"
             android:text="@string/vital_signs"
             android:layout_width="0dp"
             android:layout_height="100dp"
@@ -56,6 +59,7 @@
             android:layout_weight=".5" />
 
         <Button
+            android:id="@+id/btn_communication_tile"
             android:text="@string/communication"
             android:layout_width="0dp"
             android:layout_height="100dp"
