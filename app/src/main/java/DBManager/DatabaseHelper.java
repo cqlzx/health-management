@@ -73,21 +73,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(query);
         this.onCreate(db);
     }
-
-
-    public HashMap<String, String> searchUserInfo(String username) {
-        HashMap<String, String> map =new HashMap<String, String>();
-        ArrayList<String> list = new ArrayList<String>(){{add("username");add("password");}};
-        String query = "select * from " + TABLE_NAME;
-        Cursor cursor = db.rawQuery(query, null);
-        int i = 0;
-        if(cursor.moveToFirst()){
-            do{
-                map.put(list.get(i),cursor.getString(i));
-                
-            }while(cursor.moveToNext());
-        }
-        return map;
-    }
 }
 
