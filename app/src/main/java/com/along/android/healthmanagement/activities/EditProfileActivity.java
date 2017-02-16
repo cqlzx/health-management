@@ -1,19 +1,15 @@
 package com.along.android.healthmanagement.activities;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.along.android.healthmanagement.R;
@@ -24,6 +20,7 @@ import com.along.android.healthmanagement.helpers.Validation;
 
 public class EditProfileActivity extends AppCompatActivity {
 
+    private EditText editName, editEmail, editPassword1, editPassword2, editAge, editHeight, editWeight, editPhone;
 
     private SessionData sessionData;
     @Override
@@ -41,14 +38,14 @@ public class EditProfileActivity extends AppCompatActivity {
         Button btn_saveprofile;
         btn_saveprofile = (Button) findViewById(R.id.btn_editprofile);
         //editview
-        EditText editName = (EditText) findViewById(R.id.editT_name);
-        EditText editEmail = (EditText) findViewById(R.id.editT_email);
-        EditText editPassword1 = (EditText) findViewById(R.id.editT_password1);
-        EditText editPassword2 = (EditText) findViewById(R.id.editT_password2);
-        EditText editAge = (EditText) findViewById(R.id.editT_age);
-        EditText editHeight = (EditText) findViewById(R.id.editT_height);
-        EditText editWeight = (EditText) findViewById(R.id.editT_weight);
-        EditText editPhone = (EditText) findViewById(R.id.editT_phoneNumber);
+        editName = (EditText) findViewById(R.id.editT_name);
+        editEmail = (EditText) findViewById(R.id.editT_email);
+        editPassword1 = (EditText) findViewById(R.id.editT_password1);
+        editPassword2 = (EditText) findViewById(R.id.editT_password2);
+        editAge = (EditText) findViewById(R.id.editT_age);
+        editHeight = (EditText) findViewById(R.id.editT_height);
+        editWeight = (EditText) findViewById(R.id.editT_weight);
+        editPhone = (EditText) findViewById(R.id.editT_phoneNumber);
         // edit RadioButton
         RadioGroup radioGroupGender = (RadioGroup) findViewById(R.id.radioGroupGender);
 
