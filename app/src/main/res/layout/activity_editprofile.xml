@@ -25,7 +25,8 @@
             android:hint="change name"
             android:text="xiaolei"/>
     </LinearLayout>
-    // realname
+
+    // email
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,16 +37,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Realname:"
+            android:text="Email:"
             android:textSize="18sp"/>
 
         <EditText
-            android:id="@+id/editT_realname"
+            android:hint="change email"
+            android:text="123"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="change name"
-            android:text="xiaolei"/>
+            android:id="@+id/editT_email"/>
     </LinearLayout>
+
+
     // password 1
     <LinearLayout
         android:layout_width="match_parent"
@@ -125,12 +128,43 @@
             android:text="Gender:"
             android:textSize="18sp"/>
 
-        <EditText
-            android:hint="change gender"
-            android:text="Male"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editT_gender"/>
+        <!--<EditText-->
+            <!--android:hint="change gender"-->
+            <!--android:text="Male"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/editT_gender"/>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="@dimen/medium_margin"-->
+            <!--android:orientation="horizontal">-->
+            <RadioGroup
+                android:id="@+id/radioGroupGender"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".6"
+                android:layout_marginBottom="@dimen/medium_margin"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/radioMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black3"
+                    android:checked="true"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:text="Male"/>
+
+                <RadioButton
+                    android:id="@+id/radioFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black3"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:text="Female" />
+            </RadioGroup>
+        <!--</LinearLayout>-->
     </LinearLayout>
 // height
     <LinearLayout
@@ -139,7 +173,6 @@
 
         android:orientation="horizontal"
         android:paddingLeft="16dp">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -173,6 +206,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editT_weight"/>
+    </LinearLayout>
+    // phoneNumber
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="horizontal"
+        android:paddingLeft="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone:"
+            android:textSize="18sp"/>
+
+        <EditText
+            android:hint="change password"
+            android:text="123"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editT_phoneNumber"/>
     </LinearLayout>
     // button
     <LinearLayout
