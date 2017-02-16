@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.along.android.healthmanagement.activities.MainActivity">
+
+
+
+    <FrameLayout
+        android:id="@+id/content_frame_medication"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/toolbar_height">
+        <include layout="@layout/content_notification" />
+    </FrameLayout>
+
+    <include layout="@layout/activity_navigation_drawer" />
+
+</RelativeLayout>

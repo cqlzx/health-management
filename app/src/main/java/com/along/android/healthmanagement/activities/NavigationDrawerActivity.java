@@ -91,13 +91,21 @@ public class NavigationDrawerActivity extends BasicActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_medication) {
-
+            Intent intent = new Intent();
+            intent.setClass(NavigationDrawerActivity.this, MedicationActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_diet) {
-
+            Intent intent = new Intent();
+            intent.setClass(NavigationDrawerActivity.this, DietActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_vital_signs) {
-
+            Intent intent = new Intent();
+            intent.setClass(NavigationDrawerActivity.this, VitalSignsActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_notification) {
-
+            Intent intent = new Intent();
+            intent.setClass(NavigationDrawerActivity.this, NotificationActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_profile) {
             Intent intent = new Intent();
             intent.setClass(NavigationDrawerActivity.this, ProfileActivity.class);

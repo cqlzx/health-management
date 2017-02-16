@@ -1,244 +1,263 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-    // username
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingTop="14dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Username:"
-            android:textSize="18sp"/>
-
-        <EditText
-            android:id="@+id/editT_name"
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent">
+        // username
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="change name"
-            android:text="xiaolei"/>
-    </LinearLayout>
 
-    // email
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingTop="14dp">
 
-        android:orientation="horizontal"
-        android:paddingLeft="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username:"
+                android:textSize="18sp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email:"
-            android:textSize="18sp"/>
+            <EditText
+                android:id="@+id/editT_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="change name"
+                android:text="xiaolei"/>
+        </LinearLayout>
 
-        <EditText
-            android:hint="change email"
-            android:text="123"
+        // email
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editT_email"/>
-    </LinearLayout>
+
+            android:orientation="horizontal"
+            android:paddingLeft="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email:"
+                android:textSize="18sp"/>
+
+            <EditText
+                android:hint="change email"
+                android:text="123"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editT_email"/>
+        </LinearLayout>
 
 
-    // password 1
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:orientation="horizontal"
-        android:paddingLeft="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Password:"
-        android:textSize="18sp"/>
-
-        <EditText
-            android:hint="change password"
-            android:text="123"
+        // password 1
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:id="@+id/editT_password1"/>
-    </LinearLayout>
-    // password 2
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
 
-        android:orientation="horizontal"
-        android:paddingLeft="16dp">
+            android:orientation="horizontal"
+            android:paddingLeft="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ConfirmPassword:"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password:"
             android:textSize="18sp"/>
 
-        <EditText
-            android:hint="change password"
-            android:text="123"
+            <EditText
+                android:hint="change password"
+                android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:id="@+id/editT_password1"/>
+        </LinearLayout>
+        // password 2
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:id="@+id/editT_password2"/>
-    </LinearLayout>
-// age
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
 
-        android:orientation="horizontal"
-        android:paddingLeft="16dp">
+            android:orientation="horizontal"
+            android:paddingLeft="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Age:"
-            android:textSize="18sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ConfirmPassword:"
+                android:textSize="18sp"/>
 
-        <EditText
-            android:hint="change age"
-            android:text="18"
+            <EditText
+                android:hint="change password"
+                android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:id="@+id/editT_password2"/>
+        </LinearLayout>
+    // age
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editT_age"/>
-    </LinearLayout>
-// gender
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
 
-        android:orientation="horizontal"
-        android:paddingLeft="16dp">
+            android:orientation="horizontal"
+            android:paddingLeft="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Age:"
+                android:textSize="18sp"/>
+
+            <EditText
+                android:hint="change age"
+                android:text="18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editT_age"/>
+        </LinearLayout>
+    // gender
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Gender:"
-            android:textSize="18sp"/>
 
-        <!--<EditText-->
-            <!--android:hint="change gender"-->
-            <!--android:text="Male"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/editT_gender"/>-->
+            android:orientation="horizontal"
+            android:paddingLeft="16dp">
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginBottom="@dimen/medium_margin"-->
-            <!--android:orientation="horizontal">-->
-            <RadioGroup
-                android:id="@+id/radioGroupGender"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gender:"
+                android:textSize="18sp"/>
+
+            <!--<EditText-->
+                <!--android:hint="change gender"-->
+                <!--android:text="Male"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/editT_gender"/>-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="@dimen/medium_margin"-->
+                <!--android:orientation="horizontal">-->
+                <RadioGroup
+                    android:id="@+id/radioGroupGenderProfile"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".6"
+                    android:layout_marginBottom="@dimen/medium_margin"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/radioMaleProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black3"
+                        android:checked="true"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:text="Male"/>
+
+                    <RadioButton
+                        android:id="@+id/radioFemaleProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black3"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:text="Female" />
+                </RadioGroup>
+            <!--</LinearLayout>-->
+        </LinearLayout>
+    // height
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal"
+            android:paddingLeft="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Height:"
+                android:textSize="18sp"/>
+
+            <EditText
+                android:hint="change height"
+                android:text="6'10'"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editT_height"/>
+        </LinearLayout>
+        // weight
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal"
+            android:paddingLeft="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weight:"
+                android:textSize="18sp"/>
+
+            <EditText
+                android:hint="change weight"
+                android:text="78KG"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editT_weight"/>
+        </LinearLayout>
+        // phoneNumber
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal"
+            android:paddingLeft="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone:"
+                android:textSize="18sp"/>
+
+            <EditText
+                android:hint="change phone"
+                android:text="123"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editT_phoneNumber"/>
+        </LinearLayout>
+        // button
+
+        <LinearLayout
+            android:padding="26dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_cancel_edit_profile"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight=".6"
-                android:layout_marginBottom="@dimen/medium_margin"
-                android:orientation="horizontal">
-                <RadioButton
-                    android:id="@+id/radioMale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black3"
-                    android:checked="true"
-                    android:textAppearance="?android:textAppearanceMedium"
-                    android:text="Male"/>
+                android:layout_marginRight="@dimen/large_margin"
+                android:layout_weight=".5"
+                android:background="@drawable/rectangle"
+                android:backgroundTint="@color/eeeeee"
+                android:text="cancel"
+                android:textColor="@color/colorPrimary" />
 
-                <RadioButton
-                    android:id="@+id/radioFemale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black3"
-                    android:textAppearance="?android:textAppearanceMedium"
-                    android:text="Female" />
-            </RadioGroup>
-        <!--</LinearLayout>-->
+            <Button
+                android:id="@+id/btn_saveprofile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:background="@drawable/rectangle"
+                android:text="Save"
+                android:textColor="@color/eeeeee" />
+        </LinearLayout>
     </LinearLayout>
-// height
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:orientation="horizontal"
-        android:paddingLeft="16dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Height:"
-            android:textSize="18sp"/>
-
-        <EditText
-            android:hint="change height"
-            android:text="6'10'"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editT_height"/>
-    </LinearLayout>
-    // weight
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:orientation="horizontal"
-        android:paddingLeft="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Weight:"
-            android:textSize="18sp"/>
-
-        <EditText
-            android:hint="change weight"
-            android:text="78KG"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editT_weight"/>
-    </LinearLayout>
-    // phoneNumber
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:orientation="horizontal"
-        android:paddingLeft="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Phone:"
-            android:textSize="18sp"/>
-
-        <EditText
-            android:hint="change password"
-            android:text="123"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editT_phoneNumber"/>
-    </LinearLayout>
-    // button
-    <LinearLayout
-        android:padding="26dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:text="Save"
-            android:layout_width="116dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn_editprofile"/>
-    </LinearLayout>
-
-</LinearLayout>
+</ScrollView>
