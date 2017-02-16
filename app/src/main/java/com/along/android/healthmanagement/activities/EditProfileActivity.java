@@ -23,6 +23,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private EditText editName, editEmail, editPassword1, editPassword2, editAge, editHeight, editWeight, editPhone;
     User user;
     RadioGroup radioGroupGender;
+    Button btn_saveprofile, btn_cancel_edit_profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +37,9 @@ public class EditProfileActivity extends AppCompatActivity {
         actionBar.setTitle("EditProfile");
 
         // button
-        Button btn_saveprofile;
-        btn_saveprofile = (Button) findViewById(R.id.btn_editprofile);
+
+        btn_saveprofile = (Button) findViewById(R.id.btn_saveprofile);
+        btn_cancel_edit_profile = (Button) findViewById(R.id.btn_cancel_edit_profile);
         //editview
         editName = (EditText) findViewById(R.id.editT_name);
         editEmail = (EditText) findViewById(R.id.editT_email);
@@ -114,6 +116,16 @@ public class EditProfileActivity extends AppCompatActivity {
 
                 }
 
+            }
+        });
+
+        btn_cancel_edit_profile.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(EditProfileActivity.this, ProfileActivity.class);
+                startActivity(intent);
             }
         });
         /*@Override

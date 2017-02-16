@@ -19,8 +19,7 @@ import com.along.android.healthmanagement.helpers.EntityManager;
 
 public class ProfileActivity extends AppCompatActivity {
 
-
-
+    Button btn_cancel_profile, btn_editprofile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +96,7 @@ public class ProfileActivity extends AppCompatActivity {
 //        forgetPassword = (Button) findViewById(R.id.btn_forget_password);
 
         // button
-        Button btn_editprofile;
+
         btn_editprofile = (Button) findViewById(R.id.btn_editprofile);
 
         btn_editprofile.setOnClickListener(new View.OnClickListener() {
@@ -109,6 +108,17 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+
+        btn_cancel_profile = (Button) findViewById(R.id.btn_cancel_profile);
+        btn_cancel_profile.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(ProfileActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

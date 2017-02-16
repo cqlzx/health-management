@@ -154,16 +154,30 @@
     </LinearLayout>
 
     <LinearLayout
+        android:padding="26dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="26dp">
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_cancel_profile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/large_margin"
+            android:layout_weight=".5"
+            android:background="@drawable/rectangle"
+            android:backgroundTint="@color/eeeeee"
+            android:text="cancel"
+            android:textColor="@color/colorPrimary" />
 
         <Button
             android:id="@+id/btn_editprofile"
-            android:layout_width="116dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Edit" />
+            android:layout_weight=".5"
+            android:background="@drawable/rectangle"
+            android:text="Edit"
+            android:textColor="@color/eeeeee" />
     </LinearLayout>
 </LinearLayout>
 
