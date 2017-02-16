@@ -17,7 +17,7 @@ import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.helpers.EntityManager;
 
 public class ProfileActivity extends AppCompatActivity {
-    // display user informations
+
 
 
     @Override
@@ -41,11 +41,24 @@ public class ProfileActivity extends AppCompatActivity {
         if (userNameS != null) {
             userNameText.setText(userNameS);
         }
-        // user
+
+        // user informations
+        TextView ageText = (TextView) findViewById(R.id.age);
+        TextView ageText = (TextView) findViewById(R.id.age);
+
         User user = EntityManager.findById(User.class, userIdS);
         if(user != null){
             emailText.setText(user.getEmail());
             Log.d("--email--->>>>>>>", user.getEmail());
+        // age
+            if (user.getAge() != null){
+                ageText.setText(user.getAge());
+            }else {
+                ageText.setText("");
+            }
+            // gender
+
+
         }
 
 
