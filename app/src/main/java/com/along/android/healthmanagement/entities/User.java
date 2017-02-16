@@ -6,7 +6,7 @@ import com.orm.dsl.Table;
 @Table
 public class User extends SugarRecord{
     private Long id;
-    private String username, password, email, realname, gender, age, phonenumber, weight, height;
+    private String username, password, email, gender, age, phonenumber, weight, height;
 
     public Long getId(){
         return id;
@@ -33,14 +33,6 @@ public class User extends SugarRecord{
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getRealname() {
-        return realname;
-    }
-
-    public void setRealname(String realname) {
-        this.realname = realname;
     }
 
     public String getGender() {
@@ -82,18 +74,4 @@ public class User extends SugarRecord{
     public void setHeight(String height) {
         this.height = height;
     }
-
-    /*public boolean isValid(User user, Context context) {
-        Boolean bool = true;
-        if (user.getUsername().isEmpty()) {
-            Toast.makeText(context, "username cannot be empty", Toast.LENGTH_LONG).show();
-            bool = false;
-
-        } else if (user.getPassword().isEmpty()) {
-            Toast.makeText(context, "password cannot be empty", Toast.LENGTH_LONG).show();
-            bool = false;
-        }
-
-        return bool;
-    }*/
 }

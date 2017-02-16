@@ -61,23 +61,12 @@ public class RegisterActivity extends AppCompatActivity {
                 user.setUsername(etUsername.getText().toString());
                 user.setPassword(etPassword.getText().toString());
                 user.setEmail(etEmail.getText().toString());
-                user.setRealname(etRealname.getText().toString());
                 user.setGender(radioButtonGender.getText().toString());
                 user.setAge(etAge.getText().toString());
                 user.setPhonenumber(etPhonenumber.getText().toString());
                 user.setWeight(etWeight.getText().toString());
                 user.setHeight(etHeight.getText().toString());
 
-            /*if(userBean.isValid(userBean.getUsername(),userBean.getPassword(),RegisterActivity.this)){
-                User user = new User();
-                user.setUsername(etUsername.getText().toString());
-                user.setPassword(etPassword.getText().toString());
-                helper.insertContact(user);
-                Intent intent = new Intent();
-                intent.setClass(RegisterActivity.this, MainActivity.class);
-                startActivity(intent);
-
-            }*/
                 if (Validation.isEmpty(user, RegisterActivity.this) &&
                         Validation.isPasswordMatch(etPassword.getText().toString(), etConfirmpassword.getText().toString(), RegisterActivity.this)) {
                     helper.insertContact(user);
