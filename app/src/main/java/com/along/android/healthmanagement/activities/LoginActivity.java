@@ -46,7 +46,7 @@ public class LoginActivity extends BasicActivity {
                         sp.edit().putString("username",username).apply();
                         sp.edit().putLong("uid",user.getId()).apply();
 
-
+                        // Remove below code if not used
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         //intent.setClass(LoginActivity.this,MainActivity.class);
                         intent.putExtra("Username", username);

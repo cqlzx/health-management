@@ -8,7 +8,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="200dp"
+        android:layout_marginBottom="@dimen/large_margin">
 
         <ImageView
             android:src="@drawable/background"
@@ -36,13 +37,14 @@
             android:text="a@example.com"
             android:textSize="14sp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/username"
+            android:layout_below="@id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </RelativeLayout>
     <LinearLayout
         android:paddingLeft="16dp"
         android:paddingTop="16dp"
+        android:id="@+id/llAge"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -63,6 +65,7 @@
     <LinearLayout
         android:paddingLeft="16dp"
         android:orientation="horizontal"
+        android:id="@+id/llGender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <TextView
@@ -81,6 +84,7 @@
     <LinearLayout
         android:paddingLeft="16dp"
         android:orientation="horizontal"
+        android:id="@+id/llHeight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
@@ -93,12 +97,13 @@
             android:textSize="18sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView3"/>
+            android:id="@+id/height"/>
     </LinearLayout>
 
     <LinearLayout
         android:paddingLeft="16dp"
         android:orientation="horizontal"
+        android:id="@+id/llWeight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
@@ -111,12 +116,13 @@
             android:textSize="18sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView4"/>
+            android:id="@+id/weight"/>
     </LinearLayout>
 
     <LinearLayout
         android:paddingLeft="16dp"
         android:orientation="horizontal"
+        android:id="@+id/llPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
@@ -129,7 +135,7 @@
             android:textSize="18sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView5"/>
+            android:id="@+id/phone"/>
     </LinearLayout>
 
     <LinearLayout

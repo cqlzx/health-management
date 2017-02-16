@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
@@ -44,28 +45,56 @@ public class ProfileActivity extends AppCompatActivity {
 
         // user informations
         TextView ageText = (TextView) findViewById(R.id.age);
-        TextView ageText = (TextView) findViewById(R.id.age);
+        TextView genderText = (TextView) findViewById(R.id.gender);
+        TextView heightText = (TextView) findViewById(R.id.height);
+        TextView weightText = (TextView) findViewById(R.id.weight);
+        TextView phoneText = (TextView) findViewById(R.id.phone);
 
         User user = EntityManager.findById(User.class, userIdS);
         if(user != null){
             emailText.setText(user.getEmail());
             Log.d("--email--->>>>>>>", user.getEmail());
-        // age
-            if (user.getAge() != null){
+
+            // age
+            if (user.getAge() != null && !user.getAge().equals("")){
                 ageText.setText(user.getAge());
             }else {
-                ageText.setText("");
+                LinearLayout llAge = (LinearLayout) findViewById(R.id.llAge);
+                llAge.setVisibility(View.GONE);
             }
             // gender
-
+            if (user.getGender() != null && !user.getGender().equals("")){
+                genderText.setText(user.getGender());
+            }else {
+                LinearLayout llGender = (LinearLayout) findViewById(R.id.llGender);
+                llGender.setVisibility(View.GONE);
+            }
+            //Height
+            if (user.getHeight() != null && !user.getHeight().equals("")){
+                heightText.setText(user.getHeight());
+            }else {
+                LinearLayout llHeight = (LinearLayout) findViewById(R.id.llHeight);
+                llHeight.setVisibility(View.GONE);
+            }
+            //Weight
+            if (user.getWeight() != null && !user.getWeight().equals("")){
+                weightText.setText(user.getWeight());
+            }else {
+                LinearLayout llWeight = (LinearLayout) findViewById(R.id.llWeight);
+                llWeight.setVisibility(View.GONE);
+            }
+            //Phone
+            if (user.getPhonenumber() != null && !user.getPhonenumber().equals("")){
+                phoneText.setText(user.getPhonenumber());
+            }else {
+                LinearLayout llPhone = (LinearLayout) findViewById(R.id.llPhone);
+                llPhone.setVisibility(View.GONE);
+            }
 
         }
 
-
-
 //        googleSignIn = (Button) findViewById(R.id.btn_google_sign_in);
 //        forgetPassword = (Button) findViewById(R.id.btn_forget_password);
-
 
         // button
         Button btn_editprofile;
