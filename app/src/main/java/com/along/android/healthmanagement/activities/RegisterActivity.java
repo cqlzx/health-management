@@ -1,6 +1,5 @@
 package com.along.android.healthmanagement.activities;
 
-import android.content.Entity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -16,15 +15,14 @@ import android.widget.Toast;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.User;
-import com.along.android.healthmanagement.helpers.EntityManager;
+import com.along.android.healthmanagement.helpers.SessionData;
 import com.along.android.healthmanagement.helpers.Validation;
-
-import DBManager.DatabaseHelper;
 
 
 public class RegisterActivity extends AppCompatActivity {
     //DatabaseHelper helper = new DatabaseHelper(this);
 
+    private SessionData sessionData;
     private RadioGroup radioGroupGender;
     private RadioButton radioButtonGender;
     EditText etUsername, etPassword, etConfirmpassword, etEmail, etRealname, etAge, etPhonenumber, etWeight, etHeight;
@@ -77,10 +75,12 @@ public class RegisterActivity extends AppCompatActivity {
 
                     try{
                         user.save();
+                        sessionData = new SessionData(RegisterActivity.this);
+                        sessionData.setUsername(etUsername.getText().toString());
+                        sessionData.setEmail(etEmail.getText().toString());
                         Intent intent = new Intent();
-                        intent.setClass(RegisterActivity.this, NavigationDrawerActivity.class);
+                        intent.setClass(RegisterActivity.this, MainActivity.class);
                         startActivity(intent);
-
                     }catch (Exception e){
                         Toast.makeText(RegisterActivity.this, "error", Toast.LENGTH_SHORT).show();
                     }

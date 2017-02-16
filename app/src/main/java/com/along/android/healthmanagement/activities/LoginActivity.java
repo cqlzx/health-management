@@ -11,10 +11,6 @@ import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.helpers.EntityManager;
 
-import java.util.List;
-
-import DBManager.DatabaseHelper;
-
 public class LoginActivity extends BasicActivity {
 
     //DatabaseHelper helper = new DatabaseHelper(this);
@@ -43,7 +39,7 @@ public class LoginActivity extends BasicActivity {
 
                 if(user != null) {
                     if(user.getPassword().equals(password)) {
-                        Intent intent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         //intent.setClass(LoginActivity.this,MainActivity.class);
                         intent.putExtra("Username", username);
                         startActivity(intent);
