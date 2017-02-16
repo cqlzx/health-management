@@ -65,7 +65,7 @@
 
         <EditText
             android:hint="change password"
-            android:text="123"
+            android:text=""
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -87,7 +87,7 @@
 
         <EditText
             android:hint="change password"
-            android:text="123"
+            android:text=""
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"

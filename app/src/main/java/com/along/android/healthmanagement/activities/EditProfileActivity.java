@@ -1,10 +1,12 @@
 package com.along.android.healthmanagement.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -21,8 +23,8 @@ import com.along.android.healthmanagement.helpers.Validation;
 public class EditProfileActivity extends AppCompatActivity {
 
     private EditText editName, editEmail, editPassword1, editPassword2, editAge, editHeight, editWeight, editPhone;
+    User user;
 
-    private SessionData sessionData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,62 +55,66 @@ public class EditProfileActivity extends AppCompatActivity {
         SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
         Long userIdS = sp.getLong("uid", 0);
         // user
-        User user = EntityManager.findById(User.class, userIdS);
-        if(user != null){
+        user = EntityManager.findById(User.class, userIdS);
+        if (user != null) {
             editName.setText(user.getUsername());
             editEmail.setText(user.getEmail());
             editAge.setText(user.getAge());
             editHeight.setText(user.getHeight());
             editWeight.setText(user.getWeight());
             editPhone.setText(user.getPhonenumber());
-
+            editPassword1.setText(user.getPassword());
+            editPassword2.setText(user.getPassword());
 //            radioGroupGender
 
         }
 
         // click
-        btn_saveprofile.setOnClickListener(new View.OnClickListener() {
+        btn_saveprofile.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
                 // save information and turn back
 //            int selectedId = radioGroupGender.getCheckedRadioButtonId();
 //                RadioButton radioButtonGender = (RadioButton) findViewById(selectedId);
 //            user.setGender(radioButtonGender.getText().toString());
-                User user = new User();
+//                User user = new User();
 
-//                user.setUsername(editName.getText().toString());
-//                user.setPassword(editPassword1.getText().toString());
-//                user.setEmail(editEmail.getText().toString());
-////                user.setGender(radioGroupGender.getText().toString());
-//                user.setAge(editAge.getText().toString());
-//                user.setPhonenumber(editPhone.getText().toString());
-//                user.setWeight(editWeight.getText().toString());
-//                user.setHeight(editHeight.getText().toString());
-//
-//                if (Validation.isEmpty(user, EditProfileActivity.this) &&
-//                        Validation.isPasswordMatch(editPassword1.getText().toString(), editPassword2.getText().toString(), EditProfileActivity.this) &&
-//                        Validation.isValidEmail(user.getEmail(), EditProfileActivity.this)) {
-//                    //helper.insertContact(user);
-//
-//                    try{
-//                        user.save();
-//                        // sql
-//                        EditProfileActivity.this.finish();
-//                    }catch (Exception e){
-//                        Toast.makeText(EditProfileActivity.this, "error", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
+                user.setUsername(editName.getText().toString());
+                user.setPassword(editPassword1.getText().toString());
+                user.setEmail(editEmail.getText().toString());
+//                user.setGender(radioGroupGender.getText().toString());
+                user.setAge(editAge.getText().toString());
+                user.setPhonenumber(editPhone.getText().toString());
+                user.setWeight(editWeight.getText().toString());
+                user.setHeight(editHeight.getText().toString());
+
+
+                if (Validation.isEmpty(user, EditProfileActivity.this) &&
+                        Validation.isPasswordMatch(editPassword1.getText().toString(), editPassword2.getText().toString(), EditProfileActivity.this) &&
+                        Validation.isValidEmail(user.getEmail(), EditProfileActivity.this)) {
+                    // helper.insertContact(user);
+
+                    try {
+                        user.save();
+                        EditProfileActivity.this.finish();
+                    } catch (Exception e) {
+                        Toast.makeText(EditProfileActivity.this, "error", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+
             }
         });
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch (item.getItemId()){
-            case android.R.id.home:
-                finish();
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
+        /*@Override
+        public boolean onOptionsItemSelected (MenuItem item)
+        {
+            switch (item.getItemId()) {
+                case android.R.id.home:
+                    finish();
+                    break;
+            }
+            return super.onOptionsItemSelected(item);
+        }*/
     }
 }
