@@ -8,6 +8,10 @@ public class User extends SugarRecord{
     private Long id;
     private String username, password, email, gender, age, phonenumber, weight, height;
 
+    public User() {
+
+    }
+
     public Long getId(){
         return id;
     }

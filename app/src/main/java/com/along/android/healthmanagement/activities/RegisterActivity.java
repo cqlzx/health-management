@@ -1,25 +1,29 @@
 package com.along.android.healthmanagement.activities;
 
+import android.content.Entity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.User;
+import com.along.android.healthmanagement.helpers.EntityManager;
 import com.along.android.healthmanagement.helpers.Validation;
 
 import DBManager.DatabaseHelper;
 
 
 public class RegisterActivity extends AppCompatActivity {
-    DatabaseHelper helper = new DatabaseHelper(this);
+    //DatabaseHelper helper = new DatabaseHelper(this);
 
     private RadioGroup radioGroupGender;
     private RadioButton radioButtonGender;
@@ -69,14 +73,26 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if (Validation.isEmpty(user, RegisterActivity.this) &&
                         Validation.isPasswordMatch(etPassword.getText().toString(), etConfirmpassword.getText().toString(), RegisterActivity.this)) {
-                    helper.insertContact(user);
-                    Intent intent = new Intent();
-                    intent.setClass(RegisterActivity.this, NavigationDrawerActivity.class);
-                    startActivity(intent);
+                    //helper.insertContact(user);
+
+                    try{
+                        user.save();
+                        Intent intent = new Intent();
+                        intent.setClass(RegisterActivity.this, NavigationDrawerActivity.class);
+                        startActivity(intent);
+
+                    }catch (Exception e){
+                        Toast.makeText(RegisterActivity.this, "error", Toast.LENGTH_SHORT);
+                    }
+
+                }else {
+                    Log.d(")))))))))", "hehe");
                 }
 
             }
         });
+
+
 
         btn_cancel = (Button) findViewById(R.id.btn_cancel);
         btn_cancel.setOnClickListener(new View.OnClickListener() {

@@ -8,12 +8,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.entities.User;
+import com.along.android.healthmanagement.helpers.EntityManager;
+
+import java.util.List;
 
 import DBManager.DatabaseHelper;
 
 public class LoginActivity extends BasicActivity {
 
-    DatabaseHelper helper = new DatabaseHelper(this);
+    //DatabaseHelper helper = new DatabaseHelper(this);
 
     EditText etUsername, etPassword;
     Button login, register, googleSignIn, forgetPassword;
@@ -35,17 +39,32 @@ public class LoginActivity extends BasicActivity {
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
 
-                String dbpassword = helper.searchPassword(username);
+                List<User> users = EntityManager.find(User.class, "username = ?", username);
 
-                if (password.equals(dbpassword)) {
-                    Intent intent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
-                    //intent.setClass(LoginActivity.this,MainActivity.class);
-                    intent.putExtra("Username", username);
-                    startActivity(intent);
-                } else {
-                    Toast temp = Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT);
-                    temp.show();
+                if(users.size() > 0) {
+                    User user = users.get(0);
+                    if(user.getPassword().equals(password)) {
+                        Intent intent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
+                        //intent.setClass(LoginActivity.this,MainActivity.class);
+                        intent.putExtra("Username", username);
+                        startActivity(intent);
+                    } else {
+                        Toast temp = Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT);
+                        temp.show();
+                    }
                 }
+
+                //String dbpassword = helper.searchPassword(username);
+//                String dbpassword;
+//                if (password.equals(dbpassword)) {
+//                    Intent intent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
+//                    //intent.setClass(LoginActivity.this,MainActivity.class);
+//                    intent.putExtra("Username", username);
+//                    startActivity(intent);
+//                } else {
+//                    Toast temp = Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT);
+//                    temp.show();
+//                }
             }
         });
 
