@@ -82,7 +82,7 @@ public class BasicActivity extends AppCompatActivity implements GoogleApiClient.
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
-            Intent intent = new Intent(BasicActivity.this, NavigationDrawerActivity.class);
+            Intent intent = new Intent(BasicActivity.this, MainActivity.class);
             //intent.setClass(LoginActivity.this,MainActivity.class);
             intent.putExtra("Username", acct.getDisplayName());
             startActivity(intent);

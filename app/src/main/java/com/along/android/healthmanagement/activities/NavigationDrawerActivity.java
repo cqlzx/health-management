@@ -1,7 +1,6 @@
 package com.along.android.healthmanagement.activities;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -9,16 +8,19 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.helpers.SessionData;
 
 public class NavigationDrawerActivity extends BasicActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_navigation_drawer);
+    private SessionData sessionData;
+    private TextView tvNavUsername, tvNavEmail;
+
+    protected void onCreateDrawer() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -39,6 +41,13 @@ public class NavigationDrawerActivity extends BasicActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View header=navigationView.getHeaderView(0);
+
+        sessionData = new SessionData(NavigationDrawerActivity.this);
+        tvNavUsername = (TextView) header.findViewById(R.id.tvNavUsername);
+        tvNavUsername.setText(null != sessionData.getUsername() ? sessionData.getUsername() : "");
+        tvNavEmail = (TextView) header.findViewById(R.id.tvNavEmail);
+        tvNavEmail.setText(null != sessionData.getEmail() ? sessionData.getEmail() : "");
     }
 
     @Override
