@@ -83,13 +83,10 @@ public class RegisterActivity extends AppCompatActivity {
                         startActivity(intent);
 
                     }catch (Exception e){
-                        Toast.makeText(RegisterActivity.this, "error", Toast.LENGTH_SHORT);
+                        Toast.makeText(RegisterActivity.this, "error", Toast.LENGTH_SHORT).show();
                     }
 
-                }else {
-                    Log.d(")))))))))", "hehe");
                 }
-
             }
         });
 

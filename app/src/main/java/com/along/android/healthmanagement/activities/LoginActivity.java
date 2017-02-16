@@ -39,18 +39,16 @@ public class LoginActivity extends BasicActivity {
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
 
-                List<User> users = EntityManager.find(User.class, "username = ?", username);
+                User user = EntityManager.findOneBy(User.class, "username = ?", username);
 
-                if(users.size() > 0) {
-                    User user = users.get(0);
+                if(user != null) {
                     if(user.getPassword().equals(password)) {
                         Intent intent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
                         //intent.setClass(LoginActivity.this,MainActivity.class);
                         intent.putExtra("Username", username);
                         startActivity(intent);
                     } else {
-                        Toast temp = Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT);
-                        temp.show();
+                        Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                     }
                 }
 
