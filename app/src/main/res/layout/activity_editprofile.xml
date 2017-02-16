@@ -222,7 +222,7 @@
             android:textSize="18sp"/>
 
         <EditText
-            android:hint="change password"
+            android:hint="change phone Number"
             android:text="123"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
