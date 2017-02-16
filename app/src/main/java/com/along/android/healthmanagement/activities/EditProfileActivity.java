@@ -76,28 +76,28 @@ public class EditProfileActivity extends AppCompatActivity {
 //            user.setGender(radioButtonGender.getText().toString());
                 User user = new User();
 
-                user.setUsername(editName.getText().toString());
-                user.setPassword(editPassword1.getText().toString());
-                user.setEmail(editEmail.getText().toString());
-//                user.setGender(radioGroupGender.getText().toString());
-                user.setAge(editAge.getText().toString());
-                user.setPhonenumber(editPhone.getText().toString());
-                user.setWeight(editWeight.getText().toString());
-                user.setHeight(editHeight.getText().toString());
-
-                if (Validation.isEmpty(user, EditProfileActivity.this) &&
-                        Validation.isPasswordMatch(editPassword1.getText().toString(), editPassword2.getText().toString(), EditProfileActivity.this) &&
-                        Validation.isValidEmail(user.getEmail(), EditProfileActivity.this)) {
-                    //helper.insertContact(user);
-
-                    try{
-                        user.save();
-                        // sql
-                        EditProfileActivity.this.finish();
-                    }catch (Exception e){
-                        Toast.makeText(EditProfileActivity.this, "error", Toast.LENGTH_SHORT).show();
-                    }
-                }
+//                user.setUsername(editName.getText().toString());
+//                user.setPassword(editPassword1.getText().toString());
+//                user.setEmail(editEmail.getText().toString());
+////                user.setGender(radioGroupGender.getText().toString());
+//                user.setAge(editAge.getText().toString());
+//                user.setPhonenumber(editPhone.getText().toString());
+//                user.setWeight(editWeight.getText().toString());
+//                user.setHeight(editHeight.getText().toString());
+//
+//                if (Validation.isEmpty(user, EditProfileActivity.this) &&
+//                        Validation.isPasswordMatch(editPassword1.getText().toString(), editPassword2.getText().toString(), EditProfileActivity.this) &&
+//                        Validation.isValidEmail(user.getEmail(), EditProfileActivity.this)) {
+//                    //helper.insertContact(user);
+//
+//                    try{
+//                        user.save();
+//                        // sql
+//                        EditProfileActivity.this.finish();
+//                    }catch (Exception e){
+//                        Toast.makeText(EditProfileActivity.this, "error", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
             }
         });
     }
