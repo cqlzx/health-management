@@ -61,6 +61,7 @@ public class RegisterActivity extends AppCompatActivity {
                 User user = new User();
 
                 user.setUsername(etUsername.getText().toString());
+                user.setRealname(etRealname.getText().toString());
                 user.setPassword(etPassword.getText().toString());
                 user.setEmail(etEmail.getText().toString());
                 user.setGender(radioButtonGender.getText().toString());

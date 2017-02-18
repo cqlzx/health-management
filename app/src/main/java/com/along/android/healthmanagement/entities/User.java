@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
 @Table
 public class User extends SugarRecord{
     private Long id;
-    private String username, password, email, gender, age, phonenumber, weight, height;
+    private String username, realname, password, email, gender, age, phonenumber, weight, height;
     private long passwordExpirationTime;
 
     public User() {
@@ -26,6 +26,14 @@ public class User extends SugarRecord{
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname;
     }
 
     public String getPassword() {

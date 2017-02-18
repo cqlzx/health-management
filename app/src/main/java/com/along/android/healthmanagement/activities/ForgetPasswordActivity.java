@@ -38,7 +38,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                 if (user != null) {
                     String email = user.getEmail();
                     String subject = "HealthManagement Support";
-                    String content = makeEmailContent(user.resetPassword(passwordLength));
+                    String content = makeEmailContent(user);
                     new MailHelper().execute(email, subject, content);
                     Toast.makeText(ForgetPasswordActivity.this, "Email has been sent", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(ForgetPasswordActivity.this, LoginActivity.class);
@@ -50,10 +50,10 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         });
     }
 
-    private String makeEmailContent(String password) {
-        return "Dear Friend," +
+    private String makeEmailContent(User user) {
+        return "Dear " + user.getRealname() + "," +
                 "<br /><br />Thanks for using HealthManagement. Your password has been reset!" +
-                "<br /><br />Your password is : <b>" + password + "</b>" +
+                "<br /><br />Your password is : <b>" + user.resetPassword(passwordLength) + "</b>" +
                 "<br /><br /><b>Notice: </b> This is a temporary password and will expire in 1 hour.";
     }
 }
