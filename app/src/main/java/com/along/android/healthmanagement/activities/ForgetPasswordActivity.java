@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.helpers.EntityManager;
+import com.along.android.healthmanagement.helpers.MailHelper;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
     EditText mEmailEditText;
     Button mForgetPasswordContinueButton;
+    private int passwordLength = 8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +37,9 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
                 if (user != null) {
                     String email = user.getEmail();
-                    //todo send temporary password to the input email and reset the password
-//                    MailHelper.sendEmail();
+                    String subject = "HealthManagement Support";
+                    String content = makeEmailContent(user.resetPassword(passwordLength));
+                    new MailHelper().execute(email, subject, content);
                     Toast.makeText(ForgetPasswordActivity.this, "Email has been sent", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(ForgetPasswordActivity.this, LoginActivity.class);
                     startActivity(i);
@@ -45,5 +48,12 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private String makeEmailContent(String password) {
+        return "Dear Friend," +
+                "<br /><br />Thanks for using HealthManagement. Your password has been reset!" +
+                "<br /><br />Your password is : <b>" + password + "</b>" +
+                "<br /><br /><b>Notice: </b> This is a temporary password and will expire in 1 hour.";
     }
 }

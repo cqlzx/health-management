@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.along.android.healthmanagement">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:name="com.orm.SugarApp"
         android:allowBackup="true"
@@ -60,5 +61,6 @@
         <activity
             android:name=".activities.ForgetPasswordActivity"/>
     </application>
+
 
 </manifest>

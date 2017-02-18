@@ -68,6 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
                 user.setPhonenumber(etPhonenumber.getText().toString());
                 user.setWeight(etWeight.getText().toString());
                 user.setHeight(etHeight.getText().toString());
+                user.setPasswordExpirationTime(0);
 
                 if (Validation.isEmpty(user, RegisterActivity.this) &&
                         Validation.isPasswordMatch(etPassword.getText().toString(), etConfirmpassword.getText().toString(), RegisterActivity.this) &&

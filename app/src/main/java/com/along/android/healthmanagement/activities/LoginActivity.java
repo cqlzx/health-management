@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.helpers.EntityManager;
+
+import java.util.Date;
 
 public class LoginActivity extends BasicActivity {
 
@@ -41,19 +44,24 @@ public class LoginActivity extends BasicActivity {
 
                 if(user != null) {
                     if(user.getPassword().equals(password)) {
+                        if (user.getPasswordExpirationTime() == 0 || user.getPasswordExpirationTime() > new Date().getTime()) {
+                            SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
+                            sp.edit().putString("username",username).apply();
+                            sp.edit().putLong("uid",user.getId()).apply();
 
-                        SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
-                        sp.edit().putString("username",username).apply();
-                        sp.edit().putLong("uid",user.getId()).apply();
-
-                        // Remove below code if not used
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        //intent.setClass(LoginActivity.this,MainActivity.class);
-                        intent.putExtra("Username", username);
-                        startActivity(intent);
+                            // Remove below code if not used
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            //intent.setClass(LoginActivity.this,MainActivity.class);
+                            intent.putExtra("Username", username);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Password has expired", Toast.LENGTH_SHORT).show();
+                        }
                     } else {
                         Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                     }
+                } else {
+                    Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                 }
 
                 //String dbpassword = helper.searchPassword(username);
