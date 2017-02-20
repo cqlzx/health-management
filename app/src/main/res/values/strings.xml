@@ -14,4 +14,16 @@
     <string name="profile">Profile</string>
     <string name="communication">Communication</string>
     <string name="title_activity_forget_password">ForgetPassword</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_medication">MedicationActivity</string>
+    <string name="title_activity_diet">DietActivity</string>
+    <string name="title_activity_communication">CommunicationActivity</string>
+    <string name="title_activity_vital_signs">VitalSignsActivity</string>
+    <string name="title_activity_notification">NotificationActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

@@ -115,7 +115,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(ProfileActivity.this, MainActivity.class);
+                intent.setClass(ProfileActivity.this, NavigationDrawerActivity.class);
                 startActivity(intent);
             }
         });

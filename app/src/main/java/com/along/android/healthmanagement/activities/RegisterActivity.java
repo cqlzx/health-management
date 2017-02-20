@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -83,7 +82,7 @@ public class RegisterActivity extends AppCompatActivity {
                         sessionData.setUsername(etUsername.getText().toString());
                         sessionData.setEmail(etEmail.getText().toString());
                         Intent intent = new Intent();
-                        intent.setClass(RegisterActivity.this, MainActivity.class);
+                        intent.setClass(RegisterActivity.this, NavigationDrawerActivity.class);
                         startActivity(intent);
 
                     }catch (Exception e){

@@ -1,10 +1,14 @@
 package com.along.android.healthmanagement.activities;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,42 +16,37 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.fragments.HomeFragment;
+import com.along.android.healthmanagement.fragments.MedicationFragment;
 import com.along.android.healthmanagement.helpers.SessionData;
 
-public class NavigationDrawerActivity extends BasicActivity
+public class NavigationDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private SessionData sessionData;
-    private TextView tvNavUsername, tvNavEmail;
-
-    protected void onCreateDrawer() {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_navigation_drawer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View header=navigationView.getHeaderView(0);
 
-        sessionData = new SessionData(NavigationDrawerActivity.this);
-        tvNavUsername = (TextView) header.findViewById(R.id.tvNavUsername);
+        SessionData sessionData = new SessionData(NavigationDrawerActivity.this);
+        TextView tvNavUsername = (TextView) header.findViewById(R.id.tvNavUsername);
         tvNavUsername.setText(null != sessionData.getUsername() ? sessionData.getUsername() : "");
-        tvNavEmail = (TextView) header.findViewById(R.id.tvNavEmail);
+        TextView tvNavEmail = (TextView) header.findViewById(R.id.tvNavEmail);
         tvNavEmail.setText(null != sessionData.getEmail() ? sessionData.getEmail() : "");
+
+        createFragment(new HomeFragment(), "homeFragment");
     }
 
     @Override
@@ -77,8 +76,6 @@ public class NavigationDrawerActivity extends BasicActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
-        } else if (id == R.id.action_signout) {
-            return signOut();
         }
 
         return super.onOptionsItemSelected(item);
@@ -90,26 +87,17 @@ public class NavigationDrawerActivity extends BasicActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_medication) {
-            Intent intent = new Intent();
-            intent.setClass(NavigationDrawerActivity.this, MedicationActivity.class);
+        if (id == R.id.nav_profile) {
+            Intent intent = new Intent(NavigationDrawerActivity.this, ProfileActivity.class);
             startActivity(intent);
+        } else if (id == R.id.nav_medication) {
+            createFragment(new MedicationFragment(), "medicationFragment");
         } else if (id == R.id.nav_diet) {
-            Intent intent = new Intent();
-            intent.setClass(NavigationDrawerActivity.this, DietActivity.class);
-            startActivity(intent);
+
         } else if (id == R.id.nav_vital_signs) {
-            Intent intent = new Intent();
-            intent.setClass(NavigationDrawerActivity.this, VitalSignsActivity.class);
-            startActivity(intent);
+
         } else if (id == R.id.nav_notification) {
-            Intent intent = new Intent();
-            intent.setClass(NavigationDrawerActivity.this, NotificationActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_profile) {
-            Intent intent = new Intent();
-            intent.setClass(NavigationDrawerActivity.this, ProfileActivity.class);
-            startActivity(intent);
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -117,5 +105,10 @@ public class NavigationDrawerActivity extends BasicActivity
         return true;
     }
 
-
+    private void createFragment(Fragment fragmentObject, String fragmentTag) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_navigation_drawer, fragmentObject, fragmentTag).
+                addToBackStack(fragmentTag).
+                commit();
+    }
 }

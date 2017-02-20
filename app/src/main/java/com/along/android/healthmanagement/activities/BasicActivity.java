@@ -87,8 +87,7 @@ public class BasicActivity extends AppCompatActivity implements GoogleApiClient.
             sessionData = new SessionData(BasicActivity.this);
             sessionData.setUsername(acct.getDisplayName());
             sessionData.setEmail(acct.getEmail());
-            Intent intent = new Intent(BasicActivity.this, MainActivity.class);
-            //intent.setClass(LoginActivity.this,MainActivity.class);
+            Intent intent = new Intent(BasicActivity.this, NavigationDrawerActivity.class);
             intent.putExtra("Username", acct.getDisplayName());
             intent.putExtra("Email", acct.getEmail());
             startActivity(intent);

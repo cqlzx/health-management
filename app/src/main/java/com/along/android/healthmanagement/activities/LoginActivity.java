@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,7 +49,7 @@ public class LoginActivity extends BasicActivity {
                             sp.edit().putLong("uid",user.getId()).apply();
 
                             // Remove below code if not used
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
                             //intent.setClass(LoginActivity.this,MainActivity.class);
                             intent.putExtra("Username", username);
                             startActivity(intent);
