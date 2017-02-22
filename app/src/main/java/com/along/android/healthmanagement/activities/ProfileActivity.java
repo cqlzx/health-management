@@ -27,7 +27,6 @@ public class ProfileActivity extends AppCompatActivity {
         // actionBar
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle("Profile");
         // sharePreferences
