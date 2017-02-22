@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:id="@+id/row1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_medication_tile"
+            android:text="@string/medication"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:background="@drawable/rectangle"
+            android:backgroundTint="@color/colorTile1"
+            android:layout_margin="5dp"
+            android:textColor="@color/eeeeee"
+            android:layout_weight=".5" />
+
+        <Button
+            android:id="@+id/btn_diet_tile"
+            android:text="@string/diet"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:background="@drawable/rectangle"
+            android:backgroundTint="@color/colorTile2"
+            android:layout_margin="5dp"
+            android:textColor="@color/eeeeee"
+            android:layout_weight=".5" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/row2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/row1">
+
+        <Button
+            android:id="@+id/btn_vital_signs_tile"
+            android:text="@string/vital_signs"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:background="@drawable/rectangle"
+            android:backgroundTint="@color/colorTile3"
+            android:layout_margin="5dp"
+            android:textColor="@color/eeeeee"
+            android:layout_weight=".5" />
+
+        <Button
+            android:id="@+id/btn_communication_tile"
+            android:text="@string/communication"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:background="@drawable/rectangle"
+            android:backgroundTint="@color/colorTile4"
+            android:layout_margin="5dp"
+            android:textColor="@color/eeeeee"
+            android:layout_weight=".5" />
+    </LinearLayout>
+</RelativeLayout>
