@@ -16,8 +16,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.fragments.DietFragment;
 import com.along.android.healthmanagement.fragments.HomeFragment;
-import com.along.android.healthmanagement.fragments.MedicationFragment;
+import com.along.android.healthmanagement.fragments.MedicationListingFragment;
 import com.along.android.healthmanagement.helpers.SessionData;
 
 public class NavigationDrawerActivity extends AppCompatActivity
@@ -76,9 +77,19 @@ public class NavigationDrawerActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        } else if (id == R.id.action_signout) {
+            return signOut();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    protected boolean signOut() {
+        Intent intent = new Intent();
+        intent.setClass(NavigationDrawerActivity.this, LoginActivity.class);
+        startActivity(intent);
+
+        return true;
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -91,9 +102,9 @@ public class NavigationDrawerActivity extends AppCompatActivity
             Intent intent = new Intent(NavigationDrawerActivity.this, ProfileActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_medication) {
-            createFragment(new MedicationFragment(), "medicationFragment");
+            createFragment(new MedicationListingFragment(), "medicationListingFragment");
         } else if (id == R.id.nav_diet) {
-
+            createFragment(new DietFragment(), "dietFragment");
         } else if (id == R.id.nav_vital_signs) {
 
         } else if (id == R.id.nav_notification) {
