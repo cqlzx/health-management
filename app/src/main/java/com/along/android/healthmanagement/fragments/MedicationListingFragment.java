@@ -10,21 +10,15 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.along.android.healthmanagement.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class MedicationListingFragment extends BasicFragment {
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private int currentTab = 0;
-
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
     private ViewPager mViewPager;
-
+    private TabLayout tabLayout;
 
     public MedicationListingFragment() {
         // Required empty public constructor
@@ -37,44 +31,23 @@ public class MedicationListingFragment extends BasicFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_medication_listing, container, false);
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getActivity().getSupportFragmentManager());
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) getActivity().findViewById(R.id.container);
+        mViewPager = (ViewPager) view.findViewById(R.id.medicationViewPager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.tabs);
+        tabLayout = (TabLayout) view.findViewById(R.id.medicationTabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                currentTab = tab.getPosition();
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {}
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {}
-        });
-
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        ImageView fab = (ImageView) view.findViewById(R.id.add_medication_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (currentTab == 0) {
-                    // Invoke Special days reminder form
-                    Intent intent = new Intent(ReminderActivity.this, SpecialDaysReminderFormActivity.class);
-                    startActivity(intent);
-                } else if (currentTab == 1) {
-                    // Invoke events reminder form
-                    Intent intent = new Intent(ReminderActivity.this, EventsReminderFormActivity.class);
-                    startActivity(intent);
-                }
-
+                // Invoke the fragment to add new Medication form
+                createFragment(new CurrentMedicationTabFragment(), "currentMedicationTabFragment");
             }
-        });*/
+        });
         return view;
     }
 
@@ -94,9 +67,9 @@ public class MedicationListingFragment extends BasicFragment {
 
             switch (position) {
                 case 0:
-                    return null;
+                    return new CurrentMedicationTabFragment();
                 case 1:
-                    return null;
+                    return new MedicationHistoryTabFragment();
             }
             return null;
         }
@@ -110,9 +83,9 @@ public class MedicationListingFragment extends BasicFragment {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Special Days";
+                    return "Current Medications";
                 case 1:
-                    return "Events & Meetings";
+                    return "Medication History";
             }
             return null;
         }

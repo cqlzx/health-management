@@ -246,7 +246,7 @@
                 android:layout_marginRight="@dimen/large_margin"
                 android:layout_weight=".5"
                 android:background="@drawable/rectangle"
-                android:backgroundTint="@color/eeeeee"
+                android:backgroundTint="@color/greyE"
                 android:text="cancel"
                 android:textColor="@color/colorPrimary" />
 
@@ -257,7 +257,7 @@
                 android:layout_weight=".5"
                 android:background="@drawable/rectangle"
                 android:text="Save"
-                android:textColor="@color/eeeeee" />
+                android:textColor="@color/greyE" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

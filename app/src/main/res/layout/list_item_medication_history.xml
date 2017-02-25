@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/medication_history_list_item"
+    android:padding="@dimen/list_item_padding">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Medicine Names"
+        android:textSize="20dp"
+        android:id="@+id/tvMHMedicationNames"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Doctor Name"
+        android:layout_below="@id/tvMHMedicationNames"
+        android:id="@+id/tvMHDoctorName"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Disease/Symptom"
+        android:layout_below="@id/tvMHDoctorName"
+        android:id="@+id/tvMHDisease"/>
+</RelativeLayout>

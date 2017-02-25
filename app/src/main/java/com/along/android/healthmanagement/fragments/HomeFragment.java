@@ -34,6 +34,14 @@ public class HomeFragment extends BasicFragment {
             }
         });
 
+        Button btnDiet = (Button) view.findViewById(R.id.btn_diet_tile);
+        btnDiet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createFragment(new DietFragment(), "dietFragment");
+            }
+        });
+
         return view;
     }
 

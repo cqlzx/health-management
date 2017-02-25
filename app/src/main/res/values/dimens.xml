@@ -11,5 +11,11 @@
     <dimen name="small_margin">5dp</dimen>
     <dimen name="medium_margin">10dp</dimen>
     <dimen name="large_margin">15dp</dimen>
+    <dimen name="list_item_margin">16dp</dimen>
+    <dimen name="list_item_padding">16dp</dimen>
+    <dimen name="list_item_top_margin">16dp</dimen>
+    <dimen name="list_item_bottom_margin">16dp</dimen>
+    <dimen name="list_item_left_margin">16dp</dimen>
+    <dimen name="list_item_right_margin">16dp</dimen>
 
 </resources>

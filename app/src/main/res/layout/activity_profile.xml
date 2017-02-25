@@ -32,7 +32,7 @@
             android:layout_below="@+id/avatar"
             android:layout_centerHorizontal="true"
             android:text="Danil"
-            android:textColor="@color/eeeeee"
+            android:textColor="@color/greyE"
             android:textSize="22sp" />
 
         <TextView
@@ -42,7 +42,7 @@
             android:layout_below="@id/username"
             android:layout_centerHorizontal="true"
             android:text="a@example.com"
-            android:textColor="@color/eeeeee"
+            android:textColor="@color/greyE"
             android:textSize="14sp" />
     </RelativeLayout>
 
@@ -166,7 +166,7 @@
             android:layout_marginRight="@dimen/large_margin"
             android:layout_weight=".5"
             android:background="@drawable/rectangle"
-            android:backgroundTint="@color/eeeeee"
+            android:backgroundTint="@color/greyE"
             android:text="cancel"
             android:textColor="@color/colorPrimary" />
 
@@ -177,6 +177,6 @@
             android:layout_weight=".5"
             android:background="@drawable/rectangle"
             android:text="Edit"
-            android:textColor="@color/eeeeee" />
+            android:textColor="@color/greyE" />
     </LinearLayout>
 </LinearLayout>

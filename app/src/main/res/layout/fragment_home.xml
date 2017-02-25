@@ -24,7 +24,7 @@
             android:background="@drawable/rectangle"
             android:backgroundTint="@color/colorTile1"
             android:layout_margin="5dp"
-            android:textColor="@color/eeeeee"
+            android:textColor="@color/greyE"
             android:layout_weight=".5" />
 
         <Button
@@ -35,7 +35,7 @@
             android:background="@drawable/rectangle"
             android:backgroundTint="@color/colorTile2"
             android:layout_margin="5dp"
-            android:textColor="@color/eeeeee"
+            android:textColor="@color/greyE"
             android:layout_weight=".5" />
     </LinearLayout>
 
@@ -53,7 +53,7 @@
             android:background="@drawable/rectangle"
             android:backgroundTint="@color/colorTile3"
             android:layout_margin="5dp"
-            android:textColor="@color/eeeeee"
+            android:textColor="@color/greyE"
             android:layout_weight=".5" />
 
         <Button
@@ -64,7 +64,7 @@
             android:background="@drawable/rectangle"
             android:backgroundTint="@color/colorTile4"
             android:layout_margin="5dp"
-            android:textColor="@color/eeeeee"
+            android:textColor="@color/greyE"
             android:layout_weight=".5" />
     </LinearLayout>
 </RelativeLayout>
