@@ -21,14 +21,17 @@
             android:id="@+id/nav_notification"
             android:icon="@drawable/ic_menu_notifications"
             android:title="@string/notification" />
-        <item
-            android:id="@+id/nav_share"
-            android:icon="@drawable/ic_menu_share"
-            android:title="Share" />
-        <item
-            android:id="@+id/nav_send"
-            android:icon="@drawable/ic_menu_send"
-            android:title="Send" />
+
+        <group android:id="@+id/group_settings_id">
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_menu_settings"
+                android:title="Settings" />
+            <item
+                android:id="@+id/nav_signout"
+                android:icon="@drawable/ic_menu_signout"
+                android:title="Signout" />
+        </group>
 
     </group>
 </menu>

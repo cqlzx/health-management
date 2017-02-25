@@ -109,6 +109,11 @@ public class NavigationDrawerActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_notification) {
 
+        } else if (id == R.id.nav_settings) {
+
+        }
+        else if (id == R.id.nav_signout) {
+            signOut();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

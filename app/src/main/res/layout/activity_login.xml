@@ -100,7 +100,7 @@
         android:textColor="@color/googleRed"
         android:background="@null"
         android:text="Sign Up"/>
-
+w
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -109,7 +109,7 @@
         android:layout_marginTop="@dimen/small_margin"
         android:layout_alignBaseline="@id/btn_register"
         android:id="@+id/register_text"
-        android:text="Don't have an account?"/>
+        android:text="New User?"/>
 
     <Button
         android:id="@+id/btn_forget_password"
