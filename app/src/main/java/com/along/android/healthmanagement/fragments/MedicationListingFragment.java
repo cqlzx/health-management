@@ -83,7 +83,7 @@ public class MedicationListingFragment extends BasicFragment {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Current Medications";
+                    return "Current Medication";
                 case 1:
                     return "Medication History";
             }

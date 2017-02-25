@@ -8,6 +8,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryText"
         android:text="Medicine Names"
         android:textSize="20dp"
         android:id="@+id/tvMHMedicationNames"/>

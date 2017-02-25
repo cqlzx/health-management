@@ -13,12 +13,11 @@
             android:id="@+id/medicationTabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/greyE"
+            android:background="@color/whiteF1"
             app:tabGravity="fill"
-            app:tabIndicatorColor="@color/colorPrimaryDark"
+            app:tabIndicatorColor="@color/colorTabSelected"
             app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/colorPrimaryDark"
-            app:tabTextColor="@color/black3" />
+            app:tabSelectedTextColor="@color/colorTabSelected" />
 
     </android.support.design.widget.AppBarLayout>
 

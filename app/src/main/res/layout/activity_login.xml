@@ -1,61 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="50dp"
+    android:orientation="vertical"
+    android:paddingBottom="25px"
     android:paddingLeft="25px"
     android:paddingRight="25px"
-    android:paddingBottom="25px">
+    android:paddingTop="50dp">
 
     <EditText
+        android:id="@+id/etUsername"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:id="@+id/etUsername"
-        android:padding="10dp"
-        android:layout_marginBottom="@dimen/medium_margin"
         android:layout_centerHorizontal="true"
-        android:hint="Username"/>
+        android:layout_marginBottom="@dimen/medium_margin"
+        android:hint="Username"
+        android:padding="10dp" />
+
     <ImageView
+        android:id="@+id/ic_user"
         android:layout_width="@dimen/small_icon"
         android:layout_height="@dimen/small_icon"
-        android:id="@+id/ic_user"
-        android:layout_toLeftOf="@id/etUsername"
         android:layout_margin="@dimen/medium_margin"
+        android:layout_toLeftOf="@id/etUsername"
         android:background="@drawable/ic_user" />
 
     <EditText
+        android:id="@+id/etPassword"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:id="@+id/etPassword"
-        android:padding="10dp"
-        android:inputType="textPassword"
-        android:layout_marginBottom="@dimen/medium_margin"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/etUsername"
-        android:hint="Password"/>
+        android:layout_centerHorizontal="true"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:padding="10dp" />
+
     <ImageView
+        android:id="@+id/ic_pass"
         android:layout_width="@dimen/small_icon"
         android:layout_height="@dimen/small_icon"
-        android:id="@+id/ic_pass"
         android:layout_below="@id/etUsername"
-        android:layout_toLeftOf="@id/etPassword"
         android:layout_margin="@dimen/medium_margin"
+        android:layout_toLeftOf="@id/etPassword"
         android:background="@drawable/ic_password" />
 
+
+
     <Button
+        android:id="@+id/btn_login"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_login"
         android:layout_below="@id/etPassword"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/medium_margin"
+        android:layout_marginTop="@dimen/large_margin"
         android:background="@drawable/rectangle"
         android:backgroundTint="@color/blueButton"
-        android:textColor="@color/greyE"
-        android:layout_marginTop="@dimen/large_margin"
-        android:layout_marginBottom="@dimen/medium_margin"
-        android:text="login"/>
+        android:text="login"
+        android:textColor="@color/greyE" />
 
-    <TextView
+    <Button
+        android:id="@+id/btn_forget_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/btn_login"
+        android:layout_marginLeft="32dp"
+        android:background="@null"
+        android:text="Forget password?"
+        android:textAppearance="?android:textAppearanceSmall" />
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_login"
+        android:layout_marginRight="32dp"
+        android:layout_alignParentRight="true"
+        android:background="@null"
+        android:text="New User? Sign Up"
+        android:textAppearance="?android:textAppearanceSmall" />
+
+    <LinearLayout
+        android:id="@+id/or"
+        android:layout_below="@id/btn_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/large_margin"
+        android:layout_marginBottom="@dimen/large_margin"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="100dp"
+            android:layout_height="1dip"
+            android:background="@color/greyD"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:id="@+id/horizontal_line_left" />
+        <TextView
+            android:id="@+id/tv_or"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_register"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/large_margin"
+            android:layout_marginRight="@dimen/large_margin"
+            android:text="OR" />
+        <View
+            android:layout_width="100dp"
+            android:layout_height="1dip"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:background="@color/greyD"
+            android:id="@+id/horizontal_line_right" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_google_sign_in"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/or"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/large_margin"
+        android:background="@drawable/rectangle"
+        android:backgroundTint="@color/googleRed"
+        android:text="G+   Sign in with Google"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:textColor="@color/greyE" />
+
+    <!--<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/btn_login"
@@ -121,6 +192,6 @@
         android:background="?android:attr/selectableItemBackground"
         android:textColor="@color/linkBlue"
         android:textAllCaps="false"
-        android:text="Forget password?"/>
+        android:text="Forget password?"/>-->
 
 </RelativeLayout>

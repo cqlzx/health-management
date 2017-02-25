@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#81B649</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#4CAF50</color>
+    <color name="colorPrimaryDark">#388E3C</color>
+    <color name="colorPrimaryLight">#C8E6C9</color>
+    <color name="colorAccent">#FF5252</color>
 
-    <color name="colorTile1">#5D9DAD</color
-        >
+    <color name="colorPrimaryText">#424242</color>
+
+    <color name="darkIcon">#333333</color>
+    <color name="lightIcon">#999999</color>
+
+    <color name="colorTabSelected">#227700</color>
+
+    <color name="colorTile1">#5D9DAD</color>
     <color name="colorTile2">#593FB7</color>
     <color name="colorTile3">#BF5733</color>
     <color name="colorTile4">#8B00A6</color>
-    <color name="greyE">#EEEEEE</color>
-    <color name="black3">#333333</color>
+
     <color name="blueButton">#0D9ECE</color>
     <color name="googleRed">#D34836</color>
     <color name="linkBlue">#006CC5</color>
+
+    <color name="whiteF1">#F1F1F1</color>
+    <color name="greyE">#EEEEEE</color>
     <color name="greyD">#DDDDDD</color>
     <color name="greyA">#AAAAAA</color>
+    <color name="black3">#333333</color>
+
 </resources>

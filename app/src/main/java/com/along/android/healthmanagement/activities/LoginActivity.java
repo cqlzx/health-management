@@ -74,6 +74,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             sp.edit().putString("username",username).apply();
                             sp.edit().putLong("uid",user.getId()).apply();
 
+                            sessionData = new SessionData(LoginActivity.this);
+                            sessionData.setUsername(user.getRealname());
+                            sessionData.setEmail(user.getEmail());
+
                             // Remove below code if not used
                             Intent intent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
                             //intent.setClass(LoginActivity.this,MainActivity.class);
