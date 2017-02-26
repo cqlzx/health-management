@@ -1,6 +1,8 @@
 package com.along.android.healthmanagement.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
     private SessionData sessionData;
     private RadioGroup radioGroupGender;
     private RadioButton radioButtonGender;
-    EditText etUsername, etPassword, etConfirmpassword, etEmail, etRealname, etAge, etPhonenumber, etWeight, etHeight;
+    EditText etEmail, etPassword, etConfirmpassword, etRealname, etAge, etPhonenumber, etWeight, etHeight;
     Button btn_register, btn_cancel;
 
     //EditText[] etUserinfo = {etUsername, etPassword, etEmail, etRealname, etGender, etAge, etPhonenumber, etWeight, etHeight};
@@ -38,11 +40,10 @@ public class RegisterActivity extends AppCompatActivity {
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle("HealthManagement");
 
-        etUsername = (EditText) findViewById(R.id.etUsername);
+        //etUsername = (EditText) findViewById(R.id.etUsername);
+        etEmail = (EditText) findViewById(R.id.etEmail);
         etPassword = (EditText) findViewById(R.id.etPassword);
         etConfirmpassword = (EditText) findViewById(R.id.etConfirmpassword);
-
-        etEmail = (EditText) findViewById(R.id.etEmail);
         etRealname = (EditText) findViewById(R.id.etRealname);
         radioGroupGender = (RadioGroup) findViewById(R.id.radioGroupGender);
         etAge = (EditText) findViewById(R.id.etAge);
@@ -59,10 +60,10 @@ public class RegisterActivity extends AppCompatActivity {
 
                 User user = new User();
 
-                user.setUsername(etUsername.getText().toString());
-                user.setRealname(etRealname.getText().toString());
-                user.setPassword(etPassword.getText().toString());
+                //user.setUsername(etUsername.getText().toString());
                 user.setEmail(etEmail.getText().toString());
+                user.setPassword(etPassword.getText().toString());
+                user.setRealname(etRealname.getText().toString());
                 user.setGender(radioButtonGender.getText().toString());
                 user.setAge(etAge.getText().toString());
                 user.setPhonenumber(etPhonenumber.getText().toString());
@@ -72,17 +73,14 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if (Validation.isEmpty(user, RegisterActivity.this) &&
                         Validation.isPasswordMatch(etPassword.getText().toString(), etConfirmpassword.getText().toString(), RegisterActivity.this) &&
-                        Validation.isUserExsist(user.getUsername(), user.getEmail(), RegisterActivity.this) &&
+                        Validation.isUserExsist(user.getEmail(), RegisterActivity.this) &&
                         Validation.isValidEmail(user.getEmail(), RegisterActivity.this)) {
                     // helper.insertContact(user);
 
                     try{
                         user.save();
-                        sessionData = new SessionData(RegisterActivity.this);
-                        sessionData.setUsername(etUsername.getText().toString());
-                        sessionData.setEmail(etEmail.getText().toString());
                         Intent intent = new Intent();
-                        intent.setClass(RegisterActivity.this, NavigationDrawerActivity.class);
+                        intent.setClass(RegisterActivity.this, LoginActivity.class);
                         startActivity(intent);
 
                     }catch (Exception e){

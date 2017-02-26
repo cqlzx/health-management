@@ -9,12 +9,12 @@
     android:paddingTop="50dp">
 
     <EditText
-        android:id="@+id/etUsername"
+        android:id="@+id/etEmail"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/medium_margin"
-        android:hint="Username"
+        android:hint="Email"
         android:padding="10dp" />
 
     <ImageView
@@ -22,14 +22,14 @@
         android:layout_width="@dimen/small_icon"
         android:layout_height="@dimen/small_icon"
         android:layout_margin="@dimen/medium_margin"
-        android:layout_toLeftOf="@id/etUsername"
+        android:layout_toLeftOf="@id/etEmail"
         android:background="@drawable/ic_user" />
 
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/etUsername"
+        android:layout_below="@id/etEmail"
         android:layout_centerHorizontal="true"
         android:hint="Password"
         android:inputType="textPassword"
@@ -39,7 +39,7 @@
         android:id="@+id/ic_pass"
         android:layout_width="@dimen/small_icon"
         android:layout_height="@dimen/small_icon"
-        android:layout_below="@id/etUsername"
+        android:layout_below="@id/etEmail"
         android:layout_margin="@dimen/medium_margin"
         android:layout_toLeftOf="@id/etPassword"
         android:background="@drawable/ic_password" />

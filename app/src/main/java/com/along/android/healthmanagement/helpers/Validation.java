@@ -10,15 +10,18 @@ import com.along.android.healthmanagement.entities.User;
 public class Validation {
     public static boolean isEmpty(User user, Context context) {
         Boolean bool = true;
-        if (user.getUsername().isEmpty()) {
-            Toast.makeText(context, "Username cannot be empty", Toast.LENGTH_LONG).show();
+        if (user.getEmail().isEmpty()) {
+            Toast.makeText(context, "Email cannot be empty", Toast.LENGTH_LONG).show();
             bool = false;
 
         } else if (user.getPassword().isEmpty()) {
             Toast.makeText(context, "Password cannot be empty", Toast.LENGTH_LONG).show();
             bool = false;
-        } else if (user.getEmail().isEmpty()) {
-            Toast.makeText(context, "Email cannot be empty", Toast.LENGTH_LONG).show();
+        } else if (user.getRealname().isEmpty()) {
+            Toast.makeText(context, "Full name cannot be empty", Toast.LENGTH_LONG).show();
+            bool = false;
+        } else if (user.getGender().isEmpty()) {
+            Toast.makeText(context, "Gender cannot be empty", Toast.LENGTH_LONG).show();
             bool = false;
         }
 
@@ -34,15 +37,9 @@ public class Validation {
         return bool;
     }
 
-    public static boolean isUserExsist(String username, String email, Context context) {
+    public static boolean isUserExsist(String email, Context context) {
         Boolean bool = true;
-        User user = EntityManager.findOneBy(User.class, "username = ?", username);
-        if (user != null) {
-            Toast.makeText(context, "Username exsists", Toast.LENGTH_LONG).show();
-            bool = false;
-        }
-
-        user = EntityManager.findOneBy(User.class, "email = ?", email);
+        User user = EntityManager.findOneBy(User.class, "email = ?", email);
         if (user != null) {
             Toast.makeText(context, "Email exsists", Toast.LENGTH_LONG).show();
             bool = false;

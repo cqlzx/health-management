@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     public GoogleApiClient mGoogleApiClient;
     private static final String TAG = "LoginActivity";
     private static final int RC_SIGN_IN = 9001;
-    EditText etUsername, etPassword;
+    EditText etEmail, etPassword;
     Button login, register, googleSignIn, forgetPassword;
 
     @Override
@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
         setContentView(R.layout.activity_login);
 
-        etUsername = (EditText) findViewById(R.id.etUsername);
+        etEmail = (EditText) findViewById(R.id.etEmail);
         etPassword = (EditText) findViewById(R.id.etPassword);
         login = (Button) findViewById(R.id.btn_login);
         register = (Button) findViewById(R.id.btn_register);
@@ -62,16 +62,16 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = etUsername.getText().toString();
+                String email = etEmail.getText().toString();
                 String password = etPassword.getText().toString();
 
-                User user = EntityManager.findOneBy(User.class, "username = ?", username);
+                User user = EntityManager.findOneBy(User.class, "email = ?", email);
 
                 if(user != null) {
                     if(user.getPassword().equals(password)) {
                         if (user.getPasswordExpirationTime() == 0 || user.getPasswordExpirationTime() > new Date().getTime()) {
                             SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
-                            sp.edit().putString("username",username).apply();
+                            sp.edit().putString("email",email).apply();
                             sp.edit().putLong("uid",user.getId()).apply();
 
                             sessionData = new SessionData(LoginActivity.this);
@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             // Remove below code if not used
                             Intent intent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
                             //intent.setClass(LoginActivity.this,MainActivity.class);
-                            intent.putExtra("Username", username);
+                            intent.putExtra("email", email);
                             startActivity(intent);
                         } else {
                             Toast.makeText(LoginActivity.this, "Password has expired", Toast.LENGTH_SHORT).show();
