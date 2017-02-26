@@ -26,12 +26,11 @@
             android:src="@drawable/avatar" />
 
         <TextView
-            android:id="@+id/username"
+            android:id="@+id/realname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/avatar"
             android:layout_centerHorizontal="true"
-            android:text="Danil"
             android:textColor="@color/greyE"
             android:textSize="22sp" />
 
@@ -39,9 +38,8 @@
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/username"
+            android:layout_below="@id/realname"
             android:layout_centerHorizontal="true"
-            android:text="a@example.com"
             android:textColor="@color/greyE"
             android:textSize="14sp" />
     </RelativeLayout>
@@ -86,7 +84,6 @@
             android:id="@+id/gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Male"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -107,7 +104,6 @@
             android:id="@+id/height"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5'10'"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -128,7 +124,6 @@
             android:id="@+id/weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="70KG"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -149,7 +144,6 @@
             android:id="@+id/phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="6825970000"
             android:textSize="18sp" />
     </LinearLayout>
 

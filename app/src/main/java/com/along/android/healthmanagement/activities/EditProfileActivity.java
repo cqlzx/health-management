@@ -21,7 +21,7 @@ import com.along.android.healthmanagement.helpers.Validation;
 
 public class EditProfileActivity extends AppCompatActivity {
 
-    private EditText editName, editEmail, editPassword1, editPassword2, editAge, editHeight, editWeight, editPhone;
+    private EditText editRealname, editEmail, editPassword1, editPassword2, editAge, editHeight, editWeight, editPhone;
     User user;
     RadioGroup radioGroupGender;
     Button btn_saveprofile, btn_cancel_edit_profile;
@@ -42,7 +42,7 @@ public class EditProfileActivity extends AppCompatActivity {
         btn_saveprofile = (Button) findViewById(R.id.btn_saveprofile);
         btn_cancel_edit_profile = (Button) findViewById(R.id.btn_cancel_edit_profile);
         //editview
-        editName = (EditText) findViewById(R.id.editT_name);
+        editRealname = (EditText) findViewById(R.id.editT_name);
         editEmail = (EditText) findViewById(R.id.editT_email);
         editPassword1 = (EditText) findViewById(R.id.editT_password1);
         editPassword2 = (EditText) findViewById(R.id.editT_password2);
@@ -59,7 +59,7 @@ public class EditProfileActivity extends AppCompatActivity {
         // user
         user = EntityManager.findById(User.class, userIdS);
         if (user != null) {
-            editName.setText(user.getUsername());
+            editRealname.setText(user.getRealname());
             editEmail.setText(user.getEmail());
             editAge.setText(user.getAge());
             editHeight.setText(user.getHeight());
@@ -88,7 +88,7 @@ public class EditProfileActivity extends AppCompatActivity {
 //            user.setGender(radioButtonGender.getText().toString());
 //                User user = new User();
 
-                user.setUsername(editName.getText().toString());
+                //user.setRealname(editRealname.getText().toString());
                 user.setPassword(editPassword1.getText().toString());
                 user.setEmail(editEmail.getText().toString());
 //                user.setGender(radioGroupGender.getText().toString());

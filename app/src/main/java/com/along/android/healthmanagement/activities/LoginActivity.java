@@ -71,17 +71,17 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                     if(user.getPassword().equals(password)) {
                         if (user.getPasswordExpirationTime() == 0 || user.getPasswordExpirationTime() > new Date().getTime()) {
                             SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
-                            sp.edit().putString("email",email).apply();
+                            //sp.edit().putString("email",email).apply();
                             sp.edit().putLong("uid",user.getId()).apply();
 
-                            sessionData = new SessionData(LoginActivity.this);
-                            sessionData.setUsername(user.getRealname());
-                            sessionData.setEmail(user.getEmail());
+                            //sessionData = new SessionData(LoginActivity.this);
+                            //sessionData.setUsername(user.getRealname());
+                            //sessionData.setEmail(user.getEmail());
 
                             // Remove below code if not used
                             Intent intent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
                             //intent.setClass(LoginActivity.this,MainActivity.class);
-                            intent.putExtra("email", email);
+                            //intent.putExtra("email", email);
                             startActivity(intent);
                         } else {
                             Toast.makeText(LoginActivity.this, "Password has expired", Toast.LENGTH_SHORT).show();

@@ -32,13 +32,13 @@ public class ProfileActivity extends AppCompatActivity {
         // sharePreferences
         SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
         Long userIdS = sp.getLong("uid", 0);
-        String userNameS = sp.getString("username", null);
+        String realNameS = sp.getString("realname", null);
 
         // name & email
-        TextView userNameText = (TextView) findViewById(R.id.username);
+        TextView realNameText = (TextView) findViewById(R.id.realname);
         TextView emailText = (TextView) findViewById(R.id.email);
-        if (userNameS != null) {
-            userNameText.setText(userNameS);
+        if (realNameS != null) {
+            realNameText.setText(realNameS);
         }
 
         // user informations
