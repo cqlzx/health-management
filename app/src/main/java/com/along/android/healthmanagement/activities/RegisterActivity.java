@@ -93,8 +93,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-
-
         btn_cancel = (Button) findViewById(R.id.btn_cancel);
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override

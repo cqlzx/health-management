@@ -6,6 +6,8 @@
     <color name="colorAccent">#FF5252</color>
 
     <color name="colorPrimaryText">#424242</color>
+    <color name="defaultTextColor">#808080</color>
+
 
     <color name="darkIcon">#333333</color>
     <color name="lightIcon">#999999</color>
