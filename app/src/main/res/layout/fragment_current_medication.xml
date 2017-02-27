@@ -6,6 +6,16 @@
     android:id="@+id/fragment_current_medication_id"
     tools:context="com.along.android.healthmanagement.fragments.CurrentMedicationTabFragment">
 
+    <TextView
+        android:id="@+id/tvMLEmptyMsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No medication records to display"
+        android:gravity="center"
+        android:paddingTop="@dimen/large_margin"
+        android:textSize="20dp"
+        android:textStyle="italic" />
+
     <ListView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/current_medication_list"

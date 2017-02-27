@@ -39,26 +39,17 @@ public class MedicationHistoryTabFragment extends Fragment {
         // Create a list of words
         ArrayList<Prescription> prescriptions = new ArrayList<Prescription>();
 
-        // Get the actual data from the database
-        for(int i=1; i<=1;i++) {
-            Prescription prescription = new Prescription();
-            prescription.setMedication(i + ". Rabonik, Telsar, Telnol");
-            prescription.setDoctorName("Prescribed by Dr. Nitin Shah");
-            prescription.setDisease("for Blood Pressure");
-            prescription.setNotificationEnabled(i%2 == 0 ? true : false);
-
-            prescriptions.add(prescription);
-            prescription.save();
-        }
-
         List<Prescription> prescriptionList = Prescription.listAll(Prescription.class);
 
         MedicationHistoryAdapter medicationHistoryAdapter =
                 new MedicationHistoryAdapter(getActivity(), prescriptionList);
 
+        TextView tvEmptyMsg = (TextView) view.findViewById(R.id.tvMHEmptyMsg);
+
         ListView listView = (ListView) view.findViewById(R.id.medication_history_list);
 
         listView.setAdapter(medicationHistoryAdapter);
+        listView.setEmptyView(tvEmptyMsg);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

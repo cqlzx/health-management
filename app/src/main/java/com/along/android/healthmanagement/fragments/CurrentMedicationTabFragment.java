@@ -48,6 +48,7 @@ public class CurrentMedicationTabFragment extends Fragment {
         // Create a list of prescriptions
         ArrayList<Prescription> prescriptions = new ArrayList<Prescription>();
 
+        // Remove the for loop after actual integration
         // Get the actual data from the database
         for(int i=1; i<=1;i++) {
             Prescription prescription = new Prescription();
@@ -65,8 +66,10 @@ public class CurrentMedicationTabFragment extends Fragment {
         CurrentMedicationAdapter currentMedicationAdapter =
                 new CurrentMedicationAdapter(getActivity(), prescriptionList);
 
+        TextView tvEmptyMsg = (TextView) view.findViewById(R.id.tvMLEmptyMsg);
         ListView listView = (ListView) view.findViewById(R.id.current_medication_list);
 
+        listView.setEmptyView(tvEmptyMsg);
         listView.setAdapter(currentMedicationAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
