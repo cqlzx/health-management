@@ -4,53 +4,59 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingBottom="25px"
-    android:paddingLeft="25px"
-    android:paddingRight="25px"
+    android:paddingLeft="20px"
+    android:paddingRight="20px"
     android:paddingTop="50dp">
 
-    <EditText
-        android:id="@+id/etEmail"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_login_email"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/medium_margin"
-        android:hint="Email"
-        android:padding="10dp" />
-
+        android:layout_marginBottom="@dimen/medium_margin">
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Email" />
+    </android.support.design.widget.TextInputLayout>
     <ImageView
         android:id="@+id/ic_user"
         android:layout_width="@dimen/small_icon"
         android:layout_height="@dimen/small_icon"
-        android:layout_margin="@dimen/medium_margin"
-        android:layout_toLeftOf="@id/etEmail"
+        android:layout_marginRight="@dimen/medium_margin"
+        android:layout_marginTop="@dimen/large_margin"
+        android:layout_toLeftOf="@id/input_layout_login_email"
         android:background="@drawable/ic_user" />
 
-    <EditText
-        android:id="@+id/etPassword"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_login_password"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/etEmail"
-        android:layout_centerHorizontal="true"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:padding="10dp" />
-
+        android:layout_below="@id/input_layout_login_email"
+        android:layout_centerHorizontal="true">
+        <EditText
+            android:id="@+id/etPassword"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </android.support.design.widget.TextInputLayout>
     <ImageView
         android:id="@+id/ic_pass"
         android:layout_width="@dimen/small_icon"
         android:layout_height="@dimen/small_icon"
-        android:layout_below="@id/etEmail"
-        android:layout_margin="@dimen/medium_margin"
-        android:layout_toLeftOf="@id/etPassword"
+        android:layout_below="@id/input_layout_login_email"
+        android:layout_marginRight="@dimen/medium_margin"
+        android:layout_marginTop="@dimen/large_margin"
+        android:layout_toLeftOf="@id/input_layout_login_password"
         android:background="@drawable/ic_password" />
-
-
 
     <Button
         android:id="@+id/btn_login"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/etPassword"
+        android:layout_below="@id/input_layout_login_password"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/medium_margin"
         android:layout_marginTop="@dimen/large_margin"

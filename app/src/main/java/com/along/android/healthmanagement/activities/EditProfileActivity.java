@@ -68,11 +68,12 @@ public class EditProfileActivity extends AppCompatActivity {
             editPassword1.setText(user.getPassword());
             editPassword2.setText(user.getPassword());
 
-            if(user.getGender().equals("Male")) {
-                radioGroupGender.check(R.id.radioMaleProfile);
-            }
-            else if(user.getGender().equals("Female")) {
-                radioGroupGender.check(R.id.radioFemaleProfile);
+            if(null!= user.getGender()) {
+                if (user.getGender().equals("Male")) {
+                    radioGroupGender.check(R.id.radioMaleProfile);
+                } else if (user.getGender().equals("Female")) {
+                    radioGroupGender.check(R.id.radioFemaleProfile);
+                }
             }
 
         }
@@ -110,7 +111,6 @@ public class EditProfileActivity extends AppCompatActivity {
                         Intent intent = new Intent();
                         intent.setClass(EditProfileActivity.this, ProfileActivity.class);
                         startActivity(intent);
-//                        EditProfileActivity.this.finish();
                     } catch (Exception e) {
                         Toast.makeText(EditProfileActivity.this, "error", Toast.LENGTH_SHORT).show();
                     }

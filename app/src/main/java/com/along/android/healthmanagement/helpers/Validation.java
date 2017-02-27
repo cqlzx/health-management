@@ -2,10 +2,11 @@ package com.along.android.healthmanagement.helpers;
 
 import android.content.Context;
 import android.widget.Toast;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import com.along.android.healthmanagement.entities.User;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Validation {
     public static boolean isEmpty(User user, Context context) {

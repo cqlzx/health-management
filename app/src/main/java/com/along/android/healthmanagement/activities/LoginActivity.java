@@ -163,6 +163,18 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             sessionData = new SessionData(LoginActivity.this);
             sessionData.setUsername(acct.getDisplayName());
             sessionData.setEmail(acct.getEmail());
+
+            User user = EntityManager.findOneBy(User.class, "email = ?", acct.getEmail());
+            if(user == null) {
+                user = new User();
+                user.setRealname(acct.getDisplayName());
+                user.setEmail(acct.getEmail());
+                user.save();
+            }
+            SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
+            sp.edit().putLong("uid",user.getId()).apply();
+
+
             Intent intent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
             intent.putExtra("Username", acct.getDisplayName());
             intent.putExtra("Email", acct.getEmail());
