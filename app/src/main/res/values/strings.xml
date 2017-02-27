@@ -39,4 +39,8 @@
         completions."
     </string>
 
+    <string name="invalid_email">Enter valid email address</string>
+    <string name="empty_email">Email cannot be empty</string>
+    <string name="empty_password">Password cannot be empty</string>
+    <string name="empty_name">Full name cannot be empty</string>
 </resources>

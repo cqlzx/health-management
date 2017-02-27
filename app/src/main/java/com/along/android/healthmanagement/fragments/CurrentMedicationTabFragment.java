@@ -1,6 +1,7 @@
 package com.along.android.healthmanagement.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,7 +17,6 @@ import com.along.android.healthmanagement.adapters.CurrentMedicationAdapter;
 import com.along.android.healthmanagement.entities.Prescription;
 import com.along.android.healthmanagement.helpers.EntityManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

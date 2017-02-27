@@ -3,6 +3,7 @@ package com.along.android.healthmanagement.helpers;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.User;
 
 import java.util.regex.Matcher;
@@ -11,6 +12,7 @@ import java.util.regex.Pattern;
 public class Validation {
     public static boolean isEmpty(User user, Context context) {
         Boolean bool = true;
+
         if (user.getEmail().isEmpty()) {
             Toast.makeText(context, "Email cannot be empty", Toast.LENGTH_LONG).show();
             bool = false;
@@ -42,7 +44,7 @@ public class Validation {
         Boolean bool = true;
         User user = EntityManager.findOneBy(User.class, "email = ?", email);
         if (user != null) {
-            Toast.makeText(context, "Email exsists", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Email exists", Toast.LENGTH_LONG).show();
             bool = false;
         }
 
@@ -55,7 +57,7 @@ public class Validation {
         Pattern regex = Pattern.compile(check);
         Matcher matcher = regex.matcher(email);
         if (!matcher.matches()) {
-            Toast.makeText(context, "The email isn't valid", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getString(R.string.invalid_email), Toast.LENGTH_LONG).show();
             bool = false;
         }
 

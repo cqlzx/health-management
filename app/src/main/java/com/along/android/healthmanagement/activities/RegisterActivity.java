@@ -2,8 +2,11 @@ package com.along.android.healthmanagement.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
     private RadioButton radioButtonGender;
     EditText etEmail, etPassword, etConfirmpassword, etRealname, etAge, etPhonenumber, etWeight, etHeight;
     Button btn_register, btn_cancel;
+    private TextInputLayout emailLayout;
 
     //EditText[] etUserinfo = {etUsername, etPassword, etEmail, etRealname, etGender, etAge, etPhonenumber, etWeight, etHeight};
     @Override
@@ -38,8 +42,12 @@ public class RegisterActivity extends AppCompatActivity {
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle("HealthManagement");
 
+        emailLayout = (TextInputLayout) findViewById(R.id.input_layout_email);
+
         //etUsername = (EditText) findViewById(R.id.etUsername);
         etEmail = (EditText) findViewById(R.id.etEmail);
+        etEmail.addTextChangedListener(new MyTextWatcher(etEmail));
+
         etPassword = (EditText) findViewById(R.id.etPassword);
         etConfirmpassword = (EditText) findViewById(R.id.etConfirmpassword);
         etRealname = (EditText) findViewById(R.id.etRealname);
@@ -112,4 +120,37 @@ public class RegisterActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private class MyTextWatcher implements TextWatcher {
+
+        private View view;
+
+        private MyTextWatcher(View view) {
+            this.view = view;
+        }
+
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        }
+
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        }
+
+        public void afterTextChanged(Editable editable) {
+            switch (view.getId()) {
+                case R.id.etEmail:
+                    validateEmailInline();
+                    break;
+
+            }
+        }
+    }
+
+    private void validateEmailInline() {
+        String email = etEmail.getText().toString();
+        if(null != email && !email.equals("") && Validation.isValidEmail(email, RegisterActivity.this)) {
+            emailLayout.setErrorEnabled(false);
+        }
+        else {
+            emailLayout.setError(getString(R.string.invalid_email));
+        }
+    }
 }

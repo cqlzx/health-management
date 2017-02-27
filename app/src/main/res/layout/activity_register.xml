@@ -13,45 +13,42 @@
             android:id="@+id/input_layout_realname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <EditText
                 android:id="@+id/etRealname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/medium_margin"
                 android:inputType="textPersonName"
                 android:hint="Full Name" />
-
         </android.support.design.widget.TextInputLayout>
-
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_password"
             android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/medium_margin"
             android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:layout_marginBottom="@dimen/medium_margin"
                 android:hint="Password" />
         </android.support.design.widget.TextInputLayout>
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_confirm_password"
             android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/medium_margin"
             android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/etConfirmpassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:layout_marginBottom="@dimen/medium_margin"
                 android:hint="Confirm Password" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_email"
+            android:layout_marginTop="@dimen/medium_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
@@ -59,12 +56,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:layout_marginBottom="@dimen/medium_margin"
                 android:hint="Email" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_phone_number"
+            android:layout_marginTop="@dimen/medium_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
@@ -72,20 +69,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="phone"
-                android:layout_marginBottom="@dimen/medium_margin"
                 android:hint="Phone Number" />
         </android.support.design.widget.TextInputLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium_margin"
             android:orientation="horizontal">
             <RadioGroup
                 android:id="@+id/radioGroupGender"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".6"
-                android:layout_marginBottom="@dimen/medium_margin"
                 android:checkedButton="@+id/radioMale"
                 android:orientation="horizontal">
                 <RadioButton
@@ -109,7 +104,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium_margin"
             android:orientation="horizontal">
 
             <android.support.design.widget.TextInputLayout
@@ -138,6 +133,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_age"
+            android:layout_marginTop="@dimen/medium_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
