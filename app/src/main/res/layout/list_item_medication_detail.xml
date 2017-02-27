@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/medication_detail_list_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/list_item_padding">
+
+    <TextView
+        android:id="@+id/xlMDMedicationNames"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Medicine Names"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="20dp"
+        android:layout_toStartOf="@+id/xlMDDelete"/>
+
+    <TextView
+        android:id="@+id/xlMDTimeTaken"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/xlMDMedicationNames"
+        android:text="Time Taken"
+        android:layout_toStartOf="@+id/xlMDDelete"/>
+
+    <TextView
+        android:id="@+id/xlMDTimeInterval"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/xlMDTimeTaken"
+        android:text="Time Interval"
+        android:layout_toStartOf="@+id/xlMDDelete"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignTop="@+id/horizontal_line">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/xlMDDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/medium_margin"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true">
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:background="@drawable/ic_delete_bin"
+            android:backgroundTint="@color/lightIcon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/medium_margin"
+            android:text="Delete"/>
+    </LinearLayout>
+</RelativeLayout>

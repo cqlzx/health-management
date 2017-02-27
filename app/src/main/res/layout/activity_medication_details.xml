@@ -1,18 +1,61 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_medication_details"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.along.android.healthmanagement.activities.MedicationDetailsActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="com.along.android.healthmanagement.fragments.MedicationDetailFragment">
 
     <TextView
-        android:id="@+id/test"
+        android:id="@+id/xlMDPatientName"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello"/>
-</RelativeLayout>
+        android:layout_height="wrap_content"
+        android:text="Patient Name"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="20dp"
+        android:paddingLeft="14dp"
+        android:paddingTop="20dp"
+        android:background="@drawable/profile_header_bar"/>
+
+    <TextView
+        android:id="@+id/xlMDDoctorName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/xlMDPatientName"
+        android:textSize="16dp"
+        android:paddingLeft="14dp"
+        android:text="Doctor Name"
+        android:background="@drawable/profile_header_bar"
+        />
+
+    <TextView
+        android:id="@+id/xlMDDisease"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:paddingLeft="14dp"
+        android:layout_below="@id/xlMDDoctorName"
+        android:text="Disease"
+        android:background="@drawable/profile_header_bar"
+        />
+
+    <TextView
+        android:id="@+id/xlMDPrescriptionDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:paddingLeft="14dp"
+        android:layout_below="@id/xlMDDisease"
+        android:text="Prescription Date:"
+        android:background="@drawable/profile_header_bar"
+        android:paddingBottom="20dp"
+        />
+
+    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tooLinearls="http://schemas.android.com/tools"
+              android:id="@+id/medication_detail_list"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+        />
+
+</LinearLayout>

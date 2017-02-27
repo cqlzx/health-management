@@ -19,6 +19,7 @@ import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.fragments.DietFragment;
 import com.along.android.healthmanagement.fragments.HomeFragment;
 import com.along.android.healthmanagement.fragments.MedicationListingFragment;
+import com.along.android.healthmanagement.fragments.ProfileFragment;
 import com.along.android.healthmanagement.helpers.SessionData;
 
 public class NavigationDrawerActivity extends AppCompatActivity
@@ -99,8 +100,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
-            Intent intent = new Intent(NavigationDrawerActivity.this, ProfileActivity.class);
-            startActivity(intent);
+            createFragment(new ProfileFragment(), "profileFragment");
         } else if (id == R.id.nav_medication) {
             createFragment(new MedicationListingFragment(), "medicationListingFragment");
         } else if (id == R.id.nav_diet) {
