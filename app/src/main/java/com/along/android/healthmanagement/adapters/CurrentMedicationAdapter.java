@@ -1,11 +1,16 @@
 package com.along.android.healthmanagement.adapters;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,21 +20,26 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.entities.Medicine;
 import com.along.android.healthmanagement.entities.Prescription;
+import com.along.android.healthmanagement.helpers.EntityManager;
+import com.along.android.healthmanagement.receivers.AlarmReceiver;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-
-/**
- * Created by RitenVithlani on 2/25/17.
- */
+import java.util.TimeZone;
 
 public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
 
     private final String COLOR_PRIMARY_DARK = "#388E3C";
     private final String DEFAULT_TEXT_COLOR = "#808080";
+    private final String PRESCRIPTION_ID = "PRESCRIPTION_ID";
     private ImageView ivNotificationIcon;
     private ImageView ivNotificationIconActive;
     private TextView tvNotification;
+
+    private Intent[] alarmIntent = new Intent[getCount()];
 
     public CurrentMedicationAdapter(Context context, List<Prescription> prescriptions) {
         super(context, 0, prescriptions);
@@ -72,7 +82,7 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
         llMLNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View llMLNotificationClickedView) {
-                toggleNotificationButton(llMLNotificationClickedView, prescription);
+                toggleNotification(llMLNotificationClickedView, prescription);
             }
         });
 
@@ -97,9 +107,13 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
             public void onClick(DialogInterface dialog, int which) {
                 /* delete the medication entry from the database  */
                 Prescription prescriptionRecord = Prescription.findById(Prescription.class, prescription.getId());
+
+                unsetAlarm(getContext(), prescription);
+
                 prescriptionRecord.delete();
 
                 CurrentMedicationAdapter.this.remove(prescription);
+
 
                 dialog.dismiss();
             }
@@ -116,7 +130,7 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
         alert.show();
     }
 
-    private void toggleNotificationButton(View llMLNotificationClickedView, Prescription prescription) {
+    private void toggleNotification(View llMLNotificationClickedView, Prescription prescription) {
         ivNotificationIcon = (ImageView) llMLNotificationClickedView.findViewById(R.id.ivMLNotificationIcon);
         ivNotificationIconActive = (ImageView) llMLNotificationClickedView.findViewById(R.id.ivMLNotificationIconActive);
         tvNotification = (TextView) llMLNotificationClickedView.findViewById(R.id.tvMLNotification);
@@ -127,12 +141,14 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
             /*  Set the notification alarm and save to database */
             prescription.setNotificationEnabled(true);
             prescription.save();
+            setAlarm(getContext(), prescription);
         } else {
             hideActiveNotificationButton();
 
             /* Unset the notification alarm and save to database */
             prescription.setNotificationEnabled(false);
             prescription.save();
+            unsetAlarm(getContext(), prescription);
         }
     }
 
@@ -148,5 +164,48 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
         ivNotificationIconActive.setVisibility(View.GONE);
         tvNotification.setTextColor(Color.parseColor(DEFAULT_TEXT_COLOR));
         tvNotification.setTypeface(Typeface.DEFAULT);
+    }
+
+    private void setAlarm(Context context, Prescription prescription){
+//        String[] times = prescription.getIntakeTimes().split(",");
+//
+//        Calendar start = Calendar.getInstance();
+//        if (Long.parseLong(prescription.getStartDate()) < start.getTimeInMillis()) {
+//            start.setTimeInMillis(start.getTimeInMillis() + 24 * 60 * 60 * 1000);
+//        } else {
+//            start.setTimeInMillis(Long.parseLong(prescription.getStartDate()));
+//        }
+//
+//
+//        for (String time : times) {
+//
+//            String[] hourMinute = time.split(":");
+            Calendar calendar = Calendar.getInstance();
+
+            calendar.set(2017, 1, 26, 23, 26);
+
+//            calendar.set(start.get(Calendar.YEAR), start.get(Calendar.MONTH), start.get(Calendar.DATE), Integer.parseInt(hourMinute[0]), Integer.parseInt(hourMinute[1]));
+
+            Intent intent = new Intent(context, AlarmReceiver.class);
+            intent.putExtra(PRESCRIPTION_ID, prescription.getId() + "");
+            alarmIntent[getPosition(prescription)] = intent;
+
+            PendingIntent pending = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            AlarmManager alarm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+
+            alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 60 * 1000, pending); //Interval time will be prescription.getFrequency() * 24 * 60 * 60 * 1000
+
+
+            Log.d("adapter", "!!!!!");
+            Log.d(">>>>>>set", calendar.getTimeInMillis() + "");
+            Log.d("<<<<<<now", Calendar.getInstance().getTimeInMillis() + "");
+//        }
+
+    }
+
+    private void unsetAlarm(Context context, Prescription prescription) {
+        PendingIntent pending = PendingIntent.getBroadcast(context, 0, alarmIntent[getPosition(prescription)], PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        alarm.cancel(pending);
     }
 }

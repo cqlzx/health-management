@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.along.android.healthmanagement">
+          package="com.along.android.healthmanagement">
 
     <!-- To access Google+ APIs: -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name="com.orm.SugarApp"
@@ -40,7 +40,16 @@
         <activity
             android:name=".activities.NavigationDrawerActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".activities.AlertDialogActivity" android:theme="@style/Theme.Transparent">
+        </activity>
+        <receiver
+            android:name="com.along.android.healthmanagement.receivers.AlarmReceiver"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.NOTIFY" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+            </intent-filter>
+        </receiver>
         <activity android:name=".activities.MedicationDetailsActivity"></activity>
     </application>
 

@@ -1,7 +1,6 @@
 package com.along.android.healthmanagement.fragments;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,6 +14,7 @@ import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.activities.MedicationDetailsActivity;
 import com.along.android.healthmanagement.adapters.CurrentMedicationAdapter;
 import com.along.android.healthmanagement.entities.Prescription;
+import com.along.android.healthmanagement.helpers.EntityManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,19 +46,34 @@ public class CurrentMedicationTabFragment extends Fragment {
 
     private void initializeMedicationListData(View view) {
         // Create a list of prescriptions
-        ArrayList<Prescription> prescriptions = new ArrayList<Prescription>();
+//        ArrayList<Prescription> prescriptions = new ArrayList<Prescription>();
+//
+//        // Get the actual data from the database
+//        for(int i=1; i<=1;i++) {
+//            Prescription prescription = new Prescription();
+//            prescription.setMedication(i + ". Rabonik, Telsar, Telnol");
+//            prescription.setDoctorName("Prescribed by Dr. Nitin Shah");
+//            prescription.setDisease("for Blood Pressure");
+//            prescription.setIntakeTimes("9:00,12:00,18:00");
+//            prescription.setStartDate("1488067200000");
+//            prescription.setEndDate("1488326400000");
+//            prescription.setNotificationEnabled(i%2 == 0 ? true : false);
+//
+//            prescriptions.add(prescription);
+//            prescription.save();
+//        }
+        if (EntityManager.count(Prescription.class) == 0) {
+            for(int i=1; i<=3;i++) {
+                Prescription prescription = new Prescription();
+                prescription.setMedication(i + ". Rabonik, Telsar, Telnol");
+                prescription.setDoctorName("Prescribed by Dr. Nitin Shah");
+                prescription.setDisease("for Blood Pressure");
+                prescription.setIntakeTimes("9:00,12:00,18:00");
+                prescription.setStartDate("1488067200000");
+                prescription.setEndDate("1488326400000");
 
-        // Remove the for loop after actual integration
-        // Get the actual data from the database
-        for(int i=1; i<=1;i++) {
-            Prescription prescription = new Prescription();
-            prescription.setMedication(i + ". Rabonik, Telsar, Telnol");
-            prescription.setDoctorName("Prescribed by Dr. Nitin Shah");
-            prescription.setDisease("for Blood Pressure");
-            prescription.setNotificationEnabled(i%2 == 0 ? true : false);
-
-            prescriptions.add(prescription);
-            prescription.save();
+                prescription.save();
+            }
         }
 
         List<Prescription> prescriptionList = Prescription.listAll(Prescription.class);

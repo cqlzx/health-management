@@ -6,7 +6,7 @@ import com.orm.dsl.Table;
 @Table
 public class Medicine extends SugarRecord{
     private Long id;
-    private String name, startDate, endDate, notificationTimes;
+    private String name;
     private int dosage;
 
     public Medicine() {
@@ -22,30 +22,6 @@ public class Medicine extends SugarRecord{
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
-
-    public String getNotificationTimes() {
-        return notificationTimes;
-    }
-
-    public void setNotificationTimes(String notificationTimes) {
-        this.notificationTimes = notificationTimes;
     }
 
     public int getDosage() {
