@@ -32,7 +32,9 @@ public class ProfileActivity extends AppCompatActivity {
         // sharePreferences
         SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
         Long userIdS = sp.getLong("uid", 0);
-        String realNameS = sp.getString("realname", null);
+        User user = EntityManager.findById(User.class, userIdS);
+
+        String realNameS = user.getRealname();
 
         // name & email
         TextView realNameText = (TextView) findViewById(R.id.realname);
@@ -48,7 +50,6 @@ public class ProfileActivity extends AppCompatActivity {
         TextView weightText = (TextView) findViewById(R.id.weight);
         TextView phoneText = (TextView) findViewById(R.id.phone);
 
-        User user = EntityManager.findById(User.class, userIdS);
         if(user != null){
             emailText.setText(user.getEmail());
             Log.d("--email--->>>>>>>", user.getEmail());
