@@ -1,14 +1,18 @@
 package com.along.android.healthmanagement.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.activities.MedicationDetailsActivity;
 import com.along.android.healthmanagement.adapters.CurrentMedicationAdapter;
 import com.along.android.healthmanagement.entities.Prescription;
 
@@ -24,6 +28,10 @@ public class CurrentMedicationTabFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void setMenuVisibility(boolean menuVisible) {
+        super.setMenuVisibility(menuVisible);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,6 +68,19 @@ public class CurrentMedicationTabFragment extends Fragment {
         ListView listView = (ListView) view.findViewById(R.id.current_medication_list);
 
         listView.setAdapter(currentMedicationAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MedicationDetailsActivity medicationDetailActivity = new MedicationDetailsActivity();
+
+                TextView prescriptionId = (TextView) view.findViewById(R.id.tvMLPrescriptionId);
+
+                Intent medicationDetailsIntent = new Intent(getActivity(), MedicationDetailsActivity.class);
+                medicationDetailsIntent.putExtra("selectedPrescriptionItemId", prescriptionId.getText().toString());
+                startActivity(medicationDetailsIntent);
+            }
+        });
     }
 
 }

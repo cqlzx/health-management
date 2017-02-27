@@ -34,6 +34,9 @@ public class MedicationHistoryAdapter extends ArrayAdapter<Prescription> {
 
         Prescription prescription = getItem(position);
 
+        TextView prescriptionId = (TextView) listItemView.findViewById(R.id.tvMHPrescriptionId);
+        prescriptionId.setText(prescription.getId().toString());
+
         TextView medicines = (TextView) listItemView.findViewById(R.id.tvMHMedicationNames);
         medicines.setText(prescription.getMedication());
 

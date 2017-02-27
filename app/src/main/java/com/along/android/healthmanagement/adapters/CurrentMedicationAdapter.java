@@ -46,6 +46,9 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
 
         final Prescription prescription = getItem(position);
 
+        TextView prescriptionId = (TextView) listItemView.findViewById(R.id.tvMLPrescriptionId);
+        prescriptionId.setText(prescription.getId().toString());
+
         TextView medicines = (TextView) listItemView.findViewById(R.id.tvMLMedicationNames);
         medicines.setText(prescription.getMedication());
 

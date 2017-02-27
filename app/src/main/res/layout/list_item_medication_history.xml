@@ -6,6 +6,13 @@
     android:padding="@dimen/list_item_padding">
 
     <TextView
+        android:id="@+id/tvMHPrescriptionId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:visibility="gone" />
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorPrimaryText"
