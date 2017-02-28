@@ -107,7 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Gender:"
-                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginTop="@dimen/small"
                 android:textSize="18sp"/>
 
             <RadioGroup
@@ -115,7 +115,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".6"
-                android:layout_marginBottom="@dimen/medium_margin"
+                android:layout_marginBottom="@dimen/medium"
                 android:orientation="horizontal">
                 <RadioButton
                     android:id="@+id/radioMaleProfile"
@@ -195,7 +195,7 @@
                 android:id="@+id/btn_cancel_edit_profile"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/large_margin"
+                android:layout_marginRight="@dimen/large"
                 android:layout_weight=".5"
                 android:background="@drawable/rectangle"
                 android:backgroundTint="@color/greyE"

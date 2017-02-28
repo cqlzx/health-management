@@ -54,7 +54,7 @@
             android:layout_weight=".5"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingTop="@dimen/medium_margin">
+            android:paddingTop="@dimen/medium">
             <ImageView
                 android:layout_width="16dp"
                 android:layout_height="16dp"
@@ -64,7 +64,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/medium_margin"
+                android:layout_marginLeft="@dimen/medium"
                 android:text="Delete"/>
         </LinearLayout>
     </LinearLayout>

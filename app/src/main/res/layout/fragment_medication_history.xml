@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:text="No medication history to display"
         android:gravity="center"
-        android:paddingTop="@dimen/large_margin"
+        android:paddingTop="@dimen/large"
         android:textSize="20dp"
         android:textStyle="italic" />
 

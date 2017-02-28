@@ -6,7 +6,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/large_margin"
+        android:layout_margin="@dimen/large"
         android:orientation="vertical">
 
         <android.support.design.widget.TextInputLayout
@@ -24,7 +24,7 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_password"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium"
             android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/etPassword"
@@ -36,7 +36,7 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_confirm_password"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium"
             android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/etConfirmpassword"
@@ -48,7 +48,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_email"
-            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
@@ -61,7 +61,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_phone_number"
-            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
@@ -74,7 +74,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium"
             android:orientation="horizontal">
             <RadioGroup
                 android:id="@+id/radioGroupGender"
@@ -104,7 +104,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium"
             android:orientation="horizontal">
 
             <android.support.design.widget.TextInputLayout
@@ -133,7 +133,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_age"
-            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
@@ -145,14 +145,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/large_margin"
+            android:layout_margin="@dimen/large"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btn_cancel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/large_margin"
+                android:layout_marginRight="@dimen/large"
                 android:layout_weight=".5"
                 android:background="@drawable/rectangle"
                 android:backgroundTint="@color/greyE"

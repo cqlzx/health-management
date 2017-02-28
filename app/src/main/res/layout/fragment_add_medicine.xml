@@ -7,13 +7,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/large_margin"
-        android:layout_marginRight="@dimen/large_margin"
+        android:layout_marginLeft="@dimen/large"
+        android:layout_marginRight="@dimen/large"
         android:orientation="vertical">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_medicine_name"
-            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
@@ -25,7 +25,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_medicine_qty"
-            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
@@ -37,7 +37,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_medicine_consumption_time"
-            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
@@ -49,7 +49,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_medicine_frequency"
-            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
@@ -69,7 +69,7 @@
                 android:id="@+id/btnCancelMedicine"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/large_margin"
+                android:layout_marginRight="@dimen/large"
                 android:layout_weight=".5"
                 android:background="@drawable/rectangle"
                 android:backgroundTint="@color/greyE"

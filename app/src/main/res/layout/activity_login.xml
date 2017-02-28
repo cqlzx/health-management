@@ -13,7 +13,7 @@
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/medium_margin">
+        android:layout_marginBottom="@dimen/medium">
         <EditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
@@ -24,8 +24,8 @@
         android:id="@+id/ic_user"
         android:layout_width="@dimen/small_icon"
         android:layout_height="@dimen/small_icon"
-        android:layout_marginRight="@dimen/medium_margin"
-        android:layout_marginTop="@dimen/large_margin"
+        android:layout_marginRight="@dimen/medium"
+        android:layout_marginTop="@dimen/large"
         android:layout_toLeftOf="@id/input_layout_login_email"
         android:background="@drawable/ic_user" />
 
@@ -47,8 +47,8 @@
         android:layout_width="@dimen/small_icon"
         android:layout_height="@dimen/small_icon"
         android:layout_below="@id/input_layout_login_email"
-        android:layout_marginRight="@dimen/medium_margin"
-        android:layout_marginTop="@dimen/large_margin"
+        android:layout_marginRight="@dimen/medium"
+        android:layout_marginTop="@dimen/large"
         android:layout_toLeftOf="@id/input_layout_login_password"
         android:background="@drawable/ic_password" />
 
@@ -58,8 +58,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/input_layout_login_password"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/medium_margin"
-        android:layout_marginTop="@dimen/large_margin"
+        android:layout_marginBottom="@dimen/medium"
+        android:layout_marginTop="@dimen/large"
         android:background="@drawable/rectangle"
         android:backgroundTint="@color/blueButton"
         android:text="login"
@@ -93,14 +93,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/large_margin"
-        android:layout_marginBottom="@dimen/large_margin"
+        android:layout_marginTop="@dimen/large"
+        android:layout_marginBottom="@dimen/large"
         android:orientation="horizontal">
         <View
             android:layout_width="100dp"
             android:layout_height="1dip"
             android:background="@color/greyD"
-            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium"
             android:id="@+id/horizontal_line_left" />
         <TextView
             android:id="@+id/tv_or"
@@ -108,13 +108,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/btn_register"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="@dimen/large_margin"
-            android:layout_marginRight="@dimen/large_margin"
+            android:layout_marginLeft="@dimen/large"
+            android:layout_marginRight="@dimen/large"
             android:text="OR" />
         <View
             android:layout_width="100dp"
             android:layout_height="1dip"
-            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium"
             android:background="@color/greyD"
             android:id="@+id/horizontal_line_right" />
     </LinearLayout>
@@ -125,7 +125,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/or"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/large_margin"
+        android:layout_marginTop="@dimen/large"
         android:background="@drawable/rectangle"
         android:backgroundTint="@color/googleRed"
         android:text="G+   Sign in with Google"

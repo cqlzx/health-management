@@ -12,10 +12,20 @@
         android:text="1"
         android:visibility="gone" />
 
+
+    <ImageView
+        android:id="@+id/ivMedicine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/medium"
+        android:backgroundTint="@color/colorPrimaryText"
+        android:background="@drawable/ic_medicine"/>
+
     <TextView
         android:id="@+id/tvMLMedicationNames"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/ivMedicine"
         android:text="Medicine Names"
         android:textColor="@color/colorPrimaryText"
         android:textSize="20dp"/>
@@ -24,6 +34,7 @@
         android:id="@+id/tvMLDoctorName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="34dp"
         android:layout_below="@id/tvMLMedicationNames"
         android:text="Doctor Name"/>
 
@@ -31,6 +42,7 @@
         android:id="@+id/tvMLDisease"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="34dp"
         android:layout_below="@id/tvMLDoctorName"
         android:text="Disease/Symptom"/>
 
@@ -40,7 +52,7 @@
         android:layout_height="1dip"
         android:layout_below="@id/tvMLDisease"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/large_margin"
+        android:layout_marginTop="@dimen/large"
         android:background="@color/greyE" />
 
     <LinearLayout
@@ -56,13 +68,13 @@
             android:layout_weight=".5"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingTop="@dimen/medium_margin">
+            android:paddingTop="@dimen/medium">
             <ImageView
                 android:id="@+id/ivMLNotificationIcon"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:background="@drawable/ic_menu_notifications"
-                android:backgroundTint="@color/lightIcon"/>
+                android:backgroundTint="@color/colorMediumText"/>
             <ImageView
                 android:id="@+id/ivMLNotificationIconActive"
                 android:layout_width="16dp"
@@ -74,7 +86,8 @@
                 android:id="@+id/tvMLNotification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/medium_margin"
+                android:layout_marginLeft="@dimen/medium"
+                android:textColor="@color/colorMediumText"
                 android:text="Notify"/>
         </LinearLayout>
         <LinearLayout
@@ -84,17 +97,18 @@
             android:layout_weight=".5"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingTop="@dimen/medium_margin">
+            android:paddingTop="@dimen/medium">
             <ImageView
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:background="@drawable/ic_delete_bin"
-                android:backgroundTint="@color/lightIcon"/>
+                android:backgroundTint="@color/colorMediumText"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/medium_margin"
+                android:layout_marginLeft="@dimen/medium"
+                android:textColor="@color/colorMediumText"
                 android:text="Delete"/>
         </LinearLayout>
     </LinearLayout>

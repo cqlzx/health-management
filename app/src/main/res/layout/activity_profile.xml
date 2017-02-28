@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginBottom="@dimen/large_margin">
+        android:layout_marginBottom="@dimen/large">
 
         <ImageView
             android:layout_width="match_parent"
@@ -157,7 +157,7 @@
             android:id="@+id/btn_cancel_profile"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/large_margin"
+            android:layout_marginRight="@dimen/large"
             android:layout_weight=".5"
             android:background="@drawable/rectangle"
             android:backgroundTint="@color/greyE"

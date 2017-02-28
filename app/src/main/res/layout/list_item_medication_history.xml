@@ -12,9 +12,18 @@
         android:text="1"
         android:visibility="gone" />
 
+    <ImageView
+        android:id="@+id/ivMedicine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/medium"
+        android:backgroundTint="@color/colorPrimaryText"
+        android:background="@drawable/ic_medicine"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/ivMedicine"
         android:textColor="@color/colorPrimaryText"
         android:text="Medicine Names"
         android:textSize="20dp"
@@ -24,12 +33,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Doctor Name"
+        android:layout_marginLeft="34dp"
         android:layout_below="@id/tvMHMedicationNames"
         android:id="@+id/tvMHDoctorName"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="34dp"
         android:text="Disease/Symptom"
         android:layout_below="@id/tvMHDoctorName"
         android:id="@+id/tvMHDisease"/>
