@@ -79,6 +79,7 @@ public class RegisterActivity extends AppCompatActivity {
                 user.setPasswordExpirationTime(0);
 
                 if (Validation.isEmpty(user, RegisterActivity.this) &&
+                        Validation.isValidPassword(user.getPassword(), RegisterActivity.this) &&
                         Validation.isPasswordMatch(etPassword.getText().toString(), etConfirmpassword.getText().toString(), RegisterActivity.this) &&
                         Validation.isUserExsist(user.getEmail(), RegisterActivity.this) &&
                         Validation.isValidEmail(user.getEmail(), RegisterActivity.this) &&

@@ -90,4 +90,14 @@ public class Validation {
 
         return bool;
     }
+
+    public static boolean isValidPassword(String password, Context context) {
+        Boolean bool = true;
+        if (password.length() < 8) {
+            Toast.makeText(context, "password cannot less than 8 character", Toast.LENGTH_LONG).show();
+            bool = false;
+        }
+
+        return bool;
+    }
 }
