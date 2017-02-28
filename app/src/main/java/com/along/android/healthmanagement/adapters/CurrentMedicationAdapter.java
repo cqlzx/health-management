@@ -5,7 +5,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
@@ -20,15 +19,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
-import com.along.android.healthmanagement.entities.Medicine;
 import com.along.android.healthmanagement.entities.Prescription;
-import com.along.android.healthmanagement.helpers.EntityManager;
 import com.along.android.healthmanagement.receivers.AlarmReceiver;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
 
@@ -60,19 +55,19 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
         prescriptionId.setText(prescription.getId().toString());
 
         TextView medicines = (TextView) listItemView.findViewById(R.id.tvMLMedicationNames);
-        medicines.setText(prescription.getMedication());
+        medicines.setText(null != prescription.getMedication() ? prescription.getMedication() : "");
 
         TextView doctorName = (TextView) listItemView.findViewById(R.id.tvMLDoctorName);
-        doctorName.setText(prescription.getDoctorName());
+        doctorName.setText(null != prescription.getDoctorName() ? prescription.getDoctorName() : "");
 
         TextView disease = (TextView) listItemView.findViewById(R.id.tvMLDisease);
-        disease.setText(prescription.getDisease());
+        disease.setText(null != prescription.getDisease() ? prescription.getDisease() : "");
 
         ivNotificationIcon = (ImageView) listItemView.findViewById(R.id.ivMLNotificationIcon);
         ivNotificationIconActive = (ImageView) listItemView.findViewById(R.id.ivMLNotificationIconActive);
         tvNotification = (TextView) listItemView.findViewById(R.id.tvMLNotification);
 
-        if(prescription.isNotificationEnabled()) {
+        if(prescription.getNotificationEnabled()) {
             showActiveNotificationButton();
         } else {
             hideActiveNotificationButton();

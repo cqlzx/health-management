@@ -38,13 +38,13 @@ public class MedicationHistoryAdapter extends ArrayAdapter<Prescription> {
         prescriptionId.setText(prescription.getId().toString());
 
         TextView medicines = (TextView) listItemView.findViewById(R.id.tvMHMedicationNames);
-        medicines.setText(prescription.getMedication());
+        medicines.setText(null != prescription.getMedication() ? prescription.getMedication() : "");
 
         TextView doctorName = (TextView) listItemView.findViewById(R.id.tvMHDoctorName);
-        doctorName.setText(prescription.getDoctorName());
+        doctorName.setText(null != prescription.getDoctorName() ? prescription.getDoctorName() : "");
 
         TextView disease = (TextView) listItemView.findViewById(R.id.tvMHDisease);
-        disease.setText(prescription.getDisease());
+        disease.setText(null != prescription.getDisease() ? prescription.getDisease() : "");
 
 
         return listItemView;

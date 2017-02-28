@@ -6,7 +6,7 @@ import com.orm.dsl.Table;
 @Table
 public class NotificationResponse extends SugarRecord{
     private Long id, prescriptionId, userId;
-    boolean notificationResponse;
+    private Boolean notificationResponse;
 
     public NotificationResponse() {
 
@@ -32,12 +32,11 @@ public class NotificationResponse extends SugarRecord{
         this.userId = userId;
     }
 
-    public boolean isNotificationResponse() {
+    public Boolean getNotificationResponse() {
         return notificationResponse;
     }
 
-    public void setNotificationResponse(boolean notificationResponse) {
+    public void setNotificationResponse(Boolean notificationResponse) {
         this.notificationResponse = notificationResponse;
     }
-
 }

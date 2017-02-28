@@ -16,7 +16,6 @@ import com.along.android.healthmanagement.activities.MedicationDetailsActivity;
 import com.along.android.healthmanagement.adapters.MedicationHistoryAdapter;
 import com.along.android.healthmanagement.entities.Prescription;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,9 +34,6 @@ public class MedicationHistoryTabFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_medication_history, container, false);
-
-        // Create a list of words
-        ArrayList<Prescription> prescriptions = new ArrayList<Prescription>();
 
         List<Prescription> prescriptionList = Prescription.listAll(Prescription.class);
 

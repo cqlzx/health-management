@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.Medicine;
@@ -15,7 +16,6 @@ import com.along.android.healthmanagement.entities.Medicine;
  * A simple {@link Fragment} subclass.
  */
 public class AddMedicineFormFragment extends BasicFragment{
-
 
     public AddMedicineFormFragment() {
         // Required empty public constructor
@@ -30,12 +30,23 @@ public class AddMedicineFormFragment extends BasicFragment{
         Button btnSaveMedicine = (Button) view.findViewById(R.id.btnSaveMedicine);
         Button btnCancelMedicine = (Button) view.findViewById(R.id.btnCancelMedicine);
 
+        final EditText medicineName = (EditText) view.findViewById(R.id.etMedicineName);
+        final EditText medicineQty = (EditText) view.findViewById(R.id.etMedicineQty);
+        final EditText medicineTimings = (EditText) view.findViewById(R.id.etMedicineConsumptionTime);
+        final EditText medicineFrequency = (EditText) view.findViewById(R.id.etMedicineFrequency);
 
         btnSaveMedicine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Medicine medicine = new Medicine();
-                //medicine.set
+                medicine.setName(medicineName.getText().toString());
+                medicine.setFrequency(medicineFrequency.getText().toString());
+                medicine.setQuantity(medicineQty.getText().toString());
+                medicine.setTimings(medicineTimings.getText().toString());
+                //medicine.setPrescriptionId(null != prescriptionId ? prescriptionId : 1);
+                medicine.save();
+
+                getFragmentManager().popBackStack();
             }
         });
 

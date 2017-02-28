@@ -6,8 +6,7 @@ import com.orm.dsl.Table;
 @Table
 public class Prescription extends SugarRecord{
     private Long id;
-    private String patientName, doctorName, disease, medication, startDate, endDate, intakeTimes;
-    private int frequency;
+    private String patientName, doctorName, disease, medication, startDate, endDate, intakeTimes, frequency;
     private boolean notificationEnabled;
 
     public Prescription() {
@@ -58,14 +57,6 @@ public class Prescription extends SugarRecord{
         this.startDate = startDate;
     }
 
-    public String getIntakeTimes() {
-        return intakeTimes;
-    }
-
-    public void setIntakeTimes(String intakeTimes) {
-        this.intakeTimes = intakeTimes;
-    }
-
     public String getEndDate() {
         return endDate;
     }
@@ -74,19 +65,27 @@ public class Prescription extends SugarRecord{
         this.endDate = endDate;
     }
 
-    public boolean isNotificationEnabled() {
-        return notificationEnabled;
+    public String getIntakeTimes() {
+        return intakeTimes;
     }
 
-    public void setNotificationEnabled(boolean notificationEnabled) {
-        this.notificationEnabled = notificationEnabled;
+    public void setIntakeTimes(String intakeTimes) {
+        this.intakeTimes = intakeTimes;
     }
 
-    public int getFrequency() {
+    public String getFrequency() {
         return frequency;
     }
 
-    public void setFrequency(int frequency) {
+    public void setFrequency(String frequency) {
         this.frequency = frequency;
+    }
+
+    public Boolean getNotificationEnabled() {
+        return notificationEnabled;
+    }
+
+    public void setNotificationEnabled(Boolean notificationEnabled) {
+        this.notificationEnabled = notificationEnabled;
     }
 }

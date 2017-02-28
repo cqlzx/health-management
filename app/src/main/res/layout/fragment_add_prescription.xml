@@ -4,6 +4,13 @@
     android:layout_height="match_parent"
     tools:context="com.along.android.healthmanagement.fragments.CurrentMedicationTabFragment">
 
+    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/medicine_list"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
