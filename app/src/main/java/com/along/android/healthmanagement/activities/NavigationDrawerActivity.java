@@ -1,6 +1,8 @@
 package com.along.android.healthmanagement.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -16,11 +18,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.fragments.DietFragment;
 import com.along.android.healthmanagement.fragments.HomeFragment;
 import com.along.android.healthmanagement.fragments.MedicationListingFragment;
 import com.along.android.healthmanagement.fragments.ProfileFragment;
-import com.along.android.healthmanagement.helpers.SessionData;
+import com.along.android.healthmanagement.helpers.EntityManager;
 
 public class NavigationDrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -42,11 +45,14 @@ public class NavigationDrawerActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         View header=navigationView.getHeaderView(0);
 
-        SessionData sessionData = new SessionData(NavigationDrawerActivity.this);
+        SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
+        Long userIdS = sp.getLong("uid", 0);
+        User user = EntityManager.findById(User.class, userIdS);
+
         TextView tvNavUsername = (TextView) header.findViewById(R.id.tvNavUsername);
-        tvNavUsername.setText(null != sessionData.getUsername() ? sessionData.getUsername() : "");
+        tvNavUsername.setText(null != user.getRealname() ? user.getRealname() : "");
         TextView tvNavEmail = (TextView) header.findViewById(R.id.tvNavEmail);
-        tvNavEmail.setText(null != sessionData.getEmail() ? sessionData.getEmail() : "");
+        tvNavEmail.setText(null != user.getEmail() ? user.getEmail() : "");
 
         createFragment(new HomeFragment(), "homeFragment");
     }

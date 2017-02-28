@@ -44,7 +44,7 @@ public class MedicationListingFragment extends BasicFragment {
             @Override
             public void onClick(View view) {
                 // Invoke the fragment to add new Medication form
-                createFragment(new CurrentMedicationTabFragment(), "currentMedicationTabFragment");
+                createFragment(new AddPrescriptionFormFragment(), "AddPrescriptionFormFragment");
             }
         });
         return view;

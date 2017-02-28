@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.helpers.EntityManager;
-import com.along.android.healthmanagement.helpers.SessionData;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -28,7 +27,6 @@ import java.util.Date;
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
     //DatabaseHelper helper = new DatabaseHelper(this);
-    private SessionData sessionData;
     public GoogleApiClient mGoogleApiClient;
     private static final String TAG = "LoginActivity";
     private static final int RC_SIGN_IN = 9001;
@@ -73,10 +71,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
 //                            sp.edit().putString("email",email).apply();
                             sp.edit().putLong("uid",user.getId()).apply();
-
-                            //sessionData = new SessionData(LoginActivity.this);
-                            //sessionData.setUsername(user.getRealname());
-                            //sessionData.setEmail(user.getEmail());
 
                             // Remove below code if not used
                             Intent intent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
@@ -160,9 +154,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
-            sessionData = new SessionData(LoginActivity.this);
-            sessionData.setUsername(acct.getDisplayName());
-            sessionData.setEmail(acct.getEmail());
 
             User user = EntityManager.findOneBy(User.class, "email = ?", acct.getEmail());
             if(user == null) {
@@ -173,7 +164,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             }
             SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
             sp.edit().putLong("uid",user.getId()).apply();
-
 
             Intent intent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
             intent.putExtra("Username", acct.getDisplayName());

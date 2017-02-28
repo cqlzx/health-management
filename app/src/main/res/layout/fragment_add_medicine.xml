@@ -1,0 +1,92 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.along.android.healthmanagement.fragments.CurrentMedicationTabFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/large_margin"
+        android:layout_marginRight="@dimen/large_margin"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_medicine_name"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/etMedicineName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Medicine Name" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_medicine_qty"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/etMedicineQty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Quantity (Take N medicines/dose)" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_medicine_consumption_time"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/etMedicineConsumptionTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Timings (Take medicine at)" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_medicine_frequency"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/etMedicineFrequency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Frequency (Take every N days)" />
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:padding="26dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnCancelMedicine"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/large_margin"
+                android:layout_weight=".5"
+                android:background="@drawable/rectangle"
+                android:backgroundTint="@color/greyE"
+                android:text="Cancel"
+                android:textColor="@color/colorPrimary" />
+
+            <Button
+                android:id="@+id/btnSaveMedicine"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:background="@drawable/rectangle"
+                android:text="Save"
+                android:textColor="@color/greyE" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</FrameLayout>
