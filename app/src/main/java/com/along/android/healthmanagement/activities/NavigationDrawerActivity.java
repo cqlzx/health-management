@@ -19,6 +19,8 @@ import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.User;
+import com.along.android.healthmanagement.fragments.AddMedicineFormFragment;
+import com.along.android.healthmanagement.fragments.AddPrescriptionFormFragment;
 import com.along.android.healthmanagement.fragments.DietFragment;
 import com.along.android.healthmanagement.fragments.HomeFragment;
 import com.along.android.healthmanagement.fragments.MedicationListingFragment;
@@ -26,7 +28,7 @@ import com.along.android.healthmanagement.fragments.ProfileFragment;
 import com.along.android.healthmanagement.helpers.EntityManager;
 
 public class NavigationDrawerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, AddMedicineFormFragment.OnMedicineAddedListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,5 +134,25 @@ public class NavigationDrawerActivity extends AppCompatActivity
         fragmentManager.beginTransaction().replace(R.id.content_navigation_drawer, fragmentObject, fragmentTag).
                 addToBackStack(fragmentTag).
                 commit();
+    }
+
+    @Override
+    public void onMedicineAdded(Long medicineId) {
+        AddPrescriptionFormFragment addPrescriptionFormFragment = (AddPrescriptionFormFragment)
+                getSupportFragmentManager().findFragmentByTag("addPrescriptionFormFragment");
+
+        if (addPrescriptionFormFragment != null) {
+            addPrescriptionFormFragment.addMedicineToList(medicineId);
+        } else {
+            // Otherwise, we're in the one-pane layout and must swap frags...
+
+            // Create fragment and give it an argument for the selected article
+            AddPrescriptionFormFragment newFragment = new AddPrescriptionFormFragment();
+            Bundle args = new Bundle();
+            args.putLong("medicineId", medicineId);
+            newFragment.setArguments(args);
+
+           createFragment(newFragment, "addPrescriptionFormFragment");
+        }
     }
 }

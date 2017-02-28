@@ -1,6 +1,7 @@
 package com.along.android.healthmanagement.fragments;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,6 +17,8 @@ import com.along.android.healthmanagement.entities.Medicine;
  * A simple {@link Fragment} subclass.
  */
 public class AddMedicineFormFragment extends BasicFragment{
+
+    OnMedicineAddedListener mCallback;
 
     public AddMedicineFormFragment() {
         // Required empty public constructor
@@ -44,8 +47,9 @@ public class AddMedicineFormFragment extends BasicFragment{
                 medicine.setQuantity(medicineQty.getText().toString());
                 medicine.setTimings(medicineTimings.getText().toString());
                 //medicine.setPrescriptionId(null != prescriptionId ? prescriptionId : 1);
-                medicine.save();
+                Long medicineId = medicine.save();
 
+                mCallback.onMedicineAdded(medicineId);
                 getFragmentManager().popBackStack();
             }
         });
@@ -57,5 +61,21 @@ public class AddMedicineFormFragment extends BasicFragment{
             }
         });
         return view;
+    }
+
+    public interface OnMedicineAddedListener {
+        public void onMedicineAdded(Long medicineId);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        try {
+            mCallback = (OnMedicineAddedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnMedicineAddedListener");
+        }
     }
 }

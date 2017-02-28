@@ -43,4 +43,6 @@
     <string name="empty_email">Email cannot be empty</string>
     <string name="empty_password">Password cannot be empty</string>
     <string name="empty_name">Full name cannot be empty</string>
+
+    <string name="add_medicine_link"><u>Add New Medicine</u></string>
 </resources>

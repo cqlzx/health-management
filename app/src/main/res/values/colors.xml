@@ -11,6 +11,7 @@
 
 
     <color name="darkIcon">#333333</color>
+    <color name="mediumLightIcon">#666666</color>
     <color name="lightIcon">#999999</color>
 
     <color name="colorTabSelected">#227700</color>

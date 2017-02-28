@@ -4,17 +4,176 @@
     android:layout_height="match_parent"
     tools:context="com.along.android.healthmanagement.fragments.CurrentMedicationTabFragment">
 
-    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/medicine_list"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnAddNewMedicine"
-        android:text="Add New Medicine"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/large">
 
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_patient_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/etPatientName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Patient Name " />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_disease"
+                android:layout_marginTop="@dimen/medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/etDisease"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Disease/Symptoms " />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_doctor_name"
+                android:layout_marginTop="@dimen/medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/etDoctorName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Doctor Name " />
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/vlarge">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:id="@+id/llStartDate"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/ivStartDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_calendar"
+                        android:backgroundTint="@color/mediumLightIcon"
+                        android:layout_marginRight="@dimen/medium" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Start Date"
+                        android:id="@+id/tvStartDate"
+                        android:textAppearance="?android:textAppearanceMedium" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:id="@+id/llEndDate"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/ivEndDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/medium"
+                        android:backgroundTint="@color/mediumLightIcon"
+                        android:background="@drawable/ic_calendar" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="End Date"
+                        android:id="@+id/tvEndDate"
+                        android:textAppearance="?android:textAppearanceMedium" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorMediumText"
+                android:layout_marginTop="@dimen/vlarge"
+                android:text="Medicine Information"
+                android:textAppearance="?android:textAppearanceLarge"/>
+
+            <ListView
+                android:id="@+id/medicine_list"
+                android:layout_marginTop="@dimen/small"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" />
+
+            <LinearLayout
+                android:id="@+id/llAddMedicineLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/large"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginRight="@dimen/small"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:text="@string/add_medicine_link"/>
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/ic_fab_add"/>
+                <!--<Button
+                    android:id="@+id/btnAddNewMedicine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/medium"
+                    android:background="@drawable/rectangle"
+                    android:backgroundTint="@color/colorAccent"
+                    android:textColor="@color/greyE"
+                    android:text="Add New Medicine" />-->
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnCancelPrescription"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/large"
+                    android:layout_weight=".5"
+                    android:background="@drawable/rectangle"
+                    android:backgroundTint="@color/greyE"
+                    android:text="Cancel"
+                    android:textColor="@color/colorPrimary" />
+
+                <Button
+                    android:id="@+id/btnSavePrescription"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:background="@drawable/rectangle"
+                    android:text="Save"
+                    android:textColor="@color/greyE" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
 </FrameLayout>

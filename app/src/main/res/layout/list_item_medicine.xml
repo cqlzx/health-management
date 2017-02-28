@@ -3,7 +3,7 @@
     android:id="@+id/current_medication_list_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/list_item_padding">
+    android:padding="@dimen/medium">
 
     <TextView
         android:id="@+id/tvAPMedicineId"
@@ -14,7 +14,7 @@
 
     <TextView
         android:id="@+id/tvAPMedicineName"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Medicine Names"
         android:textColor="@color/colorPrimaryText"
@@ -22,50 +22,33 @@
 
     <TextView
         android:id="@+id/tvAPMedicineQuantity"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvAPMedicineName"
         android:text="Medicine Quantity"/>
 
     <TextView
         android:id="@+id/tvAPMedicineTimings"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvAPMedicineQuantity"
         android:text="Medicine Timings"/>
 
     <TextView
         android:id="@+id/tvAPMedicineFrequency"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvAPMedicineTimings"
         android:text="Medicine Frequency"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/ivDeleteMedicine"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvAPMedicineFrequency"
-        android:orientation="horizontal">
+        android:background="@drawable/ic_delete_bin"
+        android:backgroundTint="@color/lightIcon"
+        android:padding="@dimen/small"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" />
 
-        <LinearLayout
-            android:id="@+id/llAPDelete"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".5"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingTop="@dimen/medium">
-            <ImageView
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:background="@drawable/ic_delete_bin"
-                android:backgroundTint="@color/lightIcon"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/medium"
-                android:text="Delete"/>
-        </LinearLayout>
-    </LinearLayout>
 </RelativeLayout>
