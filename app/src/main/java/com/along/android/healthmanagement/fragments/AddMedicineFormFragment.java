@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.entities.Medicine;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,10 +30,12 @@ public class AddMedicineFormFragment extends BasicFragment{
         Button btnSaveMedicine = (Button) view.findViewById(R.id.btnSaveMedicine);
         Button btnCancelMedicine = (Button) view.findViewById(R.id.btnCancelMedicine);
 
+
         btnSaveMedicine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Medicine medicine = new Medicine();
+                //medicine.set
             }
         });
 

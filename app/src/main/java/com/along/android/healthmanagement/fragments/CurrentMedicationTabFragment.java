@@ -76,6 +76,8 @@ public class CurrentMedicationTabFragment extends Fragment {
             }
         }
 
+        //If today > endDate, the add to history
+
         List<Prescription> prescriptionList = Prescription.listAll(Prescription.class);
 
         CurrentMedicationAdapter currentMedicationAdapter =

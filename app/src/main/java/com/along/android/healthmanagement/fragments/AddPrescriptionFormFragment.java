@@ -28,6 +28,8 @@ public class AddPrescriptionFormFragment extends BasicFragment {
 
         Button addMedicineButton = (Button) view.findViewById(R.id.btnAddNewMedicine);
 
+
+
         addMedicineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

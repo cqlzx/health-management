@@ -6,8 +6,8 @@ import com.orm.dsl.Table;
 @Table
 public class Medicine extends SugarRecord{
     private Long id;
-    private String name;
-    private int dosage;
+    private String name, timings;
+    private int quantity, frequency;
 
     public Medicine() {
 
@@ -24,12 +24,27 @@ public class Medicine extends SugarRecord{
         this.name = name;
     }
 
-    public int getDosage() {
-        return dosage;
+    public String getTimings() {
+        return timings;
     }
 
-    public void setDosage(int dosage) {
-        this.dosage = dosage;
+    public void setTimings(String timings) {
+        this.timings = timings;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(int frequency) {
+        this.frequency = frequency;
+    }
 }
