@@ -81,7 +81,9 @@ public class RegisterActivity extends AppCompatActivity {
                 if (Validation.isEmpty(user, RegisterActivity.this) &&
                         Validation.isPasswordMatch(etPassword.getText().toString(), etConfirmpassword.getText().toString(), RegisterActivity.this) &&
                         Validation.isUserExsist(user.getEmail(), RegisterActivity.this) &&
-                        Validation.isValidEmail(user.getEmail(), RegisterActivity.this)) {
+                        Validation.isValidEmail(user.getEmail(), RegisterActivity.this) &&
+                        Validation.isValidPhonenumber(user.getPhonenumber(), RegisterActivity.this) &&
+                        Validation.isNumeric(user.getAge(), user.getWeight(), RegisterActivity.this)) {
                     // helper.insertContact(user);
 
                     try{

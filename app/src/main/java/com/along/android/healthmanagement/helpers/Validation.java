@@ -1,6 +1,7 @@
 package com.along.android.healthmanagement.helpers;
 
 import android.content.Context;
+import android.text.style.LineHeightSpan;
 import android.widget.Toast;
 
 import com.along.android.healthmanagement.R;
@@ -58,6 +59,32 @@ public class Validation {
         Matcher matcher = regex.matcher(email);
         if (!matcher.matches()) {
             Toast.makeText(context, context.getString(R.string.invalid_email), Toast.LENGTH_LONG).show();
+            bool = false;
+        }
+
+        return bool;
+    }
+
+    public static boolean isNumeric(String age, String weight, Context context) {
+        Boolean bool = true;
+        Pattern pattern = Pattern.compile("[0-9]*");
+        Matcher isAgeNum = pattern.matcher(age);
+        Matcher isWeightNum = pattern.matcher(weight);
+        if (!isAgeNum.matches()) {
+            Toast.makeText(context, "invalid age", Toast.LENGTH_LONG).show();
+            bool = false;
+        } else if(!isWeightNum.matches()){
+            Toast.makeText(context, "invalid weight", Toast.LENGTH_LONG).show();
+            bool = false;
+        }
+        return bool;
+    }
+    public static boolean isValidPhonenumber(String phonenumber, Context context) {
+        Boolean bool = true;
+        Pattern regex = Pattern.compile("[0-9]*");
+        Matcher matcher = regex.matcher(phonenumber);
+        if (!matcher.matches() || phonenumber.length()!=10) {
+            Toast.makeText(context, "invalid phone number", Toast.LENGTH_LONG).show();
             bool = false;
         }
 
