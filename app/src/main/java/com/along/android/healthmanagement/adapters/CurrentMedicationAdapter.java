@@ -182,6 +182,10 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
                 alarmIntents.add(null);
             }
         }
+
+        for (int i = alarmIntents.size(); i < getCount(); i++) {
+            alarmIntents.add(null);
+        }
         return alarmIntents;
     }
 

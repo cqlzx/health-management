@@ -94,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
                         sp.edit().putLong("uid", userId).apply();
 
                         Intent intent = new Intent();
-                        intent.setClass(RegisterActivity.this, LoginActivity.class);
+                        intent.setClass(RegisterActivity.this, NavigationDrawerActivity.class);
                         startActivity(intent);
 
                     }catch (Exception e){
