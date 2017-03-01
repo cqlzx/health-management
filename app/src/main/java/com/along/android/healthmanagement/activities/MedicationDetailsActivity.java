@@ -2,6 +2,7 @@ package com.along.android.healthmanagement.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -12,7 +13,6 @@ import com.along.android.healthmanagement.entities.Medicine;
 import com.along.android.healthmanagement.entities.Prescription;
 import com.along.android.healthmanagement.helpers.EntityManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MedicationDetailsActivity extends AppCompatActivity {
@@ -47,28 +47,32 @@ public class MedicationDetailsActivity extends AppCompatActivity {
 
         // Prescription Date
         String prescriptionDateText = "Prescription date: " + (null != prescription.getDisease() ? prescription.getStartDate() : "");
+
         prescriptionDateTV.setText(prescriptionDateText);
 
         System.out.println("----->>>>>>>>>>>>");
         System.out.println(prescription.getMedication());
-        String test = prescription.getMedication().substring(0, prescription.getMedication().indexOf(","));
-        System.out.println("----->>>>>>>>>>>>");
-        System.out.println(test);
+//        String test = prescription.getMedication().substring(0, prescription.getMedication().indexOf(","));
+//        System.out.println("----->>>>>>>>>>>>");
+//        System.out.println(test);
+        // prescriptionId
+        List<Medicine> medicineList = EntityManager.find(Medicine.class, "prescriptionId = ?", prescription.getId() + "");
+//        List<Medicine> medicineList = Medicine.findWithQuery(Medicine.class, "SELECT * FROM Medicine WHERE prescriptionId = ?", prescription.getId() + "");
+//       List<Medicine> medicineList = Medicine.listAll(Medicine.class);
+        Log.d(">>MedicineName", medicineList.get(0).getName());
+        Log.d(">>MedicinePid", medicineList.get(0).getPrescriptionId() + "");
 
-
-        List<Medicine> medicineList = Medicine.listAll(Medicine.class);
-
-        List<Medicine> currentMedicine = new ArrayList<Medicine>();
-        for(Medicine medicine : medicineList) {
-            //If today <= endDate, then add to current
-            try {
-                if (null !=  medicine.getId()) {
-                    currentMedicine.add(medicine);
-                }
-            } catch (NumberFormatException nfe) {
-                currentMedicine.add(medicine);
-            }
-        }
+//        List<Medicine> currentMedicine = new ArrayList<Medicine>();
+//        for(Medicine medicine : medicineList) {
+//            //If today <= endDate, then add to current
+//            try {
+//                if (null !=  medicine.getId()) {
+//                    currentMedicine.add(medicine);
+//                }
+//            } catch (NumberFormatException nfe) {
+//                currentMedicine.add(medicine);
+//            }
+//        }
 
         MedicationDetailAdapter medicationDetailAdapter =
                 new MedicationDetailAdapter(this, medicineList);
