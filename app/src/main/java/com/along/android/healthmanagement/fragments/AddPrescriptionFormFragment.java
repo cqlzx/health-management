@@ -134,7 +134,6 @@ public class AddPrescriptionFormFragment extends BasicFragment {
             }
         }
 
-        android.text.TextUtils.join(",", medicines);
         Prescription prescription = new Prescription();
         prescription.setPatientName(null != etPatientName.getText() ? etPatientName.getText().toString() : "");
         prescription.setDoctorName(null != etDoctorName.getText() ? etDoctorName.getText().toString() : "");
@@ -145,7 +144,15 @@ public class AddPrescriptionFormFragment extends BasicFragment {
         prescription.setIntakeTimes(android.text.TextUtils.join(",", timings));
         prescription.setMedication(android.text.TextUtils.join(",", medicines));
 
-        prescription.save();
+        Long prescriptionId = prescription.save();
+
+        // Update the prescriptionId in the medicine table
+        for(int i=0; i<count; i++) {
+            medicine = medicineAdapter.getItem(i);
+            Medicine med = EntityManager.findById(Medicine.class, medicine.getId());
+            med.setPrescriptionId(prescriptionId);
+            med.save();
+        }
 
         getFragmentManager().popBackStack();
     }
