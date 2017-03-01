@@ -58,10 +58,12 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
         medicines.setText(null != prescription.getMedication() ? prescription.getMedication() : "");
 
         TextView doctorName = (TextView) listItemView.findViewById(R.id.tvMLDoctorName);
-        doctorName.setText(null != prescription.getDoctorName() ? prescription.getDoctorName() : "");
+        String doctorText = "Prescribed by: " + (null != prescription.getDoctorName() ? prescription.getDoctorName() : "");
+        doctorName.setText(doctorText);
 
         TextView disease = (TextView) listItemView.findViewById(R.id.tvMLDisease);
-        disease.setText(null != prescription.getDisease() ? prescription.getDisease() : "");
+        String diseaseText = "for " + (null != prescription.getDisease() ? prescription.getDisease() : "");
+        disease.setText(diseaseText);
 
         ivNotificationIcon = (ImageView) listItemView.findViewById(R.id.ivMLNotificationIcon);
         ivNotificationIconActive = (ImageView) listItemView.findViewById(R.id.ivMLNotificationIconActive);
@@ -106,10 +108,7 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
                 unsetAlarm(getContext(), prescription);
 
                 prescriptionRecord.delete();
-
                 CurrentMedicationAdapter.this.remove(prescription);
-
-
                 dialog.dismiss();
             }
         });
@@ -189,7 +188,6 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
             AlarmManager alarm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
             alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 60 * 1000, pending); //Interval time will be prescription.getFrequency() * 24 * 60 * 60 * 1000
-
 
             Log.d("adapter", "!!!!!");
             Log.d(">>>>>>set", calendar.getTimeInMillis() + "");

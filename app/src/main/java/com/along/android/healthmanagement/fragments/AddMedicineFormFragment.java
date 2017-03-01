@@ -46,7 +46,6 @@ public class AddMedicineFormFragment extends BasicFragment{
                 medicine.setFrequency(medicineFrequency.getText().toString());
                 medicine.setQuantity(medicineQty.getText().toString());
                 medicine.setTimings(medicineTimings.getText().toString());
-                //medicine.setPrescriptionId(null != prescriptionId ? prescriptionId : 1);
                 Long medicineId = medicine.save();
 
                 mCallback.onMedicineAdded(medicineId);

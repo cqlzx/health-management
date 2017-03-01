@@ -49,59 +49,6 @@
                     android:hint="Doctor Name " />
             </android.support.design.widget.TextInputLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/vlarge">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".5"
-                    android:id="@+id/llStartDate"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/ivStartDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ic_calendar"
-                        android:backgroundTint="@color/mediumLightIcon"
-                        android:layout_marginRight="@dimen/medium" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Start Date"
-                        android:id="@+id/tvStartDate"
-                        android:textAppearance="?android:textAppearanceMedium" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".5"
-                    android:id="@+id/llEndDate"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/ivEndDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/medium"
-                        android:backgroundTint="@color/mediumLightIcon"
-                        android:background="@drawable/ic_calendar" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="End Date"
-                        android:id="@+id/tvEndDate"
-                        android:textAppearance="?android:textAppearanceMedium" />
-                </LinearLayout>
-            </LinearLayout>
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -145,6 +92,71 @@
                     android:backgroundTint="@color/colorAccent"
                     android:textColor="@color/greyE"
                     android:text="Add New Medicine" />-->
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/vlarge">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:id="@+id/llStartDate"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/ivStartDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_calendar"
+                        android:backgroundTint="@color/mediumLightIcon"
+                        android:layout_marginRight="@dimen/medium" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Start Date"
+                        android:id="@+id/tvStartDate"
+                        android:textAppearance="?android:textAppearanceMedium" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:text="Start date in millis"
+                        android:id="@+id/tvStartDateInMillis" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:id="@+id/llEndDate"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/ivEndDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/medium"
+                        android:backgroundTint="@color/mediumLightIcon"
+                        android:background="@drawable/ic_calendar" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="End Date"
+                        android:id="@+id/tvEndDate"
+                        android:textAppearance="?android:textAppearanceMedium" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:text="End date in millis"
+                        android:id="@+id/tvEndDateInMillis" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout

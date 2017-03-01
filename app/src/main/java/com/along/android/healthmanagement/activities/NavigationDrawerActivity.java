@@ -140,12 +140,9 @@ public class NavigationDrawerActivity extends AppCompatActivity
     public void onMedicineAdded(Long medicineId) {
         AddPrescriptionFormFragment addPrescriptionFormFragment = (AddPrescriptionFormFragment)
                 getSupportFragmentManager().findFragmentByTag("addPrescriptionFormFragment");
-
         if (addPrescriptionFormFragment != null) {
             addPrescriptionFormFragment.addMedicineToList(medicineId);
         } else {
-            // Otherwise, we're in the one-pane layout and must swap frags...
-
             // Create fragment and give it an argument for the selected article
             AddPrescriptionFormFragment newFragment = new AddPrescriptionFormFragment();
             Bundle args = new Bundle();

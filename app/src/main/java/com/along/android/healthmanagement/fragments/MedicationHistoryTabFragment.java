@@ -16,6 +16,8 @@ import com.along.android.healthmanagement.activities.MedicationDetailsActivity;
 import com.along.android.healthmanagement.adapters.MedicationHistoryAdapter;
 import com.along.android.healthmanagement.entities.Prescription;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -37,8 +39,20 @@ public class MedicationHistoryTabFragment extends Fragment {
 
         List<Prescription> prescriptionList = Prescription.listAll(Prescription.class);
 
+        List<Prescription> historyPrescription = new ArrayList<Prescription>();
+        for(Prescription prescription : prescriptionList) {
+            //If today > endDate, then add to current
+            try {
+                if(Calendar.getInstance().getTimeInMillis() > Long.parseLong(prescription.getEndDate())) {
+                    historyPrescription.add(prescription);
+                }
+            } catch (NumberFormatException nfe) {
+                historyPrescription.add(prescription);
+            }
+        }
+
         MedicationHistoryAdapter medicationHistoryAdapter =
-                new MedicationHistoryAdapter(getActivity(), prescriptionList);
+                new MedicationHistoryAdapter(getActivity(), historyPrescription);
 
         TextView tvEmptyMsg = (TextView) view.findViewById(R.id.tvMHEmptyMsg);
 

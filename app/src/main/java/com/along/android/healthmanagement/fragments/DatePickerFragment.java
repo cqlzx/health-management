@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.along.android.healthmanagement.R;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * Created by RitenVithlani on 2/21/17.
@@ -35,12 +36,18 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
         String[] months = new String[]{"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
         String text = months[month] + " " + dayOfMonth + ", " + year;
 
+        Calendar calendar = new GregorianCalendar(year, month, dayOfMonth);
+
         if(null!= this.getArguments() && "startDate".equals(this.getArguments().getString("whichDate"))) {
             TextView txtView = (TextView) getActivity().findViewById(R.id.tvStartDate);
             txtView.setText(text);
+            TextView txtViewMillis = (TextView) getActivity().findViewById(R.id.tvStartDateInMillis);
+            txtViewMillis.setText(calendar.getTimeInMillis() + "");
         } else if(null!= this.getArguments() && "endDate".equals(this.getArguments().getString("whichDate"))) {
             TextView txtView = (TextView) getActivity().findViewById(R.id.tvEndDate);
             txtView.setText(text);
+            TextView txtViewMillis = (TextView) getActivity().findViewById(R.id.tvEndDateInMillis);
+            txtViewMillis.setText(calendar.getTimeInMillis() + "");
         }
     }
 }
