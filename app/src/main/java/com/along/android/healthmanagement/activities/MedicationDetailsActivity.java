@@ -56,11 +56,11 @@ public class MedicationDetailsActivity extends AppCompatActivity {
 //        System.out.println("----->>>>>>>>>>>>");
 //        System.out.println(test);
         // prescriptionId
-        List<Medicine> medicineList = EntityManager.find(Medicine.class, "prescriptionId = ?", prescription.getId() + "");
+        List<Medicine> medicineList = EntityManager.find(Medicine.class, "pid = ?", prescription.getId() + "");
 //        List<Medicine> medicineList = Medicine.findWithQuery(Medicine.class, "SELECT * FROM Medicine WHERE prescriptionId = ?", prescription.getId() + "");
 //       List<Medicine> medicineList = Medicine.listAll(Medicine.class);
         Log.d(">>MedicineName", medicineList.get(0).getName());
-        Log.d(">>MedicinePid", medicineList.get(0).getPrescriptionId() + "");
+        Log.d(">>MedicinePid", medicineList.get(0).getPid() + "");
 
 //        List<Medicine> currentMedicine = new ArrayList<Medicine>();
 //        for(Medicine medicine : medicineList) {

@@ -150,7 +150,7 @@ public class AddPrescriptionFormFragment extends BasicFragment {
         for(int i=0; i<count; i++) {
             medicine = medicineAdapter.getItem(i);
             Medicine med = EntityManager.findById(Medicine.class, medicine.getId());
-            med.setPrescriptionId(prescriptionId);
+            med.setPid(prescriptionId);
             med.save();
         }
 

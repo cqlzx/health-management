@@ -5,7 +5,7 @@ import com.orm.dsl.Table;
 
 @Table
 public class Medicine extends SugarRecord{
-    private Long id, prescriptionId;
+    private Long id, pid;
     private String name, timings, quantity, frequency;
 
     public Medicine() {
@@ -48,11 +48,11 @@ public class Medicine extends SugarRecord{
         this.frequency = frequency;
     }
 
-    public Long getPrescriptionId() {
-        return prescriptionId;
+    public Long getPid() {
+        return pid;
     }
 
-    public void setPrescriptionId(Long prescriptionId) {
-        this.prescriptionId = prescriptionId;
+    public void setPid(Long pid) {
+        this.pid = pid;
     }
 }
