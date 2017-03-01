@@ -21,6 +21,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.d("receiver", "!!!!!!");
+
         int pid = Integer.parseInt(intent.getStringExtra(PRESCRIPTION_ID));
         Prescription prescription = EntityManager.findById(Prescription.class, pid);
 

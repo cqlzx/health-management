@@ -22,6 +22,7 @@ import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.Prescription;
 import com.along.android.healthmanagement.receivers.AlarmReceiver;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
     private ImageView ivNotificationIconActive;
     private TextView tvNotification;
 
-    private Intent[] alarmIntent = new Intent[getCount()];
+    private static List<Intent> alarmIntents;
 
     public CurrentMedicationAdapter(Context context, List<Prescription> prescriptions) {
         super(context, 0, prescriptions);
@@ -105,7 +106,13 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
                 /* delete the medication entry from the database  */
                 Prescription prescriptionRecord = Prescription.findById(Prescription.class, prescription.getId());
 
+                //Must setAlarm before unsetAlarm, because intents will be gone after completely quiting the application,
+                //leading to the result that getAlarmIntents will contain a list of null, that's the reason of crash
+                setAlarm(getContext(), prescription);
                 unsetAlarm(getContext(), prescription);
+
+                List<Intent> alarms = getAlarmIntents();
+                alarms.remove(getPosition(prescription));
 
                 prescriptionRecord.delete();
                 CurrentMedicationAdapter.this.remove(prescription);
@@ -142,6 +149,10 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
             /* Unset the notification alarm and save to database */
             prescription.setNotificationEnabled(false);
             prescription.save();
+
+            //Must setAlarm before unsetAlarm, because intents will be gone after completely quiting the application,
+            //leading to the result that getAlarmIntents will contain a list of null, that's the reason of crash
+            setAlarm(getContext(), prescription);
             unsetAlarm(getContext(), prescription);
         }
     }
@@ -160,44 +171,61 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
         tvNotification.setTypeface(Typeface.DEFAULT);
     }
 
+    private List<Intent> getAlarmIntents(){
+        if (alarmIntents == null) {
+            alarmIntents = new ArrayList<>();
+            for (int i = 0; i < getCount(); i++) {
+                alarmIntents.add(null);
+            }
+        }
+        return alarmIntents;
+    }
+
     private void setAlarm(Context context, Prescription prescription){
-//        String[] times = prescription.getIntakeTimes().split(",");
-//
-//        Calendar start = Calendar.getInstance();
-//        if (Long.parseLong(prescription.getStartDate()) < start.getTimeInMillis()) {
-//            start.setTimeInMillis(start.getTimeInMillis() + 24 * 60 * 60 * 1000);
-//        } else {
-//            start.setTimeInMillis(Long.parseLong(prescription.getStartDate()));
-//        }
-//
-//
-//        for (String time : times) {
-//
-//            String[] hourMinute = time.split(":");
+        String[] times = prescription.getIntakeTimes().split(",");
+
+        Calendar start = Calendar.getInstance();
+
+        //If startDate > now, set start to startDate
+        if (Long.parseLong(prescription.getStartDate()) > start.getTimeInMillis()) {
+            start.setTimeInMillis(Long.parseLong(prescription.getStartDate()));
+        }
+
+
+        for (String time : times) {
+
+            String[] hourMinute = time.split(":");
             Calendar calendar = Calendar.getInstance();
 
-            calendar.set(2017, 1, 26, 23, 26);
+//            calendar.set(2017, 1, 26, 23, 26, 0);
 
-//            calendar.set(start.get(Calendar.YEAR), start.get(Calendar.MONTH), start.get(Calendar.DATE), Integer.parseInt(hourMinute[0]), Integer.parseInt(hourMinute[1]));
+            calendar.set(start.get(Calendar.YEAR), start.get(Calendar.MONTH), start.get(Calendar.DATE), Integer.parseInt(hourMinute[0]), Integer.parseInt(hourMinute[1]), 0);
+
+            //If start point < now, set the start point on tomorrow at this time
+            if (calendar.getTimeInMillis() < Calendar.getInstance().getTimeInMillis()) {
+                calendar.setTimeInMillis(calendar.getTimeInMillis() + 24 * 60 * 60 * 1000);
+            }
 
             Intent intent = new Intent(context, AlarmReceiver.class);
             intent.putExtra(PRESCRIPTION_ID, prescription.getId() + "");
-            alarmIntent[getPosition(prescription)] = intent;
+            List<Intent> intents = getAlarmIntents();
+            intents.set(getPosition(prescription), intent);
 
             PendingIntent pending = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             AlarmManager alarm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-            alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 60 * 1000, pending); //Interval time will be prescription.getFrequency() * 24 * 60 * 60 * 1000
+            alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), Integer.parseInt(prescription.getFrequency()) * 24 * 60 * 60 * 1000, pending);
 
             Log.d("adapter", "!!!!!");
             Log.d(">>>>>>set", calendar.getTimeInMillis() + "");
             Log.d("<<<<<<now", Calendar.getInstance().getTimeInMillis() + "");
-//        }
+        }
 
     }
 
     private void unsetAlarm(Context context, Prescription prescription) {
-        PendingIntent pending = PendingIntent.getBroadcast(context, 0, alarmIntent[getPosition(prescription)], PendingIntent.FLAG_UPDATE_CURRENT);
+        List<Intent> intents = getAlarmIntents();
+        PendingIntent pending = PendingIntent.getBroadcast(context, 0, intents.get(getPosition(prescription)), PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarm.cancel(pending);
     }

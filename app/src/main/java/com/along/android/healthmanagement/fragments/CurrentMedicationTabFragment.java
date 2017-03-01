@@ -72,7 +72,7 @@ public class CurrentMedicationTabFragment extends Fragment {
                 prescription.setDisease("for Blood Pressure");
                 prescription.setIntakeTimes("9:00,12:00,18:00");
                 prescription.setStartDate("1488067200000");
-                prescription.setEndDate("1488326400000");
+                prescription.setEndDate("1489996400000");
 
                 prescription.save();
             }

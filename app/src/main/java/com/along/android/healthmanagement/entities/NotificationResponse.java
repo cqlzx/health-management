@@ -5,7 +5,7 @@ import com.orm.dsl.Table;
 
 @Table
 public class NotificationResponse extends SugarRecord{
-    private Long id, prescriptionId, userId;
+    private Long id, prescriptionId, userId, time;
     private Boolean notificationResponse;
 
     public NotificationResponse() {
@@ -38,5 +38,13 @@ public class NotificationResponse extends SugarRecord{
 
     public void setNotificationResponse(Boolean notificationResponse) {
         this.notificationResponse = notificationResponse;
+    }
+
+    public Long getTime() {
+        return time;
+    }
+
+    public void setTime(Long time) {
+        this.time = time;
     }
 }
