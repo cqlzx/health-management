@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.Prescription;
+import com.along.android.healthmanagement.helpers.EntityManager;
 import com.along.android.healthmanagement.receivers.AlarmReceiver;
 
 import java.util.ArrayList;
@@ -108,8 +109,8 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
 
                 //Must setAlarm before unsetAlarm, because intents will be gone after completely quiting the application,
                 //leading to the result that getAlarmIntents will contain a list of null, that's the reason of crash
-                setAlarm(getContext(), prescriptionRecord);
-                unsetAlarm(getContext(), prescriptionRecord);
+                setAlarm(getContext(), prescription);
+                unsetAlarm(getContext(), prescription);
 
                 List<Intent> alarms = getAlarmIntents();
                 alarms.remove(getPosition(prescription));
@@ -144,7 +145,8 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
             /*  Set the notification alarm and save to database */
             prescription.setNotificationEnabled(true);
             prescription.save();
-            setAlarm(getContext(), prescriptionRecord);
+
+            setAlarm(getContext(), prescription);
         } else {
             hideActiveNotificationButton();
 
@@ -154,8 +156,8 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
 
             //Must setAlarm before unsetAlarm, because intents will be gone after completely quiting the application,
             //leading to the result that getAlarmIntents will contain a list of null, that's the reason of crash
-            setAlarm(getContext(), prescriptionRecord);
-            unsetAlarm(getContext(), prescriptionRecord);
+            setAlarm(getContext(), prescription);
+            unsetAlarm(getContext(), prescription);
         }
     }
 
@@ -195,13 +197,13 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
 
 
         for (String time : times) {
-
+            time = time.trim();
             String[] hourMinute = time.split(":");
             Calendar calendar = Calendar.getInstance();
 
 //            calendar.set(2017, 1, 26, 23, 26, 0);
 
-            calendar.set(start.get(Calendar.YEAR), start.get(Calendar.MONTH), start.get(Calendar.DATE), Integer.parseInt(hourMinute[0]), Integer.parseInt(hourMinute[1]), 0);
+            calendar.set(start.get(Calendar.YEAR), start.get(Calendar.MONTH), start.get(Calendar.DATE), Integer.parseInt(hourMinute[0].trim()), Integer.parseInt(hourMinute[1].trim()), 0);
 
             //If start point < now, set the start point on tomorrow at this time
             if (calendar.getTimeInMillis() < Calendar.getInstance().getTimeInMillis()) {
