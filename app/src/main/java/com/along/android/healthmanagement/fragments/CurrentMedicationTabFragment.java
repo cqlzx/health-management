@@ -2,6 +2,7 @@ package com.along.android.healthmanagement.fragments;
 
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -78,7 +79,14 @@ public class CurrentMedicationTabFragment extends Fragment {
             }
         }*/
 
-        List<Prescription> prescriptionList = Prescription.listAll(Prescription.class);
+        List<Prescription> prescriptionList;
+
+        try{
+            prescriptionList = Prescription.listAll(Prescription.class);
+        } catch (SQLiteException e) {
+            prescriptionList = new ArrayList<>();
+        }
+
 
         List<Prescription> currentPrescription = new ArrayList<Prescription>();
         for(Prescription prescription : prescriptionList) {
