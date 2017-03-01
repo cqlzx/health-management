@@ -41,7 +41,7 @@ public class MedicationDetailAdapter extends ArrayAdapter<Medicine> {
         medicineIdTV.setText(medicine.getId().toString());
         //xlMDMedicineName
         TextView medicineNameTV = (TextView) listItemView.findViewById(R.id.xlMDMedicineName);
-        String medicineNameText = (null != medicine.getTimings() ? medicine.getTimings() : "");
+        String medicineNameText = (null != medicine.getName() ? (medicine.getId().toString() + "." + medicine.getName()) : "");
         medicineNameTV.setText(medicineNameText);
         //xlMDMedicineTimings
         TextView medicineTimingsTV = (TextView) listItemView.findViewById(R.id.xlMDMedicineTimings);
