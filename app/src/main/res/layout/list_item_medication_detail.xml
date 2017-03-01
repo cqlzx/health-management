@@ -6,57 +6,52 @@
                 android:padding="@dimen/list_item_padding">
 
     <TextView
-        android:id="@+id/xlMDMedicationNames"
+        android:id="@+id/xlMDMedicineId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Medicine Names"
-        android:textColor="@color/colorPrimaryText"
-        android:textSize="20dp"
-        android:layout_toStartOf="@+id/xlMDDelete"/>
-
-    <TextView
-        android:id="@+id/xlMDTimeTaken"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/xlMDMedicationNames"
-        android:text="Time Taken"
-        android:layout_toStartOf="@+id/xlMDDelete"/>
-
-    <TextView
-        android:id="@+id/xlMDTimeInterval"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/xlMDTimeTaken"
-        android:text="Time Interval"
-        android:layout_toStartOf="@+id/xlMDDelete"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignTop="@+id/horizontal_line">
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/xlMDDelete"
+        android:text="1"
+        android:visibility="gone" />
+    <ImageView
+        android:id="@+id/xlMedicine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="right"
-        android:orientation="horizontal"
-        android:paddingTop="@dimen/medium"
-        android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true">
-        <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:background="@drawable/ic_delete_bin"
-            android:backgroundTint="@color/lightIcon"/>
+        android:layout_marginRight="@dimen/medium"
+        android:backgroundTint="@color/mediumLightIcon"
+        android:background="@drawable/ic_medicine"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/medium"
-            android:text="Delete"/>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/xlMDMedicineFrequency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/xlMDMedicineTimings"
+        android:text="Medicine Frequency"
+        android:layout_alignStart="@+id/xlMDMedicineTimings"/>
+
+    <TextView
+        android:id="@+id/xlMDMedicineQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medicine Quantity"
+        android:layout_below="@+id/xlMDMedicineName"
+        android:layout_alignStart="@+id/xlMDMedicineName"/>
+
+    <TextView
+        android:id="@+id/xlMDMedicineTimings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medicine Timings"
+        android:layout_below="@+id/xlMDMedicineQuantity"
+        android:layout_alignStart="@+id/xlMDMedicineQuantity"/>
+
+    <TextView
+        android:id="@+id/xlMDMedicineName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medicine Name"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="20dp"
+        android:layout_marginStart="12dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/xlMedicine"/>
+
 </RelativeLayout>

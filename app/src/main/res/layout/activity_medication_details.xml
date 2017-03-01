@@ -3,18 +3,19 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context="com.along.android.healthmanagement.fragments.MedicationDetailFragment">
+              >
 
     <TextView
         android:id="@+id/xlMDPatientName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Patient Name"
-        android:textColor="@color/colorPrimaryText"
+        android:textColor="@color/colorTabSelected"
         android:textSize="20dp"
-        android:paddingLeft="14dp"
-        android:paddingTop="20dp"
-        android:background="@drawable/profile_header_bar"/>
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+
+        />
 
     <TextView
         android:id="@+id/xlMDDoctorName"
@@ -22,9 +23,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/xlMDPatientName"
         android:textSize="16dp"
-        android:paddingLeft="14dp"
+        android:paddingLeft="16dp"
         android:text="Doctor Name"
-        android:background="@drawable/profile_header_bar"
+        android:textColor="@color/colorTabSelected"
         />
 
     <TextView
@@ -32,23 +33,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16dp"
-        android:paddingLeft="14dp"
+        android:paddingLeft="16dp"
         android:layout_below="@id/xlMDDoctorName"
         android:text="Disease"
-        android:background="@drawable/profile_header_bar"
+        android:textColor="@color/colorTabSelected"
         />
 
     <TextView
         android:id="@+id/xlMDPrescriptionDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16dp"
-        android:paddingLeft="14dp"
+        android:textSize="17dp"
+        android:paddingLeft="16dp"
         android:layout_below="@id/xlMDDisease"
         android:text="Prescription Date:"
-        android:background="@drawable/profile_header_bar"
-        android:paddingBottom="20dp"
+        android:paddingBottom="16dp"
+        android:textColor="@color/colorTabSelected"
         />
+    // line
+    <View
+        android:id="@+id/horizontal_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:elevation="1dip"
+        android:layout_below="@id/xlMDPrescriptionDate"
+        android:layout_centerHorizontal="true"
+        android:background="@color/greyE" />
 
     <ListView xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tooLinearls="http://schemas.android.com/tools"
