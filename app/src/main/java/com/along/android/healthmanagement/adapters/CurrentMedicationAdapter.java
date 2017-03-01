@@ -218,12 +218,12 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
             intent.putExtra(PRESCRIPTION_ID, prescription.getId() + "");
             List<Intent> intents = getAlarmIntents();
             intents.set(getPosition(prescription), intent);
-
+Log.d(">>>>", "111");
             PendingIntent pending = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             AlarmManager alarm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-
-            alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), Integer.parseInt(prescription.getFrequency()) * 24 * 60 * 60 * 1000, pending);
-
+Log.d(">>>>", "222");
+            alarm.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), Integer.parseInt(prescription.getFrequency()) * 24 * 60 * 60 * 1000, pending);
+Log.d(">>>>", "333");
             Log.d("adapter", "!!!!!");
             Log.d(">>>>>>set", calendar.getTimeInMillis() + "");
             Log.d("<<<<<<now", Calendar.getInstance().getTimeInMillis() + "");
