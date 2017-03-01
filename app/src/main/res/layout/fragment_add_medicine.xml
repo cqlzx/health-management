@@ -13,7 +13,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_medicine_name"
-            android:layout_marginTop="@dimen/medium"
+            android:layout_marginTop="@dimen/large"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
@@ -23,41 +23,111 @@
                 android:hint="Medicine Name" />
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_layout_medicine_qty"
-            android:layout_marginTop="@dimen/medium"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:id="@+id/etMedicineQty"
-                android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/large">
+            <TextView
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:hint="Quantity (Take N medicines/dose)" />
-        </android.support.design.widget.TextInputLayout>
+                android:text="Quantity "
+                android:textAppearance="?android:textAppearanceMedium"/>
+            <Spinner
+                android:id="@+id/spMedicineQty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="80dp"
+                android:layout_marginLeft="@dimen/medium"
+                android:entries="@array/numbers_array"
+                android:textAppearance="?android:textAppearanceMedium" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="medicine(s)/dose"
+                android:textAppearance="?android:textAppearanceSmall"/>
+        </LinearLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_layout_medicine_consumption_time"
-            android:layout_marginTop="@dimen/medium"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:id="@+id/etMedicineConsumptionTime"
-                android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/vlarge">
+            <TextView
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:hint="Timings (Take medicine at)" />
-        </android.support.design.widget.TextInputLayout>
+                android:text="Frequency "
+                android:textAppearance="?android:textAppearanceMedium"/>
+            <Spinner
+                android:id="@+id/spMedicineFrequency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="80dp"
+                android:layout_marginLeft="@dimen/medium"
+                android:entries="@array/numbers_array"
+                android:textAppearance="?android:textAppearanceMedium" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="day(s)"
+                android:textAppearance="?android:textAppearanceSmall"/>
+        </LinearLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_layout_medicine_frequency"
-            android:layout_marginTop="@dimen/medium"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Timings"
+            android:layout_marginTop="@dimen/vlarge"
+            android:textAppearance="?android:textAppearanceMedium"/>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:id="@+id/etMedicineFrequency"
-                android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/llMedicineTimings"
+            android:visibility="gone">
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Frequency (Take every N days)" />
-        </android.support.design.widget.TextInputLayout>
+                android:text="Take Medicines at "
+                android:textAppearance="?android:textAppearanceSmall"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvTimings"
+                android:text=""
+                android:textAppearance="?android:textAppearanceMedium"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/small"
+            android:layout_marginTop="@dimen/large"
+            android:orientation="horizontal"
+            android:gravity="right">
+            <TextView
+                android:id="@+id/tvResetTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/large"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/colorAccent"
+                android:text="@string/reset_link"/>
+
+            <TextView
+                android:id="@+id/tvAddTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:layout_marginRight="@dimen/small"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:text="@string/add_time_link"/>
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/ic_fab_add"/>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_marginTop="32dp"

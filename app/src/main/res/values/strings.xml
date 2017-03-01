@@ -45,4 +45,14 @@
     <string name="empty_name">Full name cannot be empty</string>
 
     <string name="add_medicine_link"><u>Add New Medicine</u></string>
+    <string name="add_time_link"><u>Add Time</u></string>
+    <string name="reset_link"><u>Reset</u></string>
+
+    <string-array name="numbers_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
 </resources>

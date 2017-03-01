@@ -97,7 +97,7 @@
         android:layout_marginBottom="@dimen/large"
         android:orientation="horizontal">
         <View
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="1dip"
             android:background="@color/greyD"
             android:layout_marginTop="@dimen/medium"
@@ -112,7 +112,7 @@
             android:layout_marginRight="@dimen/large"
             android:text="OR" />
         <View
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="1dip"
             android:layout_marginTop="@dimen/medium"
             android:background="@color/greyD"
