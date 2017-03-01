@@ -3,7 +3,10 @@
     android:id="@+id/current_medication_list_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/list_item_padding">
+    android:paddingTop="@dimen/list_item_padding"
+    android:paddingLeft="@dimen/list_item_padding"
+    android:paddingRight="@dimen/list_item_padding"
+    android:paddingBottom="@dimen/medium">
 
     <TextView
         android:id="@+id/tvMLPrescriptionId"
@@ -17,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/medium"
-        android:backgroundTint="@color/mediumLightIcon"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:background="@drawable/ic_medicine"/>
 
     <TextView
@@ -67,13 +70,14 @@
             android:layout_weight=".5"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingTop="@dimen/medium">
+            android:paddingTop="12dp"
+            android:paddingBottom="@dimen/small">
             <ImageView
                 android:id="@+id/ivMLNotificationIcon"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:background="@drawable/ic_menu_notifications"
-                android:backgroundTint="@color/mediumLightIcon"/>
+                android:backgroundTint="@color/lightIcon"/>
             <ImageView
                 android:id="@+id/ivMLNotificationIconActive"
                 android:layout_width="16dp"
@@ -86,7 +90,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/medium"
-                android:textColor="@color/colorMediumText"
+                android:textSize="16sp"
+                android:textColor="@color/lightIcon"
                 android:text="Notify"/>
         </LinearLayout>
         <LinearLayout
@@ -101,13 +106,13 @@
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:background="@drawable/ic_delete_bin"
-                android:backgroundTint="@color/mediumLightIcon"/>
-
+                android:backgroundTint="@color/lightIcon"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/medium"
-                android:textColor="@color/colorMediumText"
+                android:textColor="@color/lightIcon"
+                android:textSize="16sp"
                 android:text="Delete"/>
         </LinearLayout>
     </LinearLayout>
