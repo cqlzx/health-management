@@ -83,7 +83,7 @@ public class Validation {
         Boolean bool = true;
         Pattern regex = Pattern.compile("[0-9]*");
         Matcher matcher = regex.matcher(phonenumber);
-        if (!matcher.matches() || phonenumber.length()!=10) {
+        if (phonenumber.length()!=0 && (!matcher.matches() || phonenumber.length()!=10)) {
             Toast.makeText(context, "invalid phone number", Toast.LENGTH_LONG).show();
             bool = false;
         }
