@@ -12,6 +12,7 @@ import com.along.android.healthmanagement.entities.Medicine;
 import com.along.android.healthmanagement.entities.Prescription;
 import com.along.android.healthmanagement.helpers.EntityManager;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class MedicationDetailsActivity extends AppCompatActivity {
@@ -45,19 +46,25 @@ public class MedicationDetailsActivity extends AppCompatActivity {
         diseaseTV.setText(diseaseText);
 
         // Prescription Date
-        String prescriptionDateText = "Prescription date: " + (null != prescription.getDisease() ? prescription.getStartDate() : "");
+        Calendar c = Calendar.getInstance();
+        String startDate = null != prescription.getStartDate() ? prescription.getStartDate() : "";
+        c.setTimeInMillis(Long.parseLong(prescription.getStartDate()));
+        int mYear = c.get(Calendar.YEAR);
+        int mMonth = c.get(Calendar.MONTH);
+        int mDay = c.get(Calendar.DAY_OF_MONTH);
+
+        String[] months = new String[]{"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+        String prescriptionDateText = "Prescription date: " + months[mMonth] + " " + mDay + ", " + mYear;
+
         prescriptionDateTV.setText(prescriptionDateText);
 
-//        System.out.println("----->>>>>>>>>>>>");
-//        System.out.println(prescription.getMedication());
-
-        // prescriptionId
         List<Medicine> medicineList = EntityManager.find(Medicine.class, "pid = ?", prescription.getId() + "");
 
         MedicationDetailAdapter medicationDetailAdapter =
                 new MedicationDetailAdapter(this, medicineList);
         ListView listView = (ListView) findViewById(R.id.medication_detail_list);
         listView.setAdapter(medicationDetailAdapter);
+
     }
 
     @Override
