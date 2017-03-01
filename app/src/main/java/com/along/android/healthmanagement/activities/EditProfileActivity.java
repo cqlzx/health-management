@@ -116,7 +116,6 @@ public class EditProfileActivity extends AppCompatActivity {
                     }
 
                 }
-
             }
         });
 
@@ -124,9 +123,10 @@ public class EditProfileActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(EditProfileActivity.this, ProfileActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent();
+//                intent.setClass(EditProfileActivity.this, ProfileActivity.class);
+//                startActivity(intent);
+                finish();
             }
         });
     }
