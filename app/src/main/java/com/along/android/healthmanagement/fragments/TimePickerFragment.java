@@ -36,8 +36,11 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         String displayTime = hourOfDay + ":" + minute;
         if(null!= this.getArguments() && "addMedicineTime".equals(this.getArguments().getString("whichTimer"))) {
             TextView txtView = (TextView) getActivity().findViewById(R.id.tvTimings);
-            txtView.setText(txtView.getText() + ", " + displayTime);
-
+            if(null != txtView.getText() && !"".equals(txtView.getText())) {
+                txtView.setText(txtView.getText() + ", " + displayTime);
+            } else {
+                txtView.setText(displayTime);
+            }
             LinearLayout llMedicineTimings = (LinearLayout) getActivity().findViewById(R.id.llMedicineTimings);
             llMedicineTimings.setVisibility(View.VISIBLE);
         }

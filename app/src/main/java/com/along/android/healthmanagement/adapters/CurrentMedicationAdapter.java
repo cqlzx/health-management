@@ -108,8 +108,8 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
 
                 //Must setAlarm before unsetAlarm, because intents will be gone after completely quiting the application,
                 //leading to the result that getAlarmIntents will contain a list of null, that's the reason of crash
-                setAlarm(getContext(), prescription);
-                unsetAlarm(getContext(), prescription);
+                setAlarm(getContext(), prescriptionRecord);
+                unsetAlarm(getContext(), prescriptionRecord);
 
                 List<Intent> alarms = getAlarmIntents();
                 alarms.remove(getPosition(prescription));
@@ -136,13 +136,15 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
         ivNotificationIconActive = (ImageView) llMLNotificationClickedView.findViewById(R.id.ivMLNotificationIconActive);
         tvNotification = (TextView) llMLNotificationClickedView.findViewById(R.id.tvMLNotification);
 
+        Prescription prescriptionRecord = Prescription.findById(Prescription.class, prescription.getId());
+
         if(ivNotificationIcon.getVisibility() == View.VISIBLE) {
             showActiveNotificationButton();
 
             /*  Set the notification alarm and save to database */
             prescription.setNotificationEnabled(true);
             prescription.save();
-            setAlarm(getContext(), prescription);
+            setAlarm(getContext(), prescriptionRecord);
         } else {
             hideActiveNotificationButton();
 
@@ -152,8 +154,8 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
 
             //Must setAlarm before unsetAlarm, because intents will be gone after completely quiting the application,
             //leading to the result that getAlarmIntents will contain a list of null, that's the reason of crash
-            setAlarm(getContext(), prescription);
-            unsetAlarm(getContext(), prescription);
+            setAlarm(getContext(), prescriptionRecord);
+            unsetAlarm(getContext(), prescriptionRecord);
         }
     }
 
