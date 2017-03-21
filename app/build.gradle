@@ -31,6 +31,7 @@ dependencies {
     compile 'com.android.support:support-v4:25.2.0'
     compile 'com.google.android.gms:play-services:10.2.0'
     compile 'com.android.support:multidex:1.0.1'
+    compile 'com.loopj.android:android-async-http:1.4.9'
     testCompile 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'

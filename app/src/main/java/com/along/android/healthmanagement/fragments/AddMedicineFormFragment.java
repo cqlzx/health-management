@@ -2,20 +2,35 @@ package com.along.android.healthmanagement.fragments;
 
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.Medicine;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,10 +38,13 @@ import com.along.android.healthmanagement.entities.Medicine;
 public class AddMedicineFormFragment extends BasicFragment{
 
     OnMedicineAddedListener mCallback;
+    ProgressDialog prgDialog;
 
     public AddMedicineFormFragment() {
         // Required empty public constructor
     }
+
+    private static final List<String> COUNTRIES = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,8 +55,18 @@ public class AddMedicineFormFragment extends BasicFragment{
         Button btnSaveMedicine = (Button) view.findViewById(R.id.btnSaveMedicine);
         Button btnCancelMedicine = (Button) view.findViewById(R.id.btnCancelMedicine);
 
+        prgDialog = new ProgressDialog(getActivity());
+        prgDialog.setMessage("Please wait...");
+        prgDialog.setCancelable(false);
+        List<String> medicines = getMedicineNames();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_dropdown_item_1line, medicines);
+        AutoCompleteTextView textView = (AutoCompleteTextView) view.findViewById(R.id.etMedicineName);
+        textView.setThreshold(3);
+        textView.setAdapter(adapter);
+
         final EditText medicineName = (EditText) view.findViewById(R.id.etMedicineName);
-        //final EditText medicineQty = (EditText) view.findViewById(R.id.etMedicineQty);
 
         final Spinner spinner = (Spinner) view.findViewById(R.id.spMedicineQty);
         spinner.getSelectedItem().toString();
@@ -92,6 +120,33 @@ public class AddMedicineFormFragment extends BasicFragment{
             }
         });
         return view;
+    }
+
+    private List<String> getMedicineNames() {
+        prgDialog.show();
+        final List<String> medicineNames = new ArrayList<String>();
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get("https://rxnav.nlm.nih.gov/REST/displaynames.json",null ,new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                prgDialog.hide();
+                try {
+                    JSONObject termsList = response.getJSONObject("displayTermsList");
+                    JSONArray termArray = termsList.getJSONArray("term");
+                    for(int i=0; i<termArray.length(); i++) {
+                        medicineNames.add(termArray.getString(i));
+                    }
+
+                } catch (JSONException e) {
+                    Toast.makeText(getContext(), "Error Occured [Server's JSON response might be invalid]!", Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+
+                }
+            }
+
+        });
+
+        return medicineNames;
     }
 
     public interface OnMedicineAddedListener {
