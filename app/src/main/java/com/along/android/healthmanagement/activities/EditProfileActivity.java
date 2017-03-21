@@ -21,7 +21,7 @@ import com.along.android.healthmanagement.helpers.Validation;
 
 public class EditProfileActivity extends AppCompatActivity {
 
-    private EditText editRealname, editEmail, editPassword1, editPassword2, editAge, editHeight, editWeight, editPhone;
+    private EditText editRealname, editEmail, editPassword1, editPassword2, editAge, editPhone;
     User user;
     RadioGroup radioGroupGender;
     Button btn_saveprofile, btn_cancel_edit_profile;
@@ -47,8 +47,8 @@ public class EditProfileActivity extends AppCompatActivity {
         editPassword1 = (EditText) findViewById(R.id.editT_password1);
         editPassword2 = (EditText) findViewById(R.id.editT_password2);
         editAge = (EditText) findViewById(R.id.editT_age);
-        editHeight = (EditText) findViewById(R.id.editT_height);
-        editWeight = (EditText) findViewById(R.id.editT_weight);
+//        editHeight = (EditText) findViewById(R.id.editT_height);
+//        editWeight = (EditText) findViewById(R.id.editT_weight);
         editPhone = (EditText) findViewById(R.id.editT_phoneNumber);
         // edit RadioButton
         radioGroupGender = (RadioGroup) findViewById(R.id.radioGroupGenderProfile);
@@ -62,8 +62,8 @@ public class EditProfileActivity extends AppCompatActivity {
             editRealname.setText(user.getRealname());
             editEmail.setText(user.getEmail());
             editAge.setText(user.getAge());
-            editHeight.setText(user.getHeight());
-            editWeight.setText(user.getWeight());
+//            editHeight.setText(user.getHeight());
+//            editWeight.setText(user.getWeight());
             editPhone.setText(user.getPhonenumber());
             editPassword1.setText(user.getPassword());
             editPassword2.setText(user.getPassword());
@@ -95,8 +95,8 @@ public class EditProfileActivity extends AppCompatActivity {
 //                user.setGender(radioGroupGender.getText().toString());
                 user.setAge(editAge.getText().toString());
                 user.setPhonenumber(editPhone.getText().toString());
-                user.setWeight(editWeight.getText().toString());
-                user.setHeight(editHeight.getText().toString());
+//                user.setWeight(editWeight.getText().toString());
+//                user.setHeight(editHeight.getText().toString());
 
                 int checkedId = radioGroupGender.getCheckedRadioButtonId();
                 RadioButton genderRadio = (RadioButton) findViewById(checkedId);

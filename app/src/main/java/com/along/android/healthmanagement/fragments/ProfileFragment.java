@@ -61,8 +61,8 @@ public class ProfileFragment extends Fragment {
         // user informations
         TextView ageText = (TextView) view.findViewById(R.id.age);
         TextView genderText = (TextView) view.findViewById(R.id.gender);
-        TextView heightText = (TextView) view.findViewById(R.id.height);
-        TextView weightText = (TextView) view.findViewById(R.id.weight);
+//        TextView heightText = (TextView) view.findViewById(R.id.height);
+//        TextView weightText = (TextView) view.findViewById(R.id.weight);
         TextView phoneText = (TextView) view.findViewById(R.id.phone);
 
         User user = EntityManager.findById(User.class, userIdS);
@@ -85,20 +85,20 @@ public class ProfileFragment extends Fragment {
                 LinearLayout llGender = (LinearLayout) view.findViewById(R.id.llGender);
                 llGender.setVisibility(View.GONE);
             }
-            //Height
-            if (user.getHeight() != null && !user.getHeight().equals("")){
-                heightText.setText(user.getHeight());
-            }else {
-                LinearLayout llHeight = (LinearLayout) view.findViewById(R.id.llHeight);
-                llHeight.setVisibility(View.GONE);
-            }
-            //Weight
-            if (user.getWeight() != null && !user.getWeight().equals("")){
-                weightText.setText(user.getWeight());
-            }else {
-                LinearLayout llWeight = (LinearLayout) view.findViewById(R.id.llWeight);
-                llWeight.setVisibility(View.GONE);
-            }
+//            //Height
+//            if (user.getHeight() != null && !user.getHeight().equals("")){
+//                heightText.setText(user.getHeight());
+//            }else {
+//                LinearLayout llHeight = (LinearLayout) view.findViewById(R.id.llHeight);
+//                llHeight.setVisibility(View.GONE);
+//            }
+//            //Weight
+//            if (user.getWeight() != null && !user.getWeight().equals("")){
+//                weightText.setText(user.getWeight());
+//            }else {
+//                LinearLayout llWeight = (LinearLayout) view.findViewById(R.id.llWeight);
+//                llWeight.setVisibility(View.GONE);
+//            }
             //Phone
             if (user.getPhonenumber() != null && !user.getPhonenumber().equals("")){
                 phoneText.setText(user.getPhonenumber());

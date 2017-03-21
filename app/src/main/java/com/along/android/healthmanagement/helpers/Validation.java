@@ -65,18 +65,15 @@ public class Validation {
         return bool;
     }
 
-    public static boolean isNumeric(String age, String weight, Context context) {
+    public static boolean isNumeric(String number, String tag, Context context) {
         Boolean bool = true;
         Pattern pattern = Pattern.compile("[0-9]*");
-        Matcher isAgeNum = pattern.matcher(age);
-        Matcher isWeightNum = pattern.matcher(weight);
-        if (!isAgeNum.matches()) {
-            Toast.makeText(context, "invalid age", Toast.LENGTH_LONG).show();
-            bool = false;
-        } else if(!isWeightNum.matches()){
-            Toast.makeText(context, "invalid weight", Toast.LENGTH_LONG).show();
+        Matcher isNum = pattern.matcher(number);
+        if (!isNum.matches()) {
+            Toast.makeText(context, "Invalid " + tag, Toast.LENGTH_LONG).show();
             bool = false;
         }
+
         return bool;
     }
     public static boolean isValidPhonenumber(String phonenumber, Context context) {
@@ -84,7 +81,7 @@ public class Validation {
         Pattern regex = Pattern.compile("[0-9]*");
         Matcher matcher = regex.matcher(phonenumber);
         if (phonenumber.length()!=0 && (!matcher.matches() || phonenumber.length()!=10)) {
-            Toast.makeText(context, "invalid phone number", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Invalid phone number", Toast.LENGTH_LONG).show();
             bool = false;
         }
 
@@ -94,7 +91,7 @@ public class Validation {
     public static boolean isValidPassword(String password, Context context) {
         Boolean bool = true;
         if (password.length() < 8) {
-            Toast.makeText(context, "password cannot less than 8 character", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Password cannot less than 8 character", Toast.LENGTH_LONG).show();
             bool = false;
         }
 

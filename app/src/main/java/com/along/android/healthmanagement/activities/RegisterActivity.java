@@ -28,7 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private RadioGroup radioGroupGender;
     private RadioButton radioButtonGender;
-    EditText etEmail, etPassword, etConfirmpassword, etRealname, etAge, etPhonenumber, etWeight, etHeight;
+    EditText etEmail, etPassword, etConfirmpassword, etRealname, etAge, etPhonenumber;
     Button btn_register, btn_cancel;
     private TextInputLayout emailLayout;
 
@@ -55,8 +55,8 @@ public class RegisterActivity extends AppCompatActivity {
         radioGroupGender = (RadioGroup) findViewById(R.id.radioGroupGender);
         etAge = (EditText) findViewById(R.id.etAge);
         etPhonenumber = (EditText) findViewById(R.id.etPhonenumber);
-        etWeight = (EditText) findViewById(R.id.etWeight);
-        etHeight = (EditText) findViewById(R.id.etHeight);
+//        etWeight = (EditText) findViewById(R.id.etWeight);
+//        etHeight = (EditText) findViewById(R.id.etHeight);
 
         btn_register = (Button) findViewById(R.id.btn_register);
         btn_register.setOnClickListener(new View.OnClickListener() {
@@ -74,8 +74,8 @@ public class RegisterActivity extends AppCompatActivity {
                 user.setGender(radioButtonGender.getText().toString());
                 user.setAge(etAge.getText().toString());
                 user.setPhonenumber(etPhonenumber.getText().toString());
-                user.setWeight(etWeight.getText().toString());
-                user.setHeight(etHeight.getText().toString());
+//                user.setWeight(etWeight.getText().toString());
+//                user.setHeight(etHeight.getText().toString());
                 user.setPasswordExpirationTime(0);
 
                 if (Validation.isEmpty(user, RegisterActivity.this) &&
@@ -84,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
                         Validation.isUserExsist(user.getEmail(), RegisterActivity.this) &&
                         Validation.isValidEmail(user.getEmail(), RegisterActivity.this) &&
                         Validation.isValidPhonenumber(user.getPhonenumber(), RegisterActivity.this) &&
-                        Validation.isNumeric(user.getAge(), user.getWeight(), RegisterActivity.this)) {
+                        Validation.isNumeric(user.getAge(), "age", RegisterActivity.this)) {
                     // helper.insertContact(user);
 
                     try{

@@ -42,6 +42,15 @@ public class HomeFragment extends BasicFragment {
             }
         });
 
+        Button btnVitalSign = (Button) view.findViewById(R.id.btn_vital_signs_tile);
+        btnVitalSign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: change back to vital sign history page
+                createFragment(new AddVitalSignFormFragment(), "addVitalSignFormFragment");
+            }
+        });
+
         return view;
     }
 
