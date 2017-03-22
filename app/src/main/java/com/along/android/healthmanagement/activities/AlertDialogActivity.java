@@ -17,14 +17,18 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.NotificationResponse;
 import com.along.android.healthmanagement.entities.Prescription;
+import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.helpers.EntityManager;
+import com.along.android.healthmanagement.helpers.MailHelper;
 
 import java.util.Calendar;
+
 
 public class AlertDialogActivity extends Activity {
 
@@ -82,6 +86,8 @@ public class AlertDialogActivity extends Activity {
 
                         //This is only for the demo to show that we have stored the response of the user and the corresponding uid and pid
                         Toast.makeText(AlertDialogActivity.this, "Medicine is NOT taken! Uid = " + uid + ", pid = " + pid, Toast.LENGTH_SHORT).show();
+
+                        sendContactEmail();
                         r.stop();
                         finish();
                     }
@@ -108,5 +114,22 @@ public class AlertDialogActivity extends Activity {
 
         nr.save();
 
+    }
+
+    private void sendContactEmail(){
+        SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
+        Long userIdS = sp.getLong("uid", 0);
+        User user = EntityManager.findById(User.class, userIdS);
+        String email = user.getEmail();
+        String subject = "HealthManagement Support";
+        String content = makeEmailContent(user);
+        new MailHelper().execute(email, subject, content);
+
+    }
+
+    private String makeEmailContent(User user) {
+        return "Dear " + user.getRealname() + "," +
+                "<br /><br />Cancel" +
+                "<br /><br />you didn`t take the medicine";
     }
 }
