@@ -12,8 +12,10 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.activities.LoginActivity;
 import com.along.android.healthmanagement.adapters.MedicineAdapter;
 import com.along.android.healthmanagement.entities.Medicine;
 import com.along.android.healthmanagement.entities.Prescription;
@@ -61,26 +63,26 @@ public class AddPrescriptionFormFragment extends BasicFragment {
         });
 
         LinearLayout llStartDate = (LinearLayout) view.findViewById(R.id.llStartDate);
-        llStartDate.setOnClickListener(new View.OnClickListener(){
+        llStartDate.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 DialogFragment newFragment = new DatePickerFragment();
                 Bundle data = new Bundle();
-                data.putString("whichDate","startDate");
+                data.putString("whichDate", "startDate");
                 newFragment.setArguments(data);
                 newFragment.show(getFragmentManager(), "startDatePicker");
             }
         });
 
         LinearLayout llEndDate = (LinearLayout) view.findViewById(R.id.llEndDate);
-        llEndDate.setOnClickListener(new View.OnClickListener(){
+        llEndDate.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 DialogFragment newFragment = new DatePickerFragment();
                 Bundle data = new Bundle();
-                data.putString("whichDate","endDate");
+                data.putString("whichDate", "endDate");
                 newFragment.setArguments(data);
                 newFragment.show(getFragmentManager(), "endDatePicker");
             }
@@ -122,14 +124,14 @@ public class AddPrescriptionFormFragment extends BasicFragment {
         Set<String> timings = new HashSet<String>();
         int minFrequency = DEFAULT_MIN;
         Medicine medicine;
-        for(int i=0; i<count; i++) {
+        for (int i = 0; i < count; i++) {
             medicine = medicineAdapter.getItem(i);
 
             medicines.add(medicine.getName());
             timings.add(medicine.getTimings());
 
             int frequency = Integer.parseInt(medicine.getFrequency());
-            if(frequency < minFrequency) {
+            if (frequency < minFrequency) {
                 minFrequency = frequency;
             }
         }
@@ -144,17 +146,20 @@ public class AddPrescriptionFormFragment extends BasicFragment {
         prescription.setIntakeTimes(android.text.TextUtils.join(",", timings));
         prescription.setMedication(android.text.TextUtils.join(",", medicines));
 
-        Long prescriptionId = prescription.save();
+            Long prescriptionId = prescription.save();
 
-        // Update the prescriptionId in the medicine table
-        for(int i=0; i<count; i++) {
-            medicine = medicineAdapter.getItem(i);
-            Medicine med = EntityManager.findById(Medicine.class, medicine.getId());
-            med.setPid(prescriptionId);
-            med.save();
-        }
+            // Update the prescriptionId in the medicine table
+            for (int i = 0; i < count; i++) {
 
-        getFragmentManager().popBackStack();
+                medicine = medicineAdapter.getItem(i);
+                Medicine med = EntityManager.findById(Medicine.class, medicine.getId());
+                med.setPid(prescriptionId);
+                med.save();
+            }
+
+            getFragmentManager().popBackStack();
+
+
     }
 
     public void addMedicineToList(Long medicineId) {

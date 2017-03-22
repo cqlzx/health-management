@@ -24,6 +24,7 @@ import com.along.android.healthmanagement.fragments.AddPrescriptionFormFragment;
 import com.along.android.healthmanagement.fragments.DietFragment;
 import com.along.android.healthmanagement.fragments.HomeFragment;
 import com.along.android.healthmanagement.fragments.MedicationListingFragment;
+import com.along.android.healthmanagement.fragments.NotificationFragment;
 import com.along.android.healthmanagement.fragments.ProfileFragment;
 import com.along.android.healthmanagement.helpers.EntityManager;
 
@@ -116,7 +117,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
         } else if (id == R.id.nav_vital_signs) {
 
         } else if (id == R.id.nav_notification) {
-
+            createFragment(new NotificationFragment(), "notificationFragment");
         } else if (id == R.id.nav_settings) {
 
         }
