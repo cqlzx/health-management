@@ -129,7 +129,6 @@ public class AlertDialogActivity extends Activity {
 
     private String makeEmailContent(User user) {
         return "Dear " + user.getRealname() + "," +
-                "<br /><br />Cancel" +
-                "<br /><br />you didn`t take the medicine";
+                "<br /><br />" + user.getRealname() + " didn`t take the medicine, tell him/her!";
     }
 }
