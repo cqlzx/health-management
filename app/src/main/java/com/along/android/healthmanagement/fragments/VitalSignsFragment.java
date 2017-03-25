@@ -4,10 +4,12 @@ package com.along.android.healthmanagement.fragments;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -58,6 +60,8 @@ public class VitalSignsFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView prescriptionId = (TextView) view.findViewById(R.id.tvXLVSHId);
+                Log.d("--haha--->>>>>>>", prescriptionId.getText().toString());
 //                MedicationDetailsActivity medicationDetailActivity = new MedicationDetailsActivity();
 //
 //                TextView prescriptionId = (TextView) view.findViewById(R.id.tvXLVSHDate);
@@ -65,6 +69,14 @@ public class VitalSignsFragment extends Fragment {
 //                Intent medicationDetailsIntent = new Intent(getActivity(), MedicationDetailsActivity.class);
 //                medicationDetailsIntent.putExtra("selectedPrescriptionItemId", prescriptionId.getText().toString());
 //                startActivity(medicationDetailsIntent);
+            }
+        });
+        ImageView fab = (ImageView) view.findViewById(R.id.add_medication_fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Invoke the fragment to add new Medication form
+                createFragment(new AddVitalSignFormFragment(), "addVitalSignFormFragment");
             }
         });
 

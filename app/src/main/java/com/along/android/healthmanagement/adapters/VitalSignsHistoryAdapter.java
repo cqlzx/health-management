@@ -2,7 +2,6 @@ package com.along.android.healthmanagement.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,10 +50,10 @@ public class VitalSignsHistoryAdapter extends ArrayAdapter<VitalSign> {
         int mDay = c.get(Calendar.DAY_OF_MONTH);
 
         String[] months = new String[]{"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
-        String prescriptionDateText = "Vital Signs Date: " + months[mMonth] + " " + mDay + ", " + mYear;
+        String prescriptionDateText =  months[mMonth] + " " + mDay + ", " + mYear;
 
         vshDateTV.setText(prescriptionDateText);
-        Log.d("--haha--->>>>>>>", prescriptionDateText);
+
 
 //        //xlMDMedicineName
 //        TextView medicineNameTV = (TextView) listItemView.findViewById(R.id.xlMDMedicineName);
