@@ -1,0 +1,23 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.along.android.healthmanagement.fragments.VitalSignsFragment">
+    <TextView
+        android:id="@+id/tvVSEmptyMsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No vital signs history to display"
+        android:gravity="center"
+        android:paddingTop="@dimen/large"
+        android:textSize="20dp"
+        android:textStyle="italic" />
+
+    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/vital_signs_history_list"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" />
+
+</FrameLayout>
