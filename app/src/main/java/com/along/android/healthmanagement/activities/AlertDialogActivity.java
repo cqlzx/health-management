@@ -49,6 +49,8 @@ public class AlertDialogActivity extends Activity {
                 r.stop();
                 finish();
                 if (!isTaken) {
+
+                    Log.d("delay", "!!!!!");
                     sendContactEmail();
                 }
 
@@ -81,6 +83,7 @@ public class AlertDialogActivity extends Activity {
                         isTaken = true;
                         r.stop();
                         finish();
+                        Log.d("confirm", "!!!!!");
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -94,6 +97,7 @@ public class AlertDialogActivity extends Activity {
 
                         r.stop();
                         finish();
+                        Log.d("cancel", "!!!!!");
                         sendContactEmail();
                     }
                 });
