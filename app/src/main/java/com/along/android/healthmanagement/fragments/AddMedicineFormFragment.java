@@ -101,15 +101,21 @@ public class AddMedicineFormFragment extends BasicFragment{
         btnSaveMedicine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Medicine medicine = new Medicine();
-                medicine.setName(medicineName.getText().toString());
-                medicine.setFrequency(medicineFrequency.getSelectedItem().toString());
-                medicine.setQuantity(spinner.getSelectedItem().toString());
-                medicine.setTimings(medicineTimings.getText().toString());
-                Long medicineId = medicine.save();
+                if (!medicineName.getText().toString().equals("") &&
+                        !medicineFrequency.getSelectedItem().toString().equals("") &&
+                        !spinner.getSelectedItem().toString().equals("") &&
+                        !medicineTimings.getText().toString().equals("")) {
 
-                mCallback.onMedicineAdded(medicineId);
-                getFragmentManager().popBackStack();
+                    Medicine medicine = new Medicine();
+                    medicine.setName(medicineName.getText().toString());
+                    medicine.setFrequency(medicineFrequency.getSelectedItem().toString());
+                    medicine.setQuantity(spinner.getSelectedItem().toString());
+                    medicine.setTimings(medicineTimings.getText().toString());
+                    Long medicineId = medicine.save();
+
+                    mCallback.onMedicineAdded(medicineId);
+                    getFragmentManager().popBackStack();
+                }
             }
         });
 

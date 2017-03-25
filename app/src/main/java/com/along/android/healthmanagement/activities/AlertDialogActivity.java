@@ -35,6 +35,7 @@ public class AlertDialogActivity extends Activity {
     private static final String PRESCRIPTION_ID = "PRESCRIPTION_ID";
     private long uid, pid;
     private Ringtone r;
+    private boolean isTaken = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,10 @@ public class AlertDialogActivity extends Activity {
                 setNotificationResponse(false);
                 r.stop();
                 finish();
+                if (!isTaken) {
+                    sendContactEmail();
+                }
+
             }
         }, 5 * 60000);
 
@@ -54,7 +59,6 @@ public class AlertDialogActivity extends Activity {
         Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         r = RingtoneManager.getRingtone(getApplicationContext(), notification);
         r.play();
-
 
         SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
         uid = sp.getLong("uid", 0);
@@ -74,6 +78,7 @@ public class AlertDialogActivity extends Activity {
 
                         //This is only for the demo to show that we have stored the response of the user and the corresponding uid and pid
                         Toast.makeText(AlertDialogActivity.this, "Medicine is taken! Uid = " + uid + ", pid = " + pid, Toast.LENGTH_SHORT).show();
+                        isTaken = true;
                         r.stop();
                         finish();
                     }
@@ -87,9 +92,9 @@ public class AlertDialogActivity extends Activity {
                         //This is only for the demo to show that we have stored the response of the user and the corresponding uid and pid
                         Toast.makeText(AlertDialogActivity.this, "Medicine is NOT taken! Uid = " + uid + ", pid = " + pid, Toast.LENGTH_SHORT).show();
 
-                        sendContactEmail();
                         r.stop();
                         finish();
+                        sendContactEmail();
                     }
                 });
         AlertDialog alert = builder.create();

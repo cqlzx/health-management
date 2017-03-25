@@ -4,6 +4,7 @@ package com.along.android.healthmanagement.fragments;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -110,7 +111,15 @@ public class AddPrescriptionFormFragment extends BasicFragment {
                 // merge medicine timing of all medicines and store it in prescription
                 // take min frequency of all the medicines and store it in prescription
                 // save prescription
-                savePrescription();
+                Log.d("enddata", tvEndDateInMillis.getText().toString());
+                if (!etPatientName.getText().toString().equals("") &&
+                        !etDoctorName.getText().toString().equals("") &&
+                        !etDisease.getText().toString().equals("") &&
+                        !tvStartDateInMillis.getText().toString().equals("Start date in millis") &&
+                        !tvEndDateInMillis.getText().toString().equals("End date in millis")) {
+                    savePrescription();
+                }
+
             }
         });
 
