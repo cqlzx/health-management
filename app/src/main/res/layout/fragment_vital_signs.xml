@@ -7,7 +7,7 @@
         android:id="@+id/tvVSEmptyMsg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="No vital signs history to display"
+        android:text=""
         android:gravity="center"
         android:paddingTop="@dimen/large"
         android:textSize="20dp"

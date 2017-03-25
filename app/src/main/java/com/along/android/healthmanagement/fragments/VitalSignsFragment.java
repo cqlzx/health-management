@@ -48,6 +48,7 @@ public class VitalSignsFragment extends Fragment {
                 new VitalSignsHistoryAdapter(getActivity(), vitalSignList);
 
         TextView tvEmptyMsg = (TextView) view.findViewById(R.id.tvMHEmptyMsg);
+//        tvEmptyMsg.setText("No vital signs history to display");
 
         ListView listView = (ListView) view.findViewById(R.id.vital_signs_history_list);
 
