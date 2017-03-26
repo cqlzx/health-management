@@ -1,6 +1,7 @@
 package com.along.android.healthmanagement.fragments;
 
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.activities.MedicationDetailsActivity;
+import com.along.android.healthmanagement.activities.VitalSignDetailsActivity;
 import com.along.android.healthmanagement.adapters.VitalSignsHistoryAdapter;
 import com.along.android.healthmanagement.entities.VitalSign;
 import com.along.android.healthmanagement.helpers.EntityManager;
@@ -69,8 +72,8 @@ public class VitalSignsFragment extends BasicFragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TextView prescriptionId = (TextView) view.findViewById(R.id.tvXLVSHId);
-                Log.d("--haha--->>>>>>>", prescriptionId.getText().toString());
+                TextView vitalSignId = (TextView) view.findViewById(R.id.tvXLVSHId);
+                Log.d("--haha--->>>>>>>", vitalSignId.getText().toString());
 //                MedicationDetailsActivity medicationDetailActivity = new MedicationDetailsActivity();
 //
 //                TextView prescriptionId = (TextView) view.findViewById(R.id.tvXLVSHDate);
@@ -78,6 +81,9 @@ public class VitalSignsFragment extends BasicFragment {
 //                Intent medicationDetailsIntent = new Intent(getActivity(), MedicationDetailsActivity.class);
 //                medicationDetailsIntent.putExtra("selectedPrescriptionItemId", prescriptionId.getText().toString());
 //                startActivity(medicationDetailsIntent);
+                Intent vitalSignDetailsIntent = new Intent(getActivity(), VitalSignDetailsActivity.class);
+                vitalSignDetailsIntent.putExtra("selectedVitalSignItemId", vitalSignId.getText().toString());
+                startActivity(vitalSignDetailsIntent);
             }
         });
 
