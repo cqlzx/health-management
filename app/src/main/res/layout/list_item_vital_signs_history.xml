@@ -37,16 +37,20 @@
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/ivVitalSigns"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/add_medication_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        app:srcCompat="@drawable/ic_fab_add"
-        android:layout_marginLeft="@dimen/fab_margin"
-        android:layout_marginRight="@dimen/fab_margin"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="29dp"/>
+
+
+    <!--<Button-->
+        <!--android:id="@+id/forget_password_continue"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="415dp"-->
+        <!--android:background="@drawable/"-->
+        <!--android:backgroundTint="@color/blueButton"-->
+        <!--android:textColor="@color/greyE"-->
+        <!--android:textSize="16sp"-->
+        <!--android:text="Continue"-->
+        <!--android:textAllCaps="false"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignParentStart="true"/>-->
 
 </RelativeLayout>

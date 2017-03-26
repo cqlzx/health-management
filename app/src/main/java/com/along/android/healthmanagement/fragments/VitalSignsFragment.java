@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class VitalSignsFragment extends Fragment {
+public class VitalSignsFragment extends BasicFragment {
 
 
     public VitalSignsFragment() {
@@ -44,6 +44,15 @@ public class VitalSignsFragment extends Fragment {
         } catch (SQLiteException e) {
             vitalSignList = new ArrayList<>();
         }
+
+        ImageView fab = (ImageView) view.findViewById(R.id.add_medication_fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Invoke the fragment to add new Medication form
+                createFragment(new AddVitalSignFormFragment(), "addVitalSignFormFragment");
+            }
+        });
 
 
         VitalSignsHistoryAdapter vitalSignsHistoryAdapter =
@@ -71,14 +80,7 @@ public class VitalSignsFragment extends Fragment {
 //                startActivity(medicationDetailsIntent);
             }
         });
-        ImageView fab = (ImageView) view.findViewById(R.id.add_medication_fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Invoke the fragment to add new Medication form
-                createFragment(new AddVitalSignFormFragment(), "addVitalSignFormFragment");
-            }
-        });
+
 
         return view;
     }
