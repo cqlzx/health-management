@@ -15,12 +15,12 @@ import android.widget.ImageView;
 import com.along.android.healthmanagement.R;
 
 
-public class MedicationListingFragment extends BasicFragment {
+public class MedicationMenuFragment extends BasicFragment {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     private TabLayout tabLayout;
 
-    public MedicationListingFragment() {
+    public MedicationMenuFragment() {
         // Required empty public constructor
     }
 

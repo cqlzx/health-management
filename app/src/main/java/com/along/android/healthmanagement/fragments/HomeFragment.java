@@ -30,7 +30,7 @@ public class HomeFragment extends BasicFragment {
         btnMedication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createFragment(new MedicationListingFragment(), "medicationListingFragment");
+                createFragment(new MedicationMenuFragment(), "medicationListingFragment");
             }
         });
 

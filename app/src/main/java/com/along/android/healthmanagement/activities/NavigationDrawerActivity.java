@@ -23,7 +23,7 @@ import com.along.android.healthmanagement.fragments.AddMedicineFormFragment;
 import com.along.android.healthmanagement.fragments.AddPrescriptionFormFragment;
 import com.along.android.healthmanagement.fragments.DietFragment;
 import com.along.android.healthmanagement.fragments.HomeFragment;
-import com.along.android.healthmanagement.fragments.MedicationListingFragment;
+import com.along.android.healthmanagement.fragments.MedicationMenuFragment;
 import com.along.android.healthmanagement.fragments.NotificationFragment;
 import com.along.android.healthmanagement.fragments.ProfileFragment;
 import com.along.android.healthmanagement.fragments.VitalSignTabFragment;
@@ -112,7 +112,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
         if (id == R.id.nav_profile) {
             createFragment(new ProfileFragment(), "profileFragment");
         } else if (id == R.id.nav_medication) {
-            createFragment(new MedicationListingFragment(), "medicationListingFragment");
+            createFragment(new MedicationMenuFragment(), "medicationListingFragment");
         } else if (id == R.id.nav_diet) {
             createFragment(new DietFragment(), "dietFragment");
         } else if (id == R.id.nav_vital_signs) {
