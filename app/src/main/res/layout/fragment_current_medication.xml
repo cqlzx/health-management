@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:paddingTop="48dp"
     android:id="@+id/fragment_current_medication_id"
-    tools:context="com.along.android.healthmanagement.fragments.CurrentMedicationTabFragment">
+    tools:context="com.along.android.healthmanagement.fragments.MedicationCurrentTabFragment">
 
     <TextView
         android:id="@+id/tvMLEmptyMsg"

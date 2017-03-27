@@ -27,10 +27,10 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class VitalSignsFragment extends BasicFragment {
+public class VitalSignTabFragment extends BasicFragment {
 
 
-    public VitalSignsFragment() {
+    public VitalSignTabFragment() {
         // Required empty public constructor
     }
 

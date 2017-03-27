@@ -66,7 +66,7 @@ public class MedicationListingFragment extends BasicFragment {
 
             switch (position) {
                 case 0:
-                    return new CurrentMedicationTabFragment();
+                    return new MedicationCurrentTabFragment();
                 case 1:
                     return new MedicationHistoryTabFragment();
             }

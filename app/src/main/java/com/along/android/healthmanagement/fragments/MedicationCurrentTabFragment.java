@@ -24,9 +24,9 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CurrentMedicationTabFragment extends Fragment {
+public class MedicationCurrentTabFragment extends Fragment {
 
-    public CurrentMedicationTabFragment() {
+    public MedicationCurrentTabFragment() {
         // Required empty public constructor
     }
 

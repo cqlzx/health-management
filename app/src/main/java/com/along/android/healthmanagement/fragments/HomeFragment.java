@@ -46,7 +46,7 @@ public class HomeFragment extends BasicFragment {
         btnVitalSign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createFragment(new VitalSignsFragment(), "vitalSignsFragment");
+                createFragment(new VitalSignTabFragment(), "vitalSignsFragment");
             }
         });
 
