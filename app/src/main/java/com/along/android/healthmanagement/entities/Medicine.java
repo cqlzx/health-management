@@ -6,7 +6,11 @@ import com.orm.dsl.Table;
 @Table
 public class Medicine extends SugarRecord{
     private Long id, pid;
-    private String name, timings, quantity, frequency;
+    private String name;
+    private String timings;
+    private String quantity;
+    private String frequency;
+    private String rxcui;
 
     public Medicine() {
 
@@ -54,5 +58,14 @@ public class Medicine extends SugarRecord{
 
     public void setPid(Long pid) {
         this.pid = pid;
+    }
+
+
+    public String getRxcui() {
+        return rxcui;
+    }
+
+    public void setRxcui(String rxcui) {
+        this.rxcui = rxcui;
     }
 }

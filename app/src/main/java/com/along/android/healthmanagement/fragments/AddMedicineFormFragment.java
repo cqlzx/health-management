@@ -6,13 +6,15 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -22,6 +24,7 @@ import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.Medicine;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,16 +38,19 @@ import cz.msebera.android.httpclient.Header;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddMedicineFormFragment extends BasicFragment{
-
+public class AddMedicineFormFragment extends BasicFragment implements TextWatcher {
+    public static final int THRESHOLD = 3;
+    private static final List<String> COUNTRIES = null;
+    ArrayAdapter<String> adapter;
     OnMedicineAddedListener mCallback;
     ProgressDialog prgDialog;
+    AutoCompleteTextView autoCompleteTextView;
+    List<Medicine> autoCompleteMedicines;
+    TextView rxcui;
 
     public AddMedicineFormFragment() {
         // Required empty public constructor
     }
-
-    private static final List<String> COUNTRIES = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,15 +64,30 @@ public class AddMedicineFormFragment extends BasicFragment{
         prgDialog = new ProgressDialog(getActivity());
         prgDialog.setMessage("Please wait...");
         prgDialog.setCancelable(false);
-        List<String> medicines = getMedicineNames();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_dropdown_item_1line, medicines);
-        AutoCompleteTextView textView = (AutoCompleteTextView) view.findViewById(R.id.etMedicineName);
-        textView.setThreshold(3);
-        textView.setAdapter(adapter);
+        rxcui = (TextView) view.findViewById(R.id.tvRxcui);
 
-        final EditText medicineName = (EditText) view.findViewById(R.id.etMedicineName);
+        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line);
+        adapter.setNotifyOnChange(true);
+
+        autoCompleteTextView = (AutoCompleteTextView) view.findViewById(R.id.etMedicineName);
+        autoCompleteTextView.setThreshold(THRESHOLD);
+        autoCompleteTextView.setAdapter(adapter);
+        autoCompleteTextView.addTextChangedListener(this);
+        /*autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View itemView, int position, long id) {
+
+                for(Medicine medicine : autoCompleteMedicines) {
+                    if(medicine.equals(adapter.getItem(position))) {
+                        TextView rxcui = (TextView) view.findViewById(R.id.tvRxcui);
+                        rxcui.setText(medicine.getRxcui());
+                        Log.e("Rxcui", medicine.getRxcui());
+                        break;
+                    }
+                }
+            }
+        });*/
 
         final Spinner spinner = (Spinner) view.findViewById(R.id.spMedicineQty);
         spinner.getSelectedItem().toString();
@@ -101,16 +122,18 @@ public class AddMedicineFormFragment extends BasicFragment{
         btnSaveMedicine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!medicineName.getText().toString().equals("") &&
+                String medicineName = autoCompleteTextView.getText().toString();
+                if (!medicineName.equals("") &&
                         !medicineFrequency.getSelectedItem().toString().equals("") &&
                         !spinner.getSelectedItem().toString().equals("") &&
                         !medicineTimings.getText().toString().equals("")) {
 
                     Medicine medicine = new Medicine();
-                    medicine.setName(medicineName.getText().toString());
+                    medicine.setName(medicineName);
                     medicine.setFrequency(medicineFrequency.getSelectedItem().toString());
                     medicine.setQuantity(spinner.getSelectedItem().toString());
                     medicine.setTimings(medicineTimings.getText().toString());
+                    medicine.setRxcui(rxcui.getText().toString());
                     Long medicineId = medicine.save();
 
                     mCallback.onMedicineAdded(medicineId);
@@ -128,35 +151,80 @@ public class AddMedicineFormFragment extends BasicFragment{
         return view;
     }
 
-    private List<String> getMedicineNames() {
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        if (s.length() >= THRESHOLD) {
+            // If typed/selected item is equal to the item in the list then don't make a service call
+            if (null != autoCompleteMedicines) {
+                for (Medicine medicine : autoCompleteMedicines) {
+                    if (s.toString().equals(medicine.getName())) {
+                        rxcui.setText(medicine.getRxcui());
+                        Log.e("Rxcui", medicine.getRxcui());
+                        return;
+                    }
+                }
+            }
+            // Get the auto complete medicines by making a service call
+            getAutoCompleteMedicines(s.toString());
+        }
+    }
+
+    private void getAutoCompleteMedicines(String medicineName) {
         prgDialog.show();
-        final List<String> medicineNames = new ArrayList<String>();
+        autoCompleteMedicines = new ArrayList<Medicine>();
+
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get("https://rxnav.nlm.nih.gov/REST/displaynames.json",null ,new JsonHttpResponseHandler() {
+
+        RequestParams params = new RequestParams();
+        params.put("terms", medicineName);
+        params.put("ef", "STRENGTHS_AND_FORMS,RXCUIS");
+
+        client.get("https://clin-table-search.lhc.nlm.nih.gov/api/rxterms/v3/search", params, new JsonHttpResponseHandler() {
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+
                 prgDialog.hide();
                 try {
-                    JSONObject termsList = response.getJSONObject("displayTermsList");
-                    JSONArray termArray = termsList.getJSONArray("term");
-                    for(int i=0; i<termArray.length(); i++) {
-                        medicineNames.add(termArray.getString(i));
+                    JSONArray responseMedicineNames = response.getJSONArray(1);
+                    JSONArray rxcuis = response.getJSONObject(2).getJSONArray("RXCUIS");
+
+                    adapter.clear();
+
+                    for (int i = 0; i < responseMedicineNames.length(); i++) {
+                        Medicine med = new Medicine();
+                        med.setName(responseMedicineNames.getString(i));
+                        med.setRxcui(rxcuis.getJSONArray(i).getString(0));
+                        adapter.add(med.getName());
+                        autoCompleteMedicines.add(med);
                     }
 
-                } catch (JSONException e) {
-                    Toast.makeText(getContext(), "Error Occured [Server's JSON response might be invalid]!", Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
+                    autoCompleteTextView.showDropDown();
 
+                } catch (JSONException e) {
+                    Toast.makeText(getContext(), "Error Occured [Server's JSON response might be invalid]!", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    Toast.makeText(getContext(), "Error Occured", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
                 }
             }
 
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+                throwable.printStackTrace();
+            }
         });
-
-        return medicineNames;
-    }
-
-    public interface OnMedicineAddedListener {
-        public void onMedicineAdded(Long medicineId);
     }
 
     @Override
@@ -169,5 +237,9 @@ public class AddMedicineFormFragment extends BasicFragment{
             throw new ClassCastException(activity.toString()
                     + " must implement OnMedicineAddedListener");
         }
+    }
+
+    public interface OnMedicineAddedListener {
+        public void onMedicineAdded(Long medicineId);
     }
 }

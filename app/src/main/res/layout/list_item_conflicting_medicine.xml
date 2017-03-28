@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlNotifyMedicineConflict"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/medium">
+
+    <ImageView
+        android:id="@+id/ivAlertImage"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginRight="@dimen/small"
+        android:background="@drawable/ic_alert" />
+
+    <TextView
+        android:id="@+id/tvConflictingMedicineMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="52dp"
+        android:layout_marginRight="@dimen/small"
+        android:layout_toRightOf="@id/ivAlertImage" />
+
+    <TextView
+        android:id="@+id/tvConflictingMedicineDetailsLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvConflictingMedicineMessage"
+        android:layout_marginRight="@dimen/small"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@color/colorAccent" />
+
+</RelativeLayout>

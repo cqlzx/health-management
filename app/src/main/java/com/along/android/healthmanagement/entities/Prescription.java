@@ -6,7 +6,7 @@ import com.orm.dsl.Table;
 @Table
 public class Prescription extends SugarRecord{
     private Long id;
-    private String patientName, doctorName, disease, medication, startDate, endDate, intakeTimes, frequency;
+    private String patientName, doctorName, disease, medication, rxcuis, startDate, endDate, intakeTimes, frequency;
     private boolean notificationEnabled;
 
     public Prescription() {
@@ -87,5 +87,13 @@ public class Prescription extends SugarRecord{
 
     public void setNotificationEnabled(Boolean notificationEnabled) {
         this.notificationEnabled = notificationEnabled;
+    }
+
+    public String getRxcuis() {
+        return rxcuis;
+    }
+
+    public void setRxcuis(String rxcuis) {
+        this.rxcuis = rxcuis;
     }
 }
