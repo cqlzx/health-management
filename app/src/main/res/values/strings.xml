@@ -48,6 +48,8 @@
     <string name="add_time_link"><u>Add Time</u></string>
     <string name="reset_link"><u>Reset</u></string>
 
+    <string name="defaultVal">Default</string>
+
     <string-array name="numbers_array">
         <item>1</item>
         <item>2</item>

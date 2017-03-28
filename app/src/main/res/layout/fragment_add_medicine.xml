@@ -4,6 +4,13 @@
     android:layout_height="match_parent"
     tools:context="com.along.android.healthmanagement.fragments.AddMedicineFormFragment">
 
+    <TextView
+        android:id="@+id/tvRxcui"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:visibility="gone" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,9 +20,9 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_medicine_name"
-            android:layout_marginTop="@dimen/large"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large">
             <AutoCompleteTextView
                 android:id="@+id/etMedicineName"
                 android:layout_width="match_parent"
@@ -26,8 +33,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/large">
+            android:layout_marginTop="@dimen/large"
+            android:orientation="horizontal">
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -37,9 +44,9 @@
                 android:id="@+id/spMedicineQty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="80dp"
                 android:layout_marginLeft="@dimen/medium"
                 android:entries="@array/numbers_array"
+                android:minWidth="80dp"
                 android:textAppearance="?android:textAppearanceMedium" />
             <TextView
                 android:layout_width="wrap_content"
@@ -51,8 +58,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/vlarge">
+            android:layout_marginTop="@dimen/vlarge"
+            android:orientation="horizontal">
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -62,9 +69,9 @@
                 android:id="@+id/spMedicineFrequency"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="80dp"
                 android:layout_marginLeft="@dimen/medium"
                 android:entries="@array/numbers_array"
+                android:minWidth="80dp"
                 android:textAppearance="?android:textAppearanceMedium" />
             <TextView
                 android:layout_width="wrap_content"
@@ -76,14 +83,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Timings"
             android:layout_marginTop="@dimen/vlarge"
+            android:text="Timings"
             android:textAppearance="?android:textAppearanceMedium"/>
         <LinearLayout
+            android:id="@+id/llMedicineTimings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:id="@+id/llMedicineTimings"
             android:visibility="gone">
             <TextView
                 android:layout_width="wrap_content"
@@ -91,9 +98,9 @@
                 android:text="Take Medicines at "
                 android:textAppearance="?android:textAppearanceSmall"/>
             <TextView
+                android:id="@+id/tvTimings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvTimings"
                 android:textAppearance="?android:textAppearanceMedium"/>
         </LinearLayout>
 
@@ -102,25 +109,25 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/small"
             android:layout_marginTop="@dimen/large"
-            android:orientation="horizontal"
-            android:gravity="right">
+            android:gravity="right"
+            android:orientation="horizontal">
             <TextView
                 android:id="@+id/tvResetTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/large"
+                android:text="@string/reset_link"
                 android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@color/colorAccent"
-                android:text="@string/reset_link"/>
+                android:textColor="@color/colorAccent" />
 
             <TextView
                 android:id="@+id/tvAddTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorAccent"
                 android:layout_marginRight="@dimen/small"
+                android:text="@string/add_time_link"
                 android:textAppearance="?android:textAppearanceMedium"
-                android:text="@string/add_time_link"/>
+                android:textColor="@color/colorAccent" />
 
             <ImageView
                 android:layout_width="24dp"
@@ -129,9 +136,9 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="32dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:orientation="horizontal">
 
             <Button
