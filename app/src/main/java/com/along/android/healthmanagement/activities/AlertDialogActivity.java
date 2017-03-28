@@ -99,6 +99,7 @@ public class AlertDialogActivity extends Activity {
                         finish();
                         Log.d("cancel", "!!!!!");
                         sendContactEmail();
+                        isTaken = true;
                     }
                 });
         AlertDialog alert = builder.create();
