@@ -20,14 +20,13 @@ import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.Prescription;
-import com.along.android.healthmanagement.helpers.EntityManager;
 import com.along.android.healthmanagement.receivers.AlarmReceiver;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
+public class MedicationCurrentAdapter extends ArrayAdapter<Prescription> {
 
     private final String COLOR_PRIMARY_DARK = "#388E3C";
     private final String DEFAULT_TEXT_COLOR = "#808080";
@@ -38,7 +37,7 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
 
     private static List<Intent> alarmIntents;
 
-    public CurrentMedicationAdapter(Context context, List<Prescription> prescriptions) {
+    public MedicationCurrentAdapter(Context context, List<Prescription> prescriptions) {
         super(context, 0, prescriptions);
     }
 
@@ -48,7 +47,7 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
         View listItemView = convertView;
 
         if(null == convertView) {
-            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_current_medication, parent, false);
+            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_medication_current, parent, false);
         }
 
         final Prescription prescription = getItem(position);
@@ -116,7 +115,7 @@ public class CurrentMedicationAdapter extends ArrayAdapter<Prescription> {
                 alarms.remove(getPosition(prescription));
 
                 prescriptionRecord.delete();
-                CurrentMedicationAdapter.this.remove(prescription);
+                MedicationCurrentAdapter.this.remove(prescription);
                 dialog.dismiss();
             }
         });

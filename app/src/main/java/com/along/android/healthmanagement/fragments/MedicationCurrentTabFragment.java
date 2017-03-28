@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.activities.MedicationDetailsActivity;
-import com.along.android.healthmanagement.adapters.CurrentMedicationAdapter;
+import com.along.android.healthmanagement.adapters.MedicationCurrentAdapter;
 import com.along.android.healthmanagement.entities.Prescription;
 
 import java.util.ArrayList;
@@ -39,7 +39,7 @@ public class MedicationCurrentTabFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_current_medication, container, false);
+        View view = inflater.inflate(R.layout.fragment_medication_current, container, false);
 
         initializeMedicationListData(view);
 
@@ -100,14 +100,14 @@ public class MedicationCurrentTabFragment extends Fragment {
             }
         }
 
-        CurrentMedicationAdapter currentMedicationAdapter =
-                new CurrentMedicationAdapter(getActivity(), currentPrescription);
+        MedicationCurrentAdapter medicationCurrentAdapter =
+                new MedicationCurrentAdapter(getActivity(), currentPrescription);
 
         TextView tvEmptyMsg = (TextView) view.findViewById(R.id.tvMLEmptyMsg);
         ListView listView = (ListView) view.findViewById(R.id.current_medication_list);
 
         listView.setEmptyView(tvEmptyMsg);
-        listView.setAdapter(currentMedicationAdapter);
+        listView.setAdapter(medicationCurrentAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
