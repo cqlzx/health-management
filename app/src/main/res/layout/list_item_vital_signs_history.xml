@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/current_medication_list_item"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:padding="@dimen/medium"
                 android:visibility="visible"
+                android:orientation="horizontal"
                 xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <TextView
+        android:id="@+id/tvXLVSHId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:text="1"
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/ivVitalSigns"
@@ -19,14 +29,6 @@
         android:layout_alignParentStart="true"/>
 
     <TextView
-        android:id="@+id/tvXLVSHId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:text="1"
-        android:visibility="gone"/>
-
-    <TextView
         android:id="@+id/tvXLVSHDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,6 +38,32 @@
         android:textSize="16dp"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/ivVitalSigns"/>
+
+
+    <LinearLayout
+        android:id="@+id/llDelete"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".5"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/medium"
+        >
+        <ImageView
+            android:id="@+id/ivDelete"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:background="@drawable/ic_delete_bin"
+            android:backgroundTint="@color/lightIcon"/>
+        <TextView
+            android:id="@+id/tvDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/medium"
+            android:textColor="@color/lightIcon"
+            android:textSize="16sp"
+            android:text="Delete"/>
+    </LinearLayout>
 
 
 
@@ -53,4 +81,4 @@
         <!--android:layout_alignParentTop="true"-->
         <!--android:layout_alignParentStart="true"/>-->
 
-</RelativeLayout>
+</LinearLayout>
