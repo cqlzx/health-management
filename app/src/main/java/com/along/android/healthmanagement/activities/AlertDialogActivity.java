@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.entities.EmergencyContact;
 import com.along.android.healthmanagement.entities.NotificationResponse;
 import com.along.android.healthmanagement.entities.Prescription;
 import com.along.android.healthmanagement.entities.User;
@@ -130,15 +131,26 @@ public class AlertDialogActivity extends Activity {
         SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
         Long userIdS = sp.getLong("uid", 0);
         User user = EntityManager.findById(User.class, userIdS);
-        String email = user.getEmail();
-        String subject = "HealthManagement Support";
-        String content = makeEmailContent(user);
-        new MailHelper().execute(email, subject, content);
+//        String email = user.getEmail();
+//        String subject = "HealthManagement Support";
+//        String content = makeEmailContent(user);
 
+        EmergencyContact ec = EntityManager.findOneBy(EmergencyContact.class, "uid = ?", userIdS + "");
+        if (null != ec) {
+            String email = ec.getEmail();
+            String subject = "HealthManagement Support";
+            String content = makeEmailContentFromEmergencyContact(ec, user);
+            new MailHelper().execute(email, subject, content);
+        }
     }
 
     private String makeEmailContent(User user) {
         return "Dear " + user.getRealname() + "," +
+                "<br /><br />" + user.getRealname() + " didn`t take the medicine, tell him/her!";
+    }
+
+    private String makeEmailContentFromEmergencyContact(EmergencyContact ec, User user) {
+        return "Dear " + ec.getName() + "," +
                 "<br /><br />" + user.getRealname() + " didn`t take the medicine, tell him/her!";
     }
 }
