@@ -30,7 +30,7 @@ public class HomeFragment extends BasicFragment {
         btnMedication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createFragment(new MedicationListingFragment(), "medicationListingFragment");
+                createFragment(new MedicationMenuFragment(), "medicationListingFragment");
             }
         });
 
@@ -46,8 +46,7 @@ public class HomeFragment extends BasicFragment {
         btnVitalSign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: change back to vital sign history page
-                createFragment(new AddVitalSignFormFragment(), "addVitalSignFormFragment");
+                createFragment(new VitalSignTabFragment(), "vitalSignsFragment");
             }
         });
 

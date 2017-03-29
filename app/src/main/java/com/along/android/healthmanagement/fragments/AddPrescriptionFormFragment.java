@@ -2,6 +2,7 @@ package com.along.android.healthmanagement.fragments;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -16,17 +17,28 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.along.android.healthmanagement.R;
-import com.along.android.healthmanagement.activities.LoginActivity;
+import com.along.android.healthmanagement.adapters.ConflictingMedicineAdapter;
 import com.along.android.healthmanagement.adapters.MedicineAdapter;
+import com.along.android.healthmanagement.entities.ConflictingMedicine;
 import com.along.android.healthmanagement.entities.Medicine;
 import com.along.android.healthmanagement.entities.Prescription;
 import com.along.android.healthmanagement.helpers.EntityManager;
 import com.along.android.healthmanagement.helpers.Utility;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,9 +48,11 @@ public class AddPrescriptionFormFragment extends BasicFragment {
     private final int DEFAULT_MIN = 100;
 
     MedicineAdapter medicineAdapter;
+    ConflictingMedicineAdapter conflictingMedicineAdapter;
     EditText etPatientName, etDoctorName, etDisease;
     TextView tvStartDateInMillis, tvEndDateInMillis;
     List<Medicine> medicineList = new ArrayList<Medicine>();
+    ListView listViewConflictingMedicines;
 
     public AddPrescriptionFormFragment() {
         // Required empty public constructor
@@ -54,6 +68,8 @@ public class AddPrescriptionFormFragment extends BasicFragment {
         ListView listView = (ListView) view.findViewById(R.id.medicine_list);
         listView.setAdapter(medicineAdapter);
         Utility.setListViewHeightBasedOnChildren(listView);
+
+        listViewConflictingMedicines = (ListView) view.findViewById(R.id.conflicting_medicine_list);
 
         LinearLayout llAddMedicine = (LinearLayout) view.findViewById(R.id.llAddMedicineLink);
         llAddMedicine.setOnClickListener(new View.OnClickListener() {
@@ -108,8 +124,8 @@ public class AddPrescriptionFormFragment extends BasicFragment {
             @Override
             public void onClick(View v) {
                 // get all medicine ids and save it into prescription object
-                // merge medicine timing of all medicines and store it in prescription
-                // take min frequency of all the medicines and store it in prescription
+                // merge medicine timing of all autoCompleteMedicines and store it in prescription
+                // take min frequency of all the autoCompleteMedicines and store it in prescription
                 // save prescription
                 Log.d("enddata", tvEndDateInMillis.getText().toString());
                 if (!etPatientName.getText().toString().equals("") &&
@@ -123,20 +139,58 @@ public class AddPrescriptionFormFragment extends BasicFragment {
             }
         });
 
+        // Notify conflicting medicine
+        displayConflictingMedicine();
+
         return view;
+    }
+
+    private void displayConflictingMedicine() {
+        List<Prescription> prescriptionList = EntityManager.listAll(Prescription.class);
+        if (medicineAdapter.getCount() > 1 || (medicineAdapter.getCount() >= 1 && prescriptionList.size() > 0)) {
+
+            String allRxcui = getAllRxcuis(prescriptionList);
+            Log.i("Rxcuis: ", allRxcui);
+            notifyConflictingMedicine(allRxcui);
+        }
+    }
+
+    @NonNull
+    private String getAllRxcuis(List<Prescription> prescriptionList) {
+        String allRxcui = "";
+
+        // Get rxcuis of all the medicines existing in the prescription
+        for (int i = 0; i < prescriptionList.size(); i++) {
+            allRxcui += prescriptionList.get(i).getRxcuis();
+            if (i != (prescriptionList.size() - 1)) {
+                allRxcui += ",";
+            }
+            allRxcui = allRxcui.replace(",", "+");
+        }
+        allRxcui += "+";
+
+        // Get rxcuis of all the medicines in the current prescription
+        for (int i = 0; i < medicineAdapter.getCount(); i++) {
+            allRxcui += medicineAdapter.getItem(i).getRxcui();
+            if (i != (medicineAdapter.getCount() - 1)) {
+                allRxcui += "+";
+            }
+        }
+        return allRxcui;
     }
 
     private void savePrescription() {
         int count = medicineAdapter.getCount();
 
-        Set<String> medicines = new HashSet<String>();
+        Map<String, String> medicines = new HashMap<String, String>();
+        //Set<String> medicines = new HashSet<String>();
         Set<String> timings = new HashSet<String>();
         int minFrequency = DEFAULT_MIN;
         Medicine medicine;
         for (int i = 0; i < count; i++) {
             medicine = medicineAdapter.getItem(i);
 
-            medicines.add(medicine.getName());
+            medicines.put(medicine.getRxcui(), medicine.getName());
             timings.add(medicine.getTimings());
 
             int frequency = Integer.parseInt(medicine.getFrequency());
@@ -153,26 +207,71 @@ public class AddPrescriptionFormFragment extends BasicFragment {
         prescription.setEndDate(tvEndDateInMillis.getText().toString());
         prescription.setFrequency(minFrequency + "");
         prescription.setIntakeTimes(android.text.TextUtils.join(",", timings));
-        prescription.setMedication(android.text.TextUtils.join(",", medicines));
+        prescription.setMedication(android.text.TextUtils.join(",", medicines.values()));
+        prescription.setRxcuis(android.text.TextUtils.join(",", medicines.keySet()));
 
-            Long prescriptionId = prescription.save();
+        Long prescriptionId = prescription.save();
 
-            // Update the prescriptionId in the medicine table
-            for (int i = 0; i < count; i++) {
+        // Update the prescriptionId in the medicine table
+        for (int i = 0; i < count; i++) {
 
-                medicine = medicineAdapter.getItem(i);
-                Medicine med = EntityManager.findById(Medicine.class, medicine.getId());
-                med.setPid(prescriptionId);
-                med.save();
-            }
+            medicine = medicineAdapter.getItem(i);
+            Medicine med = EntityManager.findById(Medicine.class, medicine.getId());
+            med.setPid(prescriptionId);
+            med.save();
+        }
 
-            getFragmentManager().popBackStack();
-
-
+        getFragmentManager().popBackStack();
     }
 
     public void addMedicineToList(Long medicineId) {
         Medicine medicine = EntityManager.findById(Medicine.class, medicineId);
         medicineAdapter.add(medicine);
+    }
+
+    private void notifyConflictingMedicine(String rxcuis) {
+        final List<ConflictingMedicine> conflictingMedicines = new ArrayList<ConflictingMedicine>();
+        AsyncHttpClient client = new AsyncHttpClient();
+
+        //https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=207106+152923+656659
+        client.get("https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=" + rxcuis, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
+                    if (response.has("fullInteractionTypeGroup")) {
+                        JSONArray fullInteractionType = response.getJSONArray("fullInteractionTypeGroup").getJSONObject(0).getJSONArray("fullInteractionType");
+                        for (int i = 0; i < fullInteractionType.length(); i++) {
+                            JSONArray minConcept = fullInteractionType.getJSONObject(i).getJSONArray("minConcept");
+
+                            Medicine medicine1 = new Medicine();
+                            medicine1.setRxcui(minConcept.getJSONObject(0).getString("rxcui"));
+                            medicine1.setName(minConcept.getJSONObject(0).getString("name"));
+
+                            Medicine medicine2 = new Medicine();
+                            medicine2.setRxcui(minConcept.getJSONObject(1).getString("rxcui"));
+                            medicine2.setName(minConcept.getJSONObject(1).getString("name"));
+
+                            JSONArray interactionPair = fullInteractionType.getJSONObject(i).getJSONArray("interactionPair");
+                            JSONObject sourceConceptItem = interactionPair.getJSONObject(0).getJSONArray("interactionConcept").getJSONObject(0).getJSONObject("sourceConceptItem");
+                            String externalUrl = sourceConceptItem.getString("url");
+
+                            ConflictingMedicine pair = new ConflictingMedicine();
+                            pair.setMedicine1(medicine1);
+                            pair.setMedicine2(medicine2);
+                            pair.setExternalUrl(externalUrl);
+
+                            conflictingMedicines.add(pair);
+                        }
+                        conflictingMedicineAdapter = new ConflictingMedicineAdapter(getActivity(), conflictingMedicines);
+                        listViewConflictingMedicines.setAdapter(conflictingMedicineAdapter);
+                        Utility.setListViewHeightBasedOnChildren(listViewConflictingMedicines);
+                    }
+                } catch (JSONException e) {
+                    Toast.makeText(getContext(), "Error Occured [Server's JSON response might be invalid]!", Toast.LENGTH_SHORT).show();
+                    Log.e("Error Message: ", e.getMessage());
+                }
+            }
+
+        });
     }
 }

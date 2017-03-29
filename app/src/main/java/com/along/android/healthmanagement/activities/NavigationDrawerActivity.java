@@ -24,10 +24,10 @@ import com.along.android.healthmanagement.fragments.AddPrescriptionFormFragment;
 import com.along.android.healthmanagement.fragments.DietFragment;
 import com.along.android.healthmanagement.fragments.EmergencyFragment;
 import com.along.android.healthmanagement.fragments.HomeFragment;
-import com.along.android.healthmanagement.fragments.MedicationListingFragment;
+import com.along.android.healthmanagement.fragments.MedicationMenuFragment;
 import com.along.android.healthmanagement.fragments.NotificationFragment;
 import com.along.android.healthmanagement.fragments.ProfileFragment;
-import com.along.android.healthmanagement.fragments.VitalSignsFragment;
+import com.along.android.healthmanagement.fragments.VitalSignTabFragment;
 import com.along.android.healthmanagement.helpers.EntityManager;
 
 public class NavigationDrawerActivity extends AppCompatActivity
@@ -113,11 +113,11 @@ public class NavigationDrawerActivity extends AppCompatActivity
         if (id == R.id.nav_profile) {
             createFragment(new ProfileFragment(), "profileFragment");
         } else if (id == R.id.nav_medication) {
-            createFragment(new MedicationListingFragment(), "medicationListingFragment");
+            createFragment(new MedicationMenuFragment(), "medicationListingFragment");
         } else if (id == R.id.nav_diet) {
             createFragment(new DietFragment(), "dietFragment");
         } else if (id == R.id.nav_vital_signs) {
-            createFragment(new VitalSignsFragment(), "vitalSignsFragment");
+            createFragment(new VitalSignTabFragment(), "vitalSignsFragment");
         } else if (id == R.id.nav_notification) {
             createFragment(new NotificationFragment(), "notificationFragment");
         }

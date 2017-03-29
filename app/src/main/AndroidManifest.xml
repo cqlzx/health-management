@@ -52,6 +52,7 @@
             </intent-filter>
         </receiver>
         <activity android:name=".activities.MedicationDetailsActivity"></activity>
+        <activity android:name=".activities.VitalSignDetailsActivity"></activity>
     </application>
 
 </manifest>
