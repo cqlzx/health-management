@@ -131,17 +131,21 @@ public class AlertDialogActivity extends Activity {
         SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
         Long userIdS = sp.getLong("uid", 0);
         User user = EntityManager.findById(User.class, userIdS);
-//        String email = user.getEmail();
-//        String subject = "HealthManagement Support";
-//        String content = makeEmailContent(user);
+        String subject = "HealthManagement Support";
 
         EmergencyContact ec = EntityManager.findOneBy(EmergencyContact.class, "uid = ?", userIdS + "");
         if (null != ec) {
             String email = ec.getEmail();
-            String subject = "HealthManagement Support";
+            Log.d("email========", email);
             String content = makeEmailContentFromEmergencyContact(ec, user);
             new MailHelper().execute(email, subject, content);
+        } else {
+            String email = user.getEmail();
+            String content = makeEmailContent(user);
+            new MailHelper().execute(email, subject, content);
         }
+
+
     }
 
     private String makeEmailContent(User user) {

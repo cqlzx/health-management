@@ -1,6 +1,8 @@
 package com.along.android.healthmanagement.fragments;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -72,13 +74,17 @@ public class EmergencyFragment extends BasicFragment {
                 cont.setPhoneNumber(phoneNumber);
 
                 if (Validation.isEmpty(cont, getContext()) && Validation.isValidEmail(email, getContext()) && Validation.isValidPhonenumber(phoneNumber, getContext())) {
+                    SharedPreferences sp = getActivity().getSharedPreferences("Login", Context.MODE_PRIVATE);
+                    Long uid = sp.getLong("uid", 0);
                     if (emergencyContactList.size() >= 1) {
+                        emergencyContactList.get(0).setUid(uid);
                         emergencyContactList.get(0).setName(name);
                         emergencyContactList.get(0).setPhoneNumber(phoneNumber);
                         emergencyContactList.get(0).setEmail(email);
                         emergencyContactList.get(0).save();
                     } else {
                         EmergencyContact emergencyContact = new EmergencyContact();
+                        emergencyContact.setUid(uid);
                         emergencyContact.setName(name);
                         emergencyContact.setEmail(email);
                         emergencyContact.setPhoneNumber(phoneNumber);
