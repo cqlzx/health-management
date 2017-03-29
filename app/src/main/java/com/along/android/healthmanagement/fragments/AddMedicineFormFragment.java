@@ -195,20 +195,22 @@ public class AddMedicineFormFragment extends BasicFragment implements TextWatche
 
                 prgDialog.hide();
                 try {
-                    JSONArray responseMedicineNames = response.getJSONArray(1);
-                    JSONArray rxcuis = response.getJSONObject(2).getJSONArray("RXCUIS");
+                    if (null != response.getJSONArray(1) && response.getJSONArray(1).length() > 0) {
+                        JSONArray responseMedicineNames = response.getJSONArray(1);
+                        JSONArray rxcuis = response.getJSONObject(2).getJSONArray("RXCUIS");
 
-                    adapter.clear();
+                        adapter.clear();
 
-                    for (int i = 0; i < responseMedicineNames.length(); i++) {
-                        Medicine med = new Medicine();
-                        med.setName(responseMedicineNames.getString(i));
-                        med.setRxcui(rxcuis.getJSONArray(i).getString(0));
-                        adapter.add(med.getName());
-                        autoCompleteMedicines.add(med);
+                        for (int i = 0; i < responseMedicineNames.length(); i++) {
+                            Medicine med = new Medicine();
+                            med.setName(responseMedicineNames.getString(i));
+                            med.setRxcui(rxcuis.getJSONArray(i).getString(0));
+                            adapter.add(med.getName());
+                            autoCompleteMedicines.add(med);
+                        }
+
+                        autoCompleteTextView.showDropDown();
                     }
-
-                    autoCompleteTextView.showDropDown();
 
                 } catch (JSONException e) {
                     Toast.makeText(getContext(), "Error Occured [Server's JSON response might be invalid]!", Toast.LENGTH_SHORT).show();

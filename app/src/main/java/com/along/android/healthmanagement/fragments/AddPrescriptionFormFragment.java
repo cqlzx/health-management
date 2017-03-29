@@ -2,6 +2,7 @@ package com.along.android.healthmanagement.fragments;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -139,28 +140,43 @@ public class AddPrescriptionFormFragment extends BasicFragment {
         });
 
         // Notify conflicting medicine
+        displayConflictingMedicine();
+
+        return view;
+    }
+
+    private void displayConflictingMedicine() {
         List<Prescription> prescriptionList = EntityManager.listAll(Prescription.class);
         if (medicineAdapter.getCount() > 1 || (medicineAdapter.getCount() >= 1 && prescriptionList.size() > 0)) {
 
-            String allRxcui = "";
-            for (int i = 0; i < prescriptionList.size(); i++) {
-                allRxcui += prescriptionList.get(i).getRxcuis();
-                if (i != (prescriptionList.size() - 1)) {
-                    allRxcui += ",";
-                }
-                allRxcui = allRxcui.replace(",", "+");
-            }
-            allRxcui += "+";
-            for (int i = 0; i < medicineAdapter.getCount(); i++) {
-                allRxcui += medicineAdapter.getItem(i).getRxcui();
-                if (i != (medicineAdapter.getCount() - 1)) {
-                    allRxcui += "+";
-                }
-            }
+            String allRxcui = getAllRxcuis(prescriptionList);
             Log.i("Rxcuis: ", allRxcui);
             notifyConflictingMedicine(allRxcui);
         }
-        return view;
+    }
+
+    @NonNull
+    private String getAllRxcuis(List<Prescription> prescriptionList) {
+        String allRxcui = "";
+
+        // Get rxcuis of all the medicines existing in the prescription
+        for (int i = 0; i < prescriptionList.size(); i++) {
+            allRxcui += prescriptionList.get(i).getRxcuis();
+            if (i != (prescriptionList.size() - 1)) {
+                allRxcui += ",";
+            }
+            allRxcui = allRxcui.replace(",", "+");
+        }
+        allRxcui += "+";
+
+        // Get rxcuis of all the medicines in the current prescription
+        for (int i = 0; i < medicineAdapter.getCount(); i++) {
+            allRxcui += medicineAdapter.getItem(i).getRxcui();
+            if (i != (medicineAdapter.getCount() - 1)) {
+                allRxcui += "+";
+            }
+        }
+        return allRxcui;
     }
 
     private void savePrescription() {
@@ -222,7 +238,7 @@ public class AddPrescriptionFormFragment extends BasicFragment {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
-                    if (null != response.getJSONArray("fullInteractionTypeGroup")) {
+                    if (response.has("fullInteractionTypeGroup")) {
                         JSONArray fullInteractionType = response.getJSONArray("fullInteractionTypeGroup").getJSONObject(0).getJSONArray("fullInteractionType");
                         for (int i = 0; i < fullInteractionType.length(); i++) {
                             JSONArray minConcept = fullInteractionType.getJSONObject(i).getJSONArray("minConcept");
