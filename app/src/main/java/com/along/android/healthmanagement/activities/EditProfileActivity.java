@@ -21,10 +21,10 @@ import com.along.android.healthmanagement.helpers.Validation;
 
 public class EditProfileActivity extends AppCompatActivity {
 
-    private EditText editRealname, editEmail, editPassword1, editPassword2, editAge, editPhone;
     User user;
     RadioGroup radioGroupGender;
     Button btn_saveprofile, btn_cancel_edit_profile;
+    private EditText editRealname, editEmail, editPassword1, editPassword2, editAge, editPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class EditProfileActivity extends AppCompatActivity {
         // button
 
         btn_saveprofile = (Button) findViewById(R.id.btn_saveprofile);
-        btn_cancel_edit_profile = (Button) findViewById(R.id.btnCancelEmergency);
+        btn_cancel_edit_profile = (Button) findViewById(R.id.btn_cancel_edit_profile);
         //editview
         editRealname = (EditText) findViewById(R.id.editT_name);
         editEmail = (EditText) findViewById(R.id.editT_email);

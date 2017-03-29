@@ -1,10 +1,10 @@
 package com.along.android.healthmanagement.helpers;
 
 import android.content.Context;
-import android.text.style.LineHeightSpan;
 import android.widget.Toast;
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.entities.EmergencyContact;
 import com.along.android.healthmanagement.entities.User;
 
 import java.util.regex.Matcher;
@@ -31,6 +31,24 @@ public class Validation {
 
         return bool;
     }
+
+    public static boolean isEmpty(EmergencyContact emergencyContact, Context context) {
+        Boolean bool = true;
+
+        if (emergencyContact.getEmail().isEmpty()) {
+            Toast.makeText(context, "Email cannot be empty", Toast.LENGTH_LONG).show();
+            bool = false;
+        } else if (emergencyContact.getName().isEmpty()) {
+            Toast.makeText(context, "Name cannot be empty", Toast.LENGTH_LONG).show();
+            bool = false;
+        } else if (emergencyContact.getPhoneNumber().isEmpty()) {
+            Toast.makeText(context, "Phone Number cannot be empty", Toast.LENGTH_LONG).show();
+            bool = false;
+        }
+
+        return bool;
+    }
+
     public static boolean isPasswordMatch(String password, String confirmPassword, Context context) {
         Boolean bool = true;
         if (!password.equals(confirmPassword)) {
