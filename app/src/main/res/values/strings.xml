@@ -45,6 +45,7 @@
     <string name="empty_name">Full name cannot be empty</string>
 
     <string name="add_medicine_link"><u>Add New Medicine</u></string>
+    <string name="edit_emergency_link"><u>Edit Emergency Contact</u></string>
     <string name="add_time_link"><u>Add Time</u></string>
     <string name="reset_link"><u>Reset</u></string>
 

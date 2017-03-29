@@ -62,6 +62,10 @@ public class AddMedicineFormFragment extends BasicFragment{
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_dropdown_item_1line, medicines);
+
+
+
+
         AutoCompleteTextView textView = (AutoCompleteTextView) view.findViewById(R.id.etMedicineName);
         textView.setThreshold(3);
         textView.setAdapter(adapter);

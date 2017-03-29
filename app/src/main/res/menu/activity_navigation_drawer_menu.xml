@@ -22,6 +22,12 @@
             android:icon="@drawable/ic_menu_notifications"
             android:title="@string/notification" />
 
+        <item
+            android:id="@+id/nav_emergency"
+            android:icon="@drawable/ic_menu_emergency"
+            android:title="Emergency Contact" />
+
+
         <group android:id="@+id/group_settings_id">
             <item
                 android:id="@+id/nav_settings"

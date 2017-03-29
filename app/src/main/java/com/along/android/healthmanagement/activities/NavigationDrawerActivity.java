@@ -22,6 +22,7 @@ import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.fragments.AddMedicineFormFragment;
 import com.along.android.healthmanagement.fragments.AddPrescriptionFormFragment;
 import com.along.android.healthmanagement.fragments.DietFragment;
+import com.along.android.healthmanagement.fragments.EmergencyFragment;
 import com.along.android.healthmanagement.fragments.HomeFragment;
 import com.along.android.healthmanagement.fragments.MedicationListingFragment;
 import com.along.android.healthmanagement.fragments.NotificationFragment;
@@ -119,7 +120,11 @@ public class NavigationDrawerActivity extends AppCompatActivity
             createFragment(new VitalSignsFragment(), "vitalSignsFragment");
         } else if (id == R.id.nav_notification) {
             createFragment(new NotificationFragment(), "notificationFragment");
-        } else if (id == R.id.nav_settings) {
+        }
+        else if (id == R.id.nav_emergency) {
+            createFragment(new EmergencyFragment(), "EmergencyFragment");
+        }
+        else if (id == R.id.nav_settings) {
 
         }
         else if (id == R.id.nav_signout) {
@@ -154,4 +159,8 @@ public class NavigationDrawerActivity extends AppCompatActivity
            createFragment(newFragment, "addPrescriptionFormFragment");
         }
     }
+
+
+
+
 }

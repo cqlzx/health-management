@@ -32,7 +32,7 @@ public class NotificationResponse extends SugarRecord{
         this.userId = userId;
     }
 
-    public Boolean getNotificationResponse() {
+    public Boolean getNotifcationResponse() {
         return notificationResponse;
     }
 
