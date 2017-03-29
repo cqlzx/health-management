@@ -3,87 +3,86 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:text="blood Pressure"
-        android:textSize="16sp"
-        android:paddingLeft="16dp"
-        android:paddingTop="16dp"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
+        android:background="@drawable/rectangle"
+        android:backgroundTint="#FF6347"
         android:orientation="horizontal"
-        android:paddingLeft="32dp"
-        android:paddingTop="16dp">
+        android:padding="10dp"
+        android:layout_margin="8dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/tvSystolic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="32dp"
-        android:paddingTop="16dp">
-
+            android:text="Blood Pressure"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:textColor="@color/whiteF1"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
-
-
+            android:layout_weight="1" />
         <TextView
-            android:id="@+id/tvDiastolic"
+            android:id="@+id/tvBloodPressure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
+            android:textSize="28sp"
+            android:textColor="@color/whiteF1"
+            />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
+        android:background="@drawable/rectangle"
+        android:backgroundTint="#FFA500"
         android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingTop="16dp">
+        android:padding="10dp"
+        android:layout_margin="8dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
-
+            android:text="Weight"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:textColor="@color/whiteF1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
         <TextView
             android:id="@+id/tvWeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
+            android:textSize="28sp"
+            android:textColor="@color/whiteF1"
+            />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
+        android:background="@drawable/rectangle"
+        android:backgroundTint="#A0A0A0"
         android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingTop="16dp">
+        android:padding="10dp"
+        android:layout_margin="8dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
-
+            android:text="Height"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:textColor="@color/whiteF1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
         <TextView
             android:id="@+id/tvHeight"
             android:layout_width="wrap_content"
@@ -94,16 +93,21 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
+        android:background="@drawable/rectangle"
+        android:backgroundTint="#EC82E8"
         android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingTop="16dp">
+        android:padding="10dp"
+        android:layout_margin="8dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp" />
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
         <TextView
             android:id="@+id/tvBodyTemperature"
             android:layout_width="wrap_content"
@@ -114,16 +118,21 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
+        android:background="@drawable/rectangle"
+        android:backgroundTint="#D2B48C"
         android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingTop="16dp">
+        android:padding="10dp"
+        android:layout_margin="8dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp" />
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
         <TextView
             android:id="@+id/tvHeartRate"
             android:layout_width="wrap_content"
@@ -134,16 +143,21 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
+        android:background="@drawable/rectangle"
+        android:backgroundTint="#FDF5E6"
         android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingTop="16dp">
+        android:padding="10dp"
+        android:layout_margin="8dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp" />
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
         <TextView
             android:id="@+id/tvBloodGlucose"
             android:layout_width="wrap_content"

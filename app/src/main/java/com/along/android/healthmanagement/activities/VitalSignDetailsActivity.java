@@ -30,23 +30,21 @@ public class VitalSignDetailsActivity extends AppCompatActivity {
 
         TextView etWeight = (TextView) findViewById(R.id.tvWeight);
         TextView etHeight = (TextView) findViewById(R.id.tvHeight);
-        TextView etSystolic = (TextView) findViewById(R.id.tvSystolic);
-        TextView etDiastolic = (TextView) findViewById(R.id.tvDiastolic);
+        TextView etBloodPressure = (TextView) findViewById(R.id.tvBloodPressure);
+//        TextView etDiastolic = (TextView) findViewById(R.id.tvDiastolic);
         TextView etBloodGlucose = (TextView) findViewById(R.id.tvBloodGlucose);
         TextView etHeartRate = (TextView) findViewById(R.id.tvHeartRate);
         TextView etBodyTemperature = (TextView) findViewById(R.id.tvBodyTemperature);
 
 
-        String weightText = (null != vitalSign.getWeight() ? "weight: " + vitalSign.getWeight() + " lb" : "" );
+        String weightText = (null != vitalSign.getWeight() ? vitalSign.getWeight() + " lb" : "" );
         etWeight.setText(weightText);
         String heightText = (null != vitalSign.getHeight() ? "height: " + vitalSign.getHeight() + " in" : "");
         etHeight.setText(heightText);
 
         String[] bloodPressure = vitalSign.getBloodPressure().split(",");
-        String systolicText = (null != bloodPressure[0] ? "systolic: " + bloodPressure[0] + " mm Hg" : "");
-        etSystolic.setText(systolicText);
-        String diastolicText = (null != bloodPressure[1] ? "diastolic: " + bloodPressure[1] + " mm Hg" : "");
-        etDiastolic.setText(diastolicText);
+        String bloodPreessureText = (null != bloodPressure ? bloodPressure[0] + " - " + bloodPressure[1] + " mm Hg" : "");
+        etBloodPressure.setText(bloodPreessureText);
         String bloodGlucoseText = (null != vitalSign.getBloodGlucose() ? "bloodGlucose: " + vitalSign.getBloodGlucose() + " mg/dl" : "");
         etBloodGlucose.setText(bloodGlucoseText);
         String heartRateText = (null != vitalSign.getHeartRate() ? "heartRate: " + vitalSign.getHeartRate() + " bmp" : "");
