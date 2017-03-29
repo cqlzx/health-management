@@ -40,15 +40,14 @@ public class EditProfileActivity extends AppCompatActivity {
         // button
 
         btn_saveprofile = (Button) findViewById(R.id.btn_saveprofile);
-        btn_cancel_edit_profile = (Button) findViewById(R.id.btn_cancel_edit_profile);
+        btn_cancel_edit_profile = (Button) findViewById(R.id.btnCancelEmergency);
         //editview
         editRealname = (EditText) findViewById(R.id.editT_name);
         editEmail = (EditText) findViewById(R.id.editT_email);
         editPassword1 = (EditText) findViewById(R.id.editT_password1);
         editPassword2 = (EditText) findViewById(R.id.editT_password2);
         editAge = (EditText) findViewById(R.id.editT_age);
-//        editHeight = (EditText) findViewById(R.id.editT_height);
-//        editWeight = (EditText) findViewById(R.id.editT_weight);
+
         editPhone = (EditText) findViewById(R.id.editT_phoneNumber);
         // edit RadioButton
         radioGroupGender = (RadioGroup) findViewById(R.id.radioGroupGenderProfile);
@@ -62,8 +61,7 @@ public class EditProfileActivity extends AppCompatActivity {
             editRealname.setText(user.getRealname());
             editEmail.setText(user.getEmail());
             editAge.setText(user.getAge());
-//            editHeight.setText(user.getHeight());
-//            editWeight.setText(user.getWeight());
+
             editPhone.setText(user.getPhonenumber());
             editPassword1.setText(user.getPassword());
             editPassword2.setText(user.getPassword());
@@ -83,20 +81,12 @@ public class EditProfileActivity extends AppCompatActivity {
         {
             @Override
             public void onClick(View v) {
-                // save information and turn back
-//            int selectedId = radioGroupGender.getCheckedRadioButtonId();
-//                RadioButton radioButtonGender = (RadioButton) findViewById(selectedId);
-//            user.setGender(radioButtonGender.getText().toString());
-//                User user = new User();
 
-                //user.setRealname(editRealname.getText().toString());
+
                 user.setPassword(editPassword1.getText().toString());
                 user.setEmail(editEmail.getText().toString());
-//                user.setGender(radioGroupGender.getText().toString());
                 user.setAge(editAge.getText().toString());
                 user.setPhonenumber(editPhone.getText().toString());
-//                user.setWeight(editWeight.getText().toString());
-//                user.setHeight(editHeight.getText().toString());
 
                 int checkedId = radioGroupGender.getCheckedRadioButtonId();
                 RadioButton genderRadio = (RadioButton) findViewById(checkedId);
