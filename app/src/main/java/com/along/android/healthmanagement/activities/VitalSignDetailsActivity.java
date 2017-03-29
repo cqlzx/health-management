@@ -37,21 +37,21 @@ public class VitalSignDetailsActivity extends AppCompatActivity {
         TextView etBodyTemperature = (TextView) findViewById(R.id.tvBodyTemperature);
 
 
-        String weightText = "weight: " + (null != vitalSign.getWeight() ? vitalSign.getWeight() : "");
+        String weightText = (null != vitalSign.getWeight() ? "weight: " + vitalSign.getWeight() + " lb" : "" );
         etWeight.setText(weightText);
-        String heightText = "height: " + (null != vitalSign.getHeight() ? vitalSign.getHeight() : "");
+        String heightText = (null != vitalSign.getHeight() ? "height: " + vitalSign.getHeight() + " in" : "");
         etHeight.setText(heightText);
 
         String[] bloodPressure = vitalSign.getBloodPressure().split(",");
-        String systolicText = "systolic: " + (null != bloodPressure[0] ? bloodPressure[0] : "");
+        String systolicText = (null != bloodPressure[0] ? "systolic: " + bloodPressure[0] + " mm Hg" : "");
         etSystolic.setText(systolicText);
-        String diastolicText = "diastolic: " + (null != bloodPressure[1] ? bloodPressure[1] : "");
+        String diastolicText = (null != bloodPressure[1] ? "diastolic: " + bloodPressure[1] + " mm Hg" : "");
         etDiastolic.setText(diastolicText);
-        String bloodGlucoseText = "bloodGlucose: " + (null != vitalSign.getBloodGlucose() ? vitalSign.getBloodGlucose() : "");
+        String bloodGlucoseText = (null != vitalSign.getBloodGlucose() ? "bloodGlucose: " + vitalSign.getBloodGlucose() + " mg/dl" : "");
         etBloodGlucose.setText(bloodGlucoseText);
-        String heartRateText = "heartRate: " + (null != vitalSign.getHeartRate() ? vitalSign.getHeartRate() : "");
+        String heartRateText = (null != vitalSign.getHeartRate() ? "heartRate: " + vitalSign.getHeartRate() + " bmp" : "");
         etHeartRate.setText(heartRateText);
-        String bodyTemperatureText = "bodyTemperature: " + (null != vitalSign.getBodyTemperature() ? vitalSign.getBodyTemperature() : "");
+        String bodyTemperatureText = (null != vitalSign.getBodyTemperature() ? "bodyTemperature: " + vitalSign.getBodyTemperature() + " °F" : "");
         etBodyTemperature.setText(bodyTemperatureText);
 
     }
