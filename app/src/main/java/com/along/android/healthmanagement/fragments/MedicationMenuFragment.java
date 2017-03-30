@@ -10,6 +10,8 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
 import com.along.android.healthmanagement.R;
@@ -40,6 +42,11 @@ public class MedicationMenuFragment extends BasicFragment {
         tabLayout.setupWithViewPager(mViewPager);
 
         ImageView fab = (ImageView) view.findViewById(R.id.add_medication_fab);
+        ScaleAnimation animation = new ScaleAnimation(0f, 1.0f, 0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        animation.setFillAfter(true);
+        animation.setDuration(800);
+        fab.startAnimation(animation);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

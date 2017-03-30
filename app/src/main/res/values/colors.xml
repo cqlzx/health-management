@@ -31,4 +31,10 @@
     <color name="greyA">#AAAAAA</color>
     <color name="black3">#333333</color>
 
+    <color name="vitalSign1">#FFF6B5</color>
+    <color name="vitalSign2">#C2E8A0</color>
+    <color name="vitalSign3">#C2FFDA</color>
+    <color name="vitalSign4">#AADEE8</color>
+    <color name="vitalSign5">#BBC3FF</color>
+    <color name="vitalSign6">#EFC0FF</color>
 </resources>

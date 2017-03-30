@@ -2,7 +2,13 @@ package com.along.android.healthmanagement.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -65,6 +71,8 @@ public class MedicationDetailsActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.medication_detail_list);
         listView.setAdapter(medicationDetailAdapter);
 
+
+
     }
 
     @Override
@@ -78,4 +86,7 @@ public class MedicationDetailsActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
+
 }
