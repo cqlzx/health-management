@@ -653,7 +653,7 @@ public class AlertDialogActivity extends Activity {
                 "\t\t\t\t\t\t\t\t\t\t\t<!-- ======= section text ======= -->\n" +
                 "\t\t\t\t\t\t\t\t\t\t\t<span class=\"text_container\">\n" +
                 "\t\t\t\t\t        \t\t\t\t\t<multiline>\n" +
-                "\t\t\t\t\t        \t\t\t\t\t\ttell " + (user.getGender().equals("Male") ? "him" : "her") + " \n<a href=\"tel:" + ec.getPhoneNumber() + "\" >" + ec.getPhoneNumber() + "</a>\n" +
+                "\t\t\t\t\t        \t\t\t\t\t\ttell " + (user.getGender().equals("Male") ? "him" : "her") + " \n<a href=\"tel:" + user.getPhonenumber() + "\" >" + user.getPhonenumber() + "</a>\n" +
                 "\t\t\t\t\t        \t\t\t\t\t</multiline>\n" +
                 "\t\t\t\t\t\t\t\t\t\t\t</span>\n" +
                 "\t\t\t\t\t\t\t\t\t\t</div>\n" +
