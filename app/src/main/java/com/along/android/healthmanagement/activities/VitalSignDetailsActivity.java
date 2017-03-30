@@ -3,16 +3,11 @@ package com.along.android.healthmanagement.activities;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.VitalSign;
 import com.along.android.healthmanagement.helpers.EntityManager;
-
-import java.util.Calendar;
-import java.util.List;
 
 public class VitalSignDetailsActivity extends AppCompatActivity {
 
@@ -31,7 +26,6 @@ public class VitalSignDetailsActivity extends AppCompatActivity {
         TextView etWeight = (TextView) findViewById(R.id.tvWeight);
         TextView etHeight = (TextView) findViewById(R.id.tvHeight);
         TextView etBloodPressure = (TextView) findViewById(R.id.tvBloodPressure);
-//        TextView etDiastolic = (TextView) findViewById(R.id.tvDiastolic);
         TextView etBloodGlucose = (TextView) findViewById(R.id.tvBloodGlucose);
         TextView etHeartRate = (TextView) findViewById(R.id.tvHeartRate);
         TextView etBodyTemperature = (TextView) findViewById(R.id.tvBodyTemperature);
@@ -43,17 +37,22 @@ public class VitalSignDetailsActivity extends AppCompatActivity {
         etHeight.setText(heightText);
 
         String[] bloodPressure = vitalSign.getBloodPressure().split(",");
-        String bloodPreessureText = (null != bloodPressure ? bloodPressure[0] + " - " + bloodPressure[1] + " mm Hg" : "");
+        String bloodPreessureText = "";
+        if (bloodPressure.length == 1) {
+            bloodPreessureText = (null != bloodPressure ? bloodPressure[0] + " mm Hg" : "");
+        } else if (bloodPressure.length == 2) {
+            bloodPreessureText = (null != bloodPressure ? bloodPressure[0] + " - " + bloodPressure[1] + " mm Hg" : "");
+        }
+
         etBloodPressure.setText(bloodPreessureText);
-        String bloodGlucoseText = (null != vitalSign.getBloodGlucose() ? "bloodGlucose: " + vitalSign.getBloodGlucose() + " mg/dl" : "");
+        String bloodGlucoseText = (null != vitalSign.getBloodGlucose() ? vitalSign.getBloodGlucose() + " mg/dl" : "");
         etBloodGlucose.setText(bloodGlucoseText);
-        String heartRateText = (null != vitalSign.getHeartRate() ? "heartRate: " + vitalSign.getHeartRate() + " bmp" : "");
+        String heartRateText = (null != vitalSign.getHeartRate() ? vitalSign.getHeartRate() + " bmp" : "");
         etHeartRate.setText(heartRateText);
-        String bodyTemperatureText = (null != vitalSign.getBodyTemperature() ? "bodyTemperature: " + vitalSign.getBodyTemperature() + " °F" : "");
+        String bodyTemperatureText = (null != vitalSign.getBodyTemperature() ? vitalSign.getBodyTemperature() + " °F" : "");
         etBodyTemperature.setText(bodyTemperatureText);
 
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

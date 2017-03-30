@@ -1,169 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="Vital Signs"
+            android:textAppearance="?android:textAppearanceLarge" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:text="23 Mar, 2017"
+            android:textAppearance="?android:textAppearanceMedium" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:background="@drawable/rectangle"
-        android:backgroundTint="#FF6347"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:orientation="horizontal"
-        android:padding="10dp"
-        android:layout_margin="8dp">
+        android:padding="10dp">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium"
+            android:background="@drawable/ic_circle_bullet"
+            android:backgroundTint="@color/colorAccent" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Blood Pressure"
-            android:textStyle="bold"
-            android:textSize="22sp"
-            android:textColor="@color/whiteF1"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_marginLeft="@dimen/medium"
+            android:text="Blood Pressure: "
+            android:textAppearance="?android:textAppearanceMedium" />
         <TextView
             android:id="@+id/tvBloodPressure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28sp"
-            android:textColor="@color/whiteF1"
-            />
-
+            android:layout_marginLeft="@dimen/medium"
+            android:textAppearance="?android:textAppearanceMedium" />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_marginTop="@dimen/medium"
+        android:background="@color/greyD" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:background="@drawable/rectangle"
-        android:backgroundTint="#FFA500"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:orientation="horizontal"
-        android:padding="10dp"
-        android:layout_margin="8dp">
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium"
+            android:background="@drawable/ic_circle_bullet"
+            android:backgroundTint="@color/colorAccent" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Weight"
-            android:textStyle="bold"
-            android:textSize="22sp"
-            android:textColor="@color/whiteF1"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_marginLeft="@dimen/medium"
+            android:text="Weight: "
+            android:textAppearance="?android:textAppearanceMedium" />
+
         <TextView
             android:id="@+id/tvWeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28sp"
-            android:textColor="@color/whiteF1"
-            />
-
+            android:layout_marginLeft="@dimen/medium"
+            android:textAppearance="?android:textAppearanceMedium" />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_marginTop="@dimen/medium"
+        android:background="@color/greyD" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:background="@drawable/rectangle"
-        android:backgroundTint="#A0A0A0"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:orientation="horizontal"
-        android:padding="10dp"
-        android:layout_margin="8dp">
+        android:padding="10dp">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium"
+            android:background="@drawable/ic_circle_bullet"
+            android:backgroundTint="@color/colorAccent" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Height"
-            android:textStyle="bold"
-            android:textSize="22sp"
-            android:textColor="@color/whiteF1"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_marginLeft="@dimen/medium"
+            android:text="Height: "
+            android:textAppearance="?android:textAppearanceMedium" />
         <TextView
             android:id="@+id/tvHeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
-
+            android:layout_marginLeft="@dimen/medium"
+            android:textAppearance="?android:textAppearanceMedium" />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_marginTop="@dimen/medium"
+        android:background="@color/greyD" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:background="@drawable/rectangle"
-        android:backgroundTint="#EC82E8"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:orientation="horizontal"
-        android:padding="10dp"
-        android:layout_margin="8dp">
+        android:padding="10dp">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium"
+            android:background="@drawable/ic_circle_bullet"
+            android:backgroundTint="@color/colorAccent" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_marginLeft="@dimen/medium"
+            android:text="Body Temperature: "
+            android:textAppearance="?android:textAppearanceMedium" />
         <TextView
             android:id="@+id/tvBodyTemperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
-
+            android:layout_marginLeft="@dimen/medium"
+            android:textAppearance="?android:textAppearanceMedium" />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_marginTop="@dimen/medium"
+        android:background="@color/greyD" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:background="@drawable/rectangle"
-        android:backgroundTint="#D2B48C"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:orientation="horizontal"
-        android:padding="10dp"
-        android:layout_margin="8dp">
+        android:padding="10dp">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium"
+            android:background="@drawable/ic_circle_bullet"
+            android:backgroundTint="@color/colorAccent" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_marginLeft="@dimen/medium"
+            android:text="Heart Rate: "
+            android:textAppearance="?android:textAppearanceMedium" />
         <TextView
             android:id="@+id/tvHeartRate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
-
+            android:layout_marginLeft="@dimen/medium"
+            android:textAppearance="?android:textAppearanceMedium" />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_marginTop="@dimen/medium"
+        android:background="@color/greyD" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:background="@drawable/rectangle"
-        android:backgroundTint="#FDF5E6"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:orientation="horizontal"
-        android:padding="10dp"
-        android:layout_margin="8dp">
+        android:padding="10dp">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium"
+            android:background="@drawable/ic_circle_bullet"
+            android:backgroundTint="@color/colorAccent" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_marginLeft="@dimen/medium"
+            android:text="Blood Glucose: "
+            android:textAppearance="?android:textAppearanceMedium" />
         <TextView
             android:id="@+id/tvBloodGlucose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
-
+            android:layout_marginLeft="@dimen/medium"
+            android:textAppearance="?android:textAppearanceMedium" />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_marginTop="@dimen/medium"
+        android:background="@color/greyD" />
 
 </LinearLayout>

@@ -63,7 +63,7 @@ public class AddMedicineFormFragment extends BasicFragment implements TextWatche
 
         prgDialog = new ProgressDialog(getActivity());
         prgDialog.setMessage("Please wait...");
-        prgDialog.setCancelable(false);
+        prgDialog.setCancelable(true);
 
         rxcui = (TextView) view.findViewById(R.id.tvRxcui);
 
@@ -74,20 +74,6 @@ public class AddMedicineFormFragment extends BasicFragment implements TextWatche
         autoCompleteTextView.setThreshold(THRESHOLD);
         autoCompleteTextView.setAdapter(adapter);
         autoCompleteTextView.addTextChangedListener(this);
-        /*autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View itemView, int position, long id) {
-
-                for(Medicine medicine : autoCompleteMedicines) {
-                    if(medicine.equals(adapter.getItem(position))) {
-                        TextView rxcui = (TextView) view.findViewById(R.id.tvRxcui);
-                        rxcui.setText(medicine.getRxcui());
-                        Log.e("Rxcui", medicine.getRxcui());
-                        break;
-                    }
-                }
-            }
-        });*/
 
         final Spinner spinner = (Spinner) view.findViewById(R.id.spMedicineQty);
         spinner.getSelectedItem().toString();
