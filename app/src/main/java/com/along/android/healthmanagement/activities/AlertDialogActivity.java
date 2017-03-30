@@ -647,7 +647,7 @@ public class AlertDialogActivity extends Activity {
                 "\t\t\t\t\t\t\t<table border=\"0\" width=\"540\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" class=\"container590\">\n" +
                 "\t\t\t\t\t\t\t\t<tr>\n" +
                 "\t\t\t\t\t\t\t\t\t\n" +
-                "\t\t\t\t\t\t\t\t\t<td align=\"center\" mc:edit=\"main-text\" style=\"color: #ffffff; font-size: 16px; font-family: 'Open Sans', Open Sans, sans-serif; mso-line-height-rule: exactly; line-height: 30px;\" class=\"white_color\">\n" +
+                "\t\t\t\t\t\t\t\t\t<td align=\"center\" mc:edit=\"main-text\" style=\"color: #ffffff; font-size: 24px; font-family: 'Open Sans', Open Sans, sans-serif; mso-line-height-rule: exactly; line-height: 30px;\" class=\"white_color\">\n" +
                 "\t\t\t\t\t\t\t\t\t\t<div class=\"editable_text\" style=\"line-height: 30px\">\n" +
                 "\t\t\t\t\t\t\t\t\t\t\t\n" +
                 "\t\t\t\t\t\t\t\t\t\t\t<!-- ======= section text ======= -->\n" +
