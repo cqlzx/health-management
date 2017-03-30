@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/medium"
         android:padding="10dp">
 
         <TextView
@@ -18,20 +18,22 @@
             android:textAppearance="?android:textAppearanceLarge" />
 
         <TextView
+            android:id="@+id/tvVitalSignDetailsDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_gravity="right"
-            android:text="23 Mar, 2017"
+            android:text="Mar 30, 2017"
             android:textAppearance="?android:textAppearanceMedium" />
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/llBloodPressure"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/small"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="@dimen/medium">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -50,21 +52,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/medium"
-            android:textAppearance="?android:textAppearanceMedium" />
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <View
+        android:id="@+id/vBloodPressureSeparator"
         android:layout_width="match_parent"
         android:layout_height="1dip"
         android:layout_marginTop="@dimen/medium"
         android:background="@color/greyD" />
 
     <LinearLayout
+        android:id="@+id/llWeight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/small"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="@dimen/medium">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -85,21 +90,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/medium"
-            android:textAppearance="?android:textAppearanceMedium" />
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <View
+        android:id="@+id/vWeightSeparator"
         android:layout_width="match_parent"
         android:layout_height="1dip"
         android:layout_marginTop="@dimen/medium"
         android:background="@color/greyD" />
 
     <LinearLayout
+        android:id="@+id/llHeight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/small"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="@dimen/medium">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -118,21 +126,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/medium"
-            android:textAppearance="?android:textAppearanceMedium" />
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <View
+        android:id="@+id/vHeightSeparator"
         android:layout_width="match_parent"
         android:layout_height="1dip"
         android:layout_marginTop="@dimen/medium"
         android:background="@color/greyD" />
 
     <LinearLayout
+        android:id="@+id/llBodyTemperature"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/small"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="@dimen/medium">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -151,21 +162,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/medium"
-            android:textAppearance="?android:textAppearanceMedium" />
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <View
+        android:id="@+id/vBodyTemperatureSeparator"
         android:layout_width="match_parent"
         android:layout_height="1dip"
         android:layout_marginTop="@dimen/medium"
         android:background="@color/greyD" />
 
     <LinearLayout
+        android:id="@+id/llHeartRate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/small"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="@dimen/medium">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -184,21 +198,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/medium"
-            android:textAppearance="?android:textAppearanceMedium" />
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <View
+        android:id="@+id/vHeartRateSeparator"
         android:layout_width="match_parent"
         android:layout_height="1dip"
         android:layout_marginTop="@dimen/medium"
         android:background="@color/greyD" />
 
     <LinearLayout
+        android:id="@+id/llBloodGlucose"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/small"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="@dimen/medium">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -217,10 +234,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/medium"
-            android:textAppearance="?android:textAppearanceMedium" />
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <View
+        android:id="@+id/vBloodGlucoseSeparator"
         android:layout_width="match_parent"
         android:layout_height="1dip"
         android:layout_marginTop="@dimen/medium"
