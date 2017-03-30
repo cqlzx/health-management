@@ -15,7 +15,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
-import com.along.android.healthmanagement.activities.MedicationDetailsActivity;
 import com.along.android.healthmanagement.activities.VitalSignDetailsActivity;
 import com.along.android.healthmanagement.adapters.VitalSignsHistoryAdapter;
 import com.along.android.healthmanagement.entities.VitalSign;
@@ -73,6 +72,7 @@ public class VitalSignTabFragment extends BasicFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView vitalSignId = (TextView) view.findViewById(R.id.tvXLVSHId);
+                TextView vitalSignDate = (TextView) view.findViewById(R.id.tvXLVSHDate);
                 Log.d("--haha--->>>>>>>", vitalSignId.getText().toString());
 //                MedicationDetailsActivity medicationDetailActivity = new MedicationDetailsActivity();
 //
@@ -83,6 +83,7 @@ public class VitalSignTabFragment extends BasicFragment {
 //                startActivity(medicationDetailsIntent);
                 Intent vitalSignDetailsIntent = new Intent(getActivity(), VitalSignDetailsActivity.class);
                 vitalSignDetailsIntent.putExtra("selectedVitalSignItemId", vitalSignId.getText().toString());
+                vitalSignDetailsIntent.putExtra("selectedVitalSignItemDate", vitalSignDate.getText().toString());
                 startActivity(vitalSignDetailsIntent);
             }
         });
