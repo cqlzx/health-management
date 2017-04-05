@@ -5,10 +5,6 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-/**
- * Created by RitenVithlani on 2/28/17.
- */
-
 public class Utility {
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {

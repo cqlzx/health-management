@@ -38,7 +38,9 @@ public class HomeFragment extends BasicFragment {
         btnDiet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createFragment(new DietFragment(), "dietFragment");
+                //TODO:change back
+//                createFragment(new DietFragment(), "dietFragment");
+                createFragment(new MealDetailFragment(), "mealDetailFragment");
             }
         });
 

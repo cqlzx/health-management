@@ -17,7 +17,7 @@
     <color name="colorTabSelected">#227700</color>
 
     <color name="colorTile1">#5D9DAD</color>
-    <color name="colorTile2">#593FB7</color>
+    <color name="colorTile2">#593fb7</color>
     <color name="colorTile3">#BF5733</color>
     <color name="colorTile4">#8B00A6</color>
 
@@ -27,7 +27,7 @@
 
     <color name="whiteF1">#F1F1F1</color>
     <color name="greyE">#EEEEEE</color>
-    <color name="greyD">#DDDDDD</color>
+    <color name="greyD">#dddddd</color>
     <color name="greyA">#AAAAAA</color>
     <color name="black3">#333333</color>
 
@@ -37,4 +37,7 @@
     <color name="vitalSign4">#AADEE8</color>
     <color name="vitalSign5">#BBC3FF</color>
     <color name="vitalSign6">#EFC0FF</color>
+
+    <color name="dietBackground1">#6A80C7</color>
+    <color name="dietButtion1">#39C580</color>
 </resources>
