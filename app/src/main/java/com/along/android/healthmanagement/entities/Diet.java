@@ -3,7 +3,15 @@ package com.along.android.healthmanagement.entities;
 import com.orm.SugarRecord;
 
 public class Diet extends SugarRecord{
-    private Long id, waterConsumption, date;
+    private Long id, uid, waterConsumption, date;
+
+    public Long getUid() {
+        return uid;
+    }
+
+    public void setUid(Long uid) {
+        this.uid = uid;
+    }
 
     //Value is meal id
     private Long breakfast, lunch, dinner;
