@@ -4,7 +4,7 @@ import com.orm.SugarRecord;
 
 public class Food extends SugarRecord{
     private Long id;
-    private String name;
+    private String name, foodId, unit;
 
     //calories only store one single serve food's calories
     private Long amount, calories;
@@ -35,5 +35,21 @@ public class Food extends SugarRecord{
 
     public Long getFoodCalories(){
         return getCalories() * getAmount();
+    }
+
+    public String getFoodId() {
+        return foodId;
+    }
+
+    public void setFoodId(String foodId) {
+        this.foodId = foodId;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 }

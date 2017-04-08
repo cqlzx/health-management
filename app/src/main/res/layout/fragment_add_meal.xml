@@ -1,0 +1,118 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.along.android.healthmanagement.fragments.MedicationCurrentTabFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:background="@color/dietBackground1"
+            android:elevation="@dimen/small">
+
+            <RelativeLayout
+                android:id="@+id/rl_meal_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/large">
+
+                <TextView
+                    android:id="@+id/tv_meal_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:text="Breakfast"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@id/tv_meal_name"
+                    android:layout_alignParentRight="true"
+                    android:text="Apr 03, 2017"
+                    android:textColor="@android:color/white" />
+            </RelativeLayout>
+
+            <SearchView
+                android:id="@+id/sv_search_food"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_meal_title"
+                android:layout_marginLeft="@dimen/large"
+                android:layout_marginRight="@dimen/large"
+                android:background="@color/whiteF1"
+                android:queryHint="Search food" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_barcode_section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/large"
+            android:background="@color/white"
+            android:elevation="@dimen/vsmall"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/large"
+            android:paddingLeft="48dp"
+            android:paddingRight="48dp">
+
+            <ImageView
+                android:id="@+id/iv_ic_barcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/vlarge"
+                android:background="@drawable/ic_barcode" />
+
+            <TextView
+                android:id="@+id/tv_scan_barcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/medium"
+                android:text="Scan Barcode"
+                android:textAppearance="?android:textAppearanceMedium" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_search_result_section"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_search_results"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/greyD"
+                android:padding="@dimen/medium"
+                android:text="Search Results" />
+
+            <TextView
+                android:id="@+id/tv_no_food_entered_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/large"
+                android:text="No seach results to display"
+                android:textSize="20dp"
+                android:textStyle="italic" />
+
+            <ListView
+                android:id="@+id/auto_suggest_food_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/large" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

@@ -7,11 +7,13 @@
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="toolbar_height">80dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="vsmall">2dp</dimen>
     <dimen name="small_icon">24dp</dimen>
     <dimen name="small">4dp</dimen>
     <dimen name="medium">8dp</dimen>
     <dimen name="large">16dp</dimen>
     <dimen name="vlarge">24dp</dimen>
+    <dimen name="undo_large">-16dp</dimen>
     <dimen name="list_item_margin">16dp</dimen>
     <dimen name="list_item_padding">16dp</dimen>
     <dimen name="list_item_top_margin">16dp</dimen>

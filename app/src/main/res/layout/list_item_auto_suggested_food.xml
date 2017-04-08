@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/auto_suggest_food_list_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/medium">
+
+    <TextView
+        android:id="@+id/tv_food_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_food_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Food"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tv_food_calories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_food_name"
+        android:layout_marginRight="@dimen/medium"
+        android:text="Cal" />
+
+    <TextView
+        android:id="@+id/tv_food_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_food_name"
+        android:layout_marginRight="@dimen/small"
+        android:layout_toRightOf="@id/tv_food_calories"
+        android:text="Qty" />
+
+    <TextView
+        android:id="@+id/tv_food_unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_food_name"
+        android:layout_toRightOf="@id/tv_food_quantity"
+        android:text="Unit" />
+
+    <ImageView
+        android:id="@+id/iv_add_to_meal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/ic_add"
+        android:padding="@dimen/medium" />
+
+</RelativeLayout>

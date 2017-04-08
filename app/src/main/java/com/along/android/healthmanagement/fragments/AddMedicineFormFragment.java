@@ -150,7 +150,7 @@ public class AddMedicineFormFragment extends BasicFragment implements TextWatche
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         if (s.length() >= THRESHOLD) {
-            // If typed/selected item is equal to the item in the list then don't make a service call
+            // If typed/selected item is equal to the item in the list then don't make a service call. Just return
             if (null != autoCompleteMedicines) {
                 for (Medicine medicine : autoCompleteMedicines) {
                     if (s.toString().equals(medicine.getName())) {

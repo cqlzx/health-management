@@ -30,7 +30,7 @@ import static com.loopj.android.http.AsyncHttpClient.log;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DietFragment extends Fragment {
+public class DietFragment extends BasicFragment {
 
     CollapsingToolbarLayout toolbarLayout;
     NestedScrollView scrollView;
@@ -154,7 +154,7 @@ public class DietFragment extends Fragment {
         ivAddBreakfast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                createFragment(new AddMealFragment(), "adMealFragment");
             }
         });
 
@@ -173,7 +173,7 @@ public class DietFragment extends Fragment {
         ivAddLunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                createFragment(new AddMealFragment(), "adMealFragment");
             }
         });
 
@@ -193,7 +193,8 @@ public class DietFragment extends Fragment {
         ivAddDinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            log.d("---- >  haha","xx");
+                log.d("---- >  haha", "xx");
+                createFragment(new AddMealFragment(), "adMealFragment");
             }
         });
         // - Dinner Detail -
