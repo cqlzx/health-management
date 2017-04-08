@@ -24,6 +24,8 @@ import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.helpers.EntityManager;
 import com.john.waveview.WaveView;
 
+import java.util.Calendar;
+
 import static com.loopj.android.http.AsyncHttpClient.log;
 
 
@@ -36,7 +38,7 @@ public class DietFragment extends BasicFragment {
     NestedScrollView scrollView;
     ImageView imageView,ivCup1,ivCup2,ivCup3,ivCup4,ivCup5,ivCup6,ivCup7,ivCup8;
     RelativeLayout rlTitle;
-    TextView tvTitle,TvStartDateInDiet;
+    TextView tvTitle, tvStartDateInDiet, tvStartDateDiet;
     WaveView waveViewCup1,waveViewCup2,waveViewCup3,waveViewCup4,waveViewCup5,waveViewCup6,waveViewCup7,waveViewCup8;
     int cup1ProgressCount,cup2ProgressCount,cup3ProgressCount,cup4ProgressCount,cup5ProgressCount,cup6ProgressCount,cup7ProgressCount,cup8ProgressCount;
     CardView cvBreakfast,cvLunch,cvDinner;
@@ -146,7 +148,15 @@ public class DietFragment extends BasicFragment {
                 newFragment.show(getFragmentManager(), "startDatePicker");
             }
         });
-        TvStartDateInDiet = (TextView) view.findViewById(R.id.tvStartDateInDiet);
+        tvStartDateInDiet = (TextView) view.findViewById(R.id.tvStartDateInDiet);
+
+        // ---- set default start date as TODAY ----
+        tvStartDateDiet = (TextView) view.findViewById(R.id.tvStartDateDiet);
+        String[] months = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+        Calendar calendar = Calendar.getInstance();
+        String text = months[calendar.get(Calendar.MONTH)] + " " + calendar.get(Calendar.DAY_OF_MONTH) + ", " + calendar.get(Calendar.YEAR);
+        tvStartDateDiet.setText(text);
+        tvStartDateInDiet.setText(calendar.getTimeInMillis() + "");
 
         // ---------------------------------------------------------------------------------
         //  --  Add Breakfast  --
@@ -154,7 +164,13 @@ public class DietFragment extends BasicFragment {
         ivAddBreakfast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createFragment(new AddMealFragment(), "adMealFragment");
+                AddMealFragment addMealFragment = new AddMealFragment();
+                Bundle args = new Bundle();
+                args.putString("mealType", "Breakfast");
+                args.putString("mealDate", tvStartDateDiet.getText().toString());
+                args.putString("mealDateInMillis", tvStartDateInDiet.getText().toString());
+                addMealFragment.setArguments(args);
+                createFragment(addMealFragment, "adMealFragment");
             }
         });
 
@@ -173,7 +189,13 @@ public class DietFragment extends BasicFragment {
         ivAddLunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createFragment(new AddMealFragment(), "adMealFragment");
+                AddMealFragment addMealFragment = new AddMealFragment();
+                Bundle args = new Bundle();
+                args.putString("mealType", "Lunch");
+                args.putString("mealDate", tvStartDateDiet.getText().toString());
+                args.putString("mealDateInMillis", tvStartDateInDiet.getText().toString());
+                addMealFragment.setArguments(args);
+                createFragment(addMealFragment, "adMealFragment");
             }
         });
 
@@ -194,7 +216,13 @@ public class DietFragment extends BasicFragment {
             @Override
             public void onClick(View v) {
                 log.d("---- >  haha", "xx");
-                createFragment(new AddMealFragment(), "adMealFragment");
+                AddMealFragment addMealFragment = new AddMealFragment();
+                Bundle args = new Bundle();
+                args.putString("mealType", "Dinner");
+                args.putString("mealDate", tvStartDateDiet.getText().toString());
+                args.putString("mealDateInMillis", tvStartDateInDiet.getText().toString());
+                addMealFragment.setArguments(args);
+                createFragment(addMealFragment, "adMealFragment");
             }
         });
         // - Dinner Detail -

@@ -56,9 +56,19 @@ public class AddMealFragment extends BasicFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_meal, container, false);
 
+        initTitle(view);
         initSearch(view);
         initAutoSuggestFoodAdapter(view);
         return view;
+    }
+
+    private void initTitle(View view) {
+        String mealType = getArguments().getString("mealType");
+        String mealDate = getArguments().getString("mealDate");
+        TextView tvMealName = (TextView) view.findViewById(R.id.tv_meal_name);
+        tvMealName.setText(mealType);
+        TextView tvMealDate = (TextView) view.findViewById(R.id.tv_meal_date);
+        tvMealDate.setText(mealDate);
     }
 
     private void initAutoSuggestFoodAdapter(View view) {
