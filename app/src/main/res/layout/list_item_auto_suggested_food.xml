@@ -16,6 +16,7 @@
         android:id="@+id/tv_food_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/vlarge"
         android:text="Food"
         android:textColor="@color/colorPrimaryText"
         android:textSize="20dp" />

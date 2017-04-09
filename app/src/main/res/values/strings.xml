@@ -51,6 +51,7 @@
     <string name="reset_link"><u>Reset</u></string>
 
     <string name="defaultVal">Default</string>
+    <string name="camera_permission_msg">Please grant permission to access camera</string>
 
     <string-array name="numbers_array">
         <item>1</item>

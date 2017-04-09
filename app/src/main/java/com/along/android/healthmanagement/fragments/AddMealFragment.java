@@ -39,7 +39,9 @@ public class AddMealFragment extends BasicFragment {
     private static final String APP_ID = "08310541";
     private static final String APP_KEY = "b6d4734ba1b80bce25497956cfb60ca9";
     private static final String URL = "https://api.nutritionix.com/v1_1/search/";
+    private static final String UPC_URL = "https://api.nutritionix.com/v1_1/item/";
     private static final String REQUIRED_FIELDS_IN_RESPONSE = "item_name%2Citem_id%2Cnf_calories%2Cnf_serving_size_qty%2Cnf_serving_size_unit"; //%2C means comma
+
 
     private AutoSuggestedFoodAdapter adapter;
     private ProgressDialog prgDialog;
@@ -58,8 +60,19 @@ public class AddMealFragment extends BasicFragment {
 
         initTitle(view);
         initSearch(view);
+        initBarcode(view);
         initAutoSuggestFoodAdapter(view);
         return view;
+    }
+
+    private void initBarcode(View view) {
+        LinearLayout llBarcodeSection = (LinearLayout) view.findViewById(R.id.ll_barcode_section);
+        llBarcodeSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createFragment(new CameraPreviewFragment(), "cameraPreviewFragment");
+            }
+        });
     }
 
     private void initTitle(View view) {
@@ -96,7 +109,7 @@ public class AddMealFragment extends BasicFragment {
         final LinearLayout llBarcodeSection = (LinearLayout) view.findViewById(R.id.ll_barcode_section);
 
         SearchView svSearchFood = (SearchView) view.findViewById(R.id.sv_search_food);
-        svSearchFood.setIconified(false);
+        svSearchFood.setIconifiedByDefault(false);
         svSearchFood.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -180,4 +193,64 @@ public class AddMealFragment extends BasicFragment {
             }
         });
     }
+
+    public void receiveBarcode(String detectedBarcode) {
+        if (null != detectedBarcode) {
+            Log.i("Barcode Value: ", detectedBarcode);
+            getFoodByBarcode(detectedBarcode);
+        }
+    }
+
+    private void getFoodByBarcode(String upcCode) {
+        prgDialog.show();
+        autoSuggestedFoods = new ArrayList<Food>();
+
+        AsyncHttpClient client = new AsyncHttpClient();
+
+        String request = UPC_URL + "?upc=" + upcCode + "&appId=" + APP_ID + "&appKey=" + APP_KEY;
+
+        //https://api.nutritionix.com/v1_1/item?upc=49000036756&appId=08310541&appKey=b6d4734ba1b80bce25497956cfb60ca9
+        client.get(request, null, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                prgDialog.hide();
+                try {
+                    if (null != response) {
+                        String foodId = response.getString("item_id");
+                        String foodName = response.getString("item_name");
+                        Double dCalories = response.getDouble("nf_calories");
+                        Double dQty = response.getDouble("nf_serving_size_qty");
+                        String unit = response.getString("nf_serving_size_unit");
+
+                        Long calories = Math.round(dCalories);
+                        Long qty = Math.round(dQty);
+
+                        Food food = new Food();
+                        food.setFoodId(foodId);
+                        food.setName(foodName);
+                        food.setCalories(calories);
+                        food.setAmount(qty);
+                        food.setUnit(unit);
+
+                        Log.i("Food Detected", foodName);
+                        // Pass this food to Add Food Page
+                    }
+
+                } catch (JSONException e) {
+                    Toast.makeText(getContext(), "Error Occured [Server's JSON response might be invalid]!", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    Toast.makeText(getContext(), "Error Occured", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+                throwable.printStackTrace();
+            }
+        });
+    }
+
 }

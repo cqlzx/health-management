@@ -37,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBaseline="@id/tv_meal_name"
                     android:layout_alignParentRight="true"
-                    android:text="Apr 03, 2017"
+                    android:text="Apr 13, 2017"
                     android:textColor="@android:color/white" />
             </RelativeLayout>
 
@@ -62,8 +62,8 @@
             android:elevation="@dimen/vsmall"
             android:orientation="vertical"
             android:paddingBottom="@dimen/large"
-            android:paddingLeft="48dp"
-            android:paddingRight="48dp">
+            android:paddingLeft="@dimen/vlarge"
+            android:paddingRight="@dimen/vlarge">
 
             <ImageView
                 android:id="@+id/iv_ic_barcode"

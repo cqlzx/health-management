@@ -170,7 +170,7 @@ public class DietFragment extends BasicFragment {
                 args.putString("mealDate", tvStartDateDiet.getText().toString());
                 args.putString("mealDateInMillis", tvStartDateInDiet.getText().toString());
                 addMealFragment.setArguments(args);
-                createFragment(addMealFragment, "adMealFragment");
+                createFragment(addMealFragment, "addMealFragment");
             }
         });
 
@@ -195,7 +195,7 @@ public class DietFragment extends BasicFragment {
                 args.putString("mealDate", tvStartDateDiet.getText().toString());
                 args.putString("mealDateInMillis", tvStartDateInDiet.getText().toString());
                 addMealFragment.setArguments(args);
-                createFragment(addMealFragment, "adMealFragment");
+                createFragment(addMealFragment, "addMealFragment");
             }
         });
 
@@ -222,7 +222,7 @@ public class DietFragment extends BasicFragment {
                 args.putString("mealDate", tvStartDateDiet.getText().toString());
                 args.putString("mealDateInMillis", tvStartDateInDiet.getText().toString());
                 addMealFragment.setArguments(args);
-                createFragment(addMealFragment, "adMealFragment");
+                createFragment(addMealFragment, "addMealFragment");
             }
         });
         // - Dinner Detail -

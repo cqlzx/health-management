@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,8 +20,10 @@ import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.User;
+import com.along.android.healthmanagement.fragments.AddMealFragment;
 import com.along.android.healthmanagement.fragments.AddMedicineFormFragment;
 import com.along.android.healthmanagement.fragments.AddPrescriptionFormFragment;
+import com.along.android.healthmanagement.fragments.CameraPreviewFragment;
 import com.along.android.healthmanagement.fragments.DietFragment;
 import com.along.android.healthmanagement.fragments.EmergencyFragment;
 import com.along.android.healthmanagement.fragments.HomeFragment;
@@ -31,7 +34,7 @@ import com.along.android.healthmanagement.fragments.VitalSignTabFragment;
 import com.along.android.healthmanagement.helpers.EntityManager;
 
 public class NavigationDrawerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, AddMedicineFormFragment.OnMedicineAddedListener{
+        implements NavigationView.OnNavigationItemSelectedListener, AddMedicineFormFragment.OnMedicineAddedListener, CameraPreviewFragment.OnBarcodeDetectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,7 +163,15 @@ public class NavigationDrawerActivity extends AppCompatActivity
         }
     }
 
-
-
-
+    @Override
+    public void onBarcoodeDetected(String detectedBarcode) {
+        AddMealFragment addMealFragment = (AddMealFragment)
+                getSupportFragmentManager().findFragmentByTag("addMealFragment");
+        if (addMealFragment != null) {
+            addMealFragment.receiveBarcode(detectedBarcode);
+        } else {
+            Log.e("AddMealFragment", "AddMealFragment not be found");
+            createFragment(new AddMealFragment(), "addMealFragment");
+        }
+    }
 }
