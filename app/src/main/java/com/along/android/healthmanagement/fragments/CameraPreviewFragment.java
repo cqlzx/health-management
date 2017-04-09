@@ -2,11 +2,13 @@ package com.along.android.healthmanagement.fragments;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
 import com.along.android.healthmanagement.R;
 import com.google.zxing.Result;
@@ -27,12 +29,21 @@ public class CameraPreviewFragment extends AbstractRuntimePermission implements 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //View view = inflater.inflate(R.layout.fragment_camera_preview, container, false);
+
+        hideSoftKeyboard();
         mScannerView = new ZXingScannerView(getActivity());
         mScannerView.setResultHandler(this);
         requestAppPermissions(new String[]{Manifest.permission.CAMERA}, R.string.camera_permission_msg, REQUEST_PERMISSION);
 
         return mScannerView;
+    }
+
+    private void hideSoftKeyboard() {
+        View view = getActivity().getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
     @Override

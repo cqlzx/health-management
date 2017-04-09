@@ -19,7 +19,7 @@
         android:layout_marginRight="@dimen/vlarge"
         android:text="Food"
         android:textColor="@color/colorPrimaryText"
-        android:textSize="20dp" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/tv_food_calories"
