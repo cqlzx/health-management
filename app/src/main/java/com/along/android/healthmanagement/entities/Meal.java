@@ -3,13 +3,21 @@ package com.along.android.healthmanagement.entities;
 import com.orm.SugarRecord;
 
 public class Meal extends SugarRecord{
-    private Long id;
+    private Long id, uid;
 
     //Timestamp of the date
     private Long date;
 
     //foodIds format: "1,3,4"
     private String type, foodIds;
+
+    public Long getUid() {
+        return uid;
+    }
+
+    public void setUid(Long uid) {
+        this.uid = uid;
+    }
 
     public Long getDate() {
         return date;
