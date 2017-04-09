@@ -202,7 +202,6 @@ public class AddMealFragment extends BasicFragment {
     }
 
     private void getFoodByBarcode(String upcCode) {
-        prgDialog.show();
         autoSuggestedFoods = new ArrayList<Food>();
 
         AsyncHttpClient client = new AsyncHttpClient();
@@ -213,7 +212,6 @@ public class AddMealFragment extends BasicFragment {
         client.get(request, null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                prgDialog.hide();
                 try {
                     if (null != response) {
                         String foodId = response.getString("item_id");

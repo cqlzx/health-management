@@ -30,7 +30,6 @@ public class CameraPreviewFragment extends AbstractRuntimePermission implements 
         //View view = inflater.inflate(R.layout.fragment_camera_preview, container, false);
         mScannerView = new ZXingScannerView(getActivity());
         mScannerView.setResultHandler(this);
-
         requestAppPermissions(new String[]{Manifest.permission.CAMERA}, R.string.camera_permission_msg, REQUEST_PERMISSION);
 
         return mScannerView;
@@ -38,7 +37,8 @@ public class CameraPreviewFragment extends AbstractRuntimePermission implements 
 
     @Override
     public void onPermissionsGranted(int requestCode) {
-        mScannerView.startCamera();
+        if (REQUEST_PERMISSION == requestCode)
+            mScannerView.startCamera();
     }
 
     @Override
@@ -64,6 +64,8 @@ public class CameraPreviewFragment extends AbstractRuntimePermission implements 
         Log.i("Barcode: ", result.getText());
         Log.i("Barcode Format: ", result.getBarcodeFormat().name());
         barcodeDetectListener.onBarcoodeDetected(result.getText());
+        mScannerView.stopCamera();
+        getFragmentManager().popBackStack();
     }
 
     public interface OnBarcodeDetectedListener {
