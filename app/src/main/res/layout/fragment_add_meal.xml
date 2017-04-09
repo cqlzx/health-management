@@ -111,9 +111,7 @@
                 android:id="@+id/auto_suggest_food_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/large" />
-            android:paddingRight="@dimen/large" />
+                android:orientation="vertical" />
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>
