@@ -1,8 +1,15 @@
 package com.along.android.healthmanagement.adapters;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v4.widget.NestedScrollView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
+import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.Diet;
 
 import java.util.List;
@@ -16,42 +23,32 @@ public class DietAdapter extends ArrayAdapter<Diet> {
         super(context, 0, diets);
     }
 
-//    @NonNull
-//    @Override
-//    public View getView(int position, View convertView, ViewGroup parent) {
-//        View view = convertView;
-//        final ListView listView = (ListView) parent;
-//        final Diet diet = getItem(position);
-//
-//        if(null == convertView) {
-//            view = LayoutInflater.from(getContext()).inflate(R.layout.diet_content_scrolling, parent, false);
-//        }
-//
-//
-//
-//        // Id
-//        TextView vshId = (TextView) listItemView.findViewById(R.id.tvXLVSHId);
-//        vshId.setText(vitalsign.getId().toString());
-//
-//        // date
-//        TextView vshDateTV = (TextView) listItemView.findViewById(R.id.tvXLVSHDate);
-//
-//        // Prescription Date
+    @NonNull
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View listItemView = convertView;
+        final NestedScrollView listView = (NestedScrollView) parent;
+        final Diet diet = getItem(position);
+
+        if(null == convertView) {
+            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.diet_content_scrolling, parent, false);
+        }
+        // Id
+        TextView vshId = (TextView) listItemView.findViewById(R.id.tvDietId);
+        vshId.setText(diet.getId().toString());
+
 //        Calendar c = Calendar.getInstance();
-////        String startDate = null != prescription.getStartDate() ? prescription.getStartDate() : "";
-//        c.setTimeInMillis(Long.parseLong(vitalsign.getDate().toString()));
+////        c.setTimeInMillis(Long.parseLong(diet.getDate().toString()));
 //        int mYear = c.get(Calendar.YEAR);
 //        int mMonth = c.get(Calendar.MONTH);
 //        int mDay = c.get(Calendar.DAY_OF_MONTH);
-//
 //        String[] months = new String[]{"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 //        String prescriptionDateText =  months[mMonth] + " " + mDay + ", " + mYear;
-//
+//        // date
+//        TextView vshDateTV = (TextView) listItemView.findViewById(R.id.tvStartDateInDiet);
 //        vshDateTV.setText(prescriptionDateText);
-//
-//
-////        LinearLayout llDelete = (LinearLayout) listItemView.findViewById(R.id.llDelete);
-////        ImageView ivDelete = (ImageView) listItemView.findViewById(R.id.ivDelete);
+
+
 //        TextView tvDelete = (TextView) listItemView.findViewById(R.id.tvDelete);
 //        tvDelete.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -59,7 +56,8 @@ public class DietAdapter extends ArrayAdapter<Diet> {
 //                showDeleteAlertDialog(vitalsign,listView);
 //            }
 //        });
-//
-//        return view;
-//    }
+
+        return listItemView;
+    }
+
 }

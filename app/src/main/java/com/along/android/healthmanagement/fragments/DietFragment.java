@@ -20,8 +20,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
-import com.along.android.healthmanagement.entities.User;
-import com.along.android.healthmanagement.helpers.EntityManager;
 import com.john.waveview.WaveView;
 
 import java.util.Calendar;
@@ -65,11 +63,7 @@ public class DietFragment extends BasicFragment {
         Long userIdS = sp.getLong("uid", 0);
         System.out.println("----->>>>>>>>>>>>");
 
-        String realNameS = sp.getString("realname", null);
-        System.out.println(realNameS);
-
-        User user = EntityManager.findById(User.class, userIdS);
-
+//        Meal meal = EntityManager.findById(Meal.class, userIdS);
 
 
         toolbarLayout =(CollapsingToolbarLayout) view.findViewById(R.id.toolbar_layout);
@@ -244,7 +238,7 @@ public class DietFragment extends BasicFragment {
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                float height = ((float)200 + verticalOffset)/ 200 * 200 + 48;
+                float height = ((float)200 + verticalOffset)/ 200 * 200 + 100;
 
                 CollapsingToolbarLayout.LayoutParams params =
                         (CollapsingToolbarLayout.LayoutParams) rlTitle.getLayoutParams(); // 取控件mGrid当前的布局参数
@@ -252,7 +246,8 @@ public class DietFragment extends BasicFragment {
                 rlTitle.setLayoutParams(params); // 使设置好的布局参数应用到控件mGrid2
 
                 tvTitle.setTextColor(changeAlpha(getResources().getColor(R.color.whiteF1),
-                        Math.abs((200 + verticalOffset)*1.0f)/appBarLayout.getTotalScrollRange()));
+                        Math.abs((300 + verticalOffset)*1.0f)/appBarLayout.getTotalScrollRange()));
+
             }
             public int changeAlpha(int color, float fraction) {
                 int red = Color.red(color);
