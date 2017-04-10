@@ -23,7 +23,7 @@ import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.fragments.AddMealFragment;
 import com.along.android.healthmanagement.fragments.AddMedicineFormFragment;
 import com.along.android.healthmanagement.fragments.AddPrescriptionFormFragment;
-import com.along.android.healthmanagement.fragments.CameraPreviewFragment;
+import com.along.android.healthmanagement.fragments.BarcodeScannerFragment;
 import com.along.android.healthmanagement.fragments.DietFragment;
 import com.along.android.healthmanagement.fragments.EmergencyFragment;
 import com.along.android.healthmanagement.fragments.HomeFragment;
@@ -34,7 +34,7 @@ import com.along.android.healthmanagement.fragments.VitalSignTabFragment;
 import com.along.android.healthmanagement.helpers.EntityManager;
 
 public class NavigationDrawerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, AddMedicineFormFragment.OnMedicineAddedListener, CameraPreviewFragment.OnBarcodeDetectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, AddMedicineFormFragment.OnMedicineAddedListener, BarcodeScannerFragment.OnBarcodeDetectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

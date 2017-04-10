@@ -113,5 +113,42 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical" />
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_added_food_section"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_added_food"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".1"
+                android:background="@color/greyD"
+                android:padding="@dimen/medium"
+                android:text="You just added:" />
+
+            <ListView
+                android:id="@+id/added_food_list"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".78"
+                android:orientation="vertical" />
+
+            <Button
+                android:id="@+id/btn_save_meal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="@dimen/large"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="@dimen/large"
+                android:layout_weight=".12"
+                android:background="@drawable/rectangle_full_rounded_corners"
+                android:text="Save Meal"
+                android:textColor="@color/whiteF1" />
+        </LinearLayout>
     </LinearLayout>
 </FrameLayout>

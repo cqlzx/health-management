@@ -17,7 +17,9 @@ import android.widget.Toast;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.adapters.AutoSuggestedFoodAdapter;
+import com.along.android.healthmanagement.adapters.FoodAddedToMealAdapter;
 import com.along.android.healthmanagement.entities.Food;
+import com.along.android.healthmanagement.helpers.Utility;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -43,9 +45,15 @@ public class AddMealFragment extends BasicFragment {
     private static final String REQUIRED_FIELDS_IN_RESPONSE = "item_name%2Citem_id%2Cnf_calories%2Cnf_serving_size_qty%2Cnf_serving_size_unit"; //%2C means comma
 
 
-    private AutoSuggestedFoodAdapter adapter;
+    private AutoSuggestedFoodAdapter autoSuggestedFoodAdapter;
+    private FoodAddedToMealAdapter foodAddedToMealAdapter;
     private ProgressDialog prgDialog;
-    private ListView listView;
+    private ListView autoSuggestFoodListView;
+    private ListView addedFoodListView;
+    private LinearLayout llAddFoodSection;
+    private LinearLayout llBarcodeSection;
+    private LinearLayout llSearchResultSection;
+
     private List<Food> autoSuggestedFoods;
 
     public AddMealFragment() {
@@ -58,11 +66,41 @@ public class AddMealFragment extends BasicFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_meal, container, false);
 
+        initLinearLayouts(view);
         initTitle(view);
         initSearch(view);
         initBarcode(view);
-        initAutoSuggestFoodAdapter(view);
+        initAddedFoodList(view);
+        initSearchResultList(view);
         return view;
+    }
+
+    private void initLinearLayouts(View view) {
+        llAddFoodSection = (LinearLayout) view.findViewById(R.id.ll_added_food_section);
+        llSearchResultSection = (LinearLayout) view.findViewById(R.id.ll_search_result_section);
+        llBarcodeSection = (LinearLayout) view.findViewById(R.id.ll_barcode_section);
+    }
+
+    private void initAddedFoodList(View view) {
+        foodAddedToMealAdapter = new FoodAddedToMealAdapter(getContext(), new ArrayList<Food>());
+        addedFoodListView = (ListView) view.findViewById(R.id.added_food_list);
+        addedFoodListView.setAdapter(foodAddedToMealAdapter);
+
+        addedFoodListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            }
+        });
+    }
+
+    public void addFoodToMeal(Food food) {
+        // hide keyboard
+        // Hide search view and show food added to meal view
+        // Populate the list view with added food
+        Utility.hideSoftKeyboard(getActivity());
+        llAddFoodSection.setVisibility(View.VISIBLE);
+        llSearchResultSection.setVisibility(View.GONE);
+        foodAddedToMealAdapter.add(food);
     }
 
     private void initBarcode(View view) {
@@ -70,7 +108,7 @@ public class AddMealFragment extends BasicFragment {
         llBarcodeSection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createFragment(new CameraPreviewFragment(), "cameraPreviewFragment");
+                createFragment(new BarcodeScannerFragment(), "cameraPreviewFragment");
             }
         });
     }
@@ -84,16 +122,16 @@ public class AddMealFragment extends BasicFragment {
         tvMealDate.setText(mealDate);
     }
 
-    private void initAutoSuggestFoodAdapter(View view) {
+    private void initSearchResultList(View view) {
         TextView tvEmptyMsg = (TextView) view.findViewById(R.id.tv_no_food_entered_msg);
 
-        adapter = new AutoSuggestedFoodAdapter(getActivity(), new ArrayList<Food>());
-        listView = (ListView) view.findViewById(R.id.auto_suggest_food_list);
+        autoSuggestedFoodAdapter = new AutoSuggestedFoodAdapter(getActivity(), new ArrayList<Food>(), AddMealFragment.this);
+        autoSuggestFoodListView = (ListView) view.findViewById(R.id.auto_suggest_food_list);
 
-        listView.setEmptyView(tvEmptyMsg);
-        listView.setAdapter(adapter);
+        autoSuggestFoodListView.setEmptyView(tvEmptyMsg);
+        autoSuggestFoodListView.setAdapter(autoSuggestedFoodAdapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        autoSuggestFoodListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             }
@@ -104,9 +142,6 @@ public class AddMealFragment extends BasicFragment {
         prgDialog = new ProgressDialog(getActivity());
         prgDialog.setMessage("Please wait...");
         prgDialog.setCancelable(true);
-
-        final LinearLayout llSearchResultSection = (LinearLayout) view.findViewById(R.id.ll_search_result_section);
-        final LinearLayout llBarcodeSection = (LinearLayout) view.findViewById(R.id.ll_barcode_section);
 
         SearchView svSearchFood = (SearchView) view.findViewById(R.id.sv_search_food);
         svSearchFood.setIconifiedByDefault(false);
@@ -153,7 +188,7 @@ public class AddMealFragment extends BasicFragment {
                     if (null != response.getJSONArray("hits") && response.getJSONArray("hits").length() > 0) {
                         JSONArray hits = response.getJSONArray("hits");
 
-                        adapter.clear();
+                        autoSuggestedFoodAdapter.clear();
 
                         for (int i = 0; i < hits.length(); i++) {
                             String foodId = hits.getJSONObject(i).getJSONObject("fields").getString("item_id");
@@ -172,7 +207,7 @@ public class AddMealFragment extends BasicFragment {
                             food.setAmount(qty);
                             food.setUnit(unit);
 
-                            adapter.add(food);
+                            autoSuggestedFoodAdapter.add(food);
                             autoSuggestedFoods.add(food);
                         }
                     }

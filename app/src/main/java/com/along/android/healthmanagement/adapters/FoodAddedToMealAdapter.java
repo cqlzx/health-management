@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.Food;
-import com.along.android.healthmanagement.fragments.AddMealFragment;
 
 import java.util.List;
 
@@ -20,16 +19,13 @@ import java.util.List;
  * Created by RitenVithlani on 2/25/17.
  */
 
-public class AutoSuggestedFoodAdapter extends ArrayAdapter<Food> {
+public class FoodAddedToMealAdapter extends ArrayAdapter<Food> {
 
     private static final String DEFAULT_UNIT = "unit";
     private static final String DEFAULT_QTY = "1";
 
-    private AddMealFragment addMealFragment;
-
-    public AutoSuggestedFoodAdapter(Context context, List<Food> foods, AddMealFragment addMealFragment) {
+    public FoodAddedToMealAdapter(Context context, List<Food> foods) {
         super(context, 0, foods);
-        this.addMealFragment = addMealFragment;
     }
 
     @NonNull
@@ -38,7 +34,7 @@ public class AutoSuggestedFoodAdapter extends ArrayAdapter<Food> {
         View listItemView = convertView;
         final ListView listView = (ListView) parent;
         if (null == convertView) {
-            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_auto_suggested_food, parent, false);
+            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_food_added_to_meal, parent, false);
         }
 
         final Food food = getItem(position);
@@ -58,18 +54,20 @@ public class AutoSuggestedFoodAdapter extends ArrayAdapter<Food> {
         TextView foodUnit = (TextView) listItemView.findViewById(R.id.tv_food_unit);
         foodUnit.setText(null != food.getUnit() ? food.getUnit() : DEFAULT_UNIT);
 
-        initAddToMealButton(listItemView, food);
+        initAddToMealButton(listItemView);
 
         return listItemView;
     }
 
-    private void initAddToMealButton(View listItemView, final Food food) {
+    private void initAddToMealButton(View listItemView) {
         ImageView ivAddToMeal = (ImageView) listItemView.findViewById(R.id.iv_add_to_meal);
         ivAddToMeal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addMealFragment.addFoodToMeal(food);
+
             }
         });
+
     }
+
 }
