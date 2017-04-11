@@ -41,4 +41,8 @@
 
     <color name="dietBackground1">#6A80C7</color>
     <color name="dietButton1">#39C580</color>
+
+
+    <color name="dietButton2">#6ACA91</color>
+    <color name="colordietbar">#71D3B6</color>
 </resources>

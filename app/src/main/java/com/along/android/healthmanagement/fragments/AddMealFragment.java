@@ -54,6 +54,8 @@ public class AddMealFragment extends BasicFragment {
     private LinearLayout llBarcodeSection;
     private LinearLayout llSearchResultSection;
 
+    private SearchView svSearchFood;
+
     private List<Food> autoSuggestedFoods;
 
     public AddMealFragment() {
@@ -143,7 +145,7 @@ public class AddMealFragment extends BasicFragment {
         prgDialog.setMessage("Please wait...");
         prgDialog.setCancelable(true);
 
-        SearchView svSearchFood = (SearchView) view.findViewById(R.id.sv_search_food);
+        svSearchFood = (SearchView) view.findViewById(R.id.sv_search_food);
         svSearchFood.setIconifiedByDefault(false);
         svSearchFood.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -285,5 +287,11 @@ public class AddMealFragment extends BasicFragment {
             }
         });
     }
+
+    public void changeFragment(Fragment fragment){
+
+        svSearchFood.clearFocus();
+
+        createFragment(fragment, "addFoodFragment");    }
 
 }

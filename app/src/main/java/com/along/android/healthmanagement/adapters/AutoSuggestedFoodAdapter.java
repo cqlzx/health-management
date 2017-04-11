@@ -1,6 +1,7 @@
 package com.along.android.healthmanagement.adapters;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.Food;
+import com.along.android.healthmanagement.fragments.AddFoodFragment;
 import com.along.android.healthmanagement.fragments.AddMealFragment;
 
 import java.util.List;
@@ -43,7 +45,7 @@ public class AutoSuggestedFoodAdapter extends ArrayAdapter<Food> {
 
         final Food food = getItem(position);
 
-        TextView foodId = (TextView) listItemView.findViewById(R.id.tv_food_id);
+        final TextView foodId = (TextView) listItemView.findViewById(R.id.tv_food_id);
         foodId.setText(food.getFoodId());
 
         TextView foodName = (TextView) listItemView.findViewById(R.id.tv_food_name);
@@ -60,6 +62,19 @@ public class AutoSuggestedFoodAdapter extends ArrayAdapter<Food> {
 
         initAddToMealButton(listItemView, food);
 
+        listItemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddFoodFragment addFoodFragment = new AddFoodFragment();
+                Bundle args = new Bundle();
+                args.putString("FoodId", food.getFoodId().toString());
+                addFoodFragment.setArguments(args);
+
+                addMealFragment.changeFragment(addFoodFragment);
+
+            }
+        });
+
         return listItemView;
     }
 
@@ -72,4 +87,7 @@ public class AutoSuggestedFoodAdapter extends ArrayAdapter<Food> {
             }
         });
     }
+
+
+
 }
