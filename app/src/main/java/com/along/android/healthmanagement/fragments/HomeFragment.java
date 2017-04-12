@@ -39,8 +39,8 @@ public class HomeFragment extends BasicFragment {
             @Override
             public void onClick(View v) {
                 //TODO:change back
-//                createFragment(new DietFragment(), "dietFragment");
-                createFragment(new MealDetailFragment(), "mealDetailFragment");
+                createFragment(new DietFragment(), "dietFragment");
+//                createFragment(new MealDetailFragment(), "mealDetailFragment");
             }
         });
 

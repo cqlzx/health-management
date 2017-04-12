@@ -226,9 +226,9 @@ public class DietFragment extends BasicFragment {
                 if (breakfastMealId !=null){
                     MealDetailFragment detailFragment = new MealDetailFragment();
                     Bundle args = new Bundle();
-                    args.putString("mealId", breakfastMealId.toString());
+                    args.putLong("mealId", breakfastMealId);
                     detailFragment.setArguments(args);
-                    createFragment(detailFragment, "addMealFragment");
+                    createFragment(detailFragment, "mealDetailFragment");
                 }
             }
         });
@@ -256,9 +256,9 @@ public class DietFragment extends BasicFragment {
                 if (lunchMealId !=null){
                     MealDetailFragment detailFragment = new MealDetailFragment();
                     Bundle args = new Bundle();
-                    args.putString("mealId", lunchMealId.toString());
+                    args.putLong("mealId", lunchMealId);
                     detailFragment.setArguments(args);
-                    createFragment(detailFragment, "addMealFragment");
+                    createFragment(detailFragment, "mealDetailFragment");
                 }
             }
         });
@@ -285,9 +285,9 @@ public class DietFragment extends BasicFragment {
                 if (dinnerMealId !=null){
                     MealDetailFragment detailFragment = new MealDetailFragment();
                     Bundle args = new Bundle();
-                    args.putString("mealId", dinnerMealId.toString());
+                    args.putLong("mealId", dinnerMealId);
                     detailFragment.setArguments(args);
-                    createFragment(detailFragment, "addMealFragment");
+                    createFragment(detailFragment, "mealDetailFragment");
                 }
             }
         });
@@ -387,15 +387,6 @@ public class DietFragment extends BasicFragment {
         }
     }
 
-    private class cupListener implements View.OnClickListener {
-            public void onClick(View v) {
-                int tag = (int) v.getTag();
-                waterConsumption.setUid(userId);
-                waterConsumption.setDate(dayTime);
-                doCupClick(tag);
-//                System.out.println("-m-->>>"+tag);
-            }
-    }
     private void doCupClick(int tag) {
 
         switch (tag) {
@@ -660,5 +651,15 @@ public class DietFragment extends BasicFragment {
             default:
                 break;
         } //
+    }
+
+    private class cupListener implements View.OnClickListener {
+        public void onClick(View v) {
+            int tag = (int) v.getTag();
+            waterConsumption.setUid(userId);
+            waterConsumption.setDate(dayTime);
+            doCupClick(tag);
+//                System.out.println("-m-->>>"+tag);
+        }
     }
 }

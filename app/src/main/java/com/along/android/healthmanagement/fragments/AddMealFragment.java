@@ -170,18 +170,25 @@ public class AddMealFragment extends BasicFragment {
                     foodIds.deleteCharAt(foodIds.length() - 1);
                 }
 
-                Meal meal = new Meal();
+                Meal meal;
+                if (0L == getArguments().getLong("mealId")) {
+                    meal = new Meal();
 
-                String mealDateInMillis = getArguments().getString("mealDateInMillis");
-                String mealType = getArguments().getString("mealType");
-                Long lMealDateInMillis = Long.parseLong(mealDateInMillis);
+                    String mealDateInMillis = getArguments().getString("mealDateInMillis");
+                    String mealType = getArguments().getString("mealType");
+                    Long lMealDateInMillis = Long.parseLong(mealDateInMillis);
 
-                meal.setFoodIds(foodIds.toString());
-                meal.setType(mealType);
-                meal.setDate(lMealDateInMillis);
-                meal.setUid(userId);
+                    meal.setFoodIds(foodIds.toString());
+                    meal.setType(mealType);
+                    meal.setDate(lMealDateInMillis);
+                    meal.setUid(userId);
+                } else {
+                    meal = EntityManager.findById(Meal.class, getArguments().getLong("mealId"));
+                    meal.setFoodIds(foodIds.toString());
+                }
+
                 meal.save();
-
+                //Log.i("Save Meal: ", userId + " " + mealType + " " + foodIds + " " + lMealDateInMillis);
                 MealFood.getInstance().setFoods(null);
                 getFragmentManager().popBackStack();
             }

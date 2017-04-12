@@ -18,7 +18,6 @@ import com.along.android.healthmanagement.helpers.EntityManager;
 import com.along.android.healthmanagement.helpers.Utility;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -27,19 +26,21 @@ import java.util.List;
 public class MealDetailFragment extends BasicFragment {
     private static String MEAL_ID_STRING = "MEAL_ID_STRING";
     public Long mealId;
+    private Meal meal;
     private TextView tv_meal_date, tv_meal_type;
 
+    private MealDetailAdapter adapter;
     public MealDetailFragment() {
         // Required empty public constructor
     }
 
-    public static MealDetailFragment newInstance(Long mealId) {
-        MealDetailFragment fragment = new MealDetailFragment();
-        Bundle args = new Bundle();
-        args.putLong(MEAL_ID_STRING, mealId);
-        fragment.setArguments(args);
-        return fragment;
-    }
+//    public static MealDetailFragment newInstance(Long mealId) {
+//        MealDetailFragment fragment = new MealDetailFragment();
+//        Bundle args = new Bundle();
+//        args.putLong(MEAL_ID_STRING, mealId);
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +51,7 @@ public class MealDetailFragment extends BasicFragment {
 
 
 
-        StringBuilder sb = new StringBuilder();
+        /*StringBuilder sb = new StringBuilder();
         for (int i = 1; i <= 5; i++) {
             Food food = new Food();
             food.setName("Sandwich" + i);
@@ -69,11 +70,11 @@ public class MealDetailFragment extends BasicFragment {
         mockMeal.setType("Breakfast");
         mockMeal.setFoodIds(sb.toString());
         Long mid = mockMeal.save();
-        mealId = mid;
+        mealId = mid;*/
 
 
-        //mealId = getArguments().getLong(MEAL_ID_STRING);
-        final Meal meal = EntityManager.findById(Meal.class, mealId);
+        mealId = getArguments().getLong("mealId");
+        meal = EntityManager.findById(Meal.class, mealId);
 
         tv_meal_type = (TextView) view.findViewById(R.id.tv_meal_detail_type);
         tv_meal_type.setText(meal.getType());
@@ -111,10 +112,12 @@ public class MealDetailFragment extends BasicFragment {
             list.add(food);
         }
 
-        MealDetailAdapter adapter = new MealDetailAdapter(getActivity(), list, this, view);
-
         ListView listView = (ListView) view.findViewById(R.id.meal_detail_list);
+        adapter = new MealDetailAdapter(getActivity(), this, view);
         listView.setAdapter(adapter);
+
+        adapter.clear();
+        adapter.addAll(list);
         Utility.setListViewHeightBasedOnChildren(listView);
 
         return view;
