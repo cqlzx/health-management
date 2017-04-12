@@ -69,7 +69,7 @@ public class AutoSuggestedFoodAdapter extends ArrayAdapter<Food> {
                 Bundle args = new Bundle();
                 args.putString("FoodId", food.getFoodId().toString());
                 addFoodFragment.setArguments(args);
-
+                addMealFragment.clearSearchField();
                 addMealFragment.changeFragment(addFoodFragment);
 
             }
@@ -87,7 +87,4 @@ public class AutoSuggestedFoodAdapter extends ArrayAdapter<Food> {
             }
         });
     }
-
-
-
 }

@@ -2,6 +2,8 @@ package com.along.android.healthmanagement.fragments;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -9,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -19,6 +22,8 @@ import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.adapters.AutoSuggestedFoodAdapter;
 import com.along.android.healthmanagement.adapters.FoodAddedToMealAdapter;
 import com.along.android.healthmanagement.entities.Food;
+import com.along.android.healthmanagement.entities.Meal;
+import com.along.android.healthmanagement.helpers.MealFood;
 import com.along.android.healthmanagement.helpers.Utility;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -43,7 +48,6 @@ public class AddMealFragment extends BasicFragment {
     private static final String URL = "https://api.nutritionix.com/v1_1/search/";
     private static final String UPC_URL = "https://api.nutritionix.com/v1_1/item/";
     private static final String REQUIRED_FIELDS_IN_RESPONSE = "item_name%2Citem_id%2Cnf_calories%2Cnf_serving_size_qty%2Cnf_serving_size_unit"; //%2C means comma
-
 
     private AutoSuggestedFoodAdapter autoSuggestedFoodAdapter;
     private FoodAddedToMealAdapter foodAddedToMealAdapter;
@@ -77,6 +81,35 @@ public class AddMealFragment extends BasicFragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        MealFood mealFood = MealFood.getInstance();
+        manageStates();
+        if (null != mealFood.getFoods()) {
+            foodAddedToMealAdapter.clear();
+            foodAddedToMealAdapter.addAll(mealFood.getFoods());
+        }
+    }
+
+    private void manageStates() {
+        MealFood mealFood = MealFood.getInstance();
+
+        if (mealFood.getState() == MealFood.State.SEARCH_RESULTS) {
+            llAddFoodSection.setVisibility(View.GONE);
+            llSearchResultSection.setVisibility(View.VISIBLE);
+            llBarcodeSection.setVisibility(View.GONE);
+        } else if (mealFood.getState() == MealFood.State.FOOD_ADDED_FROM_PAGE || mealFood.getState() == MealFood.State.FOOD_ADDED_DIRECT) {
+            llAddFoodSection.setVisibility(View.VISIBLE);
+            llSearchResultSection.setVisibility(View.GONE);
+            llBarcodeSection.setVisibility(View.GONE);
+        } else {
+            llAddFoodSection.setVisibility(View.GONE);
+            llSearchResultSection.setVisibility(View.GONE);
+            llBarcodeSection.setVisibility(View.VISIBLE);
+        }
+    }
+
     private void initLinearLayouts(View view) {
         llAddFoodSection = (LinearLayout) view.findViewById(R.id.ll_added_food_section);
         llSearchResultSection = (LinearLayout) view.findViewById(R.id.ll_search_result_section);
@@ -93,16 +126,56 @@ public class AddMealFragment extends BasicFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             }
         });
+
+        SharedPreferences sp = this.getActivity().getSharedPreferences("Login", Context.MODE_PRIVATE);
+        final Long userId = sp.getLong("uid", 0);
+
+        Button btnSaveMeal = (Button) view.findViewById(R.id.btn_save_meal);
+        btnSaveMeal.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                StringBuilder foodIds = new StringBuilder();
+                // save all foods
+                if (null != MealFood.getInstance().getFoods()) {
+                    List<Food> foods = MealFood.getInstance().getFoods();
+                    for (Food food : foods) {
+                        foodIds.append(food.save());
+                        foodIds.append(",");
+                    }
+                    foodIds.deleteCharAt(foodIds.length() - 1);
+                }
+
+                Meal meal = new Meal();
+
+                String mealDateInMillis = getArguments().getString("mealDateInMillis");
+                String mealType = getArguments().getString("mealType");
+                Long lMealDateInMillis = Long.parseLong(mealDateInMillis);
+
+                meal.setFoodIds(foodIds.toString());
+                meal.setType(mealType);
+                meal.setDate(lMealDateInMillis);
+                meal.setUid(userId);
+                meal.save();
+
+            }
+        });
+
     }
 
     public void addFoodToMeal(Food food) {
         // hide keyboard
         // Hide search view and show food added to meal view
+        // Save food to database
         // Populate the list view with added food
         Utility.hideSoftKeyboard(getActivity());
-        llAddFoodSection.setVisibility(View.VISIBLE);
-        llSearchResultSection.setVisibility(View.GONE);
-        foodAddedToMealAdapter.add(food);
+
+        MealFood mealFood = MealFood.getInstance();
+        mealFood.setState(MealFood.State.FOOD_ADDED_DIRECT);
+        manageStates();
+        mealFood.addFood(food);
+        foodAddedToMealAdapter.clear();
+        foodAddedToMealAdapter.addAll(mealFood.getFoods());
     }
 
     private void initBarcode(View view) {
@@ -155,23 +228,31 @@ public class AddMealFragment extends BasicFragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                MealFood mealFood = MealFood.getInstance();
+                MealFood.State state;
                 if (newText.length() >= THRESHOLD) {
                     // hide barcode section and show search result section
-                    llBarcodeSection.setVisibility(View.GONE);
-                    llSearchResultSection.setVisibility(View.VISIBLE);
+                    state = MealFood.State.SEARCH_RESULTS;
 
                     getAutoSuggestFoodNames(newText.toString());
                 } else {
                     // hide search result section and show barcode section
-                    llBarcodeSection.setVisibility(View.VISIBLE);
-                    llSearchResultSection.setVisibility(View.GONE);
+                    state = MealFood.State.BARCODE;
                 }
+
+                if (mealFood.getState() != MealFood.State.FOOD_ADDED_FROM_PAGE) {
+                    mealFood.setState(state);
+                }
+                manageStates();
+
                 return false;
             }
         });
     }
 
     private void getAutoSuggestFoodNames(String typedFoodName) {
+        MealFood mealFood = MealFood.getInstance();
+        mealFood.setState(MealFood.State.SEARCH_RESULTS);
         prgDialog.show();
         autoSuggestedFoods = new ArrayList<Food>();
 
@@ -269,6 +350,12 @@ public class AddMealFragment extends BasicFragment {
 
                         Log.i("Food Detected", foodName);
                         // Pass this food to Add Food Page
+                        AddFoodFragment addFoodFragment = new AddFoodFragment();
+                        Bundle args = new Bundle();
+                        args.putString("FoodId", food.getFoodId());
+                        addFoodFragment.setArguments(args);
+
+                        changeFragment(addFoodFragment);
                     }
 
                 } catch (JSONException e) {
@@ -289,9 +376,18 @@ public class AddMealFragment extends BasicFragment {
     }
 
     public void changeFragment(Fragment fragment){
-
         svSearchFood.clearFocus();
+        createFragment(fragment, "addFoodFragment");
+    }
 
-        createFragment(fragment, "addFoodFragment");    }
+    public void receiveAddedFood(Food food) {
+        MealFood mealFood = MealFood.getInstance();
+        mealFood.setState(MealFood.State.FOOD_ADDED_FROM_PAGE);
+        mealFood.addFood(food);
+    }
 
+    public void clearSearchField() {
+        svSearchFood.setQuery("", false);
+        svSearchFood.clearFocus();
+    }
 }

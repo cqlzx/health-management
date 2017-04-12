@@ -1,9 +1,9 @@
 package com.along.android.healthmanagement.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.Food;
-import com.along.android.healthmanagement.fragments.AddMealFragment;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
-
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,22 +23,21 @@ import org.json.JSONObject;
 import cz.msebera.android.httpclient.Header;
 
 public class AddFoodFragment extends BasicFragment {
-
-
     private static final String APP_ID = "08310541";
     private static final String APP_KEY = "b6d4734ba1b80bce25497956cfb60ca9";
     private static final String URL = "https://api.nutritionix.com/v1_1/search/";
     private static final String UPC_URL = "https://api.nutritionix.com/v1_1/item";
     private static final String REQUIRED_FIELDS_IN_RESPONSE = "item_name%2Citem_id%2Cnf_calories%2Cnf_serving_size_qty%2Cnf_serving_size_unit"; //%2C means comma
-
-    //https://api.nutritionix.com/v1_1/item?id=513fc9c7673c4fbc260027af&appId=08310541&appKey=b6d4734ba1b80bce25497956cfb60ca9
-
-
-
     TextView tvItem_name, tvCalory;
     EditText etQuantity, etUnit;
-    String foodId;String foodName;Double dCalories;Double dQty;String unit;
+    String foodId;
+    String foodName;
+    Double dCalories;
+    Double dQty;
+    String unit;
     Food food;
+    //https://api.nutritionix.com/v1_1/item?id=513fc9c7673c4fbc260027af&appId=08310541&appKey=b6d4734ba1b80bce25497956cfb60ca9
+    private AddFoodFragment.OnFoodAddedListener foodAddedListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,7 +52,6 @@ public class AddFoodFragment extends BasicFragment {
     public void initLinearLayouts(final View view) {
 
         foodId = getArguments().getString("FoodId");
-
 
         tvItem_name = (TextView) view.findViewById(R.id.tvItem_name);
         etQuantity = (EditText) view.findViewById(R.id.etQuantity);
@@ -144,7 +139,6 @@ public class AddFoodFragment extends BasicFragment {
                 inputCalories = inputQty*dCalories/dQty;
                 tvCalory.setText(inputCalories.toString());
 
-
                 food.setAmount(inputQty.longValue());
                 food.setCalories(inputCalories.longValue());
 
@@ -160,10 +154,26 @@ public class AddFoodFragment extends BasicFragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //addMealFragment.addFoodToMeal(food);
+                foodAddedListener.onFoodAdded(food);
+                getFragmentManager().popBackStack();
             }
         });
+    }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        try {
+            foodAddedListener = (OnFoodAddedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFoodAddedListener");
+        }
+    }
+
+    public interface OnFoodAddedListener {
+        public void onFoodAdded(Food food);
     }
 
 }
