@@ -158,6 +158,7 @@ public class AddMealFragment extends BasicFragment {
                 meal.setUid(userId);
                 meal.save();
 
+                MealFood.getInstance().setFoods(null);
             }
         });
 
