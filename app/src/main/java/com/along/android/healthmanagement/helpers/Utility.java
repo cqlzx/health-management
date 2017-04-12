@@ -2,11 +2,15 @@ package com.along.android.healthmanagement.helpers;
 
 import android.app.Activity;
 import android.content.Context;
+import android.icu.util.Calendar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Utility {
 
@@ -41,4 +45,13 @@ public class Utility {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
+
+    public static String convertTimestampToDateFormat(Long timestamp) {
+        String dateString = new SimpleDateFormat("yyyy-MM-dd").format(new Date(timestamp));
+        String[] months = new String[]{"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+        String[] dateArray = dateString.split("-");
+        String month = months[Integer.parseInt(dateArray[1]) - 1];
+        return month + " " + dateArray[2] + ", " + dateArray[0];
+    }
+
 }

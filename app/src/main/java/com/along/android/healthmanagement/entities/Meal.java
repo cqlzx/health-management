@@ -1,6 +1,8 @@
 package com.along.android.healthmanagement.entities;
 
+import com.along.android.healthmanagement.helpers.EntityManager;
 import com.orm.SugarRecord;
+
 
 public class Meal extends SugarRecord{
     private Long id, uid;
@@ -43,8 +45,20 @@ public class Meal extends SugarRecord{
         this.foodIds = foodIds;
     }
 
-    public Long getMealCalories() {
-        //TODO: get calories of the meal
-        return 0L;
+    public String getMealCalories() {
+        long totalCalories = 0;
+
+        String foodIds = this.getFoodIds();
+        String[] ids = foodIds.split(",");
+
+        for (String id : ids) {
+            Long foodId = Long.parseLong(id.trim());
+            Food food = EntityManager.findById(Food.class, foodId);
+            if (food != null) {
+                totalCalories += food.getFoodCalories();
+            }
+        }
+
+        return totalCalories + "";
     }
 }
