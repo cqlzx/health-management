@@ -1,6 +1,9 @@
 package com.along.android.healthmanagement.fragments;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,7 @@ import android.widget.Toast;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.Food;
+import com.along.android.healthmanagement.fragments.AddMealFragment;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -36,7 +40,8 @@ public class AddFoodFragment extends BasicFragment {
 
     TextView tvItem_name, tvCalory;
     EditText etQuantity, etUnit;
-    String foodId;
+    String foodId;String foodName;Double dCalories;Double dQty;String unit;
+    Food food;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,6 +49,7 @@ public class AddFoodFragment extends BasicFragment {
         View view = inflater.inflate(R.layout.fragment_add_food, container, false);
 
         initLinearLayouts(view);
+        initAddButton(view);
 
         return view;
     }
@@ -52,58 +58,63 @@ public class AddFoodFragment extends BasicFragment {
 
         foodId = getArguments().getString("FoodId");
 
+
+        tvItem_name = (TextView) view.findViewById(R.id.tvItem_name);
+        etQuantity = (EditText) view.findViewById(R.id.etQuantity);
+        etUnit = (EditText) view.findViewById(R.id.etUnit);
+        tvCalory = (TextView) view.findViewById(R.id.tvCalory);
+        food = new Food();
+
         AsyncHttpClient client = new AsyncHttpClient();
         String request = UPC_URL + "?id=" + foodId + "&appId=" + APP_ID + "&appKey=" + APP_KEY;
-        client.get(request, null, new JsonHttpResponseHandler(){
+        client.get(request, null, new JsonHttpResponseHandler() {
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response){
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
 
                 try {
-                    String foodName = response.getString("item_name");
-                    Double dCalories = response.getDouble("nf_calories");
-                    Double dQty = response.getDouble("nf_serving_size_qty");
-                    String unit = response.getString("nf_serving_size_unit");
+                    foodName = response.getString("item_name");
+                    dCalories = response.getDouble("nf_calories");
+                    dQty = response.getDouble("nf_serving_size_qty");
+                    unit = response.getString("nf_serving_size_unit");
 
-                    float nf_calories_from_fat = Float.parseFloat(response.getString("nf_calories_from_fat").equals("null")?"0":response.getString("nf_calories_from_fat"));
-                    float nf_protein = Float.parseFloat(response.getString("nf_protein").equals("null")?"0":response.getString("nf_protein"));
-                    float nf_total_carbohydrate = Float.parseFloat(response.getString("nf_total_carbohydrate").equals("null")?"0":response.getString("nf_total_carbohydrate"));
-
-
-                    int fat = (int)(nf_calories_from_fat/dCalories*100);
-                    int protein = (int)((100-fat)*nf_protein/(nf_protein+nf_total_carbohydrate));
-                    int carbohydrate = 100-fat-protein;
+                    float nf_calories_from_fat = Float.parseFloat(response.getString("nf_calories_from_fat").equals("null") ? "0" : response.getString("nf_calories_from_fat"));
+                    float nf_protein = Float.parseFloat(response.getString("nf_protein").equals("null") ? "0" : response.getString("nf_protein"));
+                    float nf_total_carbohydrate = Float.parseFloat(response.getString("nf_total_carbohydrate").equals("null") ? "0" : response.getString("nf_total_carbohydrate"));
 
 
-                    tvItem_name = (TextView) view.findViewById(R.id.tvItem_name);
+                    int fat = (int) (nf_calories_from_fat / dCalories * 100);
+                    int protein = (int) ((100 - fat) * nf_protein / (nf_protein + nf_total_carbohydrate));
+                    int carbohydrate = 100 - fat - protein;
+
+
                     tvItem_name.setText(foodName);
-                    etQuantity = (EditText) view.findViewById(R.id.etQuantity);
                     etQuantity.setText(dQty.toString());
-                    etUnit = (EditText) view.findViewById(R.id.etUnit);
-                    etUnit.setText(unit);
-                    tvCalory = (TextView) view.findViewById(R.id.tvCalory);
-                    tvCalory.setText(dCalories+"");
-
+                    etUnit.setText(" " + unit + " ");
+                    tvCalory.setText(dCalories + "");
 
 
                     ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
-                    if(carbohydrate == 0)progressBar.setProgress(1);else progressBar.setProgress(carbohydrate);
+                    if (carbohydrate == 0) progressBar.setProgress(1);
+                    else progressBar.setProgress(carbohydrate);
                     TextView tvProgressBar = (TextView) view.findViewById(R.id.tvProgressBar);
-                    tvProgressBar.setText(carbohydrate+"%");
+                    tvProgressBar.setText(carbohydrate + "%");
 
                     ProgressBar progressBar2 = (ProgressBar) view.findViewById(R.id.progressBar2);
-                    if(protein == 0)progressBar2.setProgress(1);else progressBar2.setProgress(protein);
+                    if (protein == 0) progressBar2.setProgress(1);
+                    else progressBar2.setProgress(protein);
                     TextView tvProgressBar2 = (TextView) view.findViewById(R.id.tvProgressBar2);
-                    tvProgressBar2.setText(protein+"%");
+                    tvProgressBar2.setText(protein + "%");
 
                     ProgressBar progressBar3 = (ProgressBar) view.findViewById(R.id.progressBar3);
-                    if(fat == 0)progressBar3.setProgress(1);else progressBar3.setProgress(fat);
+                    if (fat == 0) progressBar3.setProgress(1);
+                    else progressBar3.setProgress(fat);
                     TextView tvProgressBar3 = (TextView) view.findViewById(R.id.tvProgressBar3);
-                    tvProgressBar3.setText(fat+"%");
+                    tvProgressBar3.setText(fat + "%");
 
 
                     Long calories = Math.round(dCalories);
                     Long qty = Math.round(dQty);
-                    Food food = new Food();
+
                     food.setFoodId(foodId);
                     food.setName(foodName);
                     food.setCalories(calories);
@@ -116,13 +127,45 @@ public class AddFoodFragment extends BasicFragment {
             }
         });
 
-        Button btnAdd = (Button)view.findViewById(R.id.btnAdd);
+
+
+        etQuantity.addTextChangedListener(new TextWatcher() {
+            Double inputQty;Double inputCalories;
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                inputQty = Double.parseDouble(etQuantity.getText().toString());
+
+                inputCalories = inputQty*dCalories/dQty;
+                tvCalory.setText(inputCalories.toString());
+
+
+                food.setAmount(inputQty.longValue());
+                food.setCalories(inputCalories.longValue());
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+    }
+
+    private void initAddButton(View view) {
+        Button btnAdd = (Button) view.findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //foodAddedToMealAdapter.add(food);
+                //addMealFragment.addFoodToMeal(food);
             }
         });
     }
-
 }
