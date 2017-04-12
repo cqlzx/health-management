@@ -49,7 +49,6 @@ public class AddFoodFragment extends BasicFragment {
         View view = inflater.inflate(R.layout.fragment_add_food, container, false);
 
         initLinearLayouts(view);
-        initAddButton(view);
 
         return view;
     }
@@ -89,8 +88,8 @@ public class AddFoodFragment extends BasicFragment {
 
                     tvItem_name.setText(foodName);
                     etQuantity.setText(dQty.toString());
-                    etUnit.setText(" " + unit + " ");
-                    tvCalory.setText(dCalories + "");
+                    etUnit.setText(unit);
+                    tvCalory.setText(" " + dCalories + " ");
 
 
                     ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
@@ -157,9 +156,6 @@ public class AddFoodFragment extends BasicFragment {
             }
         });
 
-    }
-
-    private void initAddButton(View view) {
         Button btnAdd = (Button) view.findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,5 +163,7 @@ public class AddFoodFragment extends BasicFragment {
                 //addMealFragment.addFoodToMeal(food);
             }
         });
+
     }
+
 }
