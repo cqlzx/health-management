@@ -98,6 +98,7 @@ public class MealDetailFragment extends BasicFragment {
                 Bundle args = new Bundle();
                 args.putString("mealType", tv_meal_type.getText().toString());
                 args.putString("mealDate", tv_meal_date.getText().toString());
+                args.putString("mealDateInMillis", meal.getDate() + "");
                 args.putLong("mealId", mealId);
                 addMealFragment.setArguments(args);
                 createFragment(addMealFragment, "addMealFragment");
