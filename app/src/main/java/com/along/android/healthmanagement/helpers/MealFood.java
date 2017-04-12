@@ -18,8 +18,6 @@ public class MealFood {
     private MealFood() {
     }
 
-    ;
-
     public static MealFood getInstance() {
         if (null == mealFood) {
             mealFood = new MealFood();

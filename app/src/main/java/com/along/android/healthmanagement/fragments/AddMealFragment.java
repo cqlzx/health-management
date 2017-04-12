@@ -23,6 +23,7 @@ import com.along.android.healthmanagement.adapters.AutoSuggestedFoodAdapter;
 import com.along.android.healthmanagement.adapters.FoodAddedToMealAdapter;
 import com.along.android.healthmanagement.entities.Food;
 import com.along.android.healthmanagement.entities.Meal;
+import com.along.android.healthmanagement.helpers.EntityManager;
 import com.along.android.healthmanagement.helpers.MealFood;
 import com.along.android.healthmanagement.helpers.Utility;
 import com.loopj.android.http.AsyncHttpClient;
@@ -61,6 +62,7 @@ public class AddMealFragment extends BasicFragment {
     private SearchView svSearchFood;
 
     private List<Food> autoSuggestedFoods;
+    private boolean flag;
 
     public AddMealFragment() {
         // Required empty public constructor
@@ -78,7 +80,29 @@ public class AddMealFragment extends BasicFragment {
         initBarcode(view);
         initAddedFoodList(view);
         initSearchResultList(view);
+        initFoodFromDetailsPage();
         return view;
+    }
+
+    private void initFoodFromDetailsPage() {
+        if (0L != getArguments().getLong("mealId") && !flag) {
+            Long mealId = getArguments().getLong("mealId");
+
+            Meal meal = EntityManager.findById(Meal.class, mealId);
+
+            String foodIds = meal.getFoodIds();
+            String[] ids = foodIds.split(",");
+
+            List<Food> list = new ArrayList<>();
+            for (String id : ids) {
+                Long foodId = Long.parseLong(id.trim());
+                Food food = EntityManager.findById(Food.class, foodId);
+                list.add(food);
+            }
+
+            MealFood.getInstance().setFoods(list);
+            flag = true;
+        }
     }
 
     @Override
@@ -159,6 +183,7 @@ public class AddMealFragment extends BasicFragment {
                 meal.save();
 
                 MealFood.getInstance().setFoods(null);
+                getFragmentManager().popBackStack();
             }
         });
 

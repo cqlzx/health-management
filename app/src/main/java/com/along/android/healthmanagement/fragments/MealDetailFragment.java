@@ -3,8 +3,6 @@ package com.along.android.healthmanagement.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.print.PrintHelper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,15 +21,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import static com.along.android.healthmanagement.R.id.tvStartDateDiet;
-
 /**
  * A simple {@link Fragment} subclass.
  */
 public class MealDetailFragment extends BasicFragment {
     private static String MEAL_ID_STRING = "MEAL_ID_STRING";
-    private TextView tv_meal_date, tv_meal_type;
     public Long mealId;
+    private TextView tv_meal_date, tv_meal_type;
 
     public MealDetailFragment() {
         // Required empty public constructor
@@ -59,6 +55,7 @@ public class MealDetailFragment extends BasicFragment {
             Food food = new Food();
             food.setName("Sandwich" + i);
             food.setAmount((long)i);
+            food.setFoodId("123");
             food.setCalories((long)100);
             Long foodId = food.save();
             sb.append(foodId);
@@ -75,9 +72,7 @@ public class MealDetailFragment extends BasicFragment {
         mealId = mid;
 
 
-
-
-//        mealId = getArguments().getLong(MEAL_ID_STRING);
+        //mealId = getArguments().getLong(MEAL_ID_STRING);
         final Meal meal = EntityManager.findById(Meal.class, mealId);
 
         tv_meal_type = (TextView) view.findViewById(R.id.tv_meal_detail_type);
