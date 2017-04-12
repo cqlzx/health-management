@@ -78,7 +78,7 @@ public class MealDetailFragment extends BasicFragment {
 
 
 //        mealId = getArguments().getLong(MEAL_ID_STRING);
-        Meal meal = EntityManager.findById(Meal.class, mealId);
+        final Meal meal = EntityManager.findById(Meal.class, mealId);
 
         tv_meal_type = (TextView) view.findViewById(R.id.tv_meal_detail_type);
         tv_meal_type.setText(meal.getType());
@@ -98,6 +98,7 @@ public class MealDetailFragment extends BasicFragment {
                 Bundle args = new Bundle();
                 args.putString("mealType", tv_meal_type.getText().toString());
                 args.putString("mealDate", tv_meal_date.getText().toString());
+                args.putLong("mealId", mealId);
                 addMealFragment.setArguments(args);
                 createFragment(addMealFragment, "addMealFragment");
             }
