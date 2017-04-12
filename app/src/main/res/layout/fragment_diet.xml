@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:fastScrollEnabled="false"
     tools:context="com.along.android.healthmanagement.fragments.DietFragment"
     >
 
@@ -14,7 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:fastScrollEnabled="false">
 
 
         <android.support.design.widget.CollapsingToolbarLayout
@@ -25,14 +27,17 @@
             app:statusBarScrim="@android:color/transparent"
             app:contentScrim="@android:color/transparent"
             android:background="@drawable/diet_background"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            android:fastScrollEnabled="false"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            >
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay"/>
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                android:fastScrollEnabled="false"/>
 
             <RelativeLayout
                 android:id="@+id/rl_title"
@@ -63,6 +68,6 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/diet_content_scrolling"/>
-
+    <include layout="@layout/diet_content_scrolling"
+             android:fastScrollEnabled="false"/>
 </android.support.design.widget.CoordinatorLayout>

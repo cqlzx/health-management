@@ -7,10 +7,13 @@
     android:id="@+id/dietView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipToPadding="false"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.along.android.healthmanagement.fragments.DietFragment"
     tools:showIn="@layout/fragment_diet"
     android:background="#EDECE0"
+    android:fastScrollEnabled="false"
+    app:titleEnabled="false"
     >
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:orientation="vertical" android:layout_width="match_parent"
@@ -117,7 +120,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@+id/ivVitalSigns"
-                    android:text="Recommended:620 kcal"
+                    android:text="Recommended: 0 cal"
                     android:textColor="@color/colorMediumText"
                     android:textSize="14dp"
                     />
@@ -213,7 +216,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@+id/ivVitalSigns"
-                    android:text="Recommended:980 kcal"
+                    android:text="Recommended: 0 cal"
                     android:textColor="@color/colorMediumText"
                     android:textSize="14dp"
                     />
@@ -309,7 +312,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="10dp"
                         android:layout_toEndOf="@+id/ivVitalSigns"
-                        android:text="Recommended:1060 kcal"
+                        android:text="Recommended: 0 cal"
                         android:textColor="@color/colorMediumText"
                         android:textSize="14dp"
                         />
@@ -368,13 +371,13 @@
                 android:weightSum="1"
                 android:layout_weight="0.48">
                 <TextView
-                    android:id="@+id/tvDiet_water2"
+                    android:id="@+id/tvDiet_waterFloz"
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@+id/ivVitalSigns"
-                    android:text="0 FLOZ"
+                    android:text="0 fl.oz"
                     android:textColor="@color/colorMediumText"
                     android:textSize="14dp"
                     />

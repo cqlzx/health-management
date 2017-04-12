@@ -26,6 +26,7 @@ import com.along.android.healthmanagement.fragments.AddMealFragment;
 import com.along.android.healthmanagement.fragments.AddMedicineFormFragment;
 import com.along.android.healthmanagement.fragments.AddPrescriptionFormFragment;
 import com.along.android.healthmanagement.fragments.BarcodeScannerFragment;
+import com.along.android.healthmanagement.fragments.DatePickerFragment;
 import com.along.android.healthmanagement.fragments.DietFragment;
 import com.along.android.healthmanagement.fragments.EmergencyFragment;
 import com.along.android.healthmanagement.fragments.HomeFragment;
@@ -35,8 +36,11 @@ import com.along.android.healthmanagement.fragments.ProfileFragment;
 import com.along.android.healthmanagement.fragments.VitalSignTabFragment;
 import com.along.android.healthmanagement.helpers.EntityManager;
 
+import java.util.Calendar;
+
 public class NavigationDrawerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, AddMedicineFormFragment.OnMedicineAddedListener, BarcodeScannerFragment.OnBarcodeDetectedListener, AddFoodFragment.OnFoodAddedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, AddMedicineFormFragment.OnMedicineAddedListener,
+        BarcodeScannerFragment.OnBarcodeDetectedListener, DatePickerFragment.OnDietDateChangeListener, AddFoodFragment.OnFoodAddedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,6 +178,18 @@ public class NavigationDrawerActivity extends AppCompatActivity
         } else {
             Log.e("AddMealFragment", "AddMealFragment not be found");
             createFragment(new AddMealFragment(), "addMealFragment");
+        }
+    }
+
+    @Override
+    public void onDietDateChange(Calendar selectedDate) {
+        DietFragment dietFragment = (DietFragment)
+                getSupportFragmentManager().findFragmentByTag("dietFragment");
+        if (selectedDate != null) {
+            dietFragment.receiveSelectedDate(selectedDate);
+        } else {
+            Log.e("DietFragment", "DietFragment not be found");
+            createFragment(new DietFragment(), "dietFragment");
         }
     }
 
