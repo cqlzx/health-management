@@ -135,14 +135,14 @@ public class DietFragment extends BasicFragment {
         ivCup8.setOnClickListener(new cupListener());
         ivCup8.setTag(8);
 
-        waveViewCup1.setProgress(0);
-        waveViewCup2.setProgress(0);
-        waveViewCup3.setProgress(0);
-        waveViewCup4.setProgress(0);
-        waveViewCup5.setProgress(0);
-        waveViewCup6.setProgress(0);
-        waveViewCup7.setProgress(0);
-        waveViewCup8.setProgress(0);
+//        waveViewCup1.setProgress(0);
+//        waveViewCup2.setProgress(0);
+//        waveViewCup3.setProgress(0);
+//        waveViewCup4.setProgress(0);
+//        waveViewCup5.setProgress(0);
+//        waveViewCup6.setProgress(0);
+//        waveViewCup7.setProgress(0);
+//        waveViewCup8.setProgress(0);
 
 
 //        // --  test date --
@@ -317,13 +317,53 @@ public class DietFragment extends BasicFragment {
             }
         });
         uploadWateDate(dayTime);
+
+//        TimerTask task = new TimerTask() {
+//            @Override
+//            public void run() {
+////
+////                cup1ProgressCount = 100;
+////            cup2ProgressCount = 100;
+////            cup3ProgressCount = 100;
+////            cup4ProgressCount = 100;
+////            cup5ProgressCount = 100;
+////            cup6ProgressCount = 100;
+////            cup7ProgressCount = 100;
+////            cup8ProgressCount = 100;
+////                doCupClick(1);
+////                waveViewCup1.setProgress(0);
+////                cup1ProgressCount = 0;
+////                waveViewCup2.setProgress(0);
+////                cup2ProgressCount = 0;
+////                waveViewCup3.setProgress(0);
+////                cup3ProgressCount = 0;
+////                waveViewCup4.setProgress(0);
+////                cup4ProgressCount = 0;
+////                waveViewCup5.setProgress(0);
+////                cup5ProgressCount = 0;
+////                waveViewCup6.setProgress(0);
+////                cup6ProgressCount = 0;
+////                waveViewCup7.setProgress(0);
+////                cup7ProgressCount = 0;
+////                waveViewCup8.setProgress(0);
+////                cup8ProgressCount = 0;
+//
+////                waterfloz = 0.00;
+////                tvDietWaterFloz.setText(waterfloz + " fl.oz");
+////                waterConsumption.setNumber(waterfloz);
+////                waterConsumption.save();
+//            }
+//        };
+//        Timer timer = new Timer();
+//        timer.schedule(task, 1000);
     }
 
     public void receiveSelectedDate(Calendar selectedDate) {
 
-        System.out.println("-z-->>>"+selectedDate.getTimeInMillis());
+        System.out.println("-selected Date-->>>"+selectedDate.getTimeInMillis());
         uploadMealDate(selectedDate.getTimeInMillis());
         uploadWateDate(selectedDate.getTimeInMillis());
+        dayTime =selectedDate.getTimeInMillis();
     }
 
     private void uploadMealDate(Long chengDayTime) {
@@ -362,32 +402,276 @@ public class DietFragment extends BasicFragment {
         }
     }
 
-    private void uploadWateDate(Long chengDayTime){
-        WaterConsumption getWaterConsumption = EntityManager.findOneBy(WaterConsumption.class, "uid = ? and date = ?",userId + "",chengDayTime+"");
-        if (getWaterConsumption != null)
-        {
-            waterfloz =getWaterConsumption.getNumber();
-            double tag = waterfloz/waterInvariant;
-            int t = (int)tag;
-            System.out.println("-d-->>>"+tag);
-            System.out.println("-e-->>>"+t);
-            System.out.println("-w-->>>"+waterfloz);
-            doCupClick(t);
-        }else {
-            cup1ProgressCount = 100;
-            cup2ProgressCount = 100;
-            cup3ProgressCount = 100;
-            cup4ProgressCount = 100;
-            cup5ProgressCount = 100;
-            cup6ProgressCount = 100;
-            cup7ProgressCount = 100;
-            cup8ProgressCount = 100;
+    private void uploadWateDate(Long chengDayTime) {
+
+        WaterConsumption getWaterConsumption = EntityManager.findOneBy(WaterConsumption.class, "uid = ? and date = ?", userId + "", chengDayTime + "");
+        if (getWaterConsumption != null) {
+            waterfloz = getWaterConsumption.getNumber();
+            double tag = waterfloz / waterInvariant;
+            int t = (int) tag;
+            System.out.println("-d-->>>" + tag);
+            System.out.println("-e-->>>" + t);
+            System.out.println("-w-->>>" + waterfloz);
+
+
+            if (t == 0) {
+                waveViewCup1.setProgress(0);
+                cup1ProgressCount = 0;
+                waveViewCup2.setProgress(0);
+                cup2ProgressCount = 0;
+                waveViewCup3.setProgress(0);
+                cup3ProgressCount = 0;
+                waveViewCup4.setProgress(0);
+                cup4ProgressCount = 0;
+                waveViewCup5.setProgress(0);
+                cup5ProgressCount = 0;
+                waveViewCup6.setProgress(0);
+                cup6ProgressCount = 0;
+                waveViewCup7.setProgress(0);
+                cup7ProgressCount = 0;
+                waveViewCup8.setProgress(0);
+                cup8ProgressCount = 0;
+                waterfloz = 0;
+                tvDietWaterFloz.setText(waterfloz + " fl.oz");
+            }else {
+                autoDoCupClick(t);
+            }
+        }
+        else {
+                waveViewCup1.setProgress(0);
+                cup1ProgressCount = 0;
+                waveViewCup2.setProgress(0);
+                cup2ProgressCount = 0;
+                waveViewCup3.setProgress(0);
+                cup3ProgressCount = 0;
+                waveViewCup4.setProgress(0);
+                cup4ProgressCount = 0;
+                waveViewCup5.setProgress(0);
+                cup5ProgressCount = 0;
+                waveViewCup6.setProgress(0);
+                cup6ProgressCount = 0;
+                waveViewCup7.setProgress(0);
+                cup7ProgressCount = 0;
+                waveViewCup8.setProgress(0);
+                cup8ProgressCount = 0;
             waterfloz = 0;
-            doCupClick(1);
+            tvDietWaterFloz.setText(waterfloz + " fl.oz");
+//            waterConsumption.setNumber(waterfloz);
+//            waterConsumption.save();
+            }
+        }
+
+
+    private class cupListener implements View.OnClickListener {
+            public void onClick(View v) {
+                int tag = (int) v.getTag();
+                waterConsumption.setUid(userId);
+                waterConsumption.setDate(dayTime);
+                userDoCupClick(tag);
+            }
+    }
+
+    private void autoDoCupClick(int tag) {
+        switch (tag) {
+            case 1: {
+                waveViewCup1.setProgress(80);
+                cup1ProgressCount = 80;
+                waveViewCup2.setProgress(0);
+                cup2ProgressCount = 0;
+                waveViewCup3.setProgress(0);
+                cup3ProgressCount = 0;
+                waveViewCup4.setProgress(0);
+                cup4ProgressCount = 0;
+                waveViewCup5.setProgress(0);
+                cup5ProgressCount = 0;
+                waveViewCup6.setProgress(0);
+                cup6ProgressCount = 0;
+                waveViewCup7.setProgress(0);
+                cup7ProgressCount = 0;
+                waveViewCup8.setProgress(0);
+                cup8ProgressCount = 0;
+                waterfloz = waterInvariant;
+                tvDietWaterFloz.setText(waterfloz + " fl.oz");
+                waterConsumption.setNumber(waterfloz);
+                waterConsumption.save();
+            }
+            break;
+            case 2: {
+                waveViewCup1.setProgress(80);
+                cup1ProgressCount = 80;
+                waveViewCup2.setProgress(80);
+                cup2ProgressCount = 80;
+                waveViewCup3.setProgress(0);
+                cup3ProgressCount = 0;
+                waveViewCup4.setProgress(0);
+                cup4ProgressCount = 0;
+                waveViewCup5.setProgress(0);
+                cup5ProgressCount = 0;
+                waveViewCup6.setProgress(0);
+                cup6ProgressCount = 0;
+                waveViewCup7.setProgress(0);
+                cup7ProgressCount = 0;
+                waveViewCup8.setProgress(0);
+                cup8ProgressCount = 0;
+                waterfloz = waterInvariant * 2;
+                tvDietWaterFloz.setText(waterfloz + " fl.oz");
+                waterConsumption.setNumber(waterfloz);
+                waterConsumption.save();
+
+            }
+            break;
+            case 3: {
+                waveViewCup1.setProgress(80);
+                cup1ProgressCount = 80;
+                waveViewCup2.setProgress(80);
+                cup2ProgressCount = 80;
+                waveViewCup3.setProgress(80);
+                cup3ProgressCount = 80;
+                waveViewCup4.setProgress(0);
+                cup4ProgressCount = 0;
+                waveViewCup5.setProgress(0);
+                cup5ProgressCount = 0;
+                waveViewCup6.setProgress(0);
+                cup6ProgressCount = 0;
+                waveViewCup7.setProgress(0);
+                cup7ProgressCount = 0;
+                waveViewCup8.setProgress(0);
+                cup8ProgressCount = 0;
+                waterfloz = waterInvariant * 3;
+                BigDecimal bd = new BigDecimal(waterfloz);
+                double scaler = bd.setScale(2, BigDecimal.ROUND_HALF_DOWN).doubleValue();
+                tvDietWaterFloz.setText(scaler + " fl.oz");
+                waterConsumption.setNumber(scaler);
+                waterConsumption.save();
+            }
+            break;
+            case 4: {
+                waveViewCup1.setProgress(80);
+                cup1ProgressCount = 80;
+                waveViewCup2.setProgress(80);
+                cup2ProgressCount = 80;
+                waveViewCup3.setProgress(80);
+                cup3ProgressCount = 80;
+                waveViewCup4.setProgress(80);
+                cup4ProgressCount = 80;
+                waveViewCup5.setProgress(0);
+                cup5ProgressCount = 0;
+                waveViewCup6.setProgress(0);
+                cup6ProgressCount = 0;
+                waveViewCup7.setProgress(0);
+                cup7ProgressCount = 0;
+                waveViewCup8.setProgress(0);
+                cup8ProgressCount = 0;
+                waterfloz = waterInvariant * 4;
+                tvDietWaterFloz.setText(waterfloz + " fl.oz");
+                waterConsumption.setNumber(waterfloz);
+                waterConsumption.save();
+            }
+            break;
+            case 5: {
+                waveViewCup1.setProgress(80);
+                cup1ProgressCount = 80;
+                waveViewCup2.setProgress(80);
+                cup2ProgressCount = 80;
+                waveViewCup3.setProgress(80);
+                cup3ProgressCount = 80;
+                waveViewCup4.setProgress(80);
+                cup4ProgressCount = 80;
+                waveViewCup5.setProgress(80);
+                cup5ProgressCount = 80;
+                waveViewCup6.setProgress(0);
+                cup6ProgressCount = 0;
+                waveViewCup7.setProgress(0);
+                cup7ProgressCount = 0;
+                waveViewCup8.setProgress(0);
+                cup8ProgressCount = 0;
+                waterfloz = waterInvariant * 5;
+                tvDietWaterFloz.setText(waterfloz + " fl.oz");
+                waterConsumption.setNumber(waterfloz);
+                waterConsumption.save();
+            }
+            break;
+            case 6: {
+                waveViewCup1.setProgress(80);
+                cup1ProgressCount = 80;
+                waveViewCup2.setProgress(80);
+                cup2ProgressCount = 80;
+                waveViewCup3.setProgress(80);
+                cup3ProgressCount = 80;
+                waveViewCup4.setProgress(80);
+                cup4ProgressCount = 80;
+                waveViewCup5.setProgress(80);
+                cup5ProgressCount = 80;
+                waveViewCup6.setProgress(80);
+                cup6ProgressCount = 80;
+                waveViewCup7.setProgress(0);
+                cup7ProgressCount = 0;
+                waveViewCup8.setProgress(0);
+                cup8ProgressCount = 0;
+                waterfloz = waterInvariant * 6;
+                BigDecimal bd = new BigDecimal(waterfloz);
+                double scaler = bd.setScale(2, BigDecimal.ROUND_HALF_DOWN).doubleValue();
+                tvDietWaterFloz.setText(scaler + " fl.oz");
+                waterConsumption.setNumber(scaler);
+                waterConsumption.save();
+            }
+            break;
+            case 7: {
+                waveViewCup1.setProgress(80);
+                cup1ProgressCount = 80;
+                waveViewCup2.setProgress(80);
+                cup2ProgressCount = 80;
+                waveViewCup3.setProgress(80);
+                cup3ProgressCount = 80;
+                waveViewCup4.setProgress(80);
+                cup4ProgressCount = 80;
+                waveViewCup5.setProgress(80);
+                cup5ProgressCount = 80;
+                waveViewCup6.setProgress(80);
+                cup6ProgressCount = 80;
+                waveViewCup7.setProgress(80);
+                cup7ProgressCount = 80;
+                waterfloz = waterInvariant * 7;
+                waveViewCup8.setProgress(0);
+                cup8ProgressCount = 0;
+                BigDecimal bd = new BigDecimal(waterfloz);
+                double scaler = bd.setScale(2, BigDecimal.ROUND_HALF_DOWN).doubleValue();
+                tvDietWaterFloz.setText(scaler + " fl.oz");
+                waterConsumption.setNumber(scaler);
+                waterConsumption.save();
+            }
+            break;
+            case 8: {
+                waveViewCup1.setProgress(80);
+                cup1ProgressCount = 80;
+                waveViewCup2.setProgress(80);
+                cup2ProgressCount = 80;
+                waveViewCup3.setProgress(80);
+                cup3ProgressCount = 80;
+                waveViewCup4.setProgress(80);
+                cup4ProgressCount = 80;
+                waveViewCup5.setProgress(80);
+                cup5ProgressCount = 80;
+                waveViewCup6.setProgress(80);
+                cup6ProgressCount = 80;
+                waveViewCup7.setProgress(80);
+                cup7ProgressCount = 80;
+                waveViewCup8.setProgress(80);
+                cup8ProgressCount = 80;
+                waterfloz = waterInvariant * 8;
+                tvDietWaterFloz.setText(waterfloz + " fl.oz");
+                waterConsumption.setNumber(waterfloz);
+                waterConsumption.save();
+            }
+            break;
+            default:
+                break;
+
         }
     }
 
-    private void doCupClick(int tag) {
+
+    private void userDoCupClick(int tag) {
 
         switch (tag) {
             case 1:
@@ -653,13 +937,4 @@ public class DietFragment extends BasicFragment {
         } //
     }
 
-    private class cupListener implements View.OnClickListener {
-        public void onClick(View v) {
-            int tag = (int) v.getTag();
-            waterConsumption.setUid(userId);
-            waterConsumption.setDate(dayTime);
-            doCupClick(tag);
-//                System.out.println("-m-->>>"+tag);
-        }
-    }
 }
