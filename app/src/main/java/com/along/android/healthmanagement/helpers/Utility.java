@@ -2,7 +2,6 @@ package com.along.android.healthmanagement.helpers;
 
 import android.app.Activity;
 import android.content.Context;
-import android.icu.util.Calendar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -53,5 +52,4 @@ public class Utility {
         String month = months[Integer.parseInt(dateArray[1]) - 1];
         return month + " " + dateArray[2] + ", " + dateArray[0];
     }
-
 }

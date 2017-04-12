@@ -23,7 +23,6 @@ public class MealFood {
     public static MealFood getInstance() {
         if (null == mealFood) {
             mealFood = new MealFood();
-            mealFood = new MealFood();
         }
         return mealFood;
     }

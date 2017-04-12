@@ -4,7 +4,8 @@ package com.along.android.healthmanagement.entities;
 import com.orm.SugarRecord;
 
 public class WaterConsumption extends SugarRecord{
-    private Long id, uid, date, number;
+    private Long id, uid, date;
+    private double number;
 
     public Long getUid() {
         return uid;
@@ -22,11 +23,11 @@ public class WaterConsumption extends SugarRecord{
         this.date = date;
     }
 
-    public Long getNumber() {
+    public double getNumber() {
         return number;
     }
 
-    public void setNumber(Long number) {
+    public void setNumber(double number) {
         this.number = number;
     }
 }

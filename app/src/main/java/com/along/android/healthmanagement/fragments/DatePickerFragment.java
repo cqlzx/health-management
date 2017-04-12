@@ -1,5 +1,6 @@
 package com.along.android.healthmanagement.fragments;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import java.util.GregorianCalendar;
 
 public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener{
 
+    private OnDietDateChangeListener dietDateChangeListener;
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the current date as the default date in the picker
@@ -51,8 +53,34 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
         }else if(null!= this.getArguments() && "Today".equals(this.getArguments().getString("whichDate"))) {
             TextView txtView = (TextView) getActivity().findViewById(R.id.tvStartDateDiet);
             txtView.setText(text);
+
+            calendar.set(Calendar.MILLISECOND, 0);
+            calendar.set(Calendar.HOUR , 0);
+            calendar.set(Calendar.MINUTE , 0);
+            calendar.set(Calendar.SECOND , 0);
+
             TextView txtViewMillis = (TextView) getActivity().findViewById(R.id.tvStartDateInDiet);
             txtViewMillis.setText(calendar.getTimeInMillis() + "");
+
+//            dietDateChangeListener.onDietDateChange(calendar);
+            dietDateChangeListener.onDietDateChange(calendar);
         }
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        try {
+            dietDateChangeListener = (OnDietDateChangeListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnBarcodeDetectedListener");
+        }
+    }
+
+    public interface OnDietDateChangeListener {
+        void onDietDateChange(Calendar selectedDate);
+//        void onDietDateChange(Long selectedDate);
     }
 }
