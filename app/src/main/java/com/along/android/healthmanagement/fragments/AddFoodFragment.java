@@ -122,7 +122,6 @@ public class AddFoodFragment extends BasicFragment {
         });
 
 
-
         etQuantity.addTextChangedListener(new TextWatcher() {
             Double inputQty;Double inputCalories;
 
@@ -134,13 +133,17 @@ public class AddFoodFragment extends BasicFragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                inputQty = Double.parseDouble(etQuantity.getText().toString());
+                if(etQuantity.getText().toString().equals("")){
+                    inputQty = 0.0;
+                }else{
+                    inputQty = Double.parseDouble(etQuantity.getText().toString());
+                }
 
                 inputCalories = inputQty*dCalories/dQty;
-                tvCalory.setText(inputCalories.toString());
+                tvCalory.setText(" " + String.format("%.1f", inputCalories) + " ");
 
                 food.setAmount(inputQty.longValue());
-                food.setCalories(inputCalories.longValue());
+                food.setCalories(dCalories.longValue());
 
             }
 

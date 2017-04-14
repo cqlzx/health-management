@@ -47,6 +47,7 @@
                 android:layout_marginRight="@dimen/large"
                 android:layout_weight=".3"
                 android:background="@drawable/editsharp"
+                android:digits="1234567890."
                 android:text="1" />
 
             <EditText
