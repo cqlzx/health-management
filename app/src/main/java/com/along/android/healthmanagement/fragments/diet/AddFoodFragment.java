@@ -1,4 +1,4 @@
-package com.along.android.healthmanagement.fragments;
+package com.along.android.healthmanagement.fragments.diet;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.Food;
+import com.along.android.healthmanagement.fragments.BasicFragment;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -123,7 +124,8 @@ public class AddFoodFragment extends BasicFragment {
 
 
         etQuantity.addTextChangedListener(new TextWatcher() {
-            Double inputQty;Double inputCalories;
+            Double inputQty;
+            Double inputCalories;
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -133,13 +135,13 @@ public class AddFoodFragment extends BasicFragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if(etQuantity.getText().toString().equals("")){
+                if (etQuantity.getText().toString().equals("")) {
                     inputQty = 0.0;
-                }else{
+                } else {
                     inputQty = Double.parseDouble(etQuantity.getText().toString());
                 }
 
-                inputCalories = inputQty*dCalories/dQty;
+                inputCalories = inputQty * dCalories / dQty;
                 tvCalory.setText(" " + String.format("%.1f", inputCalories) + " ");
 
                 food.setAmount(inputQty.longValue());

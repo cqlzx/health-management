@@ -1,36 +1,36 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.along.android.healthmanagement.fragments.MealDetailFragment"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    tools:context="com.along.android.healthmanagement.fragments.diet.MealDetailFragment">
 
     <LinearLayout
-        android:background="@color/greyD"
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/greyD"
         android:orientation="vertical">
 
         <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
             android:background="@color/dietBackground1"
             android:gravity="bottom|left"
-            android:layout_height="180dp"
-            android:layout_width="match_parent"
             android:paddingBottom="28dp"
             android:paddingLeft="24dp">
 
             <LinearLayout
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tv_meal_detail_type"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
                     android:layout_weight="1"
-                    android:layout_width="match_parent"
                     android:text="Breakfast"
                     android:textColor="@android:color/white"
                     android:textSize="24sp"
@@ -38,9 +38,9 @@
 
                 <TextView
                     android:id="@+id/tv_meal_detail_date"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_width="match_parent"
                     android:text="Apr 03, 2017"
                     android:textColor="@android:color/white"/>
 
@@ -49,10 +49,10 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:background="@android:color/white"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:layout_width="match_parent"
+            android:background="@android:color/white"
             android:orientation="horizontal"
             android:paddingBottom="24dp"
             android:paddingLeft="16dp"
@@ -60,11 +60,11 @@
             android:paddingTop="24dp">
 
             <Button
-                android:background="@drawable/shape_button_round_corner"
                 android:id="@+id/meal_detail_add_food"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_width="wrap_content"
+                android:background="@drawable/shape_button_round_corner"
                 android:text="ADD MORE FOOD"
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textColor="@android:color/white"

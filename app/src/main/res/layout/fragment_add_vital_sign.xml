@@ -4,13 +4,13 @@
               android:layout_height="match_parent"
               android:layout_margin="16dp"
               android:orientation="vertical"
-              tools:context="com.along.android.healthmanagement.fragments.AddVitalSignFormFragment">
+    tools:context="com.along.android.healthmanagement.fragments.vitalsigns.AddVitalSignFormFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:text="Blood Pressure"/>
+        android:text="Blood Pressure"
+        android:textAppearance="?android:textAppearanceMedium" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

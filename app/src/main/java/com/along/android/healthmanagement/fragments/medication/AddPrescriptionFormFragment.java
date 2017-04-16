@@ -1,4 +1,4 @@
-package com.along.android.healthmanagement.fragments;
+package com.along.android.healthmanagement.fragments.medication;
 
 
 import android.os.Bundle;
@@ -22,6 +22,8 @@ import com.along.android.healthmanagement.adapters.MedicineAdapter;
 import com.along.android.healthmanagement.entities.ConflictingMedicine;
 import com.along.android.healthmanagement.entities.Medicine;
 import com.along.android.healthmanagement.entities.Prescription;
+import com.along.android.healthmanagement.fragments.BasicFragment;
+import com.along.android.healthmanagement.fragments.DatePickerFragment;
 import com.along.android.healthmanagement.helpers.EntityManager;
 import com.along.android.healthmanagement.helpers.Utility;
 import com.loopj.android.http.AsyncHttpClient;

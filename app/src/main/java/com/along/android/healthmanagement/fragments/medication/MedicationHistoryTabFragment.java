@@ -1,4 +1,4 @@
-package com.along.android.healthmanagement.fragments;
+package com.along.android.healthmanagement.fragments.medication;
 
 
 import android.content.Intent;
@@ -46,10 +46,10 @@ public class MedicationHistoryTabFragment extends Fragment {
         }
 
         List<Prescription> historyPrescription = new ArrayList<Prescription>();
-        for(Prescription prescription : prescriptionList) {
+        for (Prescription prescription : prescriptionList) {
             //If today > endDate, then add to current
             try {
-                if(Calendar.getInstance().getTimeInMillis() > Long.parseLong(prescription.getEndDate())) {
+                if (Calendar.getInstance().getTimeInMillis() > Long.parseLong(prescription.getEndDate())) {
                     historyPrescription.add(prescription);
                 }
             } catch (NumberFormatException nfe) {

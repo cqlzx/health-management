@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.fragments.diet.DietFragment;
+import com.along.android.healthmanagement.fragments.medication.MedicationMenuFragment;
+import com.along.android.healthmanagement.fragments.vitalsigns.VitalSignTabFragment;
 
 /**
  * A simple {@link Fragment} subclass.

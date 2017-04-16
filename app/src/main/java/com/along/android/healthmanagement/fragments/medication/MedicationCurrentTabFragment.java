@@ -1,4 +1,4 @@
-package com.along.android.healthmanagement.fragments;
+package com.along.android.healthmanagement.fragments.medication;
 
 
 import android.content.Intent;
@@ -81,7 +81,7 @@ public class MedicationCurrentTabFragment extends Fragment {
 
         List<Prescription> prescriptionList;
 
-        try{
+        try {
             prescriptionList = Prescription.listAll(Prescription.class);
         } catch (SQLiteException e) {
             prescriptionList = new ArrayList<>();
@@ -89,7 +89,7 @@ public class MedicationCurrentTabFragment extends Fragment {
 
 
         List<Prescription> currentPrescription = new ArrayList<Prescription>();
-        for(Prescription prescription : prescriptionList) {
+        for (Prescription prescription : prescriptionList) {
             //If today <= endDate, then add to current
             try {
                 if (Calendar.getInstance().getTimeInMillis() <= Long.parseLong(prescription.getEndDate())) {

@@ -1,4 +1,4 @@
-package com.along.android.healthmanagement.fragments;
+package com.along.android.healthmanagement.fragments.medication;
 
 
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.fragments.BasicFragment;
 
 
 public class MedicationMenuFragment extends BasicFragment {

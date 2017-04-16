@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.Food;
-import com.along.android.healthmanagement.fragments.AddFoodFragment;
-import com.along.android.healthmanagement.fragments.AddMealFragment;
+import com.along.android.healthmanagement.fragments.diet.AddFoodFragment;
+import com.along.android.healthmanagement.fragments.diet.AddMealFragment;
 
 import java.util.List;
 

@@ -1,9 +1,7 @@
-package com.along.android.healthmanagement.fragments;
+package com.along.android.healthmanagement.fragments.vitalsigns;
 
 import android.content.Context;
-import android.content.Entity;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,6 +14,7 @@ import android.widget.Toast;
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.entities.VitalSign;
+import com.along.android.healthmanagement.fragments.BasicFragment;
 import com.along.android.healthmanagement.helpers.EntityManager;
 import com.along.android.healthmanagement.helpers.Validation;
 
@@ -34,7 +33,7 @@ public class AddVitalSignFormFragment extends BasicFragment {
 //    private String mParam1;
 //    private String mParam2;
 
-//    private OnFragmentInteractionListener mListener;
+    //    private OnFragmentInteractionListener mListener;
 //
 //    /**
 //     * Use this factory method to create a new instance of
@@ -112,7 +111,7 @@ public class AddVitalSignFormFragment extends BasicFragment {
         return view;
     }
 
-    private void saveVitalSign(){
+    private void saveVitalSign() {
         SharedPreferences sp = getActivity().getSharedPreferences("Login", Context.MODE_PRIVATE);
         long uid = sp.getLong("uid", 0);
         User user = EntityManager.findById(User.class, uid);

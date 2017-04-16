@@ -1,4 +1,4 @@
-package com.along.android.healthmanagement.fragments;
+package com.along.android.healthmanagement.fragments.medication;
 
 
 import android.app.Activity;
@@ -22,6 +22,8 @@ import android.widget.Toast;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.Medicine;
+import com.along.android.healthmanagement.fragments.BasicFragment;
+import com.along.android.healthmanagement.fragments.TimePickerFragment;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -82,7 +84,7 @@ public class AddMedicineFormFragment extends BasicFragment implements TextWatche
         final Spinner medicineFrequency = (Spinner) view.findViewById(R.id.spMedicineFrequency);
 
         TextView tvAddTime = (TextView) view.findViewById(R.id.tvAddTime);
-        tvAddTime.setOnClickListener(new View.OnClickListener(){
+        tvAddTime.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -96,7 +98,7 @@ public class AddMedicineFormFragment extends BasicFragment implements TextWatche
 
         TextView tvResetTime = (TextView) view.findViewById(R.id.tvResetTime);
         final LinearLayout llMedicineTimings = (LinearLayout) view.findViewById(R.id.llMedicineTimings);
-        tvResetTime.setOnClickListener(new View.OnClickListener(){
+        tvResetTime.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {

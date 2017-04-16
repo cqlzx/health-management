@@ -1,4 +1,4 @@
-package com.along.android.healthmanagement.fragments;
+package com.along.android.healthmanagement.fragments.vitalsigns;
 
 
 import android.content.Intent;
@@ -18,6 +18,7 @@ import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.activities.VitalSignDetailsActivity;
 import com.along.android.healthmanagement.adapters.VitalSignsHistoryAdapter;
 import com.along.android.healthmanagement.entities.VitalSign;
+import com.along.android.healthmanagement.fragments.BasicFragment;
 import com.along.android.healthmanagement.helpers.EntityManager;
 
 import java.util.ArrayList;

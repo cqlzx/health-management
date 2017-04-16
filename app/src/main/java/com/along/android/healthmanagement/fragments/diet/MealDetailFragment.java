@@ -1,4 +1,4 @@
-package com.along.android.healthmanagement.fragments;
+package com.along.android.healthmanagement.fragments.diet;
 
 
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.adapters.MealDetailAdapter;
 import com.along.android.healthmanagement.entities.Food;
 import com.along.android.healthmanagement.entities.Meal;
+import com.along.android.healthmanagement.fragments.BasicFragment;
 import com.along.android.healthmanagement.helpers.EntityManager;
 import com.along.android.healthmanagement.helpers.Utility;
 
@@ -30,6 +31,7 @@ public class MealDetailFragment extends BasicFragment {
     private TextView tv_meal_date, tv_meal_type;
 
     private MealDetailAdapter adapter;
+
     public MealDetailFragment() {
         // Required empty public constructor
     }

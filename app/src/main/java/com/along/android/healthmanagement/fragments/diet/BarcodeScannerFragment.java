@@ -1,4 +1,4 @@
-package com.along.android.healthmanagement.fragments;
+package com.along.android.healthmanagement.fragments.diet;
 
 import android.Manifest;
 import android.app.Activity;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.fragments.AbstractRuntimePermission;
 import com.along.android.healthmanagement.helpers.Utility;
 import com.google.zxing.Result;
 

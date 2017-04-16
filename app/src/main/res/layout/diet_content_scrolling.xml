@@ -7,17 +7,18 @@
     android:id="@+id/dietView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clipToPadding="false"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.along.android.healthmanagement.fragments.DietFragment"
-    tools:showIn="@layout/fragment_diet"
     android:background="#EDECE0"
+    android:clipToPadding="false"
     android:fastScrollEnabled="false"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     app:titleEnabled="false"
+    tools:context="com.along.android.healthmanagement.fragments.diet.DietFragment"
+    tools:showIn="@layout/fragment_diet"
     >
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                  android:orientation="vertical" android:layout_width="match_parent"
-                  android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <LinearLayout
             android:id="@+id/llDietStartDate"
             android:layout_width="match_parent"
@@ -25,8 +26,8 @@
             android:layout_weight=".5"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingTop="@dimen/medium"
             android:paddingBottom="5dp"
+            android:paddingTop="@dimen/medium"
             android:weightSum="1">
         <ImageView
             android:id="@+id/ivStartDate"
@@ -55,12 +56,12 @@
         android:id="@+id/diet_card_view_breakfast"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="0dp"
-        card_view:cardElevation="5dp"
-        card_view:cardCornerRadius="0dp">
+        card_view:cardCornerRadius="0dp"
+        card_view:cardElevation="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,8 +69,8 @@
             android:layout_weight=".5"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingTop="@dimen/medium"
             android:paddingBottom="10dp"
+            android:paddingTop="@dimen/medium"
             android:weightSum="1">
 
             <TextView
@@ -97,8 +98,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingTop="5dp"
                 android:paddingBottom="10dp"
+                android:paddingTop="5dp"
                 android:weightSum="1"
                 >
                 <TextView
@@ -151,12 +152,12 @@
         android:id="@+id/diet_card_view_lunch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="0dp"
-        card_view:cardElevation="5dp"
-        card_view:cardCornerRadius="0dp">
+        card_view:cardCornerRadius="0dp"
+        card_view:cardElevation="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -164,8 +165,8 @@
             android:layout_weight=".5"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingTop="@dimen/medium"
             android:paddingBottom="10dp"
+            android:paddingTop="@dimen/medium"
             android:weightSum="1">
 
             <TextView
@@ -193,8 +194,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingTop="5dp"
                 android:paddingBottom="10dp"
+                android:paddingTop="5dp"
                 android:weightSum="1"
                 >
                 <TextView
@@ -247,12 +248,12 @@
             android:id="@+id/diet_card_view_dinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="0dp"
-            card_view:cardElevation="5dp"
-            card_view:cardCornerRadius="0dp">
+            card_view:cardCornerRadius="0dp"
+            card_view:cardElevation="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -260,8 +261,8 @@
                 android:layout_weight=".5"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingTop="@dimen/medium"
                 android:paddingBottom="10dp"
+                android:paddingTop="@dimen/medium"
                 android:weightSum="1">
 
                 <TextView
@@ -289,8 +290,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:paddingTop="5dp"
                     android:paddingBottom="10dp"
+                    android:paddingTop="5dp"
                     android:weightSum="1"
                     >
                     <TextView
@@ -343,12 +344,12 @@
             android:id="@+id/diet_card_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="0dp"
-            card_view:cardElevation="5dp"
-            card_view:cardCornerRadius="0dp">
+            card_view:cardCornerRadius="0dp"
+            card_view:cardElevation="5dp">
 // vertical
             <LinearLayout
                 android:id="@+id/diet_water"
@@ -356,20 +357,20 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingTop="5dp"
                 android:paddingBottom="5dp"
+                android:paddingTop="5dp"
                 android:weightSum="1"
                 >
                 //horizontal
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="26dp"
+                android:layout_weight="0.48"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingTop="2dp"
                 android:paddingBottom="2dp"
-                android:weightSum="1"
-                android:layout_weight="0.48">
+                android:paddingTop="2dp"
+                android:weightSum="1">
                 <TextView
                     android:id="@+id/tvDiet_waterFloz"
                     android:layout_width="130dp"
@@ -402,8 +403,8 @@
                     android:layout_below="@id/tvDiet_water1"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="6dp"
-                    android:background="@color/greyE"
-                    android:layout_weight="0.04"/>
+                    android:layout_weight="0.04"
+                    android:background="@color/greyE" />
 // cup
             <LinearLayout
                 android:id="@+id/diet_watercup"
@@ -411,8 +412,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingTop="10dp"
                 android:paddingBottom="5dp"
+                android:paddingTop="10dp"
                 android:weightSum="1">
 // cup1
                 <RelativeLayout
@@ -431,9 +432,9 @@
                     android:id="@+id/diet_cup1"
                     android:layout_width="45dp"
                     android:layout_height="55dp"
-                    android:background="@drawable/cup"
-                    android:layout_alignParentTop="true"
                     android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/cup"
                     />
                 </RelativeLayout>
 

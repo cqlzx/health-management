@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.Food;
 import com.along.android.healthmanagement.entities.Meal;
-import com.along.android.healthmanagement.fragments.MealDetailFragment;
+import com.along.android.healthmanagement.fragments.diet.MealDetailFragment;
 import com.along.android.healthmanagement.helpers.EntityManager;
 import com.along.android.healthmanagement.helpers.Utility;
 

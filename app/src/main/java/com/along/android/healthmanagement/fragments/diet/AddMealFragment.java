@@ -1,4 +1,4 @@
-package com.along.android.healthmanagement.fragments;
+package com.along.android.healthmanagement.fragments.diet;
 
 
 import android.app.ProgressDialog;
@@ -23,6 +23,7 @@ import com.along.android.healthmanagement.adapters.AutoSuggestedFoodAdapter;
 import com.along.android.healthmanagement.adapters.FoodAddedToMealAdapter;
 import com.along.android.healthmanagement.entities.Food;
 import com.along.android.healthmanagement.entities.Meal;
+import com.along.android.healthmanagement.fragments.BasicFragment;
 import com.along.android.healthmanagement.helpers.EntityManager;
 import com.along.android.healthmanagement.helpers.MealFood;
 import com.along.android.healthmanagement.helpers.Utility;
@@ -408,7 +409,7 @@ public class AddMealFragment extends BasicFragment {
         });
     }
 
-    public void changeFragment(Fragment fragment){
+    public void changeFragment(Fragment fragment) {
         svSearchFood.clearFocus();
         createFragment(fragment, "addFoodFragment");
     }

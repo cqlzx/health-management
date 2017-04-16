@@ -21,19 +21,19 @@ import android.widget.TextView;
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.Food;
 import com.along.android.healthmanagement.entities.User;
-import com.along.android.healthmanagement.fragments.AddFoodFragment;
-import com.along.android.healthmanagement.fragments.AddMealFragment;
-import com.along.android.healthmanagement.fragments.AddMedicineFormFragment;
-import com.along.android.healthmanagement.fragments.AddPrescriptionFormFragment;
-import com.along.android.healthmanagement.fragments.BarcodeScannerFragment;
+import com.along.android.healthmanagement.fragments.BasicFragment;
 import com.along.android.healthmanagement.fragments.DatePickerFragment;
-import com.along.android.healthmanagement.fragments.DietFragment;
 import com.along.android.healthmanagement.fragments.EmergencyFragment;
 import com.along.android.healthmanagement.fragments.HomeFragment;
-import com.along.android.healthmanagement.fragments.MedicationMenuFragment;
-import com.along.android.healthmanagement.fragments.NotificationFragment;
 import com.along.android.healthmanagement.fragments.ProfileFragment;
-import com.along.android.healthmanagement.fragments.VitalSignTabFragment;
+import com.along.android.healthmanagement.fragments.diet.AddFoodFragment;
+import com.along.android.healthmanagement.fragments.diet.AddMealFragment;
+import com.along.android.healthmanagement.fragments.diet.BarcodeScannerFragment;
+import com.along.android.healthmanagement.fragments.diet.DietFragment;
+import com.along.android.healthmanagement.fragments.medication.AddMedicineFormFragment;
+import com.along.android.healthmanagement.fragments.medication.AddPrescriptionFormFragment;
+import com.along.android.healthmanagement.fragments.medication.MedicationMenuFragment;
+import com.along.android.healthmanagement.fragments.vitalsigns.VitalSignTabFragment;
 import com.along.android.healthmanagement.helpers.EntityManager;
 
 import java.util.Calendar;
@@ -128,7 +128,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
         } else if (id == R.id.nav_vital_signs) {
             createFragment(new VitalSignTabFragment(), "vitalSignsFragment");
         } else if (id == R.id.nav_notification) {
-            createFragment(new NotificationFragment(), "notificationFragment");
+            createFragment(new BasicFragment.NotificationFragment(), "notificationFragment");
         }
         else if (id == R.id.nav_emergency) {
             createFragment(new EmergencyFragment(), "EmergencyFragment");
