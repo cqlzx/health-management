@@ -1,70 +1,545 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/whiteF1"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <LinearLayout
-        android:id="@+id/row1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btn_medication_tile"
-            android:text="@string/medication"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:background="@drawable/rectangle"
-            android:backgroundTint="@color/colorTile1"
-            android:layout_margin="5dp"
-            android:textColor="@color/greyE"
-            android:layout_weight=".5" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn_diet_tile"
-            android:text="@string/diet"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:background="@drawable/rectangle"
-            android:backgroundTint="@color/colorTile2"
-            android:layout_margin="5dp"
-            android:textColor="@color/greyE"
-            android:layout_weight=".5" />
-    </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/rl_medication"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/home_feature_height"
+                android:layout_below="@+id/row2"
+                android:background="@drawable/home_medication_rectangle"
+                android:elevation="@dimen/vsmall"
+                android:padding="@dimen/large">
 
-    <LinearLayout
-        android:id="@+id/row2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/row1">
+                <ImageView
+                    android:id="@+id/iv_medication_feature_icon"
+                    android:layout_width="@dimen/feature_icon_dimen"
+                    android:layout_height="@dimen/feature_icon_dimen"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/large"
+                    android:background="@drawable/ic_feature_medication" />
 
-        <Button
-            android:id="@+id/btn_vital_signs_tile"
-            android:text="@string/vital_signs"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:background="@drawable/rectangle"
-            android:backgroundTint="@color/colorTile3"
-            android:layout_margin="5dp"
-            android:textColor="@color/greyE"
-            android:layout_weight=".5" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/vlarge"
+                    android:layout_toRightOf="@id/iv_medication_feature_icon"
+                    android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn_communication_tile"
-            android:text="@string/communication"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:background="@drawable/rectangle"
-            android:backgroundTint="@color/colorTile4"
-            android:layout_margin="5dp"
-            android:textColor="@color/greyE"
-            android:layout_weight=".5" />
-    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/medication"
+                        android:textColor="@color/black3"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/medication_subtitle"
+                        android:textColor="@color/grey6"
+                        android:textSize="10sp" />
+
+                    <View
+                        android:id="@+id/medication_horizontal_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dip"
+                        android:layout_marginTop="@dimen/medium"
+                        android:background="@color/greyD" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/medication_horizontal_line"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/ll_home_add_medication"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/medium">
+
+                            <TextView
+                                android:id="@+id/tv_home_add_medication"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/home_add_text"
+                                android:textColor="@color/lightIcon"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/in_home_add_medication"
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:layout_marginLeft="@dimen/medium"
+                                android:background="@drawable/ic_menu_medication"
+                                android:backgroundTint="@color/lightIcon" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_home_view_medication"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/medium">
+
+                            <TextView
+                                android:id="@+id/tv_home_view_medication"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/home_view_text"
+                                android:textColor="@color/lightIcon"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/iv_home_view_medication"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_marginLeft="@dimen/medium"
+                                android:background="@drawable/ic_arrow"
+                                android:backgroundTint="@color/lightIcon" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_vital_signs"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/home_feature_height"
+                android:layout_marginTop="@dimen/medium"
+                android:background="@drawable/home_vital_signs_rectangle"
+                android:elevation="@dimen/vsmall"
+                android:padding="@dimen/large">
+
+                <ImageView
+                    android:id="@+id/iv_vital_signs_feature_icon"
+                    android:layout_width="@dimen/feature_icon_dimen"
+                    android:layout_height="@dimen/feature_icon_dimen"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/large"
+                    android:background="@drawable/ic_feature_vital_signs" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/vlarge"
+                    android:layout_toRightOf="@id/iv_vital_signs_feature_icon"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/vital_signs"
+                        android:textColor="@color/black3"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/vital_signs_subtitle"
+                        android:textColor="@color/grey6"
+                        android:textSize="10sp" />
+
+                    <View
+                        android:id="@+id/vital_signs_horizontal_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dip"
+                        android:layout_marginTop="@dimen/medium"
+                        android:background="@color/greyD" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/vital_signs_horizontal_line"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/ll_home_add_vital_signs"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/medium">
+
+                            <TextView
+                                android:id="@+id/tv_home_add_vital_signs"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/home_add_text"
+                                android:textColor="@color/lightIcon"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/in_home_add_vital_signs"
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:layout_marginLeft="@dimen/medium"
+                                android:background="@drawable/ic_menu_medication"
+                                android:backgroundTint="@color/lightIcon" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_home_view_vital_signs"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/medium">
+
+                            <TextView
+                                android:id="@+id/tv_home_view_vital_signs"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/home_view_text"
+                                android:textColor="@color/lightIcon"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/iv_home_view_vital_signs"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_marginLeft="@dimen/medium"
+                                android:background="@drawable/ic_arrow"
+                                android:backgroundTint="@color/lightIcon" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_diet"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/home_feature_height"
+                android:layout_marginTop="@dimen/medium"
+                android:background="@drawable/home_diet_rectangle"
+                android:elevation="@dimen/vsmall"
+                android:padding="@dimen/large">
+
+                <ImageView
+                    android:id="@+id/iv_diet_feature_icon"
+                    android:layout_width="@dimen/feature_icon_dimen"
+                    android:layout_height="@dimen/feature_icon_dimen"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/large"
+                    android:background="@drawable/ic_feature_diet" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/vlarge"
+                    android:layout_toRightOf="@id/iv_diet_feature_icon"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/diet"
+                        android:textColor="@color/black3"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/diet_subtitle"
+                        android:textColor="@color/grey6"
+                        android:textSize="10sp" />
+
+                    <View
+                        android:id="@+id/diet_horizontal_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dip"
+                        android:layout_marginTop="@dimen/medium"
+                        android:background="@color/greyD" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/diet_horizontal_line"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/ll_home_add_diet"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/medium"></LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_home_view_diet"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/medium">
+
+                            <TextView
+                                android:id="@+id/tv_home_view_diet"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/home_view_text"
+                                android:textColor="@color/lightIcon"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/iv_home_view_diet"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_marginLeft="@dimen/medium"
+                                android:background="@drawable/ic_arrow"
+                                android:backgroundTint="@color/lightIcon" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_notes"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/home_feature_height"
+                android:layout_marginTop="@dimen/medium"
+                android:background="@drawable/home_notes_rectangle"
+                android:elevation="@dimen/vsmall"
+                android:padding="@dimen/large">
+
+                <ImageView
+                    android:id="@+id/iv_notes_feature_icon"
+                    android:layout_width="@dimen/feature_icon_dimen"
+                    android:layout_height="@dimen/feature_icon_dimen"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/large"
+                    android:background="@drawable/ic_feature_notes" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/vlarge"
+                    android:layout_toRightOf="@id/iv_notes_feature_icon"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/notes"
+                        android:textColor="@color/black3"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/notes_subtitle"
+                        android:textColor="@color/grey6"
+                        android:textSize="10sp" />
+
+                    <View
+                        android:id="@+id/notes_horizontal_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dip"
+                        android:layout_marginTop="@dimen/medium"
+                        android:background="@color/greyD" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/notes_horizontal_line"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/ll_home_add_notes"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/medium">
+
+                            <TextView
+                                android:id="@+id/tv_home_add_notes"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/home_add_text"
+                                android:textColor="@color/lightIcon"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/in_home_add_notes"
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:layout_marginLeft="@dimen/medium"
+                                android:background="@drawable/ic_menu_medication"
+                                android:backgroundTint="@color/lightIcon" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_home_view_notes"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/medium">
+
+                            <TextView
+                                android:id="@+id/tv_home_view_notes"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/home_view_text"
+                                android:textColor="@color/lightIcon"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/iv_home_view_notes"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_marginLeft="@dimen/medium"
+                                android:background="@drawable/ic_arrow"
+                                android:backgroundTint="@color/lightIcon" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_communication"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/home_feature_height"
+                android:layout_marginTop="@dimen/medium"
+                android:background="@drawable/home_communication_rectangle"
+                android:elevation="@dimen/vsmall"
+                android:padding="@dimen/large">
+
+                <ImageView
+                    android:id="@+id/iv_communication_feature_icon"
+                    android:layout_width="@dimen/feature_icon_dimen"
+                    android:layout_height="@dimen/feature_icon_dimen"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/large"
+                    android:background="@drawable/ic_feature_communication" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/vlarge"
+                    android:layout_toRightOf="@id/iv_communication_feature_icon"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/communication"
+                        android:textColor="@color/black3"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/communication_subtitle"
+                        android:textColor="@color/grey6"
+                        android:textSize="10sp" />
+
+                    <View
+                        android:id="@+id/communication_horizontal_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dip"
+                        android:layout_marginTop="@dimen/medium"
+                        android:background="@color/greyD" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/communication_horizontal_line"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/ll_home_add_communication"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/medium">
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_home_view_communication"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight=".5"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/medium">
+
+                            <TextView
+                                android:id="@+id/tv_home_view_communication"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/home_view_text"
+                                android:textColor="@color/lightIcon"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/iv_home_view_communication"
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:layout_marginLeft="@dimen/medium"
+                                android:background="@drawable/ic_arrow"
+                                android:backgroundTint="@color/lightIcon" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

@@ -52,7 +52,7 @@ public class VitalSignTabFragment extends BasicFragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Invoke the fragment to add new Medication form
+                // Invoke the fragment to add new Vital Signs form
                 createFragment(new AddVitalSignFormFragment(), "addVitalSignFormFragment");
             }
         });

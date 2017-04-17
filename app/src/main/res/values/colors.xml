@@ -16,10 +16,11 @@
 
     <color name="colorTabSelected">#227700</color>
 
-    <color name="colorTile1">#5D9DAD</color>
-    <color name="colorTile2">#593fb7</color>
-    <color name="colorTile3">#BF5733</color>
-    <color name="colorTile4">#8B00A6</color>
+    <color name="colorTile1">#6d8aba</color>
+    <color name="colorTile2">#E88C4A</color>
+    <color name="colorTile3">#A46F3E</color>
+    <color name="colorTile4">#FF5364</color>
+    <color name="colorTile5">#4CAF50</color>
 
     <color name="blueButton">#0D9ECE</color>
     <color name="googleRed">#D34836</color>
@@ -27,9 +28,11 @@
 
     <color name="white">#FFF</color>
     <color name="whiteF1">#F1F1F1</color>
+    <color name="whiteF9">#F9F9F9</color>
     <color name="greyE">#EEEEEE</color>
     <color name="greyD">#dddddd</color>
     <color name="greyA">#AAAAAA</color>
+    <color name="grey6">#666666</color>
     <color name="black3">#333333</color>
 
     <color name="vitalSign1">#FFF6B5</color>
@@ -41,7 +44,6 @@
 
     <color name="dietBackground1">#6A80C7</color>
     <color name="dietButton1">#39C580</color>
-
 
     <color name="dietButton2">#6ACA91</color>
     <color name="colordietbar">#71D3B6</color>

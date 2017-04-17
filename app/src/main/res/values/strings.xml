@@ -13,7 +13,7 @@
     <string name="vital_signs">Vital Signs</string>
     <string name="notification">Notification</string>
     <string name="profile">Profile</string>
-    <string name="communication">Communication</string>
+    <string name="communication">Emergency Contact</string>
     <string name="title_activity_forget_password">ForgetPassword</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_home">HomeActivity</string>
@@ -52,6 +52,14 @@
 
     <string name="defaultVal">Default</string>
     <string name="camera_permission_msg">Please grant permission to access camera</string>
+    <string name="medication_subtitle">Track your medicine consumption</string>
+    <string name="vital_signs_subtitle">Track your glucose, BP etc.</string>
+    <string name="home_add_text">Add</string>
+    <string name="home_view_text">View</string>
+    <string name="communication_subtitle">Manage emergency contacts</string>
+    <string name="notes">Notes</string>
+    <string name="notes_subtitle">Create, edit, delete notes</string>
+    <string name="diet_subtitle">Track diet for each day</string>
 
     <string-array name="numbers_array">
         <item>1</item>

@@ -80,8 +80,6 @@
                 android:backgroundTint="@color/dietButton2"
                 android:text="ADD TO MEAL"
                 android:textColor="@color/whiteF1" />
-
-
         </LinearLayout>
 
         <LinearLayout

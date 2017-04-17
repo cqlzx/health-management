@@ -131,7 +131,7 @@ public class NavigationDrawerActivity extends AppCompatActivity
             createFragment(new BasicFragment.NotificationFragment(), "notificationFragment");
         }
         else if (id == R.id.nav_emergency) {
-            createFragment(new EmergencyFragment(), "EmergencyFragment");
+            createFragment(new EmergencyFragment(), "emergencyFragment");
         }
         else if (id == R.id.nav_settings) {
 
