@@ -11,7 +11,7 @@
     <string name="medication">Medication</string>
     <string name="diet">Diet</string>
     <string name="vital_signs">Vital Signs</string>
-    <string name="notification">Notification</string>
+    <string name="note">Note</string>
     <string name="profile">Profile</string>
     <string name="communication">Emergency Contact</string>
     <string name="title_activity_forget_password">ForgetPassword</string>
