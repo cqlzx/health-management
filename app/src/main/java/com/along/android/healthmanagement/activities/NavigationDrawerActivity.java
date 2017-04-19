@@ -127,8 +127,8 @@ public class NavigationDrawerActivity extends AppCompatActivity
             createFragment(new DietFragment(), "dietFragment");
         } else if (id == R.id.nav_vital_signs) {
             createFragment(new VitalSignTabFragment(), "vitalSignsFragment");
-        } else if (id == R.id.nav_notification) {
-            createFragment(new BasicFragment.NotificationFragment(), "notificationFragment");
+        } else if (id == R.id.nav_note) {
+//            createFragment(new BasicFragment.NotificationFragment(), "notificationFragment");
         }
         else if (id == R.id.nav_emergency) {
             createFragment(new EmergencyFragment(), "emergencyFragment");

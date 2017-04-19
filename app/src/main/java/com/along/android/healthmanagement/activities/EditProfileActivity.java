@@ -98,9 +98,10 @@ public class EditProfileActivity extends AppCompatActivity {
 
                     try {
                         user.save();
-                        Intent intent = new Intent();
+                        /*Intent intent = new Intent();
                         intent.setClass(EditProfileActivity.this, ProfileActivity.class);
-                        startActivity(intent);
+                        startActivity(intent);*/
+                        finish();
                     } catch (Exception e) {
                         Toast.makeText(EditProfileActivity.this, "error", Toast.LENGTH_SHORT).show();
                     }

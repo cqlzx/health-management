@@ -27,7 +27,7 @@ public class BasicFragment extends Fragment {
                 commit();
     }
 
-    public static class NotificationFragment extends BasicFragment {
+    /*public static class NotificationFragment extends BasicFragment {
         public NotificationFragment() {
             // Required empty public constructor
         }
@@ -39,5 +39,5 @@ public class BasicFragment extends Fragment {
             // Inflate the layout for this fragment
             return inflater.inflate(R.layout.fragment_notification, container, false);
         }
-    }
+    }*/
 }

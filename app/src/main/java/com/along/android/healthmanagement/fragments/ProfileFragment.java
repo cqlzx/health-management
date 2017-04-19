@@ -25,6 +25,7 @@ import com.along.android.healthmanagement.helpers.EntityManager;
  */
 public class ProfileFragment extends Fragment {
     Button btn_cancel_profile, btn_editprofile;
+    public View rootView;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -34,11 +35,11 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        rootView = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        initializeMedicationListData(view);
+        initializeMedicationListData(rootView);
 
-        return view;
+        return rootView;
     }
 
     private void initializeMedicationListData(View view){
@@ -135,5 +136,12 @@ public class ProfileFragment extends Fragment {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        System.out.println(">>>>>>>>> onResume");
+        initializeMedicationListData(rootView);
     }
 }

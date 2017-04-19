@@ -18,9 +18,9 @@
             android:icon="@drawable/ic_menu_vital_signs"
             android:title="@string/vital_signs" />
         <item
-            android:id="@+id/nav_notification"
+            android:id="@+id/nav_note"
             android:icon="@drawable/ic_menu_notifications"
-            android:title="@string/notification" />
+            android:title="@string/note" />
 
         <item
             android:id="@+id/nav_emergency"
