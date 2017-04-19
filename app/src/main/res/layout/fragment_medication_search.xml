@@ -1,0 +1,54 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="com.along.android.healthmanagement.fragments.medication.MedicationSearchFragment">
+
+    <LinearLayout
+        android:id="@+id/medication_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/greyE"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <SearchView
+            android:id="@+id/sv_medication_search_main"
+            android:layout_width="0dp"
+            android:layout_height="28dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:queryHint="@string/search_medication_hint"/>
+
+        <TextView
+            android:id="@+id/tv_cancel_medication_search"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="4dp"
+            android:text="Cancel"
+            android:textColor="@color/linkBlue"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/medication_search_result_empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="@dimen/large"
+        android:text="No medication records to display"
+        android:textSize="20dp"
+        android:textStyle="italic"/>
+
+    <ListView
+        android:id="@+id/medication_search_result_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
+</LinearLayout>

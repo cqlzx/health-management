@@ -61,6 +61,8 @@
     <string name="notes_subtitle">Create, edit, delete notes</string>
     <string name="diet_subtitle">Track diet for each day</string>
 
+    <string name="search_medication_hint">Search Medication</string>
+
     <string-array name="numbers_array">
         <item>1</item>
         <item>2</item>

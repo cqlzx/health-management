@@ -3,7 +3,7 @@
     <color name="colorPrimary">#4CAF50</color>
     <color name="colorPrimaryDark">#388E3C</color>
     <color name="colorPrimaryLight">#C8E6C9</color>
-    <color name="colorAccent">#FF5252</color>
+    <color name="colorAccent">#ff5252</color>
 
     <color name="colorPrimaryText">#424242</color>
     <color name="colorMediumText">#606060</color>
@@ -24,12 +24,12 @@
 
     <color name="blueButton">#0D9ECE</color>
     <color name="googleRed">#D34836</color>
-    <color name="linkBlue">#006CC5</color>
+    <color name="linkBlue">#006cc5</color>
 
     <color name="white">#FFF</color>
     <color name="whiteF1">#F1F1F1</color>
     <color name="whiteF9">#F9F9F9</color>
-    <color name="greyE">#EEEEEE</color>
+    <color name="greyE">#eeeeee</color>
     <color name="greyD">#dddddd</color>
     <color name="greyA">#AAAAAA</color>
     <color name="grey6">#666666</color>

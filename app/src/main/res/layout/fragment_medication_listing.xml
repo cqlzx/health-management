@@ -10,6 +10,12 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.NoActionBar">
 
+        <SearchView
+            android:id="@+id/sv_medication_search_entry"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:background="@color/white"/>
+
         <android.support.design.widget.TabLayout
             android:id="@+id/medicationTabs"
             android:layout_width="match_parent"
@@ -18,7 +24,7 @@
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/colorTabSelected"
             app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/colorTabSelected" />
+            app:tabSelectedTextColor="@color/colorTabSelected"/>
 
     </android.support.design.widget.AppBarLayout>
 

@@ -7,12 +7,19 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
+import android.view.inputmethod.EditorInfo;
+import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.fragments.BasicFragment;
@@ -41,6 +48,22 @@ public class MedicationMenuFragment extends BasicFragment {
 
         tabLayout = (TabLayout) view.findViewById(R.id.medicationTabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+
+        SearchView svMedicationSearchEntry = (SearchView) view.findViewById(R.id.sv_medication_search_entry);
+
+        AutoCompleteTextView searchTextContent = (AutoCompleteTextView) svMedicationSearchEntry.findViewById(svMedicationSearchEntry.getContext().getResources().getIdentifier("android:id/search_src_text", null, null));
+        searchTextContent.setTextSize(16); //Set the text size
+        searchTextContent.setGravity(Gravity.BOTTOM);
+
+        svMedicationSearchEntry.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    createFragment(new MedicationSearchFragment(), "medicationSearchFragment");
+                }
+            }
+        });
 
         ImageView fab = (ImageView) view.findViewById(R.id.add_medication_fab);
         ScaleAnimation animation = new ScaleAnimation(0f, 1.0f, 0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
