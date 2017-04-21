@@ -85,8 +85,12 @@ public class MedicationSearchFragment extends BasicFragment {
         searchTextContent.setTextSize(16); //Set the text size
         searchTextContent.setGravity(Gravity.BOTTOM);
 
-        svMedicationSearchMain.setIconifiedByDefault(false);
+        svMedicationSearchMain.setIconifiedByDefault(true);
+        svMedicationSearchMain.setFocusable(true);
+        svMedicationSearchMain.setIconified(false);
         svMedicationSearchMain.requestFocusFromTouch();
+//        svMedicationSearchMain.setIconified(false);
+//        svMedicationSearchMain.requestFocusFromTouch();
         svMedicationSearchMain.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

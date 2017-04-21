@@ -18,6 +18,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -50,20 +51,16 @@ public class MedicationMenuFragment extends BasicFragment {
         tabLayout.setupWithViewPager(mViewPager);
 
 
-        SearchView svMedicationSearchEntry = (SearchView) view.findViewById(R.id.sv_medication_search_entry);
+        LinearLayout llMedicationSearchEntry = (LinearLayout) view.findViewById(R.id.ll_medication_search_entry);
 
-        AutoCompleteTextView searchTextContent = (AutoCompleteTextView) svMedicationSearchEntry.findViewById(svMedicationSearchEntry.getContext().getResources().getIdentifier("android:id/search_src_text", null, null));
-        searchTextContent.setTextSize(16); //Set the text size
-        searchTextContent.setGravity(Gravity.BOTTOM);
-
-        svMedicationSearchEntry.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+        llMedicationSearchEntry.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    createFragment(new MedicationSearchFragment(), "medicationSearchFragment");
-                }
+            public void onClick(View v) {
+                createFragment(new MedicationSearchFragment(), "medicationSearchFragment");
             }
         });
+
+
 
         ImageView fab = (ImageView) view.findViewById(R.id.add_medication_fab);
         ScaleAnimation animation = new ScaleAnimation(0f, 1.0f, 0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
