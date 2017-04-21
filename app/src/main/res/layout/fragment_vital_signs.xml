@@ -1,25 +1,114 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
     tools:context="com.along.android.healthmanagement.fragments.vitalsigns.VitalSignTabFragment">
+
+    <LinearLayout
+        android:id="@+id/llDateVitalSign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/llStartDateVitalSign"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivStartDateVitalSign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/medium"
+                android:background="@drawable/ic_calendar"
+                android:backgroundTint="@color/mediumLightIcon"/>
+
+            <TextView
+                android:id="@+id/tvStartDateVitalSign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Date"
+                android:textAppearance="?android:textAppearanceMedium"/>
+
+            <TextView
+                android:id="@+id/tvStartDateVitalSignInMillis"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="Start date in millis"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llEndDateVitalSign"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivEndDateVitalSign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/medium"
+                android:background="@drawable/ic_calendar"
+                android:backgroundTint="@color/mediumLightIcon"/>
+
+            <TextView
+                android:id="@+id/tvEndDateVitalSign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End Date"
+                android:textAppearance="?android:textAppearanceMedium"/>
+
+            <TextView
+                android:id="@+id/tvEndDateVitalSignInMillis"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="End date in millis"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnVitalSignSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llDateVitalSign"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginRight="36dp"
+        android:background="@drawable/shape_button_round_corner"
+        android:text="Search"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"/>
+
     <TextView
         android:id="@+id/tvVSEmptyMsg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/btnVitalSignSearch"
         android:gravity="center"
         android:paddingTop="@dimen/large"
-        android:text=""
+        android:text="No vital sign records to display"
         android:textSize="20dp"
-        android:textStyle="italic" />
+        android:textStyle="italic"/>
 
     <ListView xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
               android:id="@+id/vital_signs_history_list"
               android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" />
+              android:layout_height="match_parent"
+              android:layout_below="@+id/btnVitalSignSearch"
+              android:background="@android:color/background_light"
+              android:orientation="vertical"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_medication_fab"
@@ -31,7 +120,6 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_fab_add"
-        />
+        app:srcCompat="@drawable/ic_fab_add"/>
 
-</FrameLayout>
+</RelativeLayout>

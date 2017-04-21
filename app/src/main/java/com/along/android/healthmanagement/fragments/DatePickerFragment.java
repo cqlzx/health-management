@@ -50,7 +50,17 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
             txtView.setText(text);
             TextView txtViewMillis = (TextView) getActivity().findViewById(R.id.tvEndDateInMillis);
             txtViewMillis.setText(calendar.getTimeInMillis() + "");
-        }else if(null!= this.getArguments() && "Today".equals(this.getArguments().getString("whichDate"))) {
+        } else if(null!= this.getArguments() && "startDateVitalSign".equals(this.getArguments().getString("whichDate"))) {
+            TextView txtView = (TextView) getActivity().findViewById(R.id.tvStartDateVitalSign);
+            txtView.setText(text);
+            TextView txtViewMillis = (TextView) getActivity().findViewById(R.id.tvStartDateVitalSignInMillis);
+            txtViewMillis.setText(calendar.getTimeInMillis() + "");
+        } else if(null!= this.getArguments() && "endDateVitalSign".equals(this.getArguments().getString("whichDate"))) {
+            TextView txtView = (TextView) getActivity().findViewById(R.id.tvEndDateVitalSign);
+            txtView.setText(text);
+            TextView txtViewMillis = (TextView) getActivity().findViewById(R.id.tvEndDateVitalSignInMillis);
+            txtViewMillis.setText(calendar.getTimeInMillis() + "");
+        } else if(null!= this.getArguments() && "Today".equals(this.getArguments().getString("whichDate"))) {
             TextView txtView = (TextView) getActivity().findViewById(R.id.tvStartDateDiet);
             txtView.setText(text);
 
