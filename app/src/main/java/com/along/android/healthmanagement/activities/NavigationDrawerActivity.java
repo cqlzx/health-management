@@ -128,7 +128,10 @@ public class NavigationDrawerActivity extends AppCompatActivity
         } else if (id == R.id.nav_vital_signs) {
             createFragment(new VitalSignTabFragment(), "vitalSignsFragment");
         } else if (id == R.id.nav_note) {
-//            createFragment(new BasicFragment.NotificationFragment(), "notificationFragment");
+
+            Intent intent = new Intent();
+            intent.setClass(NavigationDrawerActivity.this, NoteDetailActivity.class);
+            startActivity(intent);
         }
         else if (id == R.id.nav_emergency) {
             createFragment(new EmergencyFragment(), "emergencyFragment");
