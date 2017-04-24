@@ -24,6 +24,7 @@ import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.fragments.DatePickerFragment;
 import com.along.android.healthmanagement.fragments.EmergencyFragment;
 import com.along.android.healthmanagement.fragments.HomeFragment;
+import com.along.android.healthmanagement.fragments.NotesFragment;
 import com.along.android.healthmanagement.fragments.ProfileFragment;
 import com.along.android.healthmanagement.fragments.diet.AddFoodFragment;
 import com.along.android.healthmanagement.fragments.diet.AddMealFragment;
@@ -136,9 +137,10 @@ public class NavigationDrawerActivity extends AppCompatActivity
             createFragment(new VitalSignTabFragment(), "vitalSignsFragment");
         } else if (id == R.id.nav_note) {
 
-            Intent intent = new Intent();
-            intent.setClass(NavigationDrawerActivity.this, NoteDetailActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent();
+//            intent.setClass(NavigationDrawerActivity.this, NoteDetailActivity.class);
+//            startActivity(intent);
+            createFragment(new NotesFragment(), "notesFragment");
         }
         else if (id == R.id.nav_emergency) {
             createFragment(new EmergencyFragment(), "emergencyFragment");
