@@ -21,7 +21,6 @@ import com.along.android.healthmanagement.fragments.vitalsigns.VitalSignTabFragm
  */
 public class HomeFragment extends BasicFragment {
 
-
     public HomeFragment() {
         // Required empty public constructor
     }

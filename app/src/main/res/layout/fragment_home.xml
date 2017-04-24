@@ -88,7 +88,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/home_add_text"
-                                android:textColor="@color/lightIcon"
+                                android:textColor="@color/colorTile1"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
@@ -98,7 +98,7 @@
                                 android:layout_height="8dp"
                                 android:layout_marginLeft="@dimen/medium"
                                 android:background="@drawable/ic_menu_medication"
-                                android:backgroundTint="@color/lightIcon" />
+                                android:backgroundTint="@color/colorTile1" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -115,7 +115,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/home_view_text"
-                                android:textColor="@color/lightIcon"
+                                android:textColor="@color/colorTile1"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
@@ -125,7 +125,7 @@
                                 android:layout_height="10dp"
                                 android:layout_marginLeft="@dimen/medium"
                                 android:background="@drawable/ic_arrow"
-                                android:backgroundTint="@color/lightIcon" />
+                                android:backgroundTint="@color/colorTile1" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -199,7 +199,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/home_add_text"
-                                android:textColor="@color/lightIcon"
+                                android:textColor="@color/colorTile2"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
@@ -209,7 +209,7 @@
                                 android:layout_height="8dp"
                                 android:layout_marginLeft="@dimen/medium"
                                 android:background="@drawable/ic_menu_medication"
-                                android:backgroundTint="@color/lightIcon" />
+                                android:backgroundTint="@color/colorTile2" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -226,7 +226,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/home_view_text"
-                                android:textColor="@color/lightIcon"
+                                android:textColor="@color/colorTile2"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
@@ -236,7 +236,7 @@
                                 android:layout_height="10dp"
                                 android:layout_marginLeft="@dimen/medium"
                                 android:background="@drawable/ic_arrow"
-                                android:backgroundTint="@color/lightIcon" />
+                                android:backgroundTint="@color/colorTile2" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -319,7 +319,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/home_view_text"
-                                android:textColor="@color/lightIcon"
+                                android:textColor="@color/colorTile3"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
@@ -329,7 +329,7 @@
                                 android:layout_height="10dp"
                                 android:layout_marginLeft="@dimen/medium"
                                 android:background="@drawable/ic_arrow"
-                                android:backgroundTint="@color/lightIcon" />
+                                android:backgroundTint="@color/colorTile3" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -403,7 +403,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/home_add_text"
-                                android:textColor="@color/lightIcon"
+                                android:textColor="@color/colorTile5"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
@@ -413,7 +413,7 @@
                                 android:layout_height="8dp"
                                 android:layout_marginLeft="@dimen/medium"
                                 android:background="@drawable/ic_menu_medication"
-                                android:backgroundTint="@color/lightIcon" />
+                                android:backgroundTint="@color/colorTile5" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -430,7 +430,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/home_view_text"
-                                android:textColor="@color/lightIcon"
+                                android:textColor="@color/colorTile5"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
@@ -440,7 +440,7 @@
                                 android:layout_height="10dp"
                                 android:layout_marginLeft="@dimen/medium"
                                 android:background="@drawable/ic_arrow"
-                                android:backgroundTint="@color/lightIcon" />
+                                android:backgroundTint="@color/colorTile5" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -525,7 +525,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/home_view_text"
-                                android:textColor="@color/lightIcon"
+                                android:textColor="@color/colorTile4"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
@@ -535,7 +535,7 @@
                                 android:layout_height="10dp"
                                 android:layout_marginLeft="@dimen/medium"
                                 android:background="@drawable/ic_arrow"
-                                android:backgroundTint="@color/lightIcon" />
+                                android:backgroundTint="@color/colorTile4" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
