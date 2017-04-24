@@ -426,7 +426,10 @@
                         android:background="@android:color/white"
                         wave:above_wave_color="@color/linkBlue"
                         wave:blow_wave_color="@color/linkBlue"
-                        wave:progress="1"
+                        wave:progress="0"
+                        wave:wave_height="little"
+                    wave:wave_hz="normal"
+                        wave:wave_length="middle"
                         />
                 <ImageView
                     android:id="@+id/diet_cup1"
