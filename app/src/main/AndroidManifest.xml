@@ -53,7 +53,11 @@
         </receiver>
         <activity android:name=".activities.MedicationDetailsActivity"></activity>
         <activity android:name=".activities.VitalSignDetailsActivity"></activity>
-        <activity android:name=".activities.NoteDetailActivity" />
+        <activity
+            android:name=".activities.NoteDetailActivity"
+            android:logo="@drawable/note_icon"
+            android:label="note"
+            />
     </application>
 
 </manifest>
