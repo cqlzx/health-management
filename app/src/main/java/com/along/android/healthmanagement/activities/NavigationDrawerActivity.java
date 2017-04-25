@@ -21,11 +21,10 @@ import android.widget.TextView;
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.Food;
 import com.along.android.healthmanagement.entities.User;
-import com.along.android.healthmanagement.fragments.BasicFragment;
-import com.along.android.healthmanagement.fragments.BmiFragment;
 import com.along.android.healthmanagement.fragments.DatePickerFragment;
 import com.along.android.healthmanagement.fragments.EmergencyFragment;
 import com.along.android.healthmanagement.fragments.HomeFragment;
+import com.along.android.healthmanagement.fragments.NotesFragment;
 import com.along.android.healthmanagement.fragments.ProfileFragment;
 import com.along.android.healthmanagement.fragments.diet.AddFoodFragment;
 import com.along.android.healthmanagement.fragments.diet.AddMealFragment;
@@ -49,6 +48,14 @@ public class NavigationDrawerActivity extends AppCompatActivity
         setContentView(R.layout.activity_navigation_drawer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        toolbar.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                createFragment(new HomeFragment(), "homeFragment");
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -130,15 +137,13 @@ public class NavigationDrawerActivity extends AppCompatActivity
             createFragment(new VitalSignTabFragment(), "vitalSignsFragment");
         } else if (id == R.id.nav_note) {
 
-            Intent intent = new Intent();
-            intent.setClass(NavigationDrawerActivity.this, NoteDetailActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent();
+//            intent.setClass(NavigationDrawerActivity.this, NoteDetailActivity.class);
+//            startActivity(intent);
+            createFragment(new NotesFragment(), "notesFragment");
         }
         else if (id == R.id.nav_emergency) {
             createFragment(new EmergencyFragment(), "emergencyFragment");
-        }
-        else if (id == R.id.nav_BMI) {
-            createFragment(new BmiFragment(), "bmiFragment");
         }
         else if (id == R.id.nav_settings) {
 

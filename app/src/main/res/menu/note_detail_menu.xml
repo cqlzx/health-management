@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.along.android.healthmanagement.activities.NoteDetailActivity">
+
+    <item
+        android:id="@+id/action_pic"
+        android:icon="@drawable/note_pic"
+        android:title="add"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_add"
+        android:icon="@drawable/note_add"
+        android:title="add"
+        app:showAsAction="always"/>
+
+
+
+</menu>

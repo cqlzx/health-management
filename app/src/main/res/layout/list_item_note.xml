@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/note_list_item"
+              android:layout_width="match_parent"
+              android:layout_height="60dp"
+              android:padding="@dimen/medium"
+              android:visibility="visible"
+              android:orientation="horizontal"
+              xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/diet_water"
+        android:layout_width="174dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:weightSum="1"
+        android:layout_weight="0.05">
+
+        <TextView
+            android:id="@+id/tvXLNoteId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="1"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/ivNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/ic_note"
+            android:padding="@dimen/small"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.89"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="2dp">
+
+
+        <TextView
+            android:id="@+id/tvNoteTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="Note Title"
+            android:textColor="@color/colorMediumText"
+            android:textSize="13dp"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:id="@+id/tvNoteAddedTime"
+            android:layout_width="222dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="0412,2017"
+            android:textColor="@color/defaultTextColor"
+            android:textSize="10dp"
+            android:layout_centerVertical="true"/>
+    </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llDelete"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.06"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/medium"
+        >
+        <ImageView
+            android:id="@+id/ivDelete"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:background="@drawable/ic_delete_bin"
+            android:backgroundTint="@color/lightIcon"/>
+
+        <TextView
+            android:id="@+id/tvNoteDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/medium"
+            android:text="Delete"
+            android:textColor="@color/lightIcon"
+            android:textSize="16sp"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,6 +1,7 @@
 package com.along.android.healthmanagement.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.activities.NoteDetailActivity;
 import com.along.android.healthmanagement.fragments.diet.DietFragment;
 import com.along.android.healthmanagement.fragments.medication.AddPrescriptionFormFragment;
 import com.along.android.healthmanagement.fragments.medication.MedicationMenuFragment;
@@ -20,7 +22,6 @@ import com.along.android.healthmanagement.fragments.vitalsigns.VitalSignTabFragm
  * A simple {@link Fragment} subclass.
  */
 public class HomeFragment extends BasicFragment {
-
 
     public HomeFragment() {
         // Required empty public constructor
@@ -87,6 +88,17 @@ public class HomeFragment extends BasicFragment {
 
         LinearLayout llHomeAddNotes = (LinearLayout) view.findViewById(R.id.ll_home_add_notes);
         // link to add notes
+        llHomeAddNotes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),NoteDetailActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+
 
         /****** Communication section ******/
         RelativeLayout rlCommunication = (RelativeLayout) view.findViewById(R.id.rl_communication);

@@ -39,21 +39,21 @@ public class DietFragment extends BasicFragment {
 
     CollapsingToolbarLayout toolbarLayout;
     NestedScrollView scrollView;
-    ImageView imageView, ivCup1, ivCup2, ivCup3, ivCup4, ivCup5, ivCup6, ivCup7, ivCup8;
+    ImageView imageView,ivCup1,ivCup2,ivCup3,ivCup4,ivCup5,ivCup6,ivCup7,ivCup8;
     RelativeLayout rlTitle;
-    TextView tvTitle, tvStartDateInDiet, tvStartDateDiet, tvBreakfastContent, tvLunchContent, tvDinnerContent, tvDietWaterFloz;
-    WaveView waveViewCup1, waveViewCup2, waveViewCup3, waveViewCup4, waveViewCup5, waveViewCup6, waveViewCup7, waveViewCup8;
-    int cup1ProgressCount, cup2ProgressCount, cup3ProgressCount, cup4ProgressCount, cup5ProgressCount, cup6ProgressCount, cup7ProgressCount, cup8ProgressCount;
-    CardView cvBreakfast, cvLunch, cvDinner;
-    ImageView ivAddDinner, ivAddLunch, ivAddBreakfast;
+    TextView tvTitle, tvStartDateInDiet, tvStartDateDiet, tvBreakfastContent,tvLunchContent,tvDinnerContent,tvDietWaterFloz;
+    WaveView waveViewCup1,waveViewCup2,waveViewCup3,waveViewCup4,waveViewCup5,waveViewCup6,waveViewCup7,waveViewCup8;
+    int cup1ProgressCount,cup2ProgressCount,cup3ProgressCount,cup4ProgressCount,cup5ProgressCount,cup6ProgressCount,cup7ProgressCount,cup8ProgressCount;
+    CardView cvBreakfast,cvLunch,cvDinner;
+    ImageView ivAddDinner,ivAddLunch,ivAddBreakfast;
     Long mealId;
-    String breakfastCalories, lunchCalories, dinnerCalories;
-    double waterfloz, waterInvariant;
+    String breakfastCalories,lunchCalories,dinnerCalories;
+    double waterfloz,waterInvariant;
     Calendar calendar;
 
     WaterConsumption waterConsumption = new WaterConsumption();
 
-    Long userId, breakfastMealId, lunchMealId, dinnerMealId;
+    Long userId,breakfastMealId,lunchMealId,dinnerMealId;
     Long dayTime, changDay;
 
     public DietFragment() {
@@ -71,10 +71,9 @@ public class DietFragment extends BasicFragment {
 
         return view;
     }
+    private void initializeDietListData(View view){
 
-    private void initializeDietListData(View view) {
-
-        toolbarLayout = (CollapsingToolbarLayout) view.findViewById(R.id.toolbar_layout);
+        toolbarLayout =(CollapsingToolbarLayout) view.findViewById(R.id.toolbar_layout);
         toolbarLayout.setTitleEnabled(false);
 
         rlTitle = (RelativeLayout) view.findViewById(R.id.rl_title);
@@ -85,9 +84,9 @@ public class DietFragment extends BasicFragment {
         dinnerCalories = "0";
         waterfloz = 0.00;
         waterInvariant = 8.45;
-        breakfastMealId = null;
-        lunchMealId = null;
-        dinnerMealId = null;
+        breakfastMealId =null;
+        lunchMealId =null;
+        dinnerMealId =null;
 
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
@@ -96,11 +95,11 @@ public class DietFragment extends BasicFragment {
         calendar = new GregorianCalendar(year, month, day);
 
         calendar.set(Calendar.MILLISECOND, 0);
-        calendar.set(Calendar.HOUR, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.HOUR , 0);
+        calendar.set(Calendar.MINUTE , 0);
+        calendar.set(Calendar.SECOND , 0);
 
-        dayTime = calendar.getTimeInMillis();
+        dayTime =calendar.getTimeInMillis();
         // background
         imageView = (ImageView) view.findViewById(R.id.iv_title);
         tvDietWaterFloz = (TextView) view.findViewById(R.id.tvDiet_waterFloz);
@@ -192,9 +191,9 @@ public class DietFragment extends BasicFragment {
         tvStartDateInDiet.setText(calendar.getTimeInMillis() + "");
 
 
-        System.out.println("-Jintian-->>>" + tvStartDateDiet.getText());  // zhege
-        System.out.println("-J-->>>" + tvStartDateInDiet.getText());
-        System.out.println("-H-->>>" + dayTime);
+        System.out.println("-Jintian-->>>"+tvStartDateDiet.getText());  // zhege
+        System.out.println("-J-->>>"+tvStartDateInDiet.getText());
+        System.out.println("-H-->>>"+dayTime);
 
 
         // -- display MealCalories
@@ -222,11 +221,11 @@ public class DietFragment extends BasicFragment {
         });
 
         // - Breakfast Detail -
-        cvBreakfast = (CardView) view.findViewById(R.id.diet_card_view_breakfast);
+        cvBreakfast = (CardView)view.findViewById(R.id.diet_card_view_breakfast);
         cvBreakfast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (breakfastMealId != null) {
+                if (breakfastMealId !=null){
                     MealDetailFragment detailFragment = new MealDetailFragment();
                     Bundle args = new Bundle();
                     args.putLong("mealId", breakfastMealId);
@@ -252,11 +251,11 @@ public class DietFragment extends BasicFragment {
         });
 
         // - Lunch Detail -
-        cvLunch = (CardView) view.findViewById(R.id.diet_card_view_lunch);
+        cvLunch = (CardView)view.findViewById(R.id.diet_card_view_lunch);
         cvLunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (lunchMealId != null) {
+                if (lunchMealId !=null){
                     MealDetailFragment detailFragment = new MealDetailFragment();
                     Bundle args = new Bundle();
                     args.putLong("mealId", lunchMealId);
@@ -281,11 +280,11 @@ public class DietFragment extends BasicFragment {
             }
         });
         // - Dinner Detail -
-        cvDinner = (CardView) view.findViewById(R.id.diet_card_view_dinner);
+        cvDinner = (CardView)view.findViewById(R.id.diet_card_view_dinner);
         cvDinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (dinnerMealId != null) {
+                if (dinnerMealId !=null){
                     MealDetailFragment detailFragment = new MealDetailFragment();
                     Bundle args = new Bundle();
                     args.putLong("mealId", dinnerMealId);
@@ -300,18 +299,17 @@ public class DietFragment extends BasicFragment {
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                float height = ((float) 200 + verticalOffset) / 200 * 200 + 100;
+                float height = ((float)200 + verticalOffset)/ 200 * 200 + 100;
 
                 CollapsingToolbarLayout.LayoutParams params =
                         (CollapsingToolbarLayout.LayoutParams) rlTitle.getLayoutParams(); // 取控件mGrid当前的布局参数
-                params.height = (int) height;// 当控件的高强制设成75象素
+                params.height = (int)height;// 当控件的高强制设成75象素
                 rlTitle.setLayoutParams(params); // 使设置好的布局参数应用到控件mGrid2
 
                 tvTitle.setTextColor(changeAlpha(getResources().getColor(R.color.whiteF1),
-                        Math.abs((300 + verticalOffset) * 1.0f) / appBarLayout.getTotalScrollRange()));
+                        Math.abs((300 + verticalOffset)*1.0f)/appBarLayout.getTotalScrollRange()));
 
             }
-
             public int changeAlpha(int color, float fraction) {
                 int red = Color.red(color);
                 int green = Color.green(color);
@@ -364,10 +362,10 @@ public class DietFragment extends BasicFragment {
 
     public void receiveSelectedDate(Calendar selectedDate) {
 
-        System.out.println("-selected Date-->>>" + selectedDate.getTimeInMillis());
+        System.out.println("-selected Date-->>>"+selectedDate.getTimeInMillis());
         uploadMealDate(selectedDate.getTimeInMillis());
         uploadWateDate(selectedDate.getTimeInMillis());
-        dayTime = selectedDate.getTimeInMillis();
+        dayTime =selectedDate.getTimeInMillis();
     }
 
     private void uploadMealDate(Long chengDayTime) {
@@ -461,6 +459,16 @@ public class DietFragment extends BasicFragment {
 //            waterConsumption.setNumber(waterfloz);
 //            waterConsumption.save();
         }
+    }
+
+
+    private class cupListener implements View.OnClickListener {
+            public void onClick(View v) {
+                int tag = (int) v.getTag();
+                waterConsumption.setUid(userId);
+                waterConsumption.setDate(dayTime);
+                userDoCupClick(tag);
+            }
     }
 
     private void autoDoCupClick(int tag) {
@@ -926,15 +934,6 @@ public class DietFragment extends BasicFragment {
             default:
                 break;
         } //
-    }
-
-    private class cupListener implements View.OnClickListener {
-        public void onClick(View v) {
-            int tag = (int) v.getTag();
-            waterConsumption.setUid(userId);
-            waterConsumption.setDate(dayTime);
-            userDoCupClick(tag);
-        }
     }
 
 }
