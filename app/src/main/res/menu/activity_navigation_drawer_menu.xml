@@ -27,6 +27,11 @@
             android:icon="@drawable/ic_menu_emergency"
             android:title="Emergency Contact" />
 
+        <item
+            android:id="@+id/nav_BMI"
+            android:icon="@drawable/ic_menu_emergency"
+            android:title="BMI Calculate" />
+
 
         <group android:id="@+id/group_settings_id">
             <item

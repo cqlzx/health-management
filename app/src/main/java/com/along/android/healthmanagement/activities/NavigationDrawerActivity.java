@@ -22,6 +22,7 @@ import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.Food;
 import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.fragments.BasicFragment;
+import com.along.android.healthmanagement.fragments.BmiFragment;
 import com.along.android.healthmanagement.fragments.DatePickerFragment;
 import com.along.android.healthmanagement.fragments.EmergencyFragment;
 import com.along.android.healthmanagement.fragments.HomeFragment;
@@ -135,6 +136,9 @@ public class NavigationDrawerActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_emergency) {
             createFragment(new EmergencyFragment(), "emergencyFragment");
+        }
+        else if (id == R.id.nav_BMI) {
+            createFragment(new BmiFragment(), "bmiFragment");
         }
         else if (id == R.id.nav_settings) {
 
