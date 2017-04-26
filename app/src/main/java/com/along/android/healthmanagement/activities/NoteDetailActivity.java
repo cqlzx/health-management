@@ -94,8 +94,10 @@ public class NoteDetailActivity extends AppCompatActivity {
                     note = new Note();
                 }
                 note.setUid(user.getId());
+
                 detail_title = (EditText)findViewById(R.id.detail_title);
                 detail_content = (EditText)findViewById(R.id.detail_content);
+
                 note.setTitle(detail_title.getText().toString());
                 note.setContent(detail_content.getText().toString());
                 Calendar calendar = Calendar.getInstance();
@@ -140,6 +142,9 @@ public class NoteDetailActivity extends AppCompatActivity {
 
             System.out.println(bitmap == null);
 
+            detail_title = (EditText)findViewById(R.id.detail_title);
+            detail_content = (EditText)findViewById(R.id.detail_content);
+
             ImageSpan imageSpan = new ImageSpan(NoteDetailActivity.this, bitmap);
 
             // 创建一个SpannableString对象，以便插入用ImageSpan对象封装的图像
@@ -156,6 +161,24 @@ public class NoteDetailActivity extends AppCompatActivity {
                 edit_text.insert(index, spannableString);
             }
         }
+    }
+
+    public void parseImage(){
+//        detail_title = (EditText)findViewById(R.id.detail_title);
+//        detail_content = (EditText)findViewById(R.id.detail_content);
+//
+//        SpannableString spannableString = new SpannableString(tempUrl);
+//        // 用ImageSpan对象替换你指定的字符串
+//        spannableString.setSpan(imageSpan, 0, tempUrl.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        // 将选择的图片追加到EditText中光标所在位置
+//        int index = detail_content.getSelectionStart(); // 获取光标所在位置
+//        Editable edit_text = detail_content.getEditableText();
+//        if (index < 0 || index >= edit_text.length()) {
+//            edit_text.append(spannableString);
+//        } else {
+//            edit_text.insert(index, spannableString);
+//        }
+
     }
 
 

@@ -39,7 +39,7 @@ public class GetPictureActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_picture);
 
-        /*if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
 
             // Should we show an explanation?
@@ -52,7 +52,7 @@ public class GetPictureActivity extends AppCompatActivity{
 
             // MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE is an
             // app-defined int constant that should be quite unique
-        }*/
+        }
 
         gridview = (GridView) findViewById(R.id.grid);
 
