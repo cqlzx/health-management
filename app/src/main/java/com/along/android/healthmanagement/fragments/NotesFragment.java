@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.activities.NoteDetailActivity;
 import com.along.android.healthmanagement.adapters.NotesAdapter;
 import com.along.android.healthmanagement.entities.Note;
+import com.along.android.healthmanagement.fragments.vitalsigns.AddVitalSignFormFragment;
 import com.along.android.healthmanagement.helpers.EntityManager;
 
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ import java.util.List;
 
 public class NotesFragment extends BasicFragment {
     NotesAdapter notesAdapter;
+    public View rootView;
 
     public NotesFragment() {
         // Required empty public constructor
@@ -30,7 +33,13 @@ public class NotesFragment extends BasicFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_notes, container, false);
+        rootView = inflater.inflate(R.layout.fragment_notes, container, false);
+        initializeNoteListData(rootView);
+
+        return rootView;
+    }
+
+    private void initializeNoteListData(View view){
 
 
         List<Note> noteList;
@@ -65,7 +74,21 @@ public class NotesFragment extends BasicFragment {
             }
         });
 
-        return view;
+
+        ImageView fab = (ImageView) view.findViewById(R.id.add_note_fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),NoteDetailActivity.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        initializeNoteListData(rootView);
     }
 
 }

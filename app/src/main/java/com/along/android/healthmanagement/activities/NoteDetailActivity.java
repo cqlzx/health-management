@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
@@ -32,8 +33,6 @@ import com.along.android.healthmanagement.helpers.EntityManager;
 import java.util.Calendar;
 
 public class NoteDetailActivity extends AppCompatActivity {
-    int PICK_PIC = 101;
-    float mInsertedImgWidth;
     EditText detail_title,detail_content;
     Note note;
     Long id;
@@ -53,9 +52,17 @@ public class NoteDetailActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayUseLogoEnabled(true);
 
+        try{
+            String selectedNoteItemId = getIntent().getStringExtra("selectedNoteItemId");
+            note = EntityManager.findById(Note.class,Long.parseLong(selectedNoteItemId));
+            detail_title = (EditText)findViewById(R.id.detail_title);
+            detail_content = (EditText)findViewById(R.id.detail_content);
+            detail_title.setText(note.getTitle());
+            detail_content.setText(note.getContent());
+        }catch(Exception e)
+        {
 
-
-
+        }
     }
 
     @Override
@@ -74,12 +81,18 @@ public class NoteDetailActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.action_add:
-                //note = EntityManager.findById(Note.class, id);
                 SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
                 long uid = sp.getLong("uid", 0);
                 User user = EntityManager.findById(User.class, uid);
 
-                note = new Note();
+                try{
+                    String selectedNoteItemId = getIntent().getStringExtra("selectedNoteItemId");
+                    note = EntityManager.findById(Note.class,Long.parseLong(selectedNoteItemId));
+
+                }catch (Exception e){
+
+                    note = new Note();
+                }
                 note.setUid(user.getId());
                 detail_title = (EditText)findViewById(R.id.detail_title);
                 detail_content = (EditText)findViewById(R.id.detail_content);
@@ -97,86 +110,48 @@ public class NoteDetailActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.action_pic:
-                /*Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.addCategory(Intent.CATEGORY_OPENABLE);
-                intent.setType("image*//*");
-                startActivityForResult(intent, 0);*/
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(intent, PICK_PIC);
+                Intent intent = new Intent(NoteDetailActivity.this,GetPictureActivity.class);
+                startActivityForResult(intent,1);
 
         }
 
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == PICK_PIC) {
-                if (data == null) {
-                    Toast.makeText(this, "failed", Toast.LENGTH_SHORT).show();
-                } else {
-                    Uri uri = data.getData();
-                    Bitmap bitmap = getOriginalBitmap(uri);
-                    SpannableString ss = getBitmapMime(bitmap, uri);
-                    insertIntoEditText(ss);
-                }
+        if(resultCode == RESULT_OK) {
+            String path = data.getExtras().getString("result");//得到新Activity 关闭后返回的数据
+
+            ContentResolver resolver = getContentResolver();
+            // 获得图片的uri
+            Uri originalUri = Uri.parse("file://" + path);
+
+            Bitmap bitmap = null;
+
+            try {
+                bitmap = BitmapFactory.decodeStream(resolver.openInputStream(originalUri));
+            } catch (Exception e) {
+            }
+
+            System.out.println(bitmap == null);
+
+            ImageSpan imageSpan = new ImageSpan(NoteDetailActivity.this, bitmap);
+
+            // 创建一个SpannableString对象，以便插入用ImageSpan对象封装的图像
+            String tempUrl = "<img src=" + path + " />";
+            SpannableString spannableString = new SpannableString(tempUrl);
+            // 用ImageSpan对象替换你指定的字符串
+            spannableString.setSpan(imageSpan, 0, tempUrl.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            // 将选择的图片追加到EditText中光标所在位置
+            int index = detail_content.getSelectionStart(); // 获取光标所在位置
+            Editable edit_text = detail_content.getEditableText();
+            if (index < 0 || index >= edit_text.length()) {
+                edit_text.append(spannableString);
+            } else {
+                edit_text.insert(index, spannableString);
             }
         }
-    }
-
-    private SpannableString getBitmapMime(Bitmap pic, Uri uri) {
-        int imgWidth = pic.getWidth();
-        int imgHeight = pic.getHeight();
-
-        detail_content = (EditText)findViewById(R.id.detail_content);
-
-
-        ViewTreeObserver vto = detail_content.getViewTreeObserver();
-        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                detail_content.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                float mImgViewWidth = detail_content.getWidth();
-                mInsertedImgWidth = mImgViewWidth * 0.8f;
-            }
-        });
-
-        if (imgWidth >= mInsertedImgWidth) {
-            float scale = (float) mInsertedImgWidth / imgWidth;
-            Matrix mx = new Matrix();
-            mx.setScale(scale, scale);
-            pic = Bitmap.createBitmap(pic, 0, 0, imgWidth, imgHeight, mx, true);
-        }
-        String smile = uri.getPath();
-        SpannableString ss = new SpannableString(smile);
-        ImageSpan span = new ImageSpan(this, pic);
-        ss.setSpan(span, 0, smile.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        return ss;
-    }
-    private void insertIntoEditText(SpannableString ss) {
-
-        detail_content = (EditText)findViewById(R.id.detail_content);
-
-        Editable et = detail_content.getText();
-        int start = detail_content.getSelectionStart();
-        et.insert(start, ss);
-        detail_content.setText(et);
-        detail_content.setSelection(start + ss.length());
-    }
-    private Bitmap getOriginalBitmap(Uri photoUri) {
-        if (photoUri == null) {
-            return null;
-        }
-        Bitmap bitmap = null;
-        try {
-            ContentResolver conReslv = getContentResolver();
-            bitmap = MediaStore.Images.Media.getBitmap(conReslv, photoUri);
-        } catch (Exception e) {
-            Log.e("Exception", "Media.getBitmap failed", e);
-        }
-        return bitmap;
     }
 
 
