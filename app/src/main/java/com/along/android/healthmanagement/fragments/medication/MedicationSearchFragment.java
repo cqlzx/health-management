@@ -5,18 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -38,9 +32,9 @@ import java.util.Set;
  * A simple {@link Fragment} subclass.
  */
 public class MedicationSearchFragment extends BasicFragment {
+    public String searchText;
     MedicationSearchResultAdapter adapter;
     List<Prescription> prescriptions = new ArrayList<>();
-    public String searchText;
 
     public MedicationSearchFragment() {
         // Required empty public constructor
@@ -83,7 +77,7 @@ public class MedicationSearchFragment extends BasicFragment {
 
         AutoCompleteTextView searchTextContent = (AutoCompleteTextView) svMedicationSearchMain.findViewById(svMedicationSearchMain.getContext().getResources().getIdentifier("android:id/search_src_text", null, null));
         searchTextContent.setTextSize(16); //Set the text size
-        searchTextContent.setGravity(Gravity.BOTTOM);
+        //searchTextContent.setGravity(Gravity.BOTTOM);
 
         svMedicationSearchMain.setIconifiedByDefault(true);
         svMedicationSearchMain.setFocusable(true);
