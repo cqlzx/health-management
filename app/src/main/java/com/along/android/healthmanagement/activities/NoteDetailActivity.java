@@ -106,8 +106,12 @@ public class NoteDetailActivity extends AppCompatActivity {
                 calendar.set(year, month, day);
                 note.setDate(calendar.getTimeInMillis());
 
-                note.save();
-                finish();
+                if(detail_title.getText().toString().equals("")||detail_content.getText().toString().equals("")){
+                    Toast.makeText(NoteDetailActivity.this, "title and content cannot be empty", Toast.LENGTH_SHORT).show();
+                }else {
+                    note.save();
+                    finish();
+                }
                 break;
             case R.id.action_pic:
                 Intent intent = new Intent(NoteDetailActivity.this,GetPictureActivity.class);
