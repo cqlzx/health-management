@@ -5,12 +5,19 @@ import com.orm.dsl.Table;
 
 import java.security.SecureRandom;
 import java.util.Date;
-import java.util.StringTokenizer;
 
 @Table
 public class User extends SugarRecord{
     private Long id;
-    private String realname, password, email, gender, age, phonenumber;
+    private String realname;
+    private String password;
+    private String email;
+    private String gender;
+    private String age;
+    private String phonenumber;
+
+
+    private String calorieCount;
     private long passwordExpirationTime;
 
     public User() {
@@ -77,7 +84,13 @@ public class User extends SugarRecord{
         this.passwordExpirationTime = passwordExpirationTime;
     }
 
+    public String getCalorieCount() {
+        return calorieCount;
+    }
 
+    public void setCalorieCount(String calorieCount) {
+        this.calorieCount = calorieCount;
+    }
     public String resetPassword(int len) {
         setPasswordExpirationTime(new Date().getTime() + (long)60 * 60 * 1000);
 

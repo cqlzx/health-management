@@ -62,8 +62,16 @@
                     android:text="1024"
                     android:textColor="@color/whiteF1"
                     android:textSize="24sp" />
-
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_calorie_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="1024"
+                android:textColor="@color/whiteF1"
+                android:textSize="16sp" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>

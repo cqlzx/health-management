@@ -19,9 +19,8 @@
             android:title="@string/vital_signs" />
         <item
             android:id="@+id/nav_note"
-            android:icon="@drawable/ic_menu_notifications"
+            android:icon="@drawable/ic_menu_notes"
             android:title="@string/note" />
-
         <item
             android:id="@+id/nav_emergency"
             android:icon="@drawable/ic_menu_emergency"
@@ -29,8 +28,8 @@
 
         <item
             android:id="@+id/nav_BMI"
-            android:icon="@drawable/ic_menu_emergency"
-            android:title="BMI Calculate" />
+            android:icon="@drawable/ic_bmi_calc"
+            android:title="BMI Calculator" />
 
 
         <group android:id="@+id/group_settings_id">

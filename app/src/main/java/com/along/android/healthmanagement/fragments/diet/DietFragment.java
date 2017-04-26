@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.Meal;
+import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.entities.WaterConsumption;
 import com.along.android.healthmanagement.fragments.BasicFragment;
 import com.along.android.healthmanagement.fragments.DatePickerFragment;
@@ -41,7 +42,7 @@ public class DietFragment extends BasicFragment {
     NestedScrollView scrollView;
     ImageView imageView,ivCup1,ivCup2,ivCup3,ivCup4,ivCup5,ivCup6,ivCup7,ivCup8;
     RelativeLayout rlTitle;
-    TextView tvTitle, tvStartDateInDiet, tvStartDateDiet, tvBreakfastContent,tvLunchContent,tvDinnerContent,tvDietWaterFloz;
+    TextView tvTitle, tvCalorieCount, tvStartDateInDiet, tvStartDateDiet, tvBreakfastContent, tvLunchContent, tvDinnerContent, tvDietWaterFloz;
     WaveView waveViewCup1,waveViewCup2,waveViewCup3,waveViewCup4,waveViewCup5,waveViewCup6,waveViewCup7,waveViewCup8;
     int cup1ProgressCount,cup2ProgressCount,cup3ProgressCount,cup4ProgressCount,cup5ProgressCount,cup6ProgressCount,cup7ProgressCount,cup8ProgressCount;
     CardView cvBreakfast,cvLunch,cvDinner;
@@ -72,6 +73,7 @@ public class DietFragment extends BasicFragment {
         return view;
     }
     private void initializeDietListData(View view){
+        User user = EntityManager.findById(User.class, userId);
 
         toolbarLayout =(CollapsingToolbarLayout) view.findViewById(R.id.toolbar_layout);
         toolbarLayout.setTitleEnabled(false);
@@ -79,6 +81,10 @@ public class DietFragment extends BasicFragment {
         rlTitle = (RelativeLayout) view.findViewById(R.id.rl_title);
         //  count
         tvTitle = (TextView) view.findViewById(R.id.tv_title);
+        if (null != user.getCalorieCount() && !"".equals(user.getCalorieCount())) {
+            tvCalorieCount = (TextView) view.findViewById(R.id.tv_calorie_count);
+            tvCalorieCount.setText("Calories based on BMI: " + user.getCalorieCount());
+        }
         breakfastCalories = "0";
         lunchCalories = "0";
         dinnerCalories = "0";
@@ -459,16 +465,6 @@ public class DietFragment extends BasicFragment {
 //            waterConsumption.setNumber(waterfloz);
 //            waterConsumption.save();
         }
-    }
-
-
-    private class cupListener implements View.OnClickListener {
-            public void onClick(View v) {
-                int tag = (int) v.getTag();
-                waterConsumption.setUid(userId);
-                waterConsumption.setDate(dayTime);
-                userDoCupClick(tag);
-            }
     }
 
     private void autoDoCupClick(int tag) {
@@ -934,6 +930,15 @@ public class DietFragment extends BasicFragment {
             default:
                 break;
         } //
+    }
+
+    private class cupListener implements View.OnClickListener {
+        public void onClick(View v) {
+            int tag = (int) v.getTag();
+            waterConsumption.setUid(userId);
+            waterConsumption.setDate(dayTime);
+            userDoCupClick(tag);
+        }
     }
 
 }
