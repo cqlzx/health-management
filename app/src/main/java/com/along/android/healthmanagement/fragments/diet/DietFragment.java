@@ -83,7 +83,7 @@ public class DietFragment extends BasicFragment {
         tvTitle = (TextView) view.findViewById(R.id.tv_title);
         if (null != user.getCalorieCount() && !"".equals(user.getCalorieCount())) {
             tvCalorieCount = (TextView) view.findViewById(R.id.tv_calorie_count);
-            tvCalorieCount.setText("Calories based on BMI: " + user.getCalorieCount());
+            tvCalorieCount.setText("Calorie Target: " + user.getCalorieCount());
         }
         breakfastCalories = "0";
         lunchCalories = "0";
