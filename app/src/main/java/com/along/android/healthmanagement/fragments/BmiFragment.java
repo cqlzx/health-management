@@ -25,7 +25,7 @@ public class BmiFragment extends Fragment {
     EditText etHeight, etWeight, etAgeBmi;
     String height_string, weight_string;
     TextView tv_bmi_result;
-    Button calculate;
+    Button calculate,btnCancelCalculate;
     RadioGroup radioGroupGenderBmi;
     RadioButton male, female, radioButtonGender;
     User user;
@@ -61,6 +61,7 @@ public class BmiFragment extends Fragment {
         radioButtonGender = (RadioButton) view.findViewById(selectedId);
 
         calculate = (Button) view.findViewById(R.id.btnCalculate);
+        btnCancelCalculate = (Button) view.findViewById(R.id.btnCancelCalculate);
 
         calculate.setOnClickListener(new View.OnClickListener() {
 
@@ -75,6 +76,13 @@ public class BmiFragment extends Fragment {
                 user.save();
                 tv_bmi_result.setText("BMI Value : " + String.format("%.2f", result) +
                         "\nConsume " + calorieCount + " cal/day");
+            }
+        });
+
+        btnCancelCalculate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().popBackStack();
             }
         });
 
