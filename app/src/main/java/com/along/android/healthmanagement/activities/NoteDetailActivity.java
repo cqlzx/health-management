@@ -10,6 +10,7 @@ import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -21,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -58,11 +60,12 @@ public class NoteDetailActivity extends AppCompatActivity {
             detail_title = (EditText)findViewById(R.id.detail_title);
             detail_content = (EditText)findViewById(R.id.detail_content);
             detail_title.setText(note.getTitle());
-            detail_content.setText(note.getContent());
+            //detail_content.setText(note.getContent());
         }catch(Exception e)
         {
 
         }
+        parseImage();
     }
 
     @Override
@@ -164,20 +167,67 @@ public class NoteDetailActivity extends AppCompatActivity {
     }
 
     public void parseImage(){
-//        detail_title = (EditText)findViewById(R.id.detail_title);
-//        detail_content = (EditText)findViewById(R.id.detail_content);
-//
-//        SpannableString spannableString = new SpannableString(tempUrl);
-//        // 用ImageSpan对象替换你指定的字符串
-//        spannableString.setSpan(imageSpan, 0, tempUrl.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-//        // 将选择的图片追加到EditText中光标所在位置
-//        int index = detail_content.getSelectionStart(); // 获取光标所在位置
-//        Editable edit_text = detail_content.getEditableText();
-//        if (index < 0 || index >= edit_text.length()) {
-//            edit_text.append(spannableString);
-//        } else {
-//            edit_text.insert(index, spannableString);
-//        }
+        ContentResolver resolver = getContentResolver();
+
+        try{
+            String selectedNoteItemId = getIntent().getStringExtra("selectedNoteItemId");
+            note = EntityManager.findById(Note.class,Long.parseLong(selectedNoteItemId));
+            detail_title = (EditText)findViewById(R.id.detail_title);
+            detail_content = (EditText)findViewById(R.id.detail_content);
+            detail_title.setText(note.getTitle());
+            detail_content.setText(note.getContent());
+
+            String source = note.getContent();
+
+            while(source.indexOf("<img") != -1){
+                int start = source.indexOf("<img");
+                int end = source.indexOf("/>");
+
+                String tempUrl = source.substring(start, end+2);
+                String path = tempUrl.substring(8, tempUrl.length() -3);
+
+                Uri originalUri = Uri.parse("file://" + path);
+                Bitmap bitmap = BitmapFactory.decodeStream(resolver.openInputStream(originalUri));
+
+                int imgWidth = bitmap.getWidth();
+                int imgHeight = bitmap.getHeight();
+
+                WindowManager wm = (WindowManager) this
+                        .getSystemService(Context.WINDOW_SERVICE);
+                int width = wm.getDefaultDisplay().getWidth();
+                int height = wm.getDefaultDisplay().getHeight();
+
+                if(imgWidth > 0.8*width) {
+                    double ratio = (0.8 * width) / imgWidth;
+                    imgWidth = (int) (0.8 * width);
+                    imgHeight = (int) (imgHeight * ratio);
+
+                    bitmap = Bitmap.createScaledBitmap(bitmap, imgWidth, imgHeight, true);
+                }
+                if(imgHeight > 0.5*height){
+                    double ratio = (0.5 * height) / imgHeight;
+                    imgHeight = (int) (0.5 * height);
+                    imgWidth = (int) (imgWidth * ratio);
+
+                    bitmap = Bitmap.createScaledBitmap(bitmap, imgWidth, imgHeight, true);
+
+                }
+
+                ImageSpan imageSpan = new ImageSpan(NoteDetailActivity.this, bitmap);
+                SpannableString spannableString = new SpannableString(tempUrl);
+                // 用ImageSpan对象替换你指定的字符串
+                spannableString.setSpan(imageSpan, 0, tempUrl.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                Editable edit_text = detail_content.getEditableText();
+                edit_text.delete(start,end+2);
+                edit_text.insert(start, spannableString);
+
+                source = source.replaceFirst("<img","*abc");
+                source = source.replaceFirst("/>","/*");
+            }
+        }catch(Exception e) {
+            System.out.println(">>>"+e.getMessage());
+        }
 
     }
 
