@@ -148,6 +148,29 @@ public class NoteDetailActivity extends AppCompatActivity {
             detail_title = (EditText)findViewById(R.id.detail_title);
             detail_content = (EditText)findViewById(R.id.detail_content);
 
+            int imgWidth = bitmap.getWidth();
+            int imgHeight = bitmap.getHeight();
+
+            WindowManager wm = (WindowManager) this
+                    .getSystemService(Context.WINDOW_SERVICE);
+            int width = wm.getDefaultDisplay().getWidth();
+            int height = wm.getDefaultDisplay().getHeight();
+
+            if(imgWidth > 0.8*width) {
+                double ratio = (0.8 * width) / imgWidth;
+                imgWidth = (int) (0.8 * width);
+                imgHeight = (int) (imgHeight * ratio);
+
+                bitmap = Bitmap.createScaledBitmap(bitmap, imgWidth, imgHeight, true);
+            }
+            if(imgHeight > 0.5*height){
+                double ratio = (0.5 * height) / imgHeight;
+                imgHeight = (int) (0.5 * height);
+                imgWidth = (int) (imgWidth * ratio);
+
+                bitmap = Bitmap.createScaledBitmap(bitmap, imgWidth, imgHeight, true);
+
+            }
             ImageSpan imageSpan = new ImageSpan(NoteDetailActivity.this, bitmap);
 
             // 创建一个SpannableString对象，以便插入用ImageSpan对象封装的图像
