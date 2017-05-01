@@ -69,18 +69,18 @@ public class VitalSignTabFragment extends BasicFragment {
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         EntityManager.deleteAll(VitalSign.class);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 1; i < 10; i++) {
             VitalSign vs = new VitalSign();
             vs.setUid(uid);
-            vs.setHeight("22");
-            vs.setWeight("22");
+            vs.setHeight("5.6");
+            vs.setWeight("170");
             vs.setBloodGlucose("22");
-            vs.setBloodPressure("22");
-            vs.setHeartRate("22");
-            vs.setBodyTemperature("22");
+            vs.setBloodPressure("120/80");
+            vs.setHeartRate("70");
+            vs.setBodyTemperature("104");
 
             calendar.clear();
-            calendar.set(year, month, day - i);
+            calendar.set(year, month, day - i * i);
             vs.setDate(calendar.getTimeInMillis());
 
             vs.save();
