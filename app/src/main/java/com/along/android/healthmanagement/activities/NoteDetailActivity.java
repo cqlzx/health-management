@@ -162,8 +162,7 @@ public class NoteDetailActivity extends AppCompatActivity {
                 imgHeight = (int) (imgHeight * ratio);
 
                 bitmap = Bitmap.createScaledBitmap(bitmap, imgWidth, imgHeight, true);
-            }
-            if(imgHeight > 0.5*height){
+            }else if(imgHeight > 0.5*height){
                 double ratio = (0.5 * height) / imgHeight;
                 imgHeight = (int) (0.5 * height);
                 imgWidth = (int) (imgWidth * ratio);
@@ -226,8 +225,7 @@ public class NoteDetailActivity extends AppCompatActivity {
                     imgHeight = (int) (imgHeight * ratio);
 
                     bitmap = Bitmap.createScaledBitmap(bitmap, imgWidth, imgHeight, true);
-                }
-                if(imgHeight > 0.5*height){
+                }else if(imgHeight > 0.5*height){
                     double ratio = (0.5 * height) / imgHeight;
                     imgHeight = (int) (0.5 * height);
                     imgWidth = (int) (imgWidth * ratio);
