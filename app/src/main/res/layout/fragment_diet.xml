@@ -13,7 +13,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="192dp"
         android:fastScrollEnabled="false"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
@@ -42,11 +42,18 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
+    <TextView
+        android:id="@+id/tv_calorie_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/whiteF1"
+        android:textSize="16sp" />
+
     <RelativeLayout
         android:id="@+id/rl_title"
         android:layout_width="108dp"
         android:layout_height="108dp"
-        android:layout_marginTop="16dp"
         android:layout_gravity="center"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="center"
@@ -56,27 +63,19 @@
             android:id="@+id/iv_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/small"
             android:src="@drawable/diet_circle" />
 
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:text="1024"
             android:textColor="@color/whiteF1"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/tv_calorie_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_above="@id/tv_title"
-            android:textColor="@color/whiteF1"
-            android:textSize="16sp" />
     </RelativeLayout>
 
     <include layout="@layout/diet_content_scrolling"

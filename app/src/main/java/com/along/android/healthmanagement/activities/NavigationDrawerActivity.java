@@ -145,8 +145,6 @@ public class NavigationDrawerActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_emergency) {
             createFragment(new EmergencyFragment(), "emergencyFragment");
-        } else if (id == R.id.nav_BMI) {
-            createFragment(new BmiFragment(), "bmiFragment");
         }
         else if (id == R.id.nav_BMI){
             createFragment(new BmiFragment(), "bmiFragment");
