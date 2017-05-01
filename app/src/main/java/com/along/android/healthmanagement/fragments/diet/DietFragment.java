@@ -1,14 +1,16 @@
 package com.along.android.healthmanagement.fragments.diet;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,20 +36,18 @@ import java.util.List;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * Created by renxiaolei on 4/5/16.
  */
 public class DietFragment extends BasicFragment {
 
     CollapsingToolbarLayout toolbarLayout;
-    NestedScrollView scrollView;
     ImageView imageView,ivCup1,ivCup2,ivCup3,ivCup4,ivCup5,ivCup6,ivCup7,ivCup8;
     RelativeLayout rlTitle;
     TextView tvTitle, tvCalorieCount, tvStartDateInDiet, tvStartDateDiet, tvBreakfastContent, tvLunchContent, tvDinnerContent, tvDietWaterFloz;
-    WaveView waveViewCup1,waveViewCup2,waveViewCup3,waveViewCup4,waveViewCup5,waveViewCup6,waveViewCup7,waveViewCup8;
+    private WaveView waveViewCup1,waveViewCup2,waveViewCup3,waveViewCup4,waveViewCup5,waveViewCup6,waveViewCup7,waveViewCup8;
     int cup1ProgressCount,cup2ProgressCount,cup3ProgressCount,cup4ProgressCount,cup5ProgressCount,cup6ProgressCount,cup7ProgressCount,cup8ProgressCount;
     CardView cvBreakfast,cvLunch,cvDinner;
     ImageView ivAddDinner,ivAddLunch,ivAddBreakfast;
-    Long mealId;
     String breakfastCalories,lunchCalories,dinnerCalories;
     double waterfloz,waterInvariant;
     Calendar calendar;
@@ -55,7 +55,7 @@ public class DietFragment extends BasicFragment {
     WaterConsumption waterConsumption = new WaterConsumption();
 
     Long userId,breakfastMealId,lunchMealId,dinnerMealId;
-    Long dayTime, changDay;
+    Long dayTime;
 
     public DietFragment() {
         // Required empty public constructor
@@ -66,46 +66,16 @@ public class DietFragment extends BasicFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_diet, container, false);
+
         SharedPreferences sp = this.getActivity().getSharedPreferences("Login", Context.MODE_PRIVATE);
         userId = sp.getLong("uid", 0);
         initializeDietListData(view);
 
         return view;
     }
+
     private void initializeDietListData(View view){
-        User user = EntityManager.findById(User.class, userId);
 
-        toolbarLayout =(CollapsingToolbarLayout) view.findViewById(R.id.toolbar_layout);
-        toolbarLayout.setTitleEnabled(false);
-
-        rlTitle = (RelativeLayout) view.findViewById(R.id.rl_title);
-        //  count
-        tvTitle = (TextView) view.findViewById(R.id.tv_title);
-        if (null != user.getCalorieCount() && !"".equals(user.getCalorieCount())) {
-            tvCalorieCount = (TextView) view.findViewById(R.id.tv_calorie_count);
-            tvCalorieCount.setText("Calorie Target: " + user.getCalorieCount());
-        }
-        breakfastCalories = "0";
-        lunchCalories = "0";
-        dinnerCalories = "0";
-        waterfloz = 0.00;
-        waterInvariant = 8.45;
-        breakfastMealId =null;
-        lunchMealId =null;
-        dinnerMealId =null;
-
-        final Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
-        calendar = new GregorianCalendar(year, month, day);
-
-        calendar.set(Calendar.MILLISECOND, 0);
-        calendar.set(Calendar.HOUR , 0);
-        calendar.set(Calendar.MINUTE , 0);
-        calendar.set(Calendar.SECOND , 0);
-
-        dayTime =calendar.getTimeInMillis();
         // background
         imageView = (ImageView) view.findViewById(R.id.iv_title);
         tvDietWaterFloz = (TextView) view.findViewById(R.id.tvDiet_waterFloz);
@@ -152,6 +122,40 @@ public class DietFragment extends BasicFragment {
 //        waveViewCup7.setProgress(0);
 //        waveViewCup8.setProgress(0);
 
+        User user = EntityManager.findById(User.class, userId);
+
+        toolbarLayout =(CollapsingToolbarLayout) view.findViewById(R.id.toolbar_layout);
+        toolbarLayout.setTitleEnabled(false);
+
+        rlTitle = (RelativeLayout) view.findViewById(R.id.rl_title);
+        //  count
+        tvTitle = (TextView) view.findViewById(R.id.tv_title);
+        if (null != user.getCalorieCount() && !"".equals(user.getCalorieCount())) {
+            tvCalorieCount = (TextView) view.findViewById(R.id.tv_calorie_count);
+            tvCalorieCount.setText("Calorie Target: " + user.getCalorieCount());
+        }
+        breakfastCalories = "0";
+        lunchCalories = "0";
+        dinnerCalories = "0";
+        waterfloz = 0.00;
+        waterInvariant = 8.45;
+        breakfastMealId =null;
+        lunchMealId =null;
+        dinnerMealId =null;
+
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        calendar = new GregorianCalendar(year, month, day);
+
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.set(Calendar.HOUR , 0);
+        calendar.set(Calendar.MINUTE , 0);
+        calendar.set(Calendar.SECOND , 0);
+
+        dayTime =calendar.getTimeInMillis();
+
 
 //        // --  test date --
 //        StringBuilder sb = new StringBuilder();
@@ -197,7 +201,7 @@ public class DietFragment extends BasicFragment {
         tvStartDateInDiet.setText(calendar.getTimeInMillis() + "");
 
 
-        System.out.println("-Jintian-->>>"+tvStartDateDiet.getText());  // zhege
+        System.out.println("-Jintian-->>>"+tvStartDateDiet.getText());  // right
         System.out.println("-J-->>>"+tvStartDateInDiet.getText());
         System.out.println("-H-->>>"+dayTime);
 
@@ -305,14 +309,18 @@ public class DietFragment extends BasicFragment {
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+
                 float height = ((float)200 + verticalOffset)/ 200 * 200 + 100;
 
-                CollapsingToolbarLayout.LayoutParams params =
-                        (CollapsingToolbarLayout.LayoutParams) rlTitle.getLayoutParams(); // 取控件mGrid当前的布局参数
+                CoordinatorLayout.LayoutParams params =
+                        (CoordinatorLayout.LayoutParams) rlTitle.getLayoutParams(); // 取控件mGrid当前的布局参数
                 params.height = (int)height;// 当控件的高强制设成75象素
                 rlTitle.setLayoutParams(params); // 使设置好的布局参数应用到控件mGrid2
 
                 tvTitle.setTextColor(changeAlpha(getResources().getColor(R.color.whiteF1),
+                        Math.abs((300 + verticalOffset)*1.0f)/appBarLayout.getTotalScrollRange()));
+                if(tvCalorieCount != null)
+                tvCalorieCount.setTextColor(changeAlpha(getResources().getColor(R.color.whiteF1),
                         Math.abs((300 + verticalOffset)*1.0f)/appBarLayout.getTotalScrollRange()));
 
             }
@@ -326,45 +334,24 @@ public class DietFragment extends BasicFragment {
         });
         uploadWateDate(dayTime);
 
-//        TimerTask task = new TimerTask() {
-//            @Override
-//            public void run() {
-////
-////                cup1ProgressCount = 100;
-////            cup2ProgressCount = 100;
-////            cup3ProgressCount = 100;
-////            cup4ProgressCount = 100;
-////            cup5ProgressCount = 100;
-////            cup6ProgressCount = 100;
-////            cup7ProgressCount = 100;
-////            cup8ProgressCount = 100;
-////                doCupClick(1);
-////                waveViewCup1.setProgress(0);
-////                cup1ProgressCount = 0;
-////                waveViewCup2.setProgress(0);
-////                cup2ProgressCount = 0;
-////                waveViewCup3.setProgress(0);
-////                cup3ProgressCount = 0;
-////                waveViewCup4.setProgress(0);
-////                cup4ProgressCount = 0;
-////                waveViewCup5.setProgress(0);
-////                cup5ProgressCount = 0;
-////                waveViewCup6.setProgress(0);
-////                cup6ProgressCount = 0;
-////                waveViewCup7.setProgress(0);
-////                cup7ProgressCount = 0;
-////                waveViewCup8.setProgress(0);
-////                cup8ProgressCount = 0;
-//
-////                waterfloz = 0.00;
-////                tvDietWaterFloz.setText(waterfloz + " fl.oz");
-////                waterConsumption.setNumber(waterfloz);
-////                waterConsumption.save();
-//            }
-//        };
-//        Timer timer = new Timer();
-//        timer.schedule(task, 1000);
+        dialog = new ProgressDialog(getContext());
+        dialog.show();
+        dialogHandler.sendEmptyMessageDelayed(0,1000);
     }
+
+    @Override
+    public void onResume() {
+        // TODO Auto-generated method stub
+        super.onResume();
+        System.out.println("-执行了刷新！-->>>");
+    }
+
+    private ProgressDialog dialog;
+    private Handler dialogHandler = new Handler(){
+        public void handleMessage(Message msg){
+            dialog.dismiss();
+        }
+    };
 
     public void receiveSelectedDate(Calendar selectedDate) {
 
@@ -416,10 +403,6 @@ public class DietFragment extends BasicFragment {
             waterfloz = getWaterConsumption.getNumber();
             double tag = waterfloz / waterInvariant;
             int t = (int) tag;
-            System.out.println("-d-->>>" + tag);
-            System.out.println("-e-->>>" + t);
-            System.out.println("-w-->>>" + waterfloz);
-
 
             if (t == 0) {
                 waveViewCup1.setProgress(0);
@@ -440,10 +423,17 @@ public class DietFragment extends BasicFragment {
                 cup8ProgressCount = 0;
                 waterfloz = 0;
                 tvDietWaterFloz.setText(waterfloz + " fl.oz");
+                System.out.println("-没有水，特殊情况-->>>");
             } else {
+                System.out.println("-已经保存了水-->>>");
+                System.out.println("-water-->>>" + waterfloz);
+                System.out.println("-tag-->>>" + tag);
+                System.out.println("-点击-->>>" + t);
                 autoDoCupClick(t);
             }
         } else {
+            //  首次进入  会运行这个
+            System.out.println("-没有水或者首次进入-->>>");
             waveViewCup1.setProgress(0);
             cup1ProgressCount = 0;
             waveViewCup2.setProgress(0);
@@ -462,8 +452,9 @@ public class DietFragment extends BasicFragment {
             cup8ProgressCount = 0;
             waterfloz = 0;
             tvDietWaterFloz.setText(waterfloz + " fl.oz");
-//            waterConsumption.setNumber(waterfloz);
-//            waterConsumption.save();
+
+            waterConsumption.setNumber(waterfloz);
+            waterConsumption.save();
         }
     }
 

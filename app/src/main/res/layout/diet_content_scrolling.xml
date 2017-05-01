@@ -424,12 +424,10 @@
                         android:layout_width="30dp"
                         android:layout_height="match_parent"
                         android:background="@android:color/white"
+                        wave:progress="90"
                         wave:above_wave_color="@color/linkBlue"
                         wave:blow_wave_color="@color/linkBlue"
-                        wave:progress="0"
-                        wave:wave_height="little"
-                    wave:wave_hz="normal"
-                        wave:wave_length="middle"
+
                         />
                 <ImageView
                     android:id="@+id/diet_cup1"
@@ -452,7 +450,7 @@
                     android:background="@android:color/white"
                     wave:above_wave_color="@color/linkBlue"
                     wave:blow_wave_color="@color/linkBlue"
-                    wave:progress="5"
+                    wave:progress="2"
                     />
                 <ImageView
                     android:id="@+id/diet_cup2"
@@ -472,7 +470,7 @@
                     android:background="@android:color/white"
                     wave:above_wave_color="@color/linkBlue"
                     wave:blow_wave_color="@color/linkBlue"
-
+                    wave:progress="2"
                     />
                 <ImageView
                     android:id="@+id/diet_cup3"
@@ -492,7 +490,7 @@
                         android:background="@android:color/white"
                         wave:above_wave_color="@color/linkBlue"
                         wave:blow_wave_color="@color/linkBlue"
-
+                        wave:progress="2"
                         />
                 <ImageView
                     android:id="@+id/diet_cup4"
@@ -512,7 +510,7 @@
                     android:background="@android:color/white"
                     wave:above_wave_color="@color/linkBlue"
                     wave:blow_wave_color="@color/linkBlue"
-
+                    wave:progress="2"
                     />
                 <ImageView
                     android:id="@+id/diet_cup5"
@@ -532,7 +530,7 @@
                         android:background="@android:color/white"
                         wave:above_wave_color="@color/linkBlue"
                         wave:blow_wave_color="@color/linkBlue"
-
+                        wave:progress="2"
                         />
                 <ImageView
                     android:id="@+id/diet_cup6"
@@ -552,7 +550,7 @@
                         android:background="@android:color/white"
                         wave:above_wave_color="@color/linkBlue"
                         wave:blow_wave_color="@color/linkBlue"
-
+                        wave:progress="2"
                         />
                 <ImageView
                     android:id="@+id/diet_cup7"
@@ -572,7 +570,7 @@
                         android:background="@android:color/white"
                         wave:above_wave_color="@color/linkBlue"
                         wave:blow_wave_color="@color/linkBlue"
-
+                        wave:progress="2"
                         />
                 <ImageView
                     android:id="@+id/diet_cup8"
