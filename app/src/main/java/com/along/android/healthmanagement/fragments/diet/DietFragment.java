@@ -44,18 +44,22 @@ public class DietFragment extends BasicFragment {
     ImageView imageView,ivCup1,ivCup2,ivCup3,ivCup4,ivCup5,ivCup6,ivCup7,ivCup8;
     RelativeLayout rlTitle;
     TextView tvTitle, tvCalorieCount, tvStartDateInDiet, tvStartDateDiet, tvBreakfastContent, tvLunchContent, tvDinnerContent, tvDietWaterFloz;
-    private WaveView waveViewCup1,waveViewCup2,waveViewCup3,waveViewCup4,waveViewCup5,waveViewCup6,waveViewCup7,waveViewCup8;
     int cup1ProgressCount,cup2ProgressCount,cup3ProgressCount,cup4ProgressCount,cup5ProgressCount,cup6ProgressCount,cup7ProgressCount,cup8ProgressCount;
     CardView cvBreakfast,cvLunch,cvDinner;
     ImageView ivAddDinner,ivAddLunch,ivAddBreakfast;
     String breakfastCalories,lunchCalories,dinnerCalories;
     double waterfloz,waterInvariant;
     Calendar calendar;
-
     WaterConsumption waterConsumption = new WaterConsumption();
-
     Long userId,breakfastMealId,lunchMealId,dinnerMealId;
     Long dayTime;
+    private WaveView waveViewCup1, waveViewCup2, waveViewCup3, waveViewCup4, waveViewCup5, waveViewCup6, waveViewCup7, waveViewCup8;
+    private ProgressDialog dialog;
+    private Handler dialogHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            dialog.dismiss();
+        }
+    };
 
     public DietFragment() {
         // Required empty public constructor
@@ -346,13 +350,6 @@ public class DietFragment extends BasicFragment {
         System.out.println("-执行了刷新！-->>>");
     }
 
-    private ProgressDialog dialog;
-    private Handler dialogHandler = new Handler(){
-        public void handleMessage(Message msg){
-            dialog.dismiss();
-        }
-    };
-
     public void receiveSelectedDate(Calendar selectedDate) {
 
         System.out.println("-selected Date-->>>"+selectedDate.getTimeInMillis());
@@ -453,8 +450,8 @@ public class DietFragment extends BasicFragment {
             waterfloz = 0;
             tvDietWaterFloz.setText(waterfloz + " fl.oz");
 
-            waterConsumption.setNumber(waterfloz);
-            waterConsumption.save();
+//            waterConsumption.setNumber(waterfloz);
+//            waterConsumption.save();
         }
     }
 
