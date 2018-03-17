@@ -19,15 +19,23 @@ import android.widget.Toast;
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.adapters.ConflictingMedicineAdapter;
 import com.along.android.healthmanagement.adapters.MedicineAdapter;
+import com.along.android.healthmanagement.apis.Apis;
+import com.along.android.healthmanagement.common.JsonCallback;
 import com.along.android.healthmanagement.entities.ConflictingMedicine;
 import com.along.android.healthmanagement.entities.Medicine;
 import com.along.android.healthmanagement.entities.Prescription;
+import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.fragments.BasicFragment;
 import com.along.android.healthmanagement.fragments.DatePickerFragment;
 import com.along.android.healthmanagement.helpers.EntityManager;
 import com.along.android.healthmanagement.helpers.Utility;
+import com.along.android.healthmanagement.network.BaseResponse;
+import com.along.android.healthmanagement.network.SimpleResponse;
+import com.along.android.healthmanagement.utils.JSONUtil;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,6 +63,7 @@ public class AddPrescriptionFormFragment extends BasicFragment {
     TextView tvStartDateInMillis, tvEndDateInMillis;
     List<Medicine> medicineList = new ArrayList<Medicine>();
     ListView listViewConflictingMedicines;
+    Prescription prescription1;
 
     public AddPrescriptionFormFragment() {
         // Required empty public constructor
@@ -214,13 +223,50 @@ public class AddPrescriptionFormFragment extends BasicFragment {
 
         Long prescriptionId = prescription.save();
 
+        OkGo.<BaseResponse<Prescription>>post(Apis.postPrescriptionUrl())
+                .tag(this)
+                .upJson(JSONUtil.toJSONObject(prescription))
+                .execute(new JsonCallback<BaseResponse<Prescription>>() {
+                    @Override
+                    public void onSuccess(Response<BaseResponse<Prescription>> response) {
+                        BaseResponse<Prescription> data = response.body();
+                        if (data != null) {
+                            prescription1 = (Prescription) data.data;
+                        }
+                    }
+
+                    @Override
+                    public void onError(Response<BaseResponse<Prescription>> response) {
+                        super.onError(response);
+                    }
+                });
+
         // Update the prescriptionId in the medicine table
         for (int i = 0; i < count; i++) {
-
+            // local
             medicine = medicineAdapter.getItem(i);
             Medicine med = EntityManager.findById(Medicine.class, medicine.getId());
             med.setPid(prescriptionId);
             med.save();
+
+            // network
+            med.setPid(prescription1.getId());
+            OkGo.<BaseResponse<Medicine>>post(Apis.postMedicineUrl())
+                    .tag(this)
+                    .upJson(JSONUtil.toJSONObject(med))
+                    .execute(new JsonCallback<BaseResponse<Medicine>>() {
+                        @Override
+                        public void onSuccess(Response<BaseResponse<Medicine>> response) {
+                            BaseResponse<Medicine> data = response.body();
+                            if (data != null) {
+                            }
+                        }
+
+                        @Override
+                        public void onError(Response<BaseResponse<Medicine>> response) {
+                            super.onError(response);
+                        }
+                    });
         }
 
         getFragmentManager().popBackStack();

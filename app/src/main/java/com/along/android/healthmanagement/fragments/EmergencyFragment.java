@@ -13,9 +13,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.apis.Apis;
+import com.along.android.healthmanagement.common.JsonCallback;
 import com.along.android.healthmanagement.entities.EmergencyContact;
+import com.along.android.healthmanagement.entities.Prescription;
 import com.along.android.healthmanagement.helpers.EntityManager;
 import com.along.android.healthmanagement.helpers.Validation;
+import com.along.android.healthmanagement.network.BaseResponse;
+import com.along.android.healthmanagement.network.SimpleResponse;
+import com.along.android.healthmanagement.utils.JSONUtil;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,15 +57,41 @@ public class EmergencyFragment extends BasicFragment {
         eContact = (EditText) view.findViewById(R.id.eContact);
         eEmail = (EditText) view.findViewById(R.id.eEmail);
 
+        SharedPreferences sp = getActivity().getSharedPreferences("Login", Context.MODE_PRIVATE);
+        Long uid = sp.getLong("uid", 0);
         final List<EmergencyContact> emergencyContactList = EntityManager.listAll(EmergencyContact.class);
+        OkGo.<BaseResponse<List<EmergencyContact>>>get(Apis.getContact())
+                .tag(this)
+                .params("uid", uid)
+                .execute(new JsonCallback<BaseResponse<List<EmergencyContact>>>() {
+                    @Override
+                    public void onSuccess(Response<BaseResponse<List<EmergencyContact>>> response) {
+                        BaseResponse data = response.body();
+                        if (data != null) {
+                            List<EmergencyContact> emergencyContactList = (List<EmergencyContact>)data.data;
+                            if (emergencyContactList.size() >= 1) {
+                                for (EmergencyContact emergencyCont : emergencyContactList) {
+                                    eName.setText(emergencyCont.getName());
+                                    eContact.setText(emergencyCont.getPhoneNumber());
+                                    eEmail.setText(emergencyCont.getEmail());
+                                }
+                            }
+                        }
+                    }
 
-        if (emergencyContactList.size() >= 1) {
-            for (EmergencyContact emergencyCont : emergencyContactList) {
-                eName.setText(emergencyCont.getName());
-                eContact.setText(emergencyCont.getPhoneNumber());
-                eEmail.setText(emergencyCont.getEmail());
-            }
-        }
+                    @Override
+                    public void onError(Response<BaseResponse<List<EmergencyContact>>> response) {
+                        super.onError(response);
+                        if (emergencyContactList.size() >= 1) {
+                            for (EmergencyContact emergencyCont : emergencyContactList) {
+                                eName.setText(emergencyCont.getName());
+                                eContact.setText(emergencyCont.getPhoneNumber());
+                                eEmail.setText(emergencyCont.getEmail());
+                            }
+                        }
+                    }
+                });
+
 
         Button btnCancelEmergency = (Button) view.findViewById(R.id.btnCancelEmergency);
 
@@ -68,7 +102,7 @@ public class EmergencyFragment extends BasicFragment {
                 String name = eName.getText().toString();
                 String phoneNumber = eContact.getText().toString();
 
-                EmergencyContact cont = new EmergencyContact();
+                final EmergencyContact cont = new EmergencyContact();
                 cont.setName(name);
                 cont.setEmail(email);
                 cont.setPhoneNumber(phoneNumber);
@@ -76,22 +110,38 @@ public class EmergencyFragment extends BasicFragment {
                 if (Validation.isEmpty(cont, getContext()) && Validation.isValidEmail(email, getContext()) && Validation.isValidPhonenumber(phoneNumber, getContext())) {
                     SharedPreferences sp = getActivity().getSharedPreferences("Login", Context.MODE_PRIVATE);
                     Long uid = sp.getLong("uid", 0);
-                    if (emergencyContactList.size() >= 1) {
-                        emergencyContactList.get(0).setUid(uid);
-                        emergencyContactList.get(0).setName(name);
-                        emergencyContactList.get(0).setPhoneNumber(phoneNumber);
-                        emergencyContactList.get(0).setEmail(email);
-                        emergencyContactList.get(0).save();
-                    } else {
-                        EmergencyContact emergencyContact = new EmergencyContact();
-                        emergencyContact.setUid(uid);
-                        emergencyContact.setName(name);
-                        emergencyContact.setEmail(email);
-                        emergencyContact.setPhoneNumber(phoneNumber);
-                        emergencyContact.save();
-                    }
-                    Toast.makeText(getContext(), "Emergency contact added successfully", Toast.LENGTH_LONG).show();
-                    getFragmentManager().popBackStack();
+                    cont.setUid(uid);
+                    OkGo.<SimpleResponse>post(Apis.insertContact())
+                            .tag(this)
+                            .upJson(JSONUtil.toJSONObject(cont))
+                            .execute(new JsonCallback<SimpleResponse>() {
+                                @Override
+                                public void onSuccess(Response<SimpleResponse> response) {
+                                    Toast.makeText(getContext(), "Emergency contact added successfully", Toast.LENGTH_LONG).show();
+                                    getFragmentManager().popBackStack();
+                                }
+
+                                @Override
+                                public void onError(Response<SimpleResponse> response) {
+                                    super.onError(response);
+                                    cont.save();
+                                    /*if (emergencyContactList.size() >= 1) {
+                                        emergencyContactList.get(0).setUid(uid);
+                                        emergencyContactList.get(0).setName(name);
+                                        emergencyContactList.get(0).setPhoneNumber(phoneNumber);
+                                        emergencyContactList.get(0).setEmail(email);
+                                        emergencyContactList.get(0).save();
+                                    } else {
+                                        EmergencyContact emergencyContact = new EmergencyContact();
+                                        emergencyContact.setUid(uid);
+                                        emergencyContact.setName(name);
+                                        emergencyContact.setEmail(email);
+                                        emergencyContact.setPhoneNumber(phoneNumber);
+                                        emergencyContact.save();
+                                    }*/
+                                    Toast.makeText(getContext(), "Emergency contact added error", Toast.LENGTH_LONG).show();
+                                }
+                            });
                 }
 
             }

@@ -72,10 +72,12 @@ public class NavigationDrawerActivity extends AppCompatActivity
         Long userIdS = sp.getLong("uid", 0);
         User user = EntityManager.findById(User.class, userIdS);
 
-        TextView tvNavUsername = (TextView) header.findViewById(R.id.tvNavUsername);
-        tvNavUsername.setText(null != user.getRealname() ? user.getRealname() : "");
-        TextView tvNavEmail = (TextView) header.findViewById(R.id.tvNavEmail);
-        tvNavEmail.setText(null != user.getEmail() ? user.getEmail() : "");
+        if (user != null && user.getRealname() != null && user.getEmail() != null) {
+            TextView tvNavUsername = (TextView) header.findViewById(R.id.tvNavUsername);
+            tvNavUsername.setText(null != user.getRealname() ? user.getRealname() : "");
+            TextView tvNavEmail = (TextView) header.findViewById(R.id.tvNavEmail);
+            tvNavEmail.setText(null != user.getEmail() ? user.getEmail() : "");
+        }
 
         createFragment(new HomeFragment(), "homeFragment");
     }

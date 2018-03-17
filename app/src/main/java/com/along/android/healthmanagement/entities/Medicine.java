@@ -5,7 +5,7 @@ import com.orm.dsl.Table;
 
 @Table
 public class Medicine extends SugarRecord{
-    private Long id, pid;
+    private Long pid;
     private String name;
     private String timings;
     private String quantity;
@@ -14,10 +14,6 @@ public class Medicine extends SugarRecord{
 
     public Medicine() {
 
-    }
-
-    public Long getId(){
-        return id;
     }
 
     public String getName() {

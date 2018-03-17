@@ -15,9 +15,14 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.apis.Apis;
+import com.along.android.healthmanagement.common.JsonCallback;
 import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.helpers.EntityManager;
 import com.along.android.healthmanagement.helpers.Validation;
+import com.along.android.healthmanagement.network.SimpleResponse;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
 
 public class EditProfileActivity extends AppCompatActivity {
 
@@ -98,9 +103,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
                     try {
                         user.save();
-                        /*Intent intent = new Intent();
-                        intent.setClass(EditProfileActivity.this, ProfileActivity.class);
-                        startActivity(intent);*/
+                        // postRegister(user);
                         finish();
                     } catch (Exception e) {
                         Toast.makeText(EditProfileActivity.this, "error", Toast.LENGTH_SHORT).show();
@@ -120,6 +123,37 @@ public class EditProfileActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public void postRegister(User user) {
+        user.setPasswordExpirationTime(0);
+        OkGo.<SimpleResponse>get(Apis.getRegisterUrl())
+                .tag(this)
+                .params("email", user.getEmail())
+                .params("password", user.getPassword())
+                .params("realname", user.getRealname())
+                .params("gender", user.getGender())
+                .params("age", user.getAge())
+                .params("phonenumber", user.getPhonenumber())
+                .params("passwordExpirationTime", user.getPasswordExpirationTime())
+                .execute(new JsonCallback<SimpleResponse>() {
+                    @Override
+                    public void onSuccess(Response<SimpleResponse> response) {
+                        if (response != null && response.body() != null) {
+                            SimpleResponse result = response.body();
+                            if (result.code == 0) {
+                                finish();
+                                return;
+                            }
+                        }
+                        Toast.makeText(EditProfileActivity.this, "edit profile error", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Response<SimpleResponse> response) {
+                        super.onError(response);
+                    }
+                });
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item){

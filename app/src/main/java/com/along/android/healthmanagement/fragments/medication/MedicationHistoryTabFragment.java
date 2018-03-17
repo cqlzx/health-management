@@ -15,7 +15,12 @@ import android.widget.TextView;
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.activities.MedicationDetailsActivity;
 import com.along.android.healthmanagement.adapters.MedicationHistoryAdapter;
+import com.along.android.healthmanagement.apis.Apis;
+import com.along.android.healthmanagement.common.JsonCallback;
 import com.along.android.healthmanagement.entities.Prescription;
+import com.along.android.healthmanagement.network.BaseResponse;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,6 +30,9 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class MedicationHistoryTabFragment extends Fragment {
+    private Fragment mContext;
+
+    private List<Prescription> mPrescriptionList = new ArrayList<>();
 
 
     public MedicationHistoryTabFragment() {
@@ -36,15 +44,39 @@ public class MedicationHistoryTabFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_medication_history, container, false);
+        final View view = inflater.inflate(R.layout.fragment_medication_history, container, false);
 
-        List<Prescription> prescriptionList;
-        try {
-            prescriptionList = Prescription.listAll(Prescription.class);
-        } catch (SQLiteException e) {
-            prescriptionList = new ArrayList<>();
-        }
+        OkGo.<BaseResponse<List<Prescription>>>get(Apis.getMedicationHistory())
+                .tag(this)
+                .execute(new JsonCallback<BaseResponse<List<Prescription>>>() {
+                    @Override
+                    public void onSuccess(Response<BaseResponse<List<Prescription>>> response) {
+                        BaseResponse data = response.body();
+                        if (data != null) {
+                            mPrescriptionList = (List<Prescription>) data.data;
+                            initCurrentList(mPrescriptionList, view);
+                        }
+                    }
 
+                    @Override
+                    public void onError(Response<BaseResponse<List<Prescription>>> response) {
+                        super.onError(response);
+                        // 错误的时候取本地
+                        List<Prescription> prescriptionList;
+
+                        try {
+                            prescriptionList = Prescription.listAll(Prescription.class);
+                        } catch (SQLiteException e) {
+                            prescriptionList = new ArrayList<>();
+                        }
+                        initCurrentList(prescriptionList, view);
+                    }
+                });
+
+        return view;
+    }
+
+    public void initCurrentList(List<Prescription> prescriptionList, View view) {
         List<Prescription> historyPrescription = new ArrayList<Prescription>();
         for (Prescription prescription : prescriptionList) {
             //If today > endDate, then add to current
@@ -79,8 +111,6 @@ public class MedicationHistoryTabFragment extends Fragment {
                 startActivity(medicationDetailsIntent);
             }
         });
-
-        return view;
     }
 
 }

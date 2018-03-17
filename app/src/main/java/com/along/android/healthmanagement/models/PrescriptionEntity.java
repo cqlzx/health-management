@@ -1,19 +1,24 @@
-package com.along.android.healthmanagement.entities;
+package com.along.android.healthmanagement.models;
 
-import com.orm.SugarRecord;
-import com.orm.dsl.Table;
+/**
+ * Created by fenghongyu on 18/3/14.
+ */
 
-import java.io.Serializable;
-
-@Table
-public class Prescription extends SugarRecord implements Serializable{
+public class PrescriptionEntity {
+    private Long id;
     private String patientName, doctorName, disease, medication, rxcuis, startDate, endDate, intakeTimes, frequency;
     private boolean notificationEnabled;
 
-    public Prescription() {
-
+    public PrescriptionEntity() {
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getPatientName() {
         return patientName;
@@ -45,6 +50,14 @@ public class Prescription extends SugarRecord implements Serializable{
 
     public void setMedication(String medication) {
         this.medication = medication;
+    }
+
+    public String getRxcuis() {
+        return rxcuis;
+    }
+
+    public void setRxcuis(String rxcuis) {
+        this.rxcuis = rxcuis;
     }
 
     public String getStartDate() {
@@ -79,19 +92,11 @@ public class Prescription extends SugarRecord implements Serializable{
         this.frequency = frequency;
     }
 
-    public Boolean getNotificationEnabled() {
+    public boolean isNotificationEnabled() {
         return notificationEnabled;
     }
 
-    public void setNotificationEnabled(Boolean notificationEnabled) {
+    public void setNotificationEnabled(boolean notificationEnabled) {
         this.notificationEnabled = notificationEnabled;
-    }
-
-    public String getRxcuis() {
-        return rxcuis;
-    }
-
-    public void setRxcuis(String rxcuis) {
-        this.rxcuis = rxcuis;
     }
 }
