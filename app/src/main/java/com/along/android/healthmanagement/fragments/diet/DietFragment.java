@@ -134,7 +134,7 @@ public class DietFragment extends BasicFragment {
         rlTitle = (RelativeLayout) view.findViewById(R.id.rl_title);
         //  count
         tvTitle = (TextView) view.findViewById(R.id.tv_title);
-        if (null != user.getCalorieCount() && !"".equals(user.getCalorieCount())) {
+        if (null != user && null != user.getCalorieCount() && !"".equals(user.getCalorieCount())) {
             tvCalorieCount = (TextView) view.findViewById(R.id.tv_calorie_count);
             tvCalorieCount.setText("Calorie Target: " + user.getCalorieCount());
         }

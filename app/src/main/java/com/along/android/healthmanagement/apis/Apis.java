@@ -6,7 +6,7 @@ package com.along.android.healthmanagement.apis;
 
 public class Apis {
     public static final String PROTOCOL = "http://";
-    public static final String HOST = "10.2.206.33";
+    public static final String HOST = "10.108.120.248";
     public static final String PORT = "3000";
 
     public static String getUrl() {
@@ -67,6 +67,6 @@ public class Apis {
     }
 
     public static final String insertContact() {
-        return getUrl() + "";
+        return getUrl() + "/contact/insert";
     }
 }

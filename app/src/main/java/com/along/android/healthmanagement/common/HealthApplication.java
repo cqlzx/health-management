@@ -26,19 +26,5 @@ public class HealthApplication extends SugarApp {
         super.onCreate();
         OkGo.getInstance().init(this);
         sApp = this;
-
-        OkGo.<BaseResponse<User>>post(Apis.getLoginUrl())
-                .tag(this)
-                .execute(new JsonCallback<BaseResponse<User>>() {
-                    @Override
-                    public void onSuccess(Response<BaseResponse<User>> response) {
-                        Log.e(TAG, response.toString());
-                    }
-
-                    @Override
-                    public void onError(Response<BaseResponse<User>> response) {
-                        super.onError(response);
-                    }
-                });
     }
 }

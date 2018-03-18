@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
                 final User user = EntityManager.findOneBy(User.class, "email = ?", email);
 
-                OkGo.<BaseResponse<User>>get(Apis.getLoginUrl())
+                OkGo.<BaseResponse<User>>post(Apis.getLoginUrl())
                         .tag(this)
                         .params("email", email)
                         .params("password", password)
