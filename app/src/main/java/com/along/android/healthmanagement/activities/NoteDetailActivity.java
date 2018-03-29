@@ -28,9 +28,16 @@ import android.widget.Toast;
 
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.apis.Apis;
+import com.along.android.healthmanagement.common.JsonCallback;
 import com.along.android.healthmanagement.entities.Note;
 import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.helpers.EntityManager;
+import com.along.android.healthmanagement.network.BaseResponse;
+import com.along.android.healthmanagement.network.SimpleResponse;
+import com.along.android.healthmanagement.utils.JSONUtil;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
 
 import java.util.Calendar;
 
@@ -54,7 +61,7 @@ public class NoteDetailActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayUseLogoEnabled(true);
 
-        try{
+        /*try{
             String selectedNoteItemId = getIntent().getStringExtra("selectedNoteItemId");
             note = EntityManager.findById(Note.class,Long.parseLong(selectedNoteItemId));
             detail_title = (EditText)findViewById(R.id.detail_title);
@@ -64,8 +71,27 @@ public class NoteDetailActivity extends AppCompatActivity {
         }catch(Exception e)
         {
 
-        }
-        parseImage();
+        }*/
+        String selectedNoteItemId = getIntent().getStringExtra("selectedNoteItemId");
+        OkGo.<BaseResponse<Note>>get(Apis.getById())
+                .tag(this)
+                .params("id", selectedNoteItemId)
+                .execute(new JsonCallback<BaseResponse<Note>>() {
+                    @Override
+                    public void onSuccess(Response<BaseResponse<Note>> response) {
+                        BaseResponse<Note> data = response.body();
+                        detail_title = (EditText)findViewById(R.id.detail_title);
+                        detail_content = (EditText)findViewById(R.id.detail_content);
+                        detail_title.setText(note.getTitle());
+                        detail_content.setText(note.getContent());
+                        parseImage();
+                    }
+
+                    @Override
+                    public void onError(Response<BaseResponse<Note>> response) {
+                        super.onError(response);
+                    }
+                });
     }
 
     @Override
@@ -76,6 +102,58 @@ public class NoteDetailActivity extends AppCompatActivity {
 
     }
 
+    public void saveNote() {
+
+        SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
+        long uid = sp.getLong("uid", 0);
+        // User user = EntityManager.findById(User.class, uid);
+
+        try{
+            String selectedNoteItemId = getIntent().getStringExtra("selectedNoteItemId");
+            note = EntityManager.findById(Note.class,Long.parseLong(selectedNoteItemId));
+
+        }catch (Exception e){
+
+            note = new Note();
+        }
+        note.setUid(uid);
+
+        detail_title = (EditText)findViewById(R.id.detail_title);
+        detail_content = (EditText)findViewById(R.id.detail_content);
+
+        note.setTitle(detail_title.getText().toString());
+        note.setContent(detail_content.getText().toString());
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        calendar.clear();
+        calendar.set(year, month, day);
+        note.setDate(calendar.getTimeInMillis());
+
+        if(detail_title.getText().toString().equals("")||detail_content.getText().toString().equals("")){
+            Toast.makeText(NoteDetailActivity.this, "title and content cannot be empty", Toast.LENGTH_SHORT).show();
+        }else {
+            OkGo.<SimpleResponse>post(Apis.insertNote())
+                    .tag(this)
+                    .upJson(JSONUtil.toJSONObject(note))
+                    .execute(new JsonCallback<SimpleResponse>() {
+                        @Override
+                        public void onSuccess(Response<SimpleResponse> response) {
+                            SimpleResponse data = response.body();
+                            finish();
+                        }
+
+                        @Override
+                        public void onError(Response<SimpleResponse> response) {
+                            super.onError(response);
+                            note.save();
+                            finish();
+                        }
+                    });
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -84,39 +162,7 @@ public class NoteDetailActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.action_add:
-                SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
-                long uid = sp.getLong("uid", 0);
-                User user = EntityManager.findById(User.class, uid);
-
-                try{
-                    String selectedNoteItemId = getIntent().getStringExtra("selectedNoteItemId");
-                    note = EntityManager.findById(Note.class,Long.parseLong(selectedNoteItemId));
-
-                }catch (Exception e){
-
-                    note = new Note();
-                }
-                note.setUid(user.getId());
-
-                detail_title = (EditText)findViewById(R.id.detail_title);
-                detail_content = (EditText)findViewById(R.id.detail_content);
-
-                note.setTitle(detail_title.getText().toString());
-                note.setContent(detail_content.getText().toString());
-                Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
-                calendar.clear();
-                calendar.set(year, month, day);
-                note.setDate(calendar.getTimeInMillis());
-
-                if(detail_title.getText().toString().equals("")||detail_content.getText().toString().equals("")){
-                    Toast.makeText(NoteDetailActivity.this, "title and content cannot be empty", Toast.LENGTH_SHORT).show();
-                }else {
-                    note.save();
-                    finish();
-                }
+                saveNote();
                 break;
             case R.id.action_pic:
                 Intent intent = new Intent(NoteDetailActivity.this,GetPictureActivity.class);

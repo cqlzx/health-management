@@ -1,16 +1,12 @@
 package com.along.android.healthmanagement.apis;
 
-/**
- * Created by fenghongyu on 18/3/13.
- */
-
 public class Apis {
     public static final String PROTOCOL = "http://";
-    public static final String HOST = "10.108.120.248";
-    public static final String PORT = "3000";
+    public static final String HOST = "mysite.local";
+    public static final String PORT = "";
 
     public static String getUrl() {
-        return PROTOCOL + HOST + ":" + PORT;
+        return PROTOCOL + HOST + PORT;
     }
 
     // register or login
@@ -68,5 +64,66 @@ public class Apis {
 
     public static final String insertContact() {
         return getUrl() + "/contact/insert";
+    }
+
+    //food
+    public static final String addFood() {
+        return getUrl() + "/food/addFood";
+    }
+
+    public static final String delFood() {
+        return getUrl() + "/food/delFood";
+    }
+
+    // meal
+    public static final String addMeal() {
+        return getUrl() + "/meal/addMeal";
+    }
+
+    public static final String editMeal() {
+        return getUrl() + "/meal/editMeal";
+    }
+
+    public static final String getMeal() {
+        return getUrl() + "/meal/getMeal";
+    }
+
+    // water
+    public static final String addWater() {
+        return getUrl() + "/waterconsumption/addWater";
+    }
+
+    public static final String editWater() {
+        return getUrl() + "/waterconsumption/editWater";
+    }
+
+    // diet
+    public static final String addDiet() {
+        return getUrl() + "/diet/addDiet";
+    }
+
+    public static final String getDiet() {
+        return getUrl() + "/diet/getDiet";
+    }
+
+    // notes
+    public static final String insertNote() {
+        return getUrl() + "/note/insert";
+    }
+
+    public static final String delNote() {
+        return getUrl() + "/note/delNote";
+    }
+
+    public static final String getNotes() {
+        return getUrl() + "/note/getNotes";
+    }
+
+    public static final String getById() {
+        return getUrl() + "/note/getById";
+    }
+
+    public static final String upload() {
+        return getUrl() + "/upload/do_upload";
     }
 }

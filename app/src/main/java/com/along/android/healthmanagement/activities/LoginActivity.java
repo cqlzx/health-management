@@ -19,7 +19,6 @@ import com.along.android.healthmanagement.apis.Apis;
 import com.along.android.healthmanagement.common.JsonCallback;
 import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.helpers.EntityManager;
-import com.along.android.healthmanagement.models.UserEntity;
 import com.along.android.healthmanagement.network.BaseResponse;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -76,7 +75,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 OkGo.<BaseResponse<User>>post(Apis.getLoginUrl())
                         .tag(this)
                         .params("email", email)
-                        .params("password", password)
+                        .params("passwd", password)
                         .execute(new JsonCallback<BaseResponse<User>>() {
                             @Override
                             public void onSuccess(Response<BaseResponse<User>> response) {

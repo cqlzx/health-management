@@ -12,8 +12,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.apis.Apis;
+import com.along.android.healthmanagement.common.JsonCallback;
 import com.along.android.healthmanagement.entities.Note;
+import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.helpers.Utility;
+import com.along.android.healthmanagement.network.BaseResponse;
+import com.along.android.healthmanagement.network.SimpleResponse;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
 
 import java.util.Calendar;
 import java.util.List;
@@ -41,7 +48,9 @@ public class NotesAdapter extends ArrayAdapter<Note> {
 
         // Id
         TextView tvNoteId = (TextView) listItemView.findViewById(R.id.tvXLNoteId);
-        tvNoteId.setText(note.getId().toString());
+        if (note.getId()!= null) {
+            tvNoteId.setText(note.getId().toString());
+        }
 
         // Title
         TextView tvNoteTitle = (TextView) listItemView.findViewById(R.id.tvNoteTitle);
@@ -51,19 +60,20 @@ public class NotesAdapter extends ArrayAdapter<Note> {
         TextView tvAddedTime = (TextView) listItemView.findViewById(R.id.tvNoteAddedTime);
 
         System.out.println("-note t-->>>"+note.getTitle().toString());
-        System.out.println("-date-->>>"+note.getDate().toString());
 
         // Prescription Date
-        Calendar c = Calendar.getInstance();
-        c.setTimeInMillis(Long.parseLong(note.getDate().toString()));
-        int mYear = c.get(Calendar.YEAR);
-        int mMonth = c.get(Calendar.MONTH);
-        int mDay = c.get(Calendar.DAY_OF_MONTH);
+        if (note.getDate() != null) {
+            Calendar c = Calendar.getInstance();
+            c.setTimeInMillis(Long.parseLong(note.getDate().toString()));
+            int mYear = c.get(Calendar.YEAR);
+            int mMonth = c.get(Calendar.MONTH);
+            int mDay = c.get(Calendar.DAY_OF_MONTH);
 
-        String[] months = new String[]{"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
-        String prescriptionDateText =  months[mMonth] + " " + mDay + ", " + mYear;
+            String[] months = new String[]{"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+            String prescriptionDateText =  months[mMonth] + " " + mDay + ", " + mYear;
 
-        tvAddedTime.setText(prescriptionDateText);
+            tvAddedTime.setText(prescriptionDateText);
+        }
 
         // Delete
         TextView tvDelete = (TextView) listItemView.findViewById(R.id.tvNoteDelete);
@@ -83,13 +93,36 @@ public class NotesAdapter extends ArrayAdapter<Note> {
         alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                /* delete the note entry from the database */
-                Note notesRecord = Note.findById(Note.class,note.getId());
-                notesRecord.delete();
-                NotesAdapter.this.remove(note);
-                Utility.setListViewHeightBasedOnChildren(listView);
-                dialog.dismiss();
+            public void onClick(final DialogInterface dialog, int which) {
+                if (note.getId() == null) {
+                    return;
+                }
+
+                OkGo.<SimpleResponse>get(Apis.delNote())
+                        .tag(this)
+                        .params("id", note.getId())
+                        .execute(new JsonCallback<SimpleResponse>() {
+                            @Override
+                            public void onSuccess(Response<SimpleResponse> response) {
+                                SimpleResponse data = response.body();
+                                NotesAdapter.this.remove(note);
+                                Utility.setListViewHeightBasedOnChildren(listView);
+                                dialog.dismiss();
+                            }
+
+                            @Override
+                            public void onError(Response<SimpleResponse> response) {
+                                super.onError(response);
+                                /* delete the note entry from the database */
+                                Note notesRecord = Note.findById(Note.class,note.getId());
+                                if (notesRecord != null) {
+                                    notesRecord.delete();
+                                    NotesAdapter.this.remove(note);
+                                    Utility.setListViewHeightBasedOnChildren(listView);
+                                    dialog.dismiss();
+                                }
+                            }
+                        });
             }
         });
         alert.setNegativeButton("NO", new DialogInterface.OnClickListener() {
