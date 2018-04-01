@@ -123,11 +123,11 @@ public class MedicationSearchFragment extends BasicFragment {
         List<Medicine> allMedicines = EntityManager.findWithQuery(Medicine.class, "select * from Medicine where name like ? order by id desc", "%" + text + "%");
         List<String> pidList = new ArrayList<>();
         Set<Long> pids = new HashSet<>();
-        for (Medicine medicine : allMedicines) {
+        /*for (Medicine medicine : allMedicines) {
             if (pids.contains(medicine.getPid())) continue;
             pids.add(medicine.getPid());
             pidList.add(medicine.getPid() + "");
-        }
+        }*/
 
         if (pidList.size() != 0) {
             String[] pidArr = new String[pidList.size()];

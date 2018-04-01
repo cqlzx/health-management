@@ -196,6 +196,7 @@ public class AddPrescriptionFormFragment extends BasicFragment {
         Map<String, String> medicines = new HashMap<String, String>();
         //Set<String> medicines = new HashSet<String>();
         Set<String> timings = new HashSet<String>();
+        Set<String> mids = new HashSet<String>();
         int minFrequency = DEFAULT_MIN;
         Medicine medicine;
         for (int i = 0; i < count; i++) {
@@ -203,6 +204,7 @@ public class AddPrescriptionFormFragment extends BasicFragment {
 
             medicines.put(medicine.getRxcui(), medicine.getName());
             timings.add(medicine.getTimings());
+            mids.add(medicine.getMid() + "");
 
             int frequency = Integer.parseInt(medicine.getFrequency());
             if (frequency < minFrequency) {
@@ -218,31 +220,32 @@ public class AddPrescriptionFormFragment extends BasicFragment {
         prescription.setEndDate(tvEndDateInMillis.getText().toString());
         prescription.setFrequency(minFrequency + "");
         prescription.setIntakeTimes(android.text.TextUtils.join(",", timings));
+        prescription.setMids(android.text.TextUtils.join(",", mids));
         prescription.setMedication(android.text.TextUtils.join(",", medicines.values()));
         prescription.setRxcuis(android.text.TextUtils.join(",", medicines.keySet()));
 
         Long prescriptionId = prescription.save();
 
-        OkGo.<BaseResponse<Prescription>>post(Apis.postPrescriptionUrl())
+        OkGo.<BaseResponse<Long>>post(Apis.postPrescriptionUrl())
                 .tag(this)
                 .upJson(JSONUtil.toJSONObject(prescription))
-                .execute(new JsonCallback<BaseResponse<Prescription>>() {
+                .execute(new JsonCallback<BaseResponse<Long>>() {
                     @Override
-                    public void onSuccess(Response<BaseResponse<Prescription>> response) {
-                        BaseResponse<Prescription> data = response.body();
+                    public void onSuccess(Response<BaseResponse<Long>> response) {
+                        BaseResponse<Long> data = response.body();
                         if (data != null) {
-                            prescription1 = (Prescription) data.data;
+                            // prescription1 = (Prescription) data.data;
                         }
                     }
 
                     @Override
-                    public void onError(Response<BaseResponse<Prescription>> response) {
+                    public void onError(Response<BaseResponse<Long>> response) {
                         super.onError(response);
                     }
                 });
 
         // Update the prescriptionId in the medicine table
-        for (int i = 0; i < count; i++) {
+        /*for (int i = 0; i < count; i++) {
             // local
             medicine = medicineAdapter.getItem(i);
             Medicine med = EntityManager.findById(Medicine.class, medicine.getId());
@@ -267,13 +270,13 @@ public class AddPrescriptionFormFragment extends BasicFragment {
                             super.onError(response);
                         }
                     });
-        }
+        }*/
 
         getFragmentManager().popBackStack();
     }
 
-    public void addMedicineToList(Long medicineId) {
-        Medicine medicine = EntityManager.findById(Medicine.class, medicineId);
+    public void addMedicineToList(Medicine medicine) {
+        // Medicine medicine = EntityManager.findById(Medicine.class, medicineId);
         medicineAdapter.add(medicine);
     }
 

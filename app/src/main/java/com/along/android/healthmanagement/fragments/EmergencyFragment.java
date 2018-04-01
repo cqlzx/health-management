@@ -69,7 +69,7 @@ public class EmergencyFragment extends BasicFragment {
                         BaseResponse data = response.body();
                         if (data != null) {
                             List<EmergencyContact> emergencyContactList = (List<EmergencyContact>)data.data;
-                            if (emergencyContactList.size() >= 1) {
+                            if (emergencyContactList != null && emergencyContactList.size() >= 1) {
                                 for (EmergencyContact emergencyCont : emergencyContactList) {
                                     eName.setText(emergencyCont.getName());
                                     eContact.setText(emergencyCont.getPhoneNumber());

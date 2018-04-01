@@ -29,6 +29,9 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Date;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
@@ -72,10 +75,16 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
                 final User user = EntityManager.findOneBy(User.class, "email = ?", email);
 
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("email", email);
+                    jsonObject.put("passwd", password);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 OkGo.<BaseResponse<User>>post(Apis.getLoginUrl())
                         .tag(this)
-                        .params("email", email)
-                        .params("passwd", password)
+                        .upJson(jsonObject)
                         .execute(new JsonCallback<BaseResponse<User>>() {
                             @Override
                             public void onSuccess(Response<BaseResponse<User>> response) {
@@ -140,7 +149,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     public void loginHandler(User user, String password) {
         if(user != null && user.getPassword() != null) {
             if(user.getPassword().equals(password)) {
-                if (user.getPasswordExpirationTime() == 0 || user.getPasswordExpirationTime() > new Date().getTime()) {
+                //if (user.getPasswordExpirationTime() == 0 || user.getPasswordExpirationTime() > new Date().getTime()) {
                     SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
                     sp.edit().putLong("uid",user.getId()).apply();
 
@@ -149,9 +158,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                     //intent.setClass(LoginActivity.this,MainActivity.class);
                     //intent.putExtra("email", email);
                     startActivity(intent);
-                } else {
+                /*} else {
                     Toast.makeText(LoginActivity.this, "Password has expired", Toast.LENGTH_SHORT).show();
-                }
+                }*/
             } else {
                 Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
             }

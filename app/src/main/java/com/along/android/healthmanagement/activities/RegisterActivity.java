@@ -23,6 +23,7 @@ import com.along.android.healthmanagement.apis.Apis;
 import com.along.android.healthmanagement.common.JsonCallback;
 import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.helpers.Validation;
+import com.along.android.healthmanagement.layouts.SquareLayout;
 import com.along.android.healthmanagement.models.UserEntity;
 import com.along.android.healthmanagement.network.BaseResponse;
 import com.along.android.healthmanagement.network.SimpleResponse;

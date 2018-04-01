@@ -43,7 +43,7 @@ public class MedicineAdapter extends ArrayAdapter<Medicine> {
         final Medicine medicine = getItem(position);
         
         TextView medicineId = (TextView) listItemView.findViewById(R.id.tvAPMedicineId);
-        medicineId.setText(medicine.getId().toString());
+        medicineId.setText(medicine.getMid().toString());
 
         TextView medicineName = (TextView) listItemView.findViewById(R.id.tvAPMedicineName);
         medicineName.setText(null != medicine.getName() ? medicine.getName() : "");
@@ -81,8 +81,8 @@ public class MedicineAdapter extends ArrayAdapter<Medicine> {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 /* delete the medicine entry from the database */
-                Medicine medicineRecord = Medicine.findById(Medicine.class, medicine.getId());
-                medicineRecord.delete();
+                //Medicine medicineRecord = Medicine.findById(Medicine.class, medicine.getMid());
+                //medicineRecord.delete();
                 MedicineAdapter.this.remove(medicine);
                 Utility.setListViewHeightBasedOnChildren(listView);
                 dialog.dismiss();

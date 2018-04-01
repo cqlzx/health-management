@@ -7,7 +7,25 @@ import java.io.Serializable;
 
 @Table
 public class Prescription extends SugarRecord implements Serializable{
-    private String patientName, doctorName, disease, medication, rxcuis, startDate, endDate, intakeTimes, frequency;
+    private String patientName;
+    private String doctorName;
+    private String disease;
+    private String medication;
+    private String rxcuis;
+    private String startDate;
+    private String endDate;
+    private String intakeTimes;
+    private String frequency;
+
+    public String getMids() {
+        return mids;
+    }
+
+    public void setMids(String mids) {
+        this.mids = mids;
+    }
+
+    private String mids;
     private boolean notificationEnabled;
 
     public Prescription() {

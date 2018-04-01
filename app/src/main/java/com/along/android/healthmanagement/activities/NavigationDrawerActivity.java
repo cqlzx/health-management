@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.Food;
+import com.along.android.healthmanagement.entities.Medicine;
 import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.fragments.BmiFragment;
 import com.along.android.healthmanagement.fragments.DatePickerFragment;
@@ -171,16 +172,16 @@ public class NavigationDrawerActivity extends AppCompatActivity
     }
 
     @Override
-    public void onMedicineAdded(Long medicineId) {
+    public void onMedicineAdded(Medicine medicine) {
         AddPrescriptionFormFragment addPrescriptionFormFragment = (AddPrescriptionFormFragment)
                 getSupportFragmentManager().findFragmentByTag("addPrescriptionFormFragment");
         if (addPrescriptionFormFragment != null) {
-            addPrescriptionFormFragment.addMedicineToList(medicineId);
+            addPrescriptionFormFragment.addMedicineToList(medicine);
         } else {
             // Create fragment and give it an argument for the selected article
             AddPrescriptionFormFragment newFragment = new AddPrescriptionFormFragment();
             Bundle args = new Bundle();
-            args.putLong("medicineId", medicineId);
+            args.putLong("medicineId", medicine.getMid());
             newFragment.setArguments(args);
 
            createFragment(newFragment, "addPrescriptionFormFragment");

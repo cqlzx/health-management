@@ -5,7 +5,15 @@ import com.orm.dsl.Table;
 
 @Table
 public class Medicine extends SugarRecord{
-    private Long pid;
+    public Long getMid() {
+        return mid;
+    }
+
+    public void setMid(Long mid) {
+        this.mid = mid;
+    }
+
+    private Long mid;
     private String name;
     private String timings;
     private String quantity;
@@ -46,14 +54,6 @@ public class Medicine extends SugarRecord{
 
     public void setFrequency(String frequency) {
         this.frequency = frequency;
-    }
-
-    public Long getPid() {
-        return pid;
-    }
-
-    public void setPid(Long pid) {
-        this.pid = pid;
     }
 
 
