@@ -19,8 +19,21 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.apis.Apis;
+import com.along.android.healthmanagement.common.JsonCallback;
 import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.helpers.Validation;
+import com.along.android.healthmanagement.layouts.SquareLayout;
+import com.along.android.healthmanagement.models.UserEntity;
+import com.along.android.healthmanagement.network.BaseResponse;
+import com.along.android.healthmanagement.network.SimpleResponse;
+import com.along.android.healthmanagement.utils.JSONUtil;
+import com.google.gson.Gson;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -81,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (Validation.isEmpty(user, RegisterActivity.this) &&
                         Validation.isValidPassword(user.getPassword(), RegisterActivity.this) &&
                         Validation.isPasswordMatch(etPassword.getText().toString(), etConfirmpassword.getText().toString(), RegisterActivity.this) &&
-                        Validation.isUserExsist(user.getEmail(), RegisterActivity.this) &&
+                        /*Validation.isUserExsist(user.getEmail(), RegisterActivity.this) &&*/
                         Validation.isValidEmail(user.getEmail(), RegisterActivity.this) &&
                         Validation.isValidPhonenumber(user.getPhonenumber(), RegisterActivity.this) &&
                         Validation.isNumeric(user.getAge(), "age", RegisterActivity.this)) {
@@ -93,15 +106,18 @@ public class RegisterActivity extends AppCompatActivity {
                         SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
                         sp.edit().putLong("uid", userId).apply();
 
-                        Intent intent = new Intent();
+                        /*Intent intent = new Intent();
                         intent.setClass(RegisterActivity.this, NavigationDrawerActivity.class);
-                        startActivity(intent);
+                        startActivity(intent);*/
+                        postRegister(user);
 
                     }catch (Exception e){
                         Toast.makeText(RegisterActivity.this, "error", Toast.LENGTH_SHORT).show();
                         Log.e("Register Error", "Register Error", e);
                     }
 
+                } else {
+                    Toast.makeText(RegisterActivity.this, "Form filling is invalid", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -116,6 +132,44 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void postRegister(User user) {
+        user.setPasswordExpirationTime(0);
+        JSONObject jsonObject = JSONUtil.toJSONObject(user);
+        if (jsonObject == null) {
+            return;
+        }
+        OkGo.<SimpleResponse>post(Apis.getRegisterUrl())
+                .tag(this)
+                .upJson(jsonObject)
+                /*.params("email", user.getEmail())
+                .params("password", user.getPassword())
+                .params("realname", user.getRealname())
+                .params("gender", user.getGender())
+                .params("age", user.getAge())
+                .params("phonenumber", user.getPhonenumber())
+                .params("passwordExpirationTime", user.getPasswordExpirationTime())*/
+                .execute(new JsonCallback<SimpleResponse>() {
+                    @Override
+                    public void onSuccess(Response<SimpleResponse> response) {
+                        if (response != null && response.body() != null) {
+                            SimpleResponse result = response.body();
+                            if (result.code == 0) {
+                                Intent intent = new Intent();
+                                intent.setClass(RegisterActivity.this, NavigationDrawerActivity.class);
+                                startActivity(intent);
+                                return;
+                            }
+                        }
+                        Toast.makeText(RegisterActivity.this, "register error", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Response<SimpleResponse> response) {
+                        super.onError(response);
+                    }
+                });
     }
 
     @Override

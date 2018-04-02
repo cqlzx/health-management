@@ -3,6 +3,8 @@ package com.along.android.healthmanagement.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -13,14 +15,22 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.apis.Apis;
+import com.along.android.healthmanagement.common.JsonCallback;
 import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.helpers.EntityManager;
+import com.along.android.healthmanagement.network.BaseResponse;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Date;
 
@@ -61,43 +71,33 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             @Override
             public void onClick(View v) {
                 String email = etEmail.getText().toString();
-                String password = etPassword.getText().toString();
+                final String password = etPassword.getText().toString();
 
-                User user = EntityManager.findOneBy(User.class, "email = ?", email);
+                final User user = EntityManager.findOneBy(User.class, "email = ?", email);
 
-                if(user != null) {
-                    if(user.getPassword().equals(password)) {
-                        if (user.getPasswordExpirationTime() == 0 || user.getPasswordExpirationTime() > new Date().getTime()) {
-                            SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
-//                            sp.edit().putString("email",email).apply();
-                            sp.edit().putLong("uid",user.getId()).apply();
-
-                            // Remove below code if not used
-                            Intent intent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
-                            //intent.setClass(LoginActivity.this,MainActivity.class);
-                            //intent.putExtra("email", email);
-                            startActivity(intent);
-                        } else {
-                            Toast.makeText(LoginActivity.this, "Password has expired", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("email", email);
+                    jsonObject.put("passwd", password);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+                OkGo.<BaseResponse<User>>post(Apis.getLoginUrl())
+                        .tag(this)
+                        .upJson(jsonObject)
+                        .execute(new JsonCallback<BaseResponse<User>>() {
+                            @Override
+                            public void onSuccess(Response<BaseResponse<User>> response) {
+                                BaseResponse<User> data = response.body();
+                                User userEntity = (User) data.data;
+                                loginHandler(userEntity, password);
+                            }
 
-                //String dbpassword = helper.searchPassword(username);
-//                String dbpassword;
-//                if (password.equals(dbpassword)) {
-//                    Intent intent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
-//                    //intent.setClass(LoginActivity.this,MainActivity.class);
-//                    intent.putExtra("Username", username);
-//                    startActivity(intent);
-//                } else {
-//                    Toast temp = Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT);
-//                    temp.show();
-//                }
+                            @Override
+                            public void onError(Response<BaseResponse<User>> response) {
+                                super.onError(response);
+                            }
+                        });
             }
         });
 
@@ -121,10 +121,52 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(LoginActivity.this, ForgetPasswordActivity.class);
+                intent.setClass(LoginActivity.this, NavigationDrawerActivity.class);
+                //intent.setClass(LoginActivity.this, ForgetPasswordActivity.class);
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        if (newConfig.fontScale != 1)//非默认值
+            getResources();
+        super.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public Resources getResources() {
+        Resources res = super.getResources();
+        if (res.getConfiguration().fontScale != 1) {//非默认值
+            Configuration newConfig = new Configuration();
+            newConfig.setToDefaults();//设置默认
+            res.updateConfiguration(newConfig, res.getDisplayMetrics());
+        }
+        return res;
+    }
+
+    public void loginHandler(User user, String password) {
+        if(user != null && user.getPassword() != null) {
+            if(user.getPassword().equals(password)) {
+                //if (user.getPasswordExpirationTime() == 0 || user.getPasswordExpirationTime() > new Date().getTime()) {
+                    SharedPreferences sp = getSharedPreferences("Login", Context.MODE_PRIVATE);
+                    sp.edit().putLong("uid",user.getId()).apply();
+
+                    // Remove below code if not used
+                    Intent intent = new Intent(LoginActivity.this, NavigationDrawerActivity.class);
+                    //intent.setClass(LoginActivity.this,MainActivity.class);
+                    //intent.putExtra("email", email);
+                    startActivity(intent);
+                /*} else {
+                    Toast.makeText(LoginActivity.this, "Password has expired", Toast.LENGTH_SHORT).show();
+                }*/
+            } else {
+                Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

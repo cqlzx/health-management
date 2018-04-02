@@ -5,7 +5,7 @@ import com.orm.dsl.Table;
 
 @Table
 public class EmergencyContact extends SugarRecord{
-    private Long id, uid;
+    private Long uid;
     private String name, email, phoneNumber;
 
     public Long getUid() {

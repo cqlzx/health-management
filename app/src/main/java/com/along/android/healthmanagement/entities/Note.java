@@ -7,7 +7,7 @@ import com.orm.SugarRecord;
  */
 
 public class Note extends SugarRecord {
-    Long id,uid;
+    Long uid;
     Long date;
     String title;
     String content;
@@ -19,10 +19,6 @@ public class Note extends SugarRecord {
 
     public void setUid(Long uid) {
         this.uid = uid;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public Long getDate() {

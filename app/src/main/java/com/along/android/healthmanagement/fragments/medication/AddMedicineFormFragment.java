@@ -21,12 +21,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.apis.Apis;
+import com.along.android.healthmanagement.common.JsonCallback;
 import com.along.android.healthmanagement.entities.Medicine;
 import com.along.android.healthmanagement.fragments.BasicFragment;
 import com.along.android.healthmanagement.fragments.TimePickerFragment;
+import com.along.android.healthmanagement.network.BaseResponse;
+import com.along.android.healthmanagement.utils.JSONUtil;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -116,16 +122,33 @@ public class AddMedicineFormFragment extends BasicFragment implements TextWatche
                         !spinner.getSelectedItem().toString().equals("") &&
                         !medicineTimings.getText().toString().equals("")) {
 
-                    Medicine medicine = new Medicine();
+                    final Medicine medicine = new Medicine();
                     medicine.setName(medicineName);
                     medicine.setFrequency(medicineFrequency.getSelectedItem().toString());
                     medicine.setQuantity(spinner.getSelectedItem().toString());
                     medicine.setTimings(medicineTimings.getText().toString());
                     medicine.setRxcui(rxcui.getText().toString());
-                    Long medicineId = medicine.save();
+                    final Long medicineId = medicine.save();
 
-                    mCallback.onMedicineAdded(medicineId);
-                    getFragmentManager().popBackStack();
+                    OkGo.<BaseResponse<Long>>post(Apis.postMedicineUrl())
+                            .tag(this)
+                            .upJson(JSONUtil.toJSONObject(medicine))
+                            .execute(new JsonCallback<BaseResponse<Long>>() {
+                                @Override
+                                public void onSuccess(Response<BaseResponse<Long>> response) {
+                                    BaseResponse<Long> data = response.body();
+                                    if (data != null) {
+                                        medicine.setMid(data.data);
+                                        mCallback.onMedicineAdded(medicine);
+                                        getFragmentManager().popBackStack();
+                                    }
+                                }
+
+                                @Override
+                                public void onError(Response<BaseResponse<Long>> response) {
+                                    super.onError(response);
+                                }
+                            });
                 }
             }
         });
@@ -230,6 +253,6 @@ public class AddMedicineFormFragment extends BasicFragment implements TextWatche
     }
 
     public interface OnMedicineAddedListener {
-        public void onMedicineAdded(Long medicineId);
+        public void onMedicineAdded(Medicine medicine);
     }
 }

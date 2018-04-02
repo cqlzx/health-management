@@ -4,14 +4,10 @@ package com.along.android.healthmanagement.entities;
 import com.orm.SugarRecord;
 
 public class VitalSign extends SugarRecord{
-    private Long id, uid, date;
+    private Long uid, date;
     private String weight, height, bodyTemperature, bloodPressure, bloodGlucose, heartRate;
 
     public VitalSign(){}
-
-    public Long getId(){
-        return id;
-    }
 
     public Long getUid() {
         return uid;

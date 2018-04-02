@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteException;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
@@ -17,10 +18,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.along.android.healthmanagement.R;
+import com.along.android.healthmanagement.apis.Apis;
+import com.along.android.healthmanagement.common.JsonCallback;
 import com.along.android.healthmanagement.entities.Prescription;
+import com.along.android.healthmanagement.network.BaseResponse;
+import com.along.android.healthmanagement.network.SimpleResponse;
 import com.along.android.healthmanagement.receivers.AlarmReceiver;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.Response;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -102,21 +110,30 @@ public class MedicationCurrentAdapter extends ArrayAdapter<Prescription> {
         alert.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                /* delete the medication entry from the database  */
-                Prescription prescriptionRecord = Prescription.findById(Prescription.class, prescription.getId());
+            public void onClick(final DialogInterface dialog, int which) {
+                if (prescription.getId() == null) {
+                    return;
+                }
+                OkGo.<SimpleResponse>get(Apis.getDelMedication())
+                        .tag(this)
+                        .params("id", prescription.getId())
+                        .execute(new JsonCallback<SimpleResponse>() {
+                            @Override
+                            public void onSuccess(Response<SimpleResponse> response) {
+                                SimpleResponse data = response.body();
+                                if (data != null && data.code == 0) {
+                                    delLocal(prescription);
+                                    dialog.dismiss();
+                                }
+                            }
 
-                //Must setAlarm before unsetAlarm, because intents will be gone after completely quiting the application,
-                //leading to the result that getAlarmIntents will contain a list of null, that's the reason of crash
-                setAlarm(getContext(), prescription);
-                unsetAlarm(getContext(), prescription);
-
-                List<Intent> alarms = getAlarmIntents();
-                alarms.remove(getPosition(prescription));
-
-                prescriptionRecord.delete();
-                MedicationCurrentAdapter.this.remove(prescription);
-                dialog.dismiss();
+                            @Override
+                            public void onError(Response<SimpleResponse> response) {
+                                super.onError(response);
+                                Toast.makeText(getContext(), "del error", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            }
+                        });
             }
         });
         alert.setNegativeButton("NO", new DialogInterface.OnClickListener() {
@@ -129,6 +146,22 @@ public class MedicationCurrentAdapter extends ArrayAdapter<Prescription> {
         });
 
         alert.show();
+    }
+
+    private void delLocal(Prescription prescription) {
+        /* delete the medication entry from the database  */
+        Prescription prescriptionRecord = Prescription.findById(Prescription.class, prescription.getId());
+
+        //Must setAlarm before unsetAlarm, because intents will be gone after completely quiting the application,
+        //leading to the result that getAlarmIntents will contain a list of null, that's the reason of crash
+        setAlarm(getContext(), prescription);
+        unsetAlarm(getContext(), prescription);
+
+        List<Intent> alarms = getAlarmIntents();
+        alarms.remove(getPosition(prescription));
+
+        prescriptionRecord.delete();
+        MedicationCurrentAdapter.this.remove(prescription);
     }
 
     private void toggleNotification(View llMLNotificationClickedView, Prescription prescription) {

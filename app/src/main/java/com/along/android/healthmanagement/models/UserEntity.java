@@ -1,29 +1,32 @@
-package com.along.android.healthmanagement.entities;
+package com.along.android.healthmanagement.models;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-import com.orm.SugarRecord;
-import com.orm.dsl.Ignore;
-import com.orm.dsl.Table;
+/**
+ * Created by fenghongyu on 18/3/13.
+ */
 
-import java.io.Serializable;
-import java.security.SecureRandom;
-import java.util.Date;
-
-@Table
-public class User extends SugarRecord implements Serializable {
-
+public class UserEntity {
+    private Long id;
     private String realname;
     private String password;
     private String email;
     private String gender;
     private String age;
     private String phonenumber;
+
+
     private String calorieCount;
     private long passwordExpirationTime;
 
-    public User() {
+    public UserEntity() {
 
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getRealname() {
@@ -74,14 +77,6 @@ public class User extends SugarRecord implements Serializable {
         this.phonenumber = phonenumber;
     }
 
-    public long getPasswordExpirationTime() {
-        return passwordExpirationTime;
-    }
-
-    public void setPasswordExpirationTime(long passwordExpirationTime) {
-        this.passwordExpirationTime = passwordExpirationTime;
-    }
-
     public String getCalorieCount() {
         return calorieCount;
     }
@@ -89,19 +84,12 @@ public class User extends SugarRecord implements Serializable {
     public void setCalorieCount(String calorieCount) {
         this.calorieCount = calorieCount;
     }
-    public String resetPassword(int len) {
-        setPasswordExpirationTime(new Date().getTime() + (long)60 * 60 * 1000);
 
-        String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        SecureRandom random = new SecureRandom();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < len; i++) {
-            sb.append(AB.charAt(random.nextInt(AB.length())));
-        }
-        String password = sb.toString();
-        setPassword(password);
-        this.save();
+    public long getPasswordExpirationTime() {
+        return passwordExpirationTime;
+    }
 
-        return password;
+    public void setPasswordExpirationTime(long passwordExpirationTime) {
+        this.passwordExpirationTime = passwordExpirationTime;
     }
 }

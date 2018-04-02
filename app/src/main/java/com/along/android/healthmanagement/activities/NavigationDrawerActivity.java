@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.along.android.healthmanagement.R;
 import com.along.android.healthmanagement.entities.Food;
+import com.along.android.healthmanagement.entities.Medicine;
 import com.along.android.healthmanagement.entities.User;
 import com.along.android.healthmanagement.fragments.BmiFragment;
 import com.along.android.healthmanagement.fragments.DatePickerFragment;
@@ -72,10 +73,12 @@ public class NavigationDrawerActivity extends AppCompatActivity
         Long userIdS = sp.getLong("uid", 0);
         User user = EntityManager.findById(User.class, userIdS);
 
-        TextView tvNavUsername = (TextView) header.findViewById(R.id.tvNavUsername);
-        tvNavUsername.setText(null != user.getRealname() ? user.getRealname() : "");
-        TextView tvNavEmail = (TextView) header.findViewById(R.id.tvNavEmail);
-        tvNavEmail.setText(null != user.getEmail() ? user.getEmail() : "");
+        if (user != null && user.getRealname() != null && user.getEmail() != null) {
+            TextView tvNavUsername = (TextView) header.findViewById(R.id.tvNavUsername);
+            tvNavUsername.setText(null != user.getRealname() ? user.getRealname() : "");
+            TextView tvNavEmail = (TextView) header.findViewById(R.id.tvNavEmail);
+            tvNavEmail.setText(null != user.getEmail() ? user.getEmail() : "");
+        }
 
         createFragment(new HomeFragment(), "homeFragment");
     }
@@ -169,16 +172,16 @@ public class NavigationDrawerActivity extends AppCompatActivity
     }
 
     @Override
-    public void onMedicineAdded(Long medicineId) {
+    public void onMedicineAdded(Medicine medicine) {
         AddPrescriptionFormFragment addPrescriptionFormFragment = (AddPrescriptionFormFragment)
                 getSupportFragmentManager().findFragmentByTag("addPrescriptionFormFragment");
         if (addPrescriptionFormFragment != null) {
-            addPrescriptionFormFragment.addMedicineToList(medicineId);
+            addPrescriptionFormFragment.addMedicineToList(medicine);
         } else {
             // Create fragment and give it an argument for the selected article
             AddPrescriptionFormFragment newFragment = new AddPrescriptionFormFragment();
             Bundle args = new Bundle();
-            args.putLong("medicineId", medicineId);
+            args.putLong("medicineId", medicine.getMid());
             newFragment.setArguments(args);
 
            createFragment(newFragment, "addPrescriptionFormFragment");
